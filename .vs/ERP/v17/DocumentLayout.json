@@ -1,0 +1,173 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\GIT\\GitHub\\LMSPORTAL\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{73962037-5EA7-4BD8-B60A-384897AFDD44}|LMS\\LMS.csproj|d:\\git\\github\\lmsportal\\lms\\areas\\lms\\lmsarearegistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73962037-5EA7-4BD8-B60A-384897AFDD44}|LMS\\LMS.csproj|solutionrelative:lms\\areas\\lms\\lmsarearegistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|d:\\git\\github\\lmsportal\\erp.ui\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|solutionrelative:erp.ui\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{73962037-5EA7-4BD8-B60A-384897AFDD44}|LMS\\LMS.csproj|d:\\git\\github\\lmsportal\\lms\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73962037-5EA7-4BD8-B60A-384897AFDD44}|LMS\\LMS.csproj|solutionrelative:lms\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|d:\\git\\github\\lmsportal\\erp.ui\\oms\\management\\projectmainpage.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|solutionrelative:erp.ui\\oms\\management\\projectmainpage.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|d:\\git\\github\\lmsportal\\erp.ui\\oms\\management\\projectmainpage.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|solutionrelative:erp.ui\\oms\\management\\projectmainpage.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|d:\\git\\github\\lmsportal\\erp.ui\\oms\\login.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|solutionrelative:erp.ui\\oms\\login.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|d:\\git\\github\\lmsportal\\erp.ui\\oms\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|solutionrelative:erp.ui\\oms\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|d:\\git\\github\\lmsportal\\erp.ui\\controllers\\commoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|solutionrelative:erp.ui\\controllers\\commoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{73962037-5EA7-4BD8-B60A-384897AFDD44}|LMS\\LMS.csproj|d:\\git\\github\\lmsportal\\lms\\controllers\\commoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73962037-5EA7-4BD8-B60A-384897AFDD44}|LMS\\LMS.csproj|solutionrelative:lms\\controllers\\commoncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LMSAreaRegistration.cs",
+              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\LMS\\Areas\\LMS\\LMSAreaRegistration.cs",
+              "RelativeDocumentMoniker": "LMS\\Areas\\LMS\\LMSAreaRegistration.cs",
+              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\LMS\\Areas\\LMS\\LMSAreaRegistration.cs",
+              "RelativeToolTip": "LMS\\Areas\\LMS\\LMSAreaRegistration.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-27T21:21:08.062Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProjectMainPage.aspx.cs",
+              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Management\\ProjectMainPage.aspx.cs",
+              "RelativeDocumentMoniker": "ERP.UI\\OMS\\Management\\ProjectMainPage.aspx.cs",
+              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Management\\ProjectMainPage.aspx.cs",
+              "RelativeToolTip": "ERP.UI\\OMS\\Management\\ProjectMainPage.aspx.cs",
+              "ViewState": "AQIAABwAAAAAAAAAAAAAACgAAABGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-27T21:03:44.688Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProjectMainPage.aspx",
+              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Management\\ProjectMainPage.aspx",
+              "RelativeDocumentMoniker": "ERP.UI\\OMS\\Management\\ProjectMainPage.aspx",
+              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Management\\ProjectMainPage.aspx",
+              "RelativeToolTip": "ERP.UI\\OMS\\Management\\ProjectMainPage.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-11-27T21:03:41.332Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Login.aspx.cs",
+              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Login.aspx.cs",
+              "RelativeDocumentMoniker": "ERP.UI\\OMS\\Login.aspx.cs",
+              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Login.aspx.cs",
+              "RelativeToolTip": "ERP.UI\\OMS\\Login.aspx.cs",
+              "ViewState": "AQIAANMAAAAAAAAAAAAmwPgAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-27T21:02:57.052Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Login.aspx",
+              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Login.aspx",
+              "RelativeDocumentMoniker": "ERP.UI\\OMS\\Login.aspx",
+              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Login.aspx",
+              "RelativeToolTip": "ERP.UI\\OMS\\Login.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-11-27T21:02:52.914Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CommonController.cs",
+              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\LMS\\Controllers\\CommonController.cs",
+              "RelativeDocumentMoniker": "LMS\\Controllers\\CommonController.cs",
+              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\LMS\\Controllers\\CommonController.cs",
+              "RelativeToolTip": "LMS\\Controllers\\CommonController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-27T21:01:25.781Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CommonController.cs",
+              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\Controllers\\CommonController.cs",
+              "RelativeDocumentMoniker": "ERP.UI\\Controllers\\CommonController.cs",
+              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\Controllers\\CommonController.cs",
+              "RelativeToolTip": "ERP.UI\\Controllers\\CommonController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-27T21:01:17.477Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RouteConfig.cs",
+              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\LMS\\App_Start\\RouteConfig.cs",
+              "RelativeDocumentMoniker": "LMS\\App_Start\\RouteConfig.cs",
+              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\LMS\\App_Start\\RouteConfig.cs",
+              "RelativeToolTip": "LMS\\App_Start\\RouteConfig.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-27T20:59:47.22Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RouteConfig.cs",
+              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\App_Start\\RouteConfig.cs",
+              "RelativeDocumentMoniker": "ERP.UI\\App_Start\\RouteConfig.cs",
+              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\App_Start\\RouteConfig.cs",
+              "RelativeToolTip": "ERP.UI\\App_Start\\RouteConfig.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-27T20:50:21.888Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,980 @@
+﻿@*====================================================== Revision History ==========================================================*@
+@*Rev Number         DATE              VERSION          DEVELOPER           CHANGES*@
+@*1.0                27-01-2023        2.0.38           Pallab              25576: Report page design modification *@
+@*====================================================== Revision History ==========================================================*@
+
+@model MyShop.Models.HierarchyWiseTargetClass
+@{
+    ViewBag.Title = "Hierarchy Wise Target";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .flatGrid > tbody > tr > .dxgvHeader_PlasticBlue {
+        background: #258bc1 !important;
+        border: 1px solid #1a6a94;
+    }
+
+    .flatGrid > tbody > tr.dxgvFooter_PlasticBlue {
+        background-color: #258bc1 !important;
+    }
+
+    .flatFooter.dxpLite_PlasticBlue .dxp-current {
+        background-color: #258bc1 !important;
+    }
+
+    .flatFooter.dxpLite_PlasticBlue .dxp-dropDownButton {
+        background: #258bc1 !important;
+        border: 1px Solid #1a6a94;
+    }
+</style>
+<script>
+    var EMPCODE = "";
+    var Level = 1;
+    var Type = "";
+    function SubmitOption() {
+        if ($("input[name='option']:checked").val() == "P") {
+            $('#myModalselection').modal('hide');
+            $('#myModal').modal('show');
+            Type = "P";
+            ppddgrid.Refresh();
+            ppddgrid.Refresh();
+        }
+        else if ($("input[name='option']:checked").val() == "S") {
+            $('#myModalselection').modal('hide');
+            $('#myModal').modal('show');
+            Type = "S";
+            ppddgrid.Refresh();
+            ppddgrid.Refresh();
+        }
+        else {
+            if (Level == 1) {
+                $('#myModalselection').modal('hide');
+                hideSWhowDivnext(var1);
+                grid2.Refresh();
+                grid2.Refresh();
+                $('html,body').animate({ scrollTop: $('#var2').offset().top });
+            }
+            else if (Level == 2) {
+                $('#myModalselection').modal('hide');
+                grid3.Refresh();
+                grid3.Refresh();
+                $('html,body').animate({ scrollTop: $('#var3').offset().top });
+            }
+            else if (Level == 3) {
+                $('#myModalselection').modal('hide');
+                grid4.Refresh();
+                grid4.Refresh();
+                $('html,body').animate({ scrollTop: $('#var4').offset().top });
+            }
+            else if (Level == 4) {
+                $('#myModalselection').modal('hide');
+                grid5.Refresh();
+                grid5.Refresh();
+                $('html,body').animate({ scrollTop: $('#var5').offset().top });
+            }
+            else if (Level == 5) {
+                $('#myModalselection').modal('hide');
+                grid6.Refresh();
+                grid6.Refresh();
+                $('html,body').animate({ scrollTop: $('#var6').offset().top });
+            }
+            else if (Level == 6) {
+
+                $('#myModalselection').modal('hide');
+                hideSWhowDivnext(var6);
+                grid7.Refresh();
+                grid7.Refresh();
+                $('html,body').animate({ scrollTop: $('#var7').offset().top });
+            }
+
+        }
+    }
+
+
+    function ShowButtonClick() {
+        grid1.Refresh();
+        grid1.Refresh();
+        $('.clickerConta').addClass('hide');
+        $('#var1').removeClass('hide');
+    }
+
+    function rowclickgrid1(s, e) {
+        $('#myModalselection').removeClass('hide');
+        var grid = MVCxClientGridView.Cast(s);
+        var key = grid.GetRowKey(e.visibleIndex);
+
+        EMPCODE1 = key;
+        EMPCODEPPDD = key;
+        Level = 1;
+
+        $('#myModalselection').modal('show');
+        //hideSWhowDivnext(var1);
+        //grid2.Refresh();
+        //grid2.Refresh();
+
+        //$('html,body').animate({ scrollTop: $('#var2').offset().top });
+    }
+    function rowclickgrid2(s, e) {
+        $('#myModalselection').removeClass('hide');
+        $('#myModal').removeClass('hide');
+
+
+        $('#myModalselection').modal('show');
+
+        hideSWhowDivnext(var2);
+        var grid = MVCxClientGridView.Cast(s);
+        var key = grid.GetRowKey(e.visibleIndex);
+        EMPCODE2 = key;
+        EMPCODEPPDD = key;
+        Level = 2;
+        //grid3.Refresh();
+        //grid3.Refresh();
+        //$('html,body').animate({ scrollTop: $('#var3').offset().top });
+    }
+    function rowclickgrid3(s, e) {
+        hideSWhowDivnext(var3);
+        var grid = MVCxClientGridView.Cast(s);
+        var key = grid.GetRowKey(e.visibleIndex);
+        EMPCODE3 = key;
+        EMPCODEPPDD = key;
+        Level = 3;
+        $('#myModalselection').modal('show');
+
+        //grid4.Refresh();
+        //grid4.Refresh();
+        //$('html,body').animate({ scrollTop: $('#var4').offset().top });
+
+    }
+    function rowclickgrid4(s, e) {
+        hideSWhowDivnext(var4);
+        var grid = MVCxClientGridView.Cast(s);
+        var key = grid.GetRowKey(e.visibleIndex);
+        EMPCODE4 = key;
+        EMPCODEPPDD = key;
+        Level = 4;
+        $('#myModalselection').modal('show');
+
+        //grid5.Refresh();
+        //grid5.Refresh();
+        //$('html,body').animate({ scrollTop: $('#var5').offset().top });
+
+    }
+    function rowclickgrid5(s, e) {
+        hideSWhowDivnext(var5);
+        var grid = MVCxClientGridView.Cast(s);
+        var key = grid.GetRowKey(e.visibleIndex);
+        EMPCODE5 = key;
+        EMPCODEPPDD = key;
+        Level = 5;
+        $('#myModalselection').modal('show');
+
+        //grid6.Refresh();
+        //grid6.Refresh();
+        //$('html,body').animate({ scrollTop: $('#var6').offset().top });
+
+    }
+    function rowclickgrid6(s, e) {
+
+        var grid = MVCxClientGridView.Cast(s);
+        var key = grid.GetRowKey(e.visibleIndex);
+        EMPCODE6 = key;
+        EMPCODEPPDD = key;
+        Level = 6;
+        $('#myModalselection').modal('show');
+
+        //grid7.Refresh();
+        //grid7.Refresh();
+        //$('html,body').animate({ scrollTop: $('#var7').offset().top });
+
+    }
+
+
+
+    function OnBeginCallback1(s, e) {
+        stateids = $('#cmbState').val();
+        e.customArgs["Month"] = $("#ddlMonth").val();
+        e.customArgs["StateId"] = stateids.join(',');
+        e.customArgs["Year"] = $("#ddlYear").val();
+        //
+
+    }
+    function OnBeginCallback2(s, e) {
+        e.customArgs["EMPCODE"] = EMPCODE1;
+
+    }
+    function OnBeginCallback3(s, e) {
+        e.customArgs["EMPCODE"] = EMPCODE2;
+    }
+    function OnBeginCallback4(s, e) {
+        e.customArgs["EMPCODE"] = EMPCODE3;
+    }
+    function OnBeginCallback5(s, e) {
+        e.customArgs["EMPCODE"] = EMPCODE4;
+    }
+    function OnBeginCallback6(s, e) {
+        e.customArgs["EMPCODE"] = EMPCODE5;
+    }
+    function OnBeginCallback7(s, e) {
+        e.customArgs["EMPCODE"] = EMPCODE6;
+    }
+
+    function OnBeginCallbackppdd(s, e) {
+        e.customArgs["EMPCODE"] = EMPCODEPPDD;
+        e.customArgs["Type"] = Type;
+        e.customArgs["Month"] = $("#ddlMonth").val();
+    }
+
+
+
+    function hideSWhowDivnext(id) {
+        var dataChild = $(this).attr('data-child');
+        var dataId = $(this).attr('data-id');
+        var ClickerCont = $(this).parentsUntil('.clickerConta');
+        //if (dataChild == 1) {
+        //    $('.childrens').addClass('hide');
+        //    $(ClickerCont).addClass('Clicked');
+        //    $(ClickerCont).next().removeClass('hide');
+        //}
+        $(id).nextAll('.clickerConta').addClass('hide');
+        $(id).addClass('Clicked');
+        $(id).next().toggleClass('hide');
+    }
+
+    function gridexport() {
+        var url = '@Url.Action("ExportToExcel", "HierarchyWiseTarget")';
+
+        window.location.href = url;
+    }
+
+</script>
+
+<link href="~/Scripts/pluggins/multiselect/bootstrap-multiselect.css" rel="stylesheet" />
+<script src="~/Scripts/pluggins/multiselect/bootstrap-multiselect.js"></script>
+
+<style>
+    .multiselect-container.dropdown-menu {
+        right: 0 !important;
+        left: auto;
+        min-width: 340px;
+    }
+
+    .iminentSpan .multiselect-container.dropdown-menu {
+        right: auto !important;
+        left: 0;
+        min-width: 340px;
+    }
+
+    .multiselect-container > li > a {
+        padding: 5px 0;
+    }
+
+        .multiselect-container > li > a input[type="checkbox"] {
+            transform: translateY(3px);
+        }
+
+    .multiselect-container > li.active > a {
+        background: transparent !important;
+        color: #333;
+    }
+
+        .multiselect-container > li > a:hover, .multiselect-container > li.active > a:hover {
+            background: #f3f3f3 !important;
+            color: #333 !important;
+            padding: 5px 0;
+        }
+
+    .multiselect-item.multiselect-filter {
+        padding-bottom: 6px;
+        border-bottom: 1px solid #ccc;
+    }
+
+        .multiselect-item.multiselect-filter .form-control.multiselect-search {
+            height: 32px;
+        }
+
+        .multiselect-item.multiselect-filter .input-group-addon {
+            background: #41a8f1;
+            color: #fff;
+            border-color: #41a8f1;
+        }
+
+    .input-group-btn .multiselect-clear-filter {
+        background: #f98181;
+        color: #fffefe;
+        /* box-shadow: none; */
+        text-shadow: none;
+        border-color: #f96a6a;
+        padding: 5px 10px 4px 10px;
+    }
+
+    .multiselect.dropdown-toggle {
+        background: #fff;
+        border-radius: 0;
+    }
+
+    .iminentSpan > span {
+        display: block;
+    }
+
+    .iminentSpan button.multiselect.dropdown-toggle {
+        height: 25px;
+        padding: 0;
+        font-size: 12px !important;
+        box-shadow: none;
+        text-align: left;
+        padding-left: 15px;
+    }
+
+        .iminentSpan button.multiselect.dropdown-toggle .caret {
+            float: right;
+            margin: 7px;
+        }
+
+    .modalfoot {
+        padding: 5px 15px 2px 15px;
+    }
+
+
+    #var6 {
+        margin-left: 180px;
+    }
+
+    #var7 {
+        margin-left: 210px;
+    }
+</style>
+<script>
+
+
+
+
+    $(function () {
+        $('#cmbState').multiselect({
+            includeSelectAllOption: false,
+            enableFiltering: true,
+            enableCaseInsensitiveFiltering: true,
+            buttonWidth: '100%',
+
+            onDropdownHide: function (event) {
+
+            }
+        }).multiselect('selectAll', false).multiselect('updateButtonText');
+        stateids = $('#cmbState').val();
+    });
+
+
+
+    $(document).ready(function () {
+        var firstChild = $('.clicker').first();
+
+
+        $('.clicker').click(function () {
+
+        });
+    })
+</script>
+<style>
+    .clickerstyle {
+        margin: 10px 0;
+        margin-bottom: 10px;
+    }
+
+    #var2 {
+        margin-left: 30px;
+    }
+
+    #var3 {
+        margin-left: 60px;
+    }
+
+    #var4 {
+        margin-left: 90px;
+    }
+
+    #var5 {
+        margin-left: 120px;
+    }
+
+    #var5 {
+        margin-left: 150px;
+    }
+
+    .arrowline {
+        position: relative;
+    }
+
+        .arrowline:before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -30px;
+            width: 3px;
+            height: 62%;
+            background: #415698;
+        }
+
+        .arrowline:after {
+            content: '';
+            position: absolute;
+            top: calc(62% - 10px);
+            left: -30px;
+            width: 30px;
+            height: 3px;
+            background: #415698;
+        }
+
+    .btn-excel {
+        margin-top: 23px;
+    }
+
+
+    .padtop28 {
+        padding-top: 28px;
+    }
+
+    .noStyle .modal-header {
+        background-image: none !important;
+        border: none;
+        border-bottom: 1px solid #ccc;
+        color: #3c3b3b;
+        padding: 8px 13px 8px 15px;
+    }
+
+    .noStyle .modal-body {
+        background: #fff;
+    }
+
+    .modal-dialog.modal-sm {
+        width: 30%;
+    }
+
+    #cmbState + .btn-group > button {
+        border-radius: 4px;
+        height: 34px;
+    }
+
+    span.multiselect-native-select button {
+        border: 1px solid #c9c9c9 !important;
+        border-radius: 5px !important;
+    }
+
+    /*Rev 1.0*/
+
+    #BranchGridLookup {
+        min-height: 34px;
+        border-radius: 5px;
+    }
+
+    .dxeButtonEditButton_PlasticBlue {
+        background: #094e8c !important;
+        border-radius: 4px !important;
+        padding: 0 4px !important;
+    }
+
+    .chosen-container-single .chosen-single div {
+        background: #094e8c;
+        color: #fff;
+        border-radius: 4px;
+        height: 30px;
+        top: 1px;
+        right: 1px;
+        /*position:relative;*/
+    }
+
+        .chosen-container-single .chosen-single div b {
+            display: none;
+        }
+
+        .chosen-container-single .chosen-single div::after {
+            content: '<';
+            position: absolute;
+            top: 2px;
+            right: 3px;
+            font-size: 18px;
+            transform: rotate(269deg);
+            font-weight: 500;
+        }
+
+    .chosen-container-active.chosen-with-drop .chosen-single div {
+        background: #094e8c;
+        color: #fff;
+    }
+
+        .chosen-container-active.chosen-with-drop .chosen-single div::after {
+            transform: rotate(90deg);
+            right: 5px;
+        }
+
+    .calendar-icon {
+        position: absolute;
+        bottom: 8px;
+        right: 20px;
+        z-index: 0;
+        cursor: pointer;
+    }
+
+    .date-select .form-control {
+        position: relative;
+        z-index: 1;
+        background: transparent;
+    }
+
+    #ddlState, #ddlPartyType, #divoutletStatus, #slmonth, #slyear {
+        -webkit-appearance: none;
+        position: relative;
+        z-index: 1;
+        background-color: transparent;
+    }
+
+    .h-branch-select {
+        position: relative;
+    }
+
+        .h-branch-select::after {
+            content: '<';
+            position: absolute;
+            top: 33px;
+            right: 13px;
+            font-size: 18px;
+            transform: rotate(269deg);
+            font-weight: 500;
+            background: #094e8c;
+            color: #fff;
+            height: 18px;
+            display: block;
+            width: 28px;
+            /* padding: 10px 0; */
+            border-radius: 4px;
+            text-align: center;
+            line-height: 19px;
+            z-index: 0;
+        }
+
+    .multiselect.dropdown-toggle {
+        text-align: left;
+    }
+
+    .multiselect.dropdown-toggle, #ddlMonth, #ddlYear {
+        -webkit-appearance: none;
+        position: relative;
+        z-index: 1;
+        background-color: transparent;
+    }
+
+    .whclass.selectH {
+        padding-right: 30px;
+    }
+
+    #ddlShowReport:focus-visible {
+        box-shadow: none;
+        outline: none;
+        border: 1px solid #164f93;
+    }
+
+    #ddlShowReport:focus {
+        border: 1px solid #164f93;
+    }
+
+    .whclass.selectH:focus-visible {
+        outline: none;
+    }
+
+    .whclass.selectH:focus {
+        border: 1px solid #164f93;
+    }
+
+    .dxeButtonEdit_PlasticBlue {
+        border: 1px Solid #ccc;
+    }
+
+    .chosen-container-single .chosen-single {
+        border: 1px solid #ccc;
+        background: #fff;
+        box-shadow: none;
+    }
+
+    .daterangepicker td.active, .daterangepicker td.active:hover {
+        background-color: #175396;
+    }
+
+    label {
+        font-weight: 500;
+    }
+
+    .dxgvHeader_PlasticBlue {
+        background: #164f94;
+    }
+
+    .dxgvSelectedRow_PlasticBlue td.dxgv {
+        color: #fff;
+    }
+
+    .dxeCalendarHeader_PlasticBlue {
+        background: #185598;
+    }
+
+    .dxgvControl_PlasticBlue, .dxgvDisabled_PlasticBlue,
+    .dxbButton_PlasticBlue,
+    .dxeCalendar_PlasticBlue,
+    .dxeEditArea_PlasticBlue {
+        font-family: 'Poppins', sans-serif !important;
+    }
+
+    .dxgvEditFormDisplayRow_PlasticBlue td.dxgv, .dxgvDataRow_PlasticBlue td.dxgv, .dxgvDataRowAlt_PlasticBlue td.dxgv, .dxgvSelectedRow_PlasticBlue td.dxgv, .dxgvFocusedRow_PlasticBlue td.dxgv {
+        font-weight: 500;
+    }
+
+    .btnPadding .btn {
+        padding: 7px 14px !important;
+        border-radius: 4px;
+    }
+
+    .btnPadding {
+        padding-top: 24px !important;
+    }
+
+    .dxeButtonEdit_PlasticBlue {
+        border-radius: 5px;
+        height: 34px;
+    }
+
+    #dtfrom, #dtto {
+        position: relative;
+        z-index: 1;
+        background: transparent;
+    }
+
+    #tblshoplist_wrapper .dataTables_scrollHeadInner table tr th {
+        background: #165092;
+        vertical-align: middle;
+        font-weight: 500;
+    }
+
+    /*#refreshgrid {
+        background: #e5e5e5;
+        padding: 0 10px;
+        margin-top: 15px;
+        border-radius: 8px;
+    }*/
+
+    .styled-checkbox {
+        position: absolute;
+        opacity: 0;
+        z-index: 1;
+    }
+
+        .styled-checkbox + label {
+            position: relative;
+            /*cursor: pointer;*/
+            padding: 0;
+            margin-bottom: 0 !important;
+        }
+
+            .styled-checkbox + label:before {
+                content: "";
+                margin-right: 6px;
+                display: inline-block;
+                vertical-align: text-top;
+                width: 16px;
+                height: 16px;
+                /*background: #d7d7d7;*/
+                margin-top: 2px;
+                border-radius: 2px;
+                border: 1px solid #c5c5c5;
+            }
+
+        .styled-checkbox:hover + label:before {
+            background: #094e8c;
+        }
+
+
+        .styled-checkbox:checked + label:before {
+            background: #094e8c;
+        }
+
+        .styled-checkbox:disabled + label {
+            color: #b8b8b8;
+            cursor: auto;
+        }
+
+            .styled-checkbox:disabled + label:before {
+                box-shadow: none;
+                background: #ddd;
+            }
+
+        .styled-checkbox:checked + label:after {
+            content: "";
+            position: absolute;
+            left: 3px;
+            top: 9px;
+            background: white;
+            width: 2px;
+            height: 2px;
+            box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white;
+            transform: rotate(45deg);
+        }
+
+    #dtstate {
+        padding-right: 8px;
+    }
+
+    .pmsModal .modal-header {
+        background: #094e8c !important;
+        background-image: none !important;
+        padding: 11px 20px;
+        border: none;
+        border-radius: 5px 5px 0 0;
+        color: #fff;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .pmsModal .modal-content {
+        border: none;
+        border-radius: 10px;
+    }
+
+    .pmsModal .modal-header .modal-title {
+        font-size: 14px;
+    }
+
+    .pmsModal .close {
+        font-weight: 400;
+        font-size: 25px;
+        color: #fff;
+        text-shadow: none;
+        opacity: .5;
+    }
+
+    #EmployeeTable {
+        margin-top: 10px;
+    }
+
+        #EmployeeTable table tr th {
+            padding: 5px 10px;
+        }
+
+    .dynamicPopupTbl {
+        font-family: 'Poppins', sans-serif !important;
+    }
+
+        .dynamicPopupTbl > tbody > tr > td,
+        #EmployeeTable table tr th {
+            font-family: 'Poppins', sans-serif !important;
+            font-size: 12px;
+        }
+
+    .w150 {
+        width: 160px;
+    }
+
+    .eqpadtbl > tbody > tr > td:not(:last-child) {
+        padding-right: 20px;
+    }
+
+    #dtfrom_B-1, #dtto_B-1 {
+        background: transparent !important;
+        border: none;
+        width: 30px;
+        padding: 10px !important;
+    }
+
+        #dtfrom_B-1 #dtfrom_B-1Img,
+        #dtto_B-1 #dtto_B-1Img {
+            display: none;
+        }
+
+    #dtfrom_I, #dtto_I {
+        background: transparent;
+    }
+
+    .for-cust-icon {
+        position: relative;
+        z-index: 1;
+    }
+
+    .pad-md-18 {
+        padding-top: 24px;
+    }
+
+    .open .dropdown-toggle.btn-default {
+        background: transparent !important;
+    }
+
+    .input-group-btn .multiselect-clear-filter {
+        height: 32px;
+        border-radius: 0 4px 4px 0;
+    }
+
+    .btn .caret {
+        display: none;
+    }
+    /*Rev end 1.0*/
+
+    .btn-excel {
+        float: right;
+        margin-right: 2px;
+        margin-top: 10px;
+        padding: 5px 5px 5px 10px;
+        border-radius: 30px;
+    }
+
+        .btn-excel:hover {
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.12);
+        }
+        .btn-excel > .icn {
+            width: 40px;
+            height: 40px;
+            background: #e2e2e2;
+        }
+</style>
+
+
+
+
+<div class="breadCumb">
+    <span>
+        Month Wise Target vs Achievement
+    </span>
+</div>
+
+
+
+<div class="container">
+    <div class="backBox mt-5 p-3 ">
+
+        <div class="row mb-3">
+            @*Rev 1.0*@
+            @*<div class="col-md-2">*@
+            <div class="col-md-2 h-branch-select">
+                @*Rev end 1.0*@
+                <label><b>Select State(s)</b></label>
+                <div class="iminentSpan">
+                    <select class="demo" multiple="multiple" id="cmbState">
+                        @foreach (var item in Model.StateListTarget)
+                        {
+                            <option value="@item.ID">@item.Name</option>
+                        }
+                    </select>
+
+                </div>
+            </div>
+            @*Rev 1.0*@
+            @*<div class="col-md-2">*@
+            <div class="col-md-2 h-branch-select">
+                @*Rev end 1.0*@
+                <label><b>Select Month</b></label>
+                <div>
+                    @Html.DropDownList("ddlMonth", new SelectList(Model.MonthList, "ID", "MonthName"), new { @name = "from", @class = "full form-control" })
+
+                </div>
+            </div>
+
+            @*Rev 1.0*@
+            @*<div class="col-md-2">*@
+            <div class="col-md-2 h-branch-select">
+                @*Rev end 1.0*@
+                <label><b>Select Year</b></label>
+                <div>
+                    @Html.DropDownList("ddlYear", new SelectList(Model.YearList, "ID", "YearName"), new { @name = "from", @class = "full form-control" })
+
+                </div>
+            </div>
+            <div class="col-md-2 ">
+                <div>&nbsp;</div>
+                <button class="btn btn-success mt-2" onclick="ShowButtonClick()">Show</button>
+            </div>
+            <div class="col-md-4 text-right">
+
+                <span class="btn-excel">
+                    <span>Export To Excel</span>
+                    <span class="icn"><img src="/assests/images/excel.png" style="width: 20px;" title="" onclick="gridexport()" /></span>
+                </span>
+            </div>
+
+        </div>
+        <div class="clear"></div>
+        <div class="clickerConta clickerstyle" id="var1">
+            @Html.Partial("FirstLevelGrid", Model.FirstLevelGrid)
+        </div>
+        <div class="clickerConta clickerstyle hide childrens arrowline" id="var2">
+            @Html.Partial("SecondLevelGrid", Model.SecondLevelGrid)
+        </div>
+        <div class="clickerConta clickerstyle hide childrens arrowline" id="var3">
+            @Html.Partial("ThirdLevelGrid", Model.ThirdLevelGrid)
+        </div>
+
+        <div class="clickerConta clickerstyle hide childrens arrowline" id="var4">
+            @Html.Partial("FourthLevelGrid", Model.FourthLevelGrid)
+
+        </div>
+
+        <div class="clickerConta clickerstyle hide childrens arrowline" id="var5">
+            @Html.Partial("FifthLevelGrid", Model.FifthLevelGrid)
+        </div>
+
+        <div class="clickerConta clickerstyle hide childrens arrowline" id="var6">
+            @Html.Partial("SixthLevelGrid", Model.SixthLevelGrid)
+        </div>
+        <div class="clickerConta clickerstyle hide childrens arrowline" id="var7">
+            @Html.Partial("SeventhLevelGrid", Model.SeventhLevelGrid)
+        </div>
+
+
+
+
+
+
+    </div>
+</div>
+
+
+<div class="modal fade noStyle bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document" style="width: 90%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Show Target/Achievement For PP/DD</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 lblmTop8">
+                        @Html.Partial("PPDDGrid", Model.PPDDShopList)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade noStyle bs-example-modal-sm" id="myModalselection" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Show Target/Achievement for</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 lblmTop8" id="radoption">
+                        <label class="radio-inline">
+                            <input type="radio" name="option" id="inlineRadio3" value="P"> Show PP/DD
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="option" id="inlineRadio2" value="H">Show Hierarchy
+                        </label>
+
+                        <label class="radio-inline hide">
+                            <input type="radio" name="option" id="inlineRadio3" value="S"> Show Secondary
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer modalfoot">
+                @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
+                <input type="button" value="Submit" onclick="SubmitOption();" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+</div>
+

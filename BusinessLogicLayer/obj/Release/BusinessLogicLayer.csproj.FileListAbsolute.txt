@@ -1,0 +1,13 @@
+D:\GIT\GitHub\LMSPORTAL\BusinessLogicLayer\bin\Release\BusinessLogicLayer.dll
+D:\GIT\GitHub\LMSPORTAL\BusinessLogicLayer\bin\Release\BusinessLogicLayer.pdb
+D:\GIT\GitHub\LMSPORTAL\BusinessLogicLayer\bin\Release\Aspose.Pdf.Kit.dll
+D:\GIT\GitHub\LMSPORTAL\BusinessLogicLayer\bin\Release\DataAccessLayer.dll
+D:\GIT\GitHub\LMSPORTAL\BusinessLogicLayer\bin\Release\EntityLayer.dll
+D:\GIT\GitHub\LMSPORTAL\BusinessLogicLayer\bin\Release\Ionic.Zip.dll
+D:\GIT\GitHub\LMSPORTAL\BusinessLogicLayer\bin\Release\EntityLayer.pdb
+D:\GIT\GitHub\LMSPORTAL\BusinessLogicLayer\bin\Release\DataAccessLayer.pdb
+D:\GIT\GitHub\LMSPORTAL\BusinessLogicLayer\obj\Release\BusinessLogicLayer.csproj.AssemblyReference.cache
+D:\GIT\GitHub\LMSPORTAL\BusinessLogicLayer\obj\Release\BusinessLogicLayer.csproj.CoreCompileInputs.cache
+D:\GIT\GitHub\LMSPORTAL\BusinessLogicLayer\obj\Release\Business.450209FB.Up2Date
+D:\GIT\GitHub\LMSPORTAL\BusinessLogicLayer\obj\Release\BusinessLogicLayer.dll
+D:\GIT\GitHub\LMSPORTAL\BusinessLogicLayer\obj\Release\BusinessLogicLayer.pdb

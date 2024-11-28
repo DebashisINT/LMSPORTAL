@@ -1,0 +1,6 @@
+D:\GIT\GitHub\LMSPORTAL\EntityLayer\bin\Release\EntityLayer.dll
+D:\GIT\GitHub\LMSPORTAL\EntityLayer\bin\Release\EntityLayer.pdb
+D:\GIT\GitHub\LMSPORTAL\EntityLayer\obj\Release\EntityLayer.csproj.AssemblyReference.cache
+D:\GIT\GitHub\LMSPORTAL\EntityLayer\obj\Release\EntityLayer.csproj.CoreCompileInputs.cache
+D:\GIT\GitHub\LMSPORTAL\EntityLayer\obj\Release\EntityLayer.dll
+D:\GIT\GitHub\LMSPORTAL\EntityLayer\obj\Release\EntityLayer.pdb

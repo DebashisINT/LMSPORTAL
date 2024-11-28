@@ -1,0 +1,14 @@
+D:\GIT\GitHub\LMSPORTAL\UtilityLayer\bin\Release\UtilityLayer.pdb
+D:\GIT\GitHub\LMSPORTAL\UtilityLayer\bin\Release\BusinessLogicLayer.dll
+D:\GIT\GitHub\LMSPORTAL\UtilityLayer\bin\Release\EntityLayer.dll
+D:\GIT\GitHub\LMSPORTAL\UtilityLayer\bin\Release\DataAccessLayer.dll
+D:\GIT\GitHub\LMSPORTAL\UtilityLayer\bin\Release\Aspose.Pdf.Kit.dll
+D:\GIT\GitHub\LMSPORTAL\UtilityLayer\bin\Release\Ionic.Zip.dll
+D:\GIT\GitHub\LMSPORTAL\UtilityLayer\bin\Release\BusinessLogicLayer.pdb
+D:\GIT\GitHub\LMSPORTAL\UtilityLayer\bin\Release\EntityLayer.pdb
+D:\GIT\GitHub\LMSPORTAL\UtilityLayer\bin\Release\DataAccessLayer.pdb
+D:\GIT\GitHub\LMSPORTAL\UtilityLayer\obj\Release\UtilityLayer.csproj.AssemblyReference.cache
+D:\GIT\GitHub\LMSPORTAL\UtilityLayer\obj\Release\UtilityLayer.csproj.CoreCompileInputs.cache
+D:\GIT\GitHub\LMSPORTAL\UtilityLayer\obj\Release\UtilityL.BC4B101D.Up2Date
+D:\GIT\GitHub\LMSPORTAL\UtilityLayer\obj\Release\UtilityLayer.dll
+D:\GIT\GitHub\LMSPORTAL\UtilityLayer\obj\Release\UtilityLayer.pdb

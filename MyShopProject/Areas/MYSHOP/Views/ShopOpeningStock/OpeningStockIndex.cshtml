@@ -1,0 +1,806 @@
+﻿@*====================================================== Revision History ==========================================================*@
+@*Rev Number         DATE              VERSION          DEVELOPER           CHANGES*@
+@*1.0                13-02-2023        2.0.39           Pallab              25656: Master module design modification *@
+@*====================================================== Revision History ==========================================================*@
+
+@model MyShop.Models.OpeningStockModel
+@{
+    ViewBag.Title = "Opening Stock";
+}
+
+<link href="~/Content/media.css" rel="stylesheet" />
+<style>
+    #gridProductStockEntryList .dxgvStatusBar_PlasticBlue {
+        display: none;
+    }
+
+    .multiselect-container.dropdown-menu {
+        right: 0 !important;
+        left: auto;
+        min-width: 340px;
+    }
+
+    .iminentSpan .multiselect-container.dropdown-menu {
+        right: auto !important;
+        left: 0;
+        min-width: 340px;
+    }
+
+    .multiselect-container > li > a {
+        padding: 5px 0;
+    }
+
+        .multiselect-container > li > a input[type="checkbox"] {
+            transform: translateY(3px);
+        }
+
+    .multiselect-container > li.active > a {
+        background: transparent !important;
+        color: #333;
+    }
+
+        .multiselect-container > li > a:hover, .multiselect-container > li.active > a:hover {
+            background: #f3f3f3 !important;
+            color: #333 !important;
+            padding: 5px 0;
+        }
+
+    .multiselect-item.multiselect-filter {
+        padding-bottom: 6px;
+        border-bottom: 1px solid #ccc;
+    }
+
+        .multiselect-item.multiselect-filter .form-control.multiselect-search {
+            height: 32px;
+        }
+
+        .multiselect-item.multiselect-filter .input-group-addon {
+            background: #41a8f1;
+            color: #fff;
+            border-color: #41a8f1;
+        }
+
+    .input-group-btn .multiselect-clear-filter {
+        background: #f98181;
+        color: #fffefe;
+        /* box-shadow: none; */
+        text-shadow: none;
+        border-color: #f96a6a;
+        padding: 5px 10px 4px 10px;
+    }
+
+    .multiselect.dropdown-toggle {
+        background: #fff;
+        border-radius: 0;
+    }
+
+    .iminentSpan > span {
+        display: block;
+    }
+
+    .modal-header {
+        background-color: #007DB4;
+        color: white;
+        border-radius: 6px 6px 0 0;
+    }
+
+    button.close {
+        color: #fff;
+        opacity: .5;
+        font-weight: 500;
+    }
+
+    .close:hover {
+        color: #fff;
+        opacity: 1;
+    }
+
+    /*Rev 1.0*/
+
+    body, .dxtcLite_PlasticBlue {
+        font-family: 'Poppins', sans-serif !important;
+    }
+
+    #BranchGridLookup {
+        min-height: 34px;
+        border-radius: 5px;
+    }
+
+    .dxeButtonEditButton_PlasticBlue {
+        background: #094e8c !important;
+        border-radius: 4px !important;
+        padding: 0 4px !important;
+    }
+
+    .dxeButtonDisabled_PlasticBlue {
+        background: #ababab !important;
+    }
+
+    .chosen-container-single .chosen-single div {
+        background: #094e8c;
+        color: #fff;
+        border-radius: 4px;
+        height: 30px;
+        top: 1px;
+        right: 1px;
+        /*position:relative;*/
+    }
+
+        .chosen-container-single .chosen-single div b {
+            display: none;
+        }
+
+        .chosen-container-single .chosen-single div::after {
+            /*content: '<';*/
+            content: url(../../../assests/images/left-arw.png);
+            position: absolute;
+            top: 2px;
+            right: 3px;
+            font-size: 13px;
+            transform: rotate(269deg);
+            font-weight: 500;
+        }
+
+    .chosen-container-active.chosen-with-drop .chosen-single div {
+        background: #094e8c;
+        color: #fff;
+    }
+
+        .chosen-container-active.chosen-with-drop .chosen-single div::after {
+            transform: rotate(90deg);
+            right: 7px;
+        }
+
+    .calendar-icon {
+        position: absolute;
+        bottom: 9px;
+        right: 14px;
+        z-index: 0;
+        cursor: pointer;
+    }
+
+    .date-select .form-control {
+        position: relative;
+        z-index: 1;
+        background: transparent;
+    }
+
+    #ddlState, #ddlPartyType, #divoutletStatus, #slmonth, #slyear {
+        -webkit-appearance: none;
+        position: relative;
+        z-index: 1;
+        background-color: transparent;
+    }
+
+    .h-branch-select {
+        position: relative;
+    }
+
+        .h-branch-select::after {
+            content: '<';
+            /*content: url(../../../assests/images/left-arw.png);*/
+            position: absolute;
+            top: 33px;
+            right: 13px;
+            font-size: 18px;
+            transform: rotate(269deg);
+            font-weight: 500;
+            background: #094e8c;
+            color: #fff;
+            height: 18px;
+            display: block;
+            width: 28px;
+            /* padding: 10px 0; */
+            border-radius: 4px;
+            text-align: center;
+            line-height: 19px;
+            z-index: 0;
+        }
+
+    select:not(.btn):focus {
+        border-color: #094e8c;
+    }
+
+    select:not(.btn):focus-visible {
+        box-shadow: none;
+        outline: none;
+    }
+
+    .multiselect.dropdown-toggle {
+        text-align: left;
+    }
+
+    .multiselect.dropdown-toggle, #ddlMonth, #ddlYear {
+        -webkit-appearance: none;
+        position: relative;
+        z-index: 1;
+        background-color: transparent;
+    }
+
+    select:not(.btn) {
+        padding-right: 30px;
+        -webkit-appearance: none;
+        position: relative;
+        z-index: 1;
+        background-color: transparent;
+    }
+
+    #ddlShowReport:focus-visible {
+        box-shadow: none;
+        outline: none;
+        border: 1px solid #164f93;
+    }
+
+    #ddlShowReport:focus {
+        border: 1px solid #164f93;
+    }
+
+    .whclass.selectH:focus-visible {
+        outline: none;
+    }
+
+    .whclass.selectH:focus {
+        border: 1px solid #164f93;
+    }
+
+    .dxeButtonEdit_PlasticBlue {
+        border: 1px Solid #ccc;
+    }
+
+    .chosen-container-single .chosen-single {
+        border: 1px solid #ccc;
+        background: #fff;
+        box-shadow: none;
+    }
+
+    .daterangepicker td.active, .daterangepicker td.active:hover {
+        background-color: #175396;
+    }
+
+    label {
+        font-weight: 500;
+    }
+
+    .dxgvHeader_PlasticBlue {
+        background: #164f94;
+    }
+
+    .dxgvSelectedRow_PlasticBlue td.dxgv {
+        color: #fff;
+    }
+
+    .dxeCalendarHeader_PlasticBlue {
+        background: #185598;
+    }
+
+    .dxgvControl_PlasticBlue, .dxgvDisabled_PlasticBlue,
+    .dxbButton_PlasticBlue,
+    .dxeCalendar_PlasticBlue,
+    .dxeEditArea_PlasticBlue,
+    .dxgvControl_PlasticBlue, .dxgvDisabled_PlasticBlue {
+        font-family: 'Poppins', sans-serif !important;
+    }
+
+    .dxgvEditFormDisplayRow_PlasticBlue td.dxgv, .dxgvDataRow_PlasticBlue td.dxgv, .dxgvDataRowAlt_PlasticBlue td.dxgv, .dxgvSelectedRow_PlasticBlue td.dxgv, .dxgvFocusedRow_PlasticBlue td.dxgv {
+        font-weight: 500;
+    }
+
+    .btnPadding .btn {
+        padding: 7px 14px !important;
+        border-radius: 4px;
+    }
+
+    .btnPadding {
+        padding-top: 24px !important;
+    }
+
+    .dxeButtonEdit_PlasticBlue {
+        border-radius: 5px;
+        height: 34px;
+    }
+
+    #dtFrom, #dtTo, #FormDate, #toDate {
+        position: relative;
+        z-index: 1;
+        background: transparent;
+    }
+
+    #tblshoplist_wrapper .dataTables_scrollHeadInner table tr th {
+        background: #165092;
+        vertical-align: middle;
+        font-weight: 500;
+    }
+
+    /*#refreshgrid {
+        background: #e5e5e5;
+        padding: 0 10px;
+        margin-top: 15px;
+        border-radius: 8px;
+    }*/
+
+    .styled-checkbox {
+        position: absolute;
+        opacity: 0;
+        z-index: 1;
+    }
+
+        .styled-checkbox + label {
+            position: relative;
+            /*cursor: pointer;*/
+            padding: 0;
+            margin-bottom: 0 !important;
+        }
+
+            .styled-checkbox + label:before {
+                content: "";
+                margin-right: 6px;
+                display: inline-block;
+                vertical-align: text-top;
+                width: 16px;
+                height: 16px;
+                /*background: #d7d7d7;*/
+                margin-top: 2px;
+                border-radius: 2px;
+                border: 1px solid #c5c5c5;
+            }
+
+        .styled-checkbox:hover + label:before {
+            background: #094e8c;
+        }
+
+
+        .styled-checkbox:checked + label:before {
+            background: #094e8c;
+        }
+
+        .styled-checkbox:disabled + label {
+            color: #b8b8b8;
+            cursor: auto;
+        }
+
+            .styled-checkbox:disabled + label:before {
+                box-shadow: none;
+                background: #ddd;
+            }
+
+        .styled-checkbox:checked + label:after {
+            content: "";
+            position: absolute;
+            left: 3px;
+            top: 9px;
+            background: white;
+            width: 2px;
+            height: 2px;
+            box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white;
+            transform: rotate(45deg);
+        }
+
+    #dtstate {
+        padding-right: 8px;
+    }
+
+    .modal-header {
+        background: #094e8c !important;
+        background-image: none !important;
+        padding: 11px 20px;
+        border: none;
+        border-radius: 5px 5px 0 0;
+        color: #fff;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .modal-content {
+        border: none;
+        border-radius: 10px;
+    }
+
+    .modal-header .modal-title {
+        font-size: 14px;
+    }
+
+    .close {
+        font-weight: 400;
+        font-size: 25px;
+        color: #fff;
+        text-shadow: none;
+        opacity: .5;
+    }
+
+    #EmployeeTable {
+        margin-top: 10px;
+    }
+
+        #EmployeeTable table tr th {
+            padding: 5px 10px;
+        }
+
+    .dynamicPopupTbl {
+        font-family: 'Poppins', sans-serif !important;
+    }
+
+        .dynamicPopupTbl > tbody > tr > td,
+        #EmployeeTable table tr th {
+            font-family: 'Poppins', sans-serif !important;
+            font-size: 12px;
+        }
+
+    .w150 {
+        width: 160px;
+    }
+
+    .eqpadtbl > tbody > tr > td:not(:last-child) {
+        padding-right: 20px;
+    }
+
+    #dtFrom_B-1, #dtTo_B-1, #cmbDOJ_B-1, #cmbLeaveEff_B-1, #FormDate_B-1, #toDate_B-1 {
+        background: transparent !important;
+        border: none;
+        width: 30px;
+        padding: 10px !important;
+    }
+
+        #dtFrom_B-1 #dtFrom_B-1Img,
+        #dtTo_B-1 #dtTo_B-1Img, #cmbDOJ_B-1 #cmbDOJ_B-1Img, #cmbLeaveEff_B-1 #cmbLeaveEff_B-1Img, #FormDate_B-1 #FormDate_B-1Img, #toDate_B-1 #toDate_B-1Img {
+            display: none;
+        }
+
+    #FormDate_I, #toDate_I {
+        background: transparent;
+    }
+
+    .for-cust-icon {
+        position: relative;
+        /*z-index: 1;*/
+    }
+
+    .pad-md-18 {
+        padding-top: 24px;
+    }
+
+    .open .dropdown-toggle.btn-default {
+        background: transparent !important;
+    }
+
+    .input-group-btn .multiselect-clear-filter {
+        height: 32px;
+        border-radius: 0 4px 4px 0;
+    }
+
+    .btn .caret {
+        display: none;
+    }
+
+    .iminentSpan button.multiselect.dropdown-toggle {
+        height: 34px;
+    }
+
+    .col-lg-2 {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .dxeCalendarSelected_PlasticBlue {
+        color: White;
+        background-color: #185598;
+    }
+
+    .dxeTextBox_PlasticBlue {
+        height: 34px;
+        border-radius: 4px;
+    }
+
+    #cmbDOJ_DDD_PW-1 {
+        z-index: 9999 !important;
+    }
+
+    #cmbDOJ, #cmbLeaveEff {
+        position: relative;
+        z-index: 1;
+        background: transparent;
+    }
+
+    .btn-sm, .btn-xs {
+        padding: 7px 10px !important;
+    }
+
+    #productAttributePopUp_PWH-1 span, #ASPxPopupControl2_PWH-1 span {
+        color: #fff !important;
+    }
+
+    #marketsGrid_DXPEForm_tcefnew, .dxgvPopupEditForm_PlasticBlue {
+        height: 220px !important;
+    }
+
+    .btn {
+        height: 34px;
+    }
+    /*Rev end 1.0*/
+
+    @@media only screen and (max-width: 768px) {
+        .breadCumb {
+            padding: 0 20%;
+        }
+
+            .breadCumb > span {
+                padding: 9px 30px;
+            }
+
+        
+    }
+</style>
+
+<script>
+    var globalrowindex = 0;
+
+    function gridclick(s, e) {
+        globalrowindex = e.visibleIndex;
+    }
+
+    function OnStartCallback(s, e) {
+        e.customArgs["Shop_code"] = $("#ddlWareHouse").val();
+        e.customArgs["WreaHouse_id"] = $("#ddlWareHouse").val();
+    }
+
+    function SetProductClosingStock(s, e) {
+        //gridProductStockEntryList.batchEditApi.StartEdit();
+        gridProductStockEntryList.batchEditApi.StartEdit(globalrowindex, 4);
+        var CurrentStock = gridProductStockEntryList.batchEditApi.GetCellValue(globalrowindex, 'CurrentStock');
+        var newStock = gridProductStockEntryList.batchEditApi.GetCellValue(globalrowindex, 'newStock');
+        var ClosingStock = gridProductStockEntryList.batchEditApi.GetCellValue(globalrowindex, 'ClosingStock');
+        if (newStock > 0) {
+
+            var ClosingStock = parseFloat(CurrentStock) + parseFloat(newStock);
+            var Netamind = gridProductStockEntryList.batchEditApi.GetColumnIndex('ClosingStock');
+            gridProductStockEntryList.batchEditApi.StartEdit(globalrowindex, Netamind);
+            gridProductStockEntryList.GetEditor('ClosingStock').SetValue(parseFloat(ClosingStock));
+        }
+        gridProductStockEntryList.batchEditApi.EndEdit(globalrowindex, 4);
+    }
+
+    function DistributorChanges() {
+        gridProductStockEntryList.Refresh();
+        gridProductStockEntryList.Refresh();
+    }
+
+    function WarehouseChanges() {
+        gridProductStockEntryList.Refresh();
+        gridProductStockEntryList.Refresh();
+    }
+
+    function StockUpdate() {
+        if ($("#ddlWareHouse").val() != "0") {
+            gridProductStockEntryList.UpdateEdit();
+            gridProductStockEntryList.UpdateEdit();
+        }
+        else {
+            jAlert("Select warehouse.");
+            $("#ddlWareHouse").focus();
+        }
+
+    }
+</script>
+
+<script>
+    function getDownloadTemplateSettings() {
+
+        var warehouse = $("#ddlWareHouse option:selected").val();
+        if (warehouse != "0") {
+
+            var WareHouseName = $("#ddlWareHouse option:selected").text();
+            // alert($("#ddlYear").val());
+            var url = "@Url.Action("GetProductListForOpeningStock", "ShopOpeningStock")" + "?WarehouseID=" + warehouse + "&WarehouseName=" + WareHouseName;
+            window.location.href = url;
+            //pcModalTemplateExcelMode.Hide();
+        }
+        else {
+            jAlert("Please select Warehouse");
+
+        }
+    }
+
+    function ChekEmpSettingsUpload() {
+        todate = null;
+        fromdate = null;
+        var isprocess = false;
+        var filename = $("#fileprod").val();
+        if ($('#fileprod').get(0).files.length === 0) {
+            jAlert("No files selected.");
+            return false;
+        }
+        else {
+            var extension = filename.replace(/^.*\./, '');
+            switch (extension.toLowerCase()) {
+                case 'xls':
+                    isprocess = true;
+                case 'xlsx':
+                    isprocess = true;
+                default:
+                    // Cancel the form submission
+                    if (!isprocess) {
+                        jAlert('Only excel file require.');
+                        return false;
+                    }
+            }
+        }
+
+        if (isprocess == true) {
+            var fileUpload = $("#fileprod").get(0);
+            var files = fileUpload.files;
+
+            // Create FormData object
+            var fileData = new FormData();
+
+            // Looping over all files and add it to FormData object
+            for (var i = 0; i < files.length; i++) {
+                fileData.append(files[i].name, files[i]);
+            }
+
+
+            $.ajax({
+                url: "@Url.Action("GetUploadFilesProductStockSettings", "ShopOpeningStock")",
+                type: "POST",
+                contentType: false,
+                processData: false,
+                data: fileData,
+                success: function (result) {
+                    jAlert(result, 'Alert', function () {
+
+                        pcModalTemplateImportMode.Hide();
+                        if (result == "Import Process Completed!") {
+                            @*$.ajax({
+                            type: "POST",
+                            url: "@Url.Action("GetEmployeesTargetSettingImportLog", "AssignmentRevisit")",
+                            success: function (response) {
+                                if (response) {
+
+                                    //pcModalTemplateImportLogMode.SetContentHtml(response);
+                                    pcModalTemplateImportLogMode.Show();
+                                    gridTemplateImportLogList.Refresh();
+                                    gridTemplateImportLogList.Refresh();
+                                }
+                            }
+                    });*@
+                            //jAlert(result);
+                            gridProductStockEntryList.Refresh();
+                            gridProductStockEntryList.Refresh();
+                        }
+                    });
+                },
+                error: function (err) {
+                    jAlert(err.statusText);
+                }
+            });
+        }
+    }
+
+    function ImportUpdatePopOpenProductStock() {
+        $("#myImportModal").modal('show');
+        @*$.ajax({
+            type: "POST",
+            url: "@Url.Action("GetImportTemplateEmployeeSettings", "AssignmentRevisit")",
+            success: function (response) {
+                if (response) {
+                    pcModalTemplateImportMode.SetContentHtml(response);
+                    pcModalTemplateImportMode.Show();
+                }
+            }
+    });*@
+
+    }
+
+</script>
+
+<div id="divGrid">
+    @*<div class="panel-title clearfix">
+            <h3 class="pull-left">
+                Opening stock
+            </h3>
+        </div>*@
+    <div class="breadCumb">
+        <span>Opening stock</span>
+    </div>
+    <div class="container">
+        <div class="backBox mt-5 p-3 ">
+            <div class="form_main">
+
+                <div class="form-group">
+                    <div class="row">
+                        @*<div class="col-md-2">
+                                <label>Distributer </label>
+                                @Html.DropDownList("ddlDistributer", new SelectList(Model.Distributer_List, "Shop_Code", "Shop_Name"), new { @name = "from", @class = "full form-control", @onchange = "DistributorChanges()" })
+                            </div>*@
+                        @*Rev 1.0*@
+                        @*<div class="col-md-2">*@
+                        <div class="col-md-2 h-branch-select">
+                            @*Rev end 1.0*@
+                            <label>Warehouse </label>
+                            @Html.DropDownList("ddlWareHouse", new SelectList(Model.warehouse_List, "WAREHOUSE_ID", "WAREHOUSE_NAME"), new { @name = "from", @class = "form-control", @onchange = "WarehouseChanges();" })
+                        </div>
+                        <div class="col-md-8 parameter-btns" style="padding-top: 23px; padding-bottom: 6px;">
+                            <select name="ddlAppIds" class="btn btn-primary" id="ddlAppIds">
+                                <option value="0">Export to</option>
+                                <option value="1">PDF</option>
+                                <option value="2">XLSX</option>
+                                <option value="3">XLS</option>
+                                <option value="4">RTF</option>
+                                <option value="5">CSV</option>
+                            </select>
+                            <label>&nbsp; </label>
+                            <button type="button" onclick="getDownloadTemplateSettings();" class="btn btn-info">Download Template</button>
+                            <button type="button" onclick="ImportUpdatePopOpenProductStock();" class="btn btn-warning">Import (Add/Update)</button>
+                            <button type="button" id="btnSave" value="Save" class="btn btn-success" onclick="StockUpdate();">Save</button>
+
+                        </div>
+                        <div class="col-md-2 pull-left">
+
+                        </div>
+                    </div>
+                    <div class="">
+                        @{
+                            Html.RenderAction("GridProductOnepingStock", "ShopOpeningStock", new { Shop_code = "" });
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="myImportModal" class="modal fade pmsModal w30" data-backdrop="static" role="dialog">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" onclick="close()">&times;</button>
+                <h4 class="modal-title">Import Excel Template For Product Stock</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="divproduct">
+                                    <label class="uplabel">Select File to Import (Add/Update)</label>
+                                    <div><input type="file" id="fileprod" accept=".xls,.xlsx"></div>
+                                    <div class="pTop10  mt-3"><input type="submit" value="Import (Add/Update)" onclick="return ChekEmpSettingsUpload();" id="btnimportxls" class="btn btn-primary"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@Html.DevExpress().PopupControl(
+settings =>
+{
+    settings.Name = "pcModalTemplateImportMode";
+    settings.Width = 300;
+    //settings.Height = 220;
+    //settings.ScrollBars.v
+    settings.AllowDragging = true;
+    settings.CloseAction = CloseAction.CloseButton;
+    settings.CloseOnEscape = true;
+    settings.PopupAnimationType = AnimationType.None;
+    settings.HeaderText = "Select File to Import (Add/Update)";
+    settings.Modal = true;
+    settings.AutoUpdatePosition = true;
+    settings.Top = 50;
+    settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+    settings.PopupVerticalAlign = PopupVerticalAlign.Above;
+    settings.SetContent(() =>
+    {
+
+    });
+
+    settings.ClientSideEvents.CloseUp = "function(s, e){ ASPxClientEdit.ClearEditorsInContainer(null, '', true); }";
+}).GetHtml()
