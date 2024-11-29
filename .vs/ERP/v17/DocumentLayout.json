@@ -1,12 +1,105 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\GIT\\GitHub\\LMSPORTAL\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E80420D8-44AE-4336-84D0-8499A550AFFB}|ShopAPI\\ShopAPI.csproj|d:\\git\\github\\lmsportal\\shopapi\\models\\pushnotificationmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E80420D8-44AE-4336-84D0-8499A550AFFB}|ShopAPI\\ShopAPI.csproj|solutionrelative:shopapi\\models\\pushnotificationmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E80420D8-44AE-4336-84D0-8499A550AFFB}|ShopAPI\\ShopAPI.csproj|d:\\git\\github\\lmsportal\\shopapi\\controllers\\logoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E80420D8-44AE-4336-84D0-8499A550AFFB}|ShopAPI\\ShopAPI.csproj|solutionrelative:shopapi\\controllers\\logoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E80420D8-44AE-4336-84D0-8499A550AFFB}|ShopAPI\\ShopAPI.csproj|d:\\git\\github\\lmsportal\\shopapi\\controllers\\userlogincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E80420D8-44AE-4336-84D0-8499A550AFFB}|ShopAPI\\ShopAPI.csproj|solutionrelative:shopapi\\controllers\\userlogincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E80420D8-44AE-4336-84D0-8499A550AFFB}|ShopAPI\\ShopAPI.csproj|d:\\git\\github\\lmsportal\\shopapi\\controllers\\userhierarchycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E80420D8-44AE-4336-84D0-8499A550AFFB}|ShopAPI\\ShopAPI.csproj|solutionrelative:shopapi\\controllers\\userhierarchycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E80420D8-44AE-4336-84D0-8499A550AFFB}|ShopAPI\\ShopAPI.csproj|d:\\git\\github\\lmsportal\\shopapi\\controllers\\lmsinfodetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E80420D8-44AE-4336-84D0-8499A550AFFB}|ShopAPI\\ShopAPI.csproj|solutionrelative:shopapi\\controllers\\lmsinfodetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PushnotificationModel.cs",
+              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ShopAPI\\Models\\PushnotificationModel.cs",
+              "RelativeDocumentMoniker": "ShopAPI\\Models\\PushnotificationModel.cs",
+              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ShopAPI\\Models\\PushnotificationModel.cs",
+              "RelativeToolTip": "ShopAPI\\Models\\PushnotificationModel.cs",
+              "ViewState": "AQIAAGwAAAAAAAAAAAAswHQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T12:24:32.937Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LogoutController.cs",
+              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ShopAPI\\Controllers\\LogoutController.cs",
+              "RelativeDocumentMoniker": "ShopAPI\\Controllers\\LogoutController.cs",
+              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ShopAPI\\Controllers\\LogoutController.cs",
+              "RelativeToolTip": "ShopAPI\\Controllers\\LogoutController.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAswBQAAAA6AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T12:23:33.391Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserLoginController.cs",
+              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ShopAPI\\Controllers\\UserLoginController.cs",
+              "RelativeDocumentMoniker": "ShopAPI\\Controllers\\UserLoginController.cs",
+              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ShopAPI\\Controllers\\UserLoginController.cs",
+              "RelativeToolTip": "ShopAPI\\Controllers\\UserLoginController.cs",
+              "ViewState": "AQIAAPMAAAAAAAAAAAAswAYBAABGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T12:22:32.877Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserHierarchyController.cs",
+              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ShopAPI\\Controllers\\UserHierarchyController.cs",
+              "RelativeDocumentMoniker": "ShopAPI\\Controllers\\UserHierarchyController.cs",
+              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ShopAPI\\Controllers\\UserHierarchyController.cs",
+              "RelativeToolTip": "ShopAPI\\Controllers\\UserHierarchyController.cs",
+              "ViewState": "AQIAACsAAAAAAAAAAAAswD4AAAA5AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T12:19:59.754Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "LMSInfoDetailsController.cs",
+              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ShopAPI\\Controllers\\LMSInfoDetailsController.cs",
+              "RelativeDocumentMoniker": "ShopAPI\\Controllers\\LMSInfoDetailsController.cs",
+              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ShopAPI\\Controllers\\LMSInfoDetailsController.cs",
+              "RelativeToolTip": "ShopAPI\\Controllers\\LMSInfoDetailsController.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAmwDoAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-29T07:35:09.45Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
