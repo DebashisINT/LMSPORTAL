@@ -179,14 +179,26 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LMSInfoDetailsController.cs" />
+    <Compile Include="Controllers\LoginConcurrentusersController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\LogoutController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
+    <Compile Include="Controllers\UserHierarchyController.cs" />
+    <Compile Include="Controllers\UserLoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ChatModal.cs" />
     <Compile Include="Models\LMSInfoDetailsModel.cs" />
     <Compile Include="Models\LoginConcurrentusersModel.cs" />
     <Compile Include="Models\ModelLocationupdate.cs" />
+    <Compile Include="Models\ModelNotification.cs" />
     <Compile Include="Models\ModelShop.cs" />
+    <Compile Include="Models\Model_Logout.cs" />
+    <Compile Include="Models\PushnotificationModel.cs" />
+    <Compile Include="Models\ShopdaywiseModel.cs" />
+    <Compile Include="Models\UserAadharImageSaveModel.cs" />
+    <Compile Include="Models\UserHierarchyModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
