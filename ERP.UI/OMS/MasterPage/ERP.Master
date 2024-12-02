@@ -586,12 +586,12 @@ Rev 4.0     Sanchita    V2.0.45     14-02-2024      Change Password option not w
                                 <span>Change Password</span>
                             </a>
                         </li>
-                        <li onclick="startIntro()">
+                        <%--<li onclick="startIntro()">
                             <a class="dropdown-item" href="#">
                                 <span class="lnr lnr-picture"></span>
                                 <span>Interface Overview</span>
                             </a>
-                        </li>
+                        </li>--%>
                         <li>
                             <a class="dropdown-item" href="/OMS/SignOff.aspx">
                                 <span class="lnr lnr-exit"></span>
