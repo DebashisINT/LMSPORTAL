@@ -24,11 +24,12 @@ namespace ShopAPI.Controllers
         [HttpPost]
         public HttpResponseMessage Login(ClassLogin model)
         {
-            ClassLoginOutput omodel = new ClassLoginOutput();
+            LMSClassLoginOutput omodel = new LMSClassLoginOutput();
             UserClass oview = new UserClass();
             UserClasscounting ocounting = new UserClasscounting();
             List<WorkTypeslogin> worktype = new List<WorkTypeslogin>();
             List<StateListLogin> statelist = new List<StateListLogin>();
+            LMSUserClass oviewLMS = new LMSUserClass();
 
             try
             {
@@ -84,7 +85,7 @@ namespace ShopAPI.Controllers
 
                         if (Convert.ToString(dt.Tables[0].Rows[0]["success"]) == "200")
                         {
-                            oview = APIHelperMethods.ToModel<UserClass>(dt.Tables[0]);
+                            oviewLMS = APIHelperMethods.ToModel<LMSUserClass>(dt.Tables[0]);
                             //ocounting = APIHelperMethods.ToModel<UserClasscounting>(dt.Tables[0]);
                             if (dt.Tables.Count == 2)
                             {
@@ -96,22 +97,22 @@ namespace ShopAPI.Controllers
 
                             omodel.status = "200";
                             omodel.session_token = sessionId;
-                            omodel.user_details = oview;
+                            omodel.user_details = oviewLMS;
                            // omodel.user_count = ocounting;
                             omodel.state_list = statelist;
                             omodel.message = "User successfully logged in.";
 
                         }
 
-                        else if (Convert.ToString(dt.Tables[1].Rows[0]["success"]) == "202")
+                        else if (Convert.ToString(dt.Tables[0].Rows[0]["success"]) == "202")
                         {
                             omodel.status = "202";
                             omodel.message = "Invalid user credential.";
                         }
-                        else if (Convert.ToString(dt.Tables[1].Rows[0]["success"]) == "206")
+                        else if (Convert.ToString(dt.Tables[0].Rows[0]["success"]) == "206")
                         {
                             omodel.status = "206";
-                            omodel.message = Convert.ToString(dt.Tables[1].Rows[0]["Dynamic_message"]);// "New version is available now. Please update it from the Play Store. Unless you can't login into the app. ";//Html.fromHtml('http://www.google.com')"
+                            omodel.message = Convert.ToString(dt.Tables[0].Rows[0]["Dynamic_message"]);// "New version is available now. Please update it from the Play Store. Unless you can't login into the app. ";//Html.fromHtml('http://www.google.com')"
                         }
 
                     }
