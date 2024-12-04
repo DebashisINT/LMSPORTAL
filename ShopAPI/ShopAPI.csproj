@@ -191,6 +191,7 @@
     </Compile>
     <Compile Include="Models\ChatModal.cs" />
     <Compile Include="Models\LMSInfoDetailsModel.cs" />
+    <Compile Include="Models\LMSUserLoginModel.cs" />
     <Compile Include="Models\LoginConcurrentusersModel.cs" />
     <Compile Include="Models\ModelLocationupdate.cs" />
     <Compile Include="Models\ModelNotification.cs" />
