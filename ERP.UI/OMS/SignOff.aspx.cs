@@ -24,7 +24,8 @@ public partial class SignOff : System.Web.UI.Page
             if (HttpContext.Current.Session["userid"] == null)
             {
                 Session.Abandon();
-                Response.Redirect("~/LMS/Login");
+                // Response.Redirect("~/LMS/Login");
+                Response.Redirect("management/ProjectMainPage.aspx", false);
             }
             //string sPath = HttpContext.Current.Request.Url.ToString();
             //oDBEngine.Call_CheckPageaccessebility(sPath);

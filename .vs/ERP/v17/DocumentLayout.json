@@ -3,40 +3,16 @@
   "WorkspaceRootPath": "D:\\GIT\\GitHub\\LMSPORTAL\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|d:\\git\\github\\lmsportal\\erp.ui\\oms\\management\\activities\\productsbranchmaplist.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|solutionrelative:erp.ui\\oms\\management\\activities\\productsbranchmaplist.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E80420D8-44AE-4336-84D0-8499A550AFFB}|ShopAPI\\ShopAPI.csproj|d:\\git\\github\\lmsportal\\shopapi\\controllers\\lmsuserlogincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E80420D8-44AE-4336-84D0-8499A550AFFB}|ShopAPI\\ShopAPI.csproj|solutionrelative:shopapi\\controllers\\lmsuserlogincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|D:\\GIT\\GitHub\\LMSPORTAL\\erp.ui\\oms\\management\\activities\\productsbranchmap.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|solutionrelative:erp.ui\\oms\\management\\activities\\productsbranchmap.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E80420D8-44AE-4336-84D0-8499A550AFFB}|ShopAPI\\ShopAPI.csproj|d:\\git\\github\\lmsportal\\shopapi\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{E80420D8-44AE-4336-84D0-8499A550AFFB}|ShopAPI\\ShopAPI.csproj|solutionrelative:shopapi\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|D:\\GIT\\GitHub\\LMSPORTAL\\erp.ui\\oms\\management\\store\\master\\frmproductsalespriceimport.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|solutionrelative:erp.ui\\oms\\management\\store\\master\\frmproductsalespriceimport.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|D:\\GIT\\GitHub\\LMSPORTAL\\erp.ui\\oms\\management\\master\\employee.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|solutionrelative:erp.ui\\oms\\management\\master\\employee.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|D:\\GIT\\GitHub\\LMSPORTAL\\erp.ui\\oms\\management\\master\\area.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|solutionrelative:erp.ui\\oms\\management\\master\\area.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|D:\\GIT\\GitHub\\LMSPORTAL\\erp.ui\\oms\\login.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|solutionrelative:erp.ui\\oms\\login.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|D:\\GIT\\GitHub\\LMSPORTAL\\erp.ui\\oms\\management\\attendance\\importattendance.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|solutionrelative:erp.ui\\oms\\management\\attendance\\importattendance.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|D:\\GIT\\GitHub\\LMSPORTAL\\erp.ui\\oms\\management\\activities\\specialpriceupload.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|solutionrelative:erp.ui\\oms\\management\\activities\\specialpriceupload.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|D:\\GIT\\GitHub\\LMSPORTAL\\erp.ui\\oms\\management\\activities\\custsaleratelock.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|solutionrelative:erp.ui\\oms\\management\\activities\\custsaleratelock.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E80420D8-44AE-4336-84D0-8499A550AFFB}|ShopAPI\\ShopAPI.csproj|d:\\git\\github\\lmsportal\\shopapi\\controllers\\userlogincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E80420D8-44AE-4336-84D0-8499A550AFFB}|ShopAPI\\ShopAPI.csproj|solutionrelative:shopapi\\controllers\\userlogincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,116 +22,46 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ProductsBranchMapList.aspx.cs",
-              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Management\\Activities\\ProductsBranchMapList.aspx.cs",
-              "RelativeDocumentMoniker": "ERP.UI\\OMS\\Management\\Activities\\ProductsBranchMapList.aspx.cs",
-              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Management\\Activities\\ProductsBranchMapList.aspx.cs",
-              "RelativeToolTip": "ERP.UI\\OMS\\Management\\Activities\\ProductsBranchMapList.aspx.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T07:45:51.004Z",
+              "DocumentIndex": 1,
+              "Title": "Web.config",
+              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ShopAPI\\Web.config",
+              "RelativeDocumentMoniker": "ShopAPI\\Web.config",
+              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ShopAPI\\Web.config",
+              "RelativeToolTip": "ShopAPI\\Web.config",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAB4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-12-04T12:21:17.969Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ProductsBranchMap.aspx.cs",
-              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Management\\Activities\\ProductsBranchMap.aspx.cs",
-              "RelativeDocumentMoniker": "ERP.UI\\OMS\\Management\\Activities\\ProductsBranchMap.aspx.cs",
-              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Management\\Activities\\ProductsBranchMap.aspx.cs",
-              "RelativeToolTip": "ERP.UI\\OMS\\Management\\Activities\\ProductsBranchMap.aspx.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T07:45:38.86Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "frmProductSalesPriceImport.aspx.cs",
-              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Management\\Store\\Master\\frmProductSalesPriceImport.aspx.cs",
-              "RelativeDocumentMoniker": "ERP.UI\\OMS\\Management\\Store\\Master\\frmProductSalesPriceImport.aspx.cs",
-              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Management\\Store\\Master\\frmProductSalesPriceImport.aspx.cs",
-              "RelativeToolTip": "ERP.UI\\OMS\\Management\\Store\\Master\\frmProductSalesPriceImport.aspx.cs",
-              "ViewState": "AQIAAIsAAAAAAAAAAAAswJ4AAAAgAAAA",
+              "Title": "UserLoginController.cs",
+              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ShopAPI\\Controllers\\UserLoginController.cs",
+              "RelativeDocumentMoniker": "ShopAPI\\Controllers\\UserLoginController.cs",
+              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ShopAPI\\Controllers\\UserLoginController.cs",
+              "RelativeToolTip": "ShopAPI\\Controllers\\UserLoginController.cs",
+              "ViewState": "AQIAAFUAAAAAAAAAAAAAAGAAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T07:45:37.526Z"
+              "WhenOpened": "2024-12-04T10:48:14.764Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Employee.aspx.cs",
-              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Management\\Master\\Employee.aspx.cs",
-              "RelativeDocumentMoniker": "ERP.UI\\OMS\\Management\\Master\\Employee.aspx.cs",
-              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Management\\Master\\Employee.aspx.cs",
-              "RelativeToolTip": "ERP.UI\\OMS\\Management\\Master\\Employee.aspx.cs",
-              "ViewState": "AQIAAB8GAAAAAAAAAAAswDIGAAAgAAAA",
+              "DocumentIndex": 0,
+              "Title": "LMSUserLoginController.cs",
+              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ShopAPI\\Controllers\\LMSUserLoginController.cs",
+              "RelativeDocumentMoniker": "ShopAPI\\Controllers\\LMSUserLoginController.cs",
+              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ShopAPI\\Controllers\\LMSUserLoginController.cs",
+              "RelativeToolTip": "ShopAPI\\Controllers\\LMSUserLoginController.cs",
+              "ViewState": "AQIAAEMAAAAAAAAAAAAswFYAAAA9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T07:45:12.363Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Area.aspx.cs",
-              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Management\\Master\\Area.aspx.cs",
-              "RelativeDocumentMoniker": "ERP.UI\\OMS\\Management\\Master\\Area.aspx.cs",
-              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Management\\Master\\Area.aspx.cs",
-              "RelativeToolTip": "ERP.UI\\OMS\\Management\\Master\\Area.aspx.cs",
-              "ViewState": "AQIAAG0BAAAAAAAAAAA9wIABAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T07:40:01.014Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Login.aspx.cs",
-              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Login.aspx.cs",
-              "RelativeDocumentMoniker": "ERP.UI\\OMS\\Login.aspx.cs",
-              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Login.aspx.cs",
-              "RelativeToolTip": "ERP.UI\\OMS\\Login.aspx.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAswBEAAAAKAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T07:39:43.509Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ImportAttendance.aspx.cs",
-              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Management\\Attendance\\ImportAttendance.aspx.cs",
-              "RelativeDocumentMoniker": "ERP.UI\\OMS\\Management\\Attendance\\ImportAttendance.aspx.cs",
-              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Management\\Attendance\\ImportAttendance.aspx.cs",
-              "RelativeToolTip": "ERP.UI\\OMS\\Management\\Attendance\\ImportAttendance.aspx.cs",
-              "ViewState": "AQIAAH8AAAAAAAAAAAAswJIAAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T07:39:37.227Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "SpecialPriceUpload.aspx.cs",
-              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Management\\Activities\\SpecialPriceUpload.aspx.cs",
-              "RelativeDocumentMoniker": "ERP.UI\\OMS\\Management\\Activities\\SpecialPriceUpload.aspx.cs",
-              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Management\\Activities\\SpecialPriceUpload.aspx.cs",
-              "RelativeToolTip": "ERP.UI\\OMS\\Management\\Activities\\SpecialPriceUpload.aspx.cs",
-              "ViewState": "AQIAAOcCAAAAAAAAAAAswPoCAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T07:39:31.359Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "CustSaleRateLock.aspx.cs",
-              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Management\\Activities\\CustSaleRateLock.aspx.cs",
-              "RelativeDocumentMoniker": "ERP.UI\\OMS\\Management\\Activities\\CustSaleRateLock.aspx.cs",
-              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Management\\Activities\\CustSaleRateLock.aspx.cs",
-              "RelativeToolTip": "ERP.UI\\OMS\\Management\\Activities\\CustSaleRateLock.aspx.cs",
-              "ViewState": "AQIAAIYCAAAAAAAAAAAswJcCAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T07:39:19.058Z"
+              "WhenOpened": "2024-12-04T10:47:52.212Z",
+              "EditorCaption": ""
             }
           ]
         }
