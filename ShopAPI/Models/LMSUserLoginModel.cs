@@ -30,7 +30,7 @@ namespace ShopAPI.Models
 
         public LMSUserClass user_details { get; set; }
 
-        public UserClasscounting user_count { get; set; }
+        //public UserClasscounting user_count { get; set; }
         public List<StateListLogin> state_list { get; set; }
     }
 }
