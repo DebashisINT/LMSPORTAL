@@ -1,0 +1,10 @@
+Page :    http://localhost:7666/OMS/management/Master/employee.aspx
+Error Message : Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Inner Message : System.Data.SqlClient.SqlException (0x80131904): Could not find stored procedure 'PRC_FTSInsertUpdateUser'.
+   at DataAccessLayer.ProcedureExecute.GetTable() in D:\GIT\GitHub\LMSPORTAL\DataAccessLayer\ProcedureExecute.cs:line 81
+   at ERP.OMS.Management.Master.management_master_Employee.Page_Load(Object sender, EventArgs e) in D:\GIT\GitHub\LMSPORTAL\ERP.UI\OMS\Management\Master\Employee.aspx.cs:line 249
+   at System.Web.UI.Control.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+ClientConnectionId:492d65aa-a678-4f3c-bd28-da8795c6f8de
+Error Number:2812,State:62,Class:16
