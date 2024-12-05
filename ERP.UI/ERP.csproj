@@ -495,129 +495,6 @@
     <Compile Include="OMS\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="OMS\Management\Activities\CustSaleRateLock.aspx.cs">
-      <DependentUpon>CustSaleRateLock.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Activities\CustSaleRateLock.aspx.designer.cs">
-      <DependentUpon>CustSaleRateLock.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Activities\leaveapproval.aspx.cs">
-      <DependentUpon>leaveapproval.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Activities\leaveapproval.aspx.designer.cs">
-      <DependentUpon>leaveapproval.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Activities\LeaveSuccessPage.aspx.cs">
-      <DependentUpon>LeaveSuccessPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Activities\LeaveSuccessPage.aspx.designer.cs">
-      <DependentUpon>LeaveSuccessPage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Activities\ProductsBranchMap.aspx.cs">
-      <DependentUpon>ProductsBranchMap.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Activities\ProductsBranchMap.aspx.designer.cs">
-      <DependentUpon>ProductsBranchMap.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Activities\ProductsBranchMapList.aspx.cs">
-      <DependentUpon>ProductsBranchMapList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Activities\ProductsBranchMapList.aspx.designer.cs">
-      <DependentUpon>ProductsBranchMapList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Activities\SpecialPriceUpload.aspx.cs">
-      <DependentUpon>SpecialPriceUpload.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Activities\SpecialPriceUpload.aspx.designer.cs">
-      <DependentUpon>SpecialPriceUpload.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Attendance\allEmpAttRecords.aspx.cs">
-      <DependentUpon>allEmpAttRecords.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Attendance\allEmpAttRecords.aspx.designer.cs">
-      <DependentUpon>allEmpAttRecords.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Attendance\AttendanceChartReport.aspx.cs">
-      <DependentUpon>AttendanceChartReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Attendance\AttendanceChartReport.aspx.designer.cs">
-      <DependentUpon>AttendanceChartReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Attendance\AttendanceMonthwise.aspx.cs">
-      <DependentUpon>AttendanceMonthwise.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Attendance\AttendanceMonthwise.aspx.designer.cs">
-      <DependentUpon>AttendanceMonthwise.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Attendance\attendanceSettings.aspx.cs">
-      <DependentUpon>attendanceSettings.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Attendance\attendanceSettings.aspx.designer.cs">
-      <DependentUpon>attendanceSettings.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Attendance\AttendanceView.aspx.cs">
-      <DependentUpon>AttendanceView.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Attendance\AttendanceView.aspx.designer.cs">
-      <DependentUpon>AttendanceView.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Attendance\EmpAttendanceRecord.aspx.cs">
-      <DependentUpon>EmpAttendanceRecord.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Attendance\EmpAttendanceRecord.aspx.designer.cs">
-      <DependentUpon>EmpAttendanceRecord.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Attendance\Frm_Attendance.aspx.cs">
-      <DependentUpon>Frm_Attendance.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Attendance\Frm_Attendance.aspx.designer.cs">
-      <DependentUpon>Frm_Attendance.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Attendance\ImportAttendance.aspx.cs">
-      <DependentUpon>ImportAttendance.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Attendance\ImportAttendance.aspx.designer.cs">
-      <DependentUpon>ImportAttendance.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Attendance\InOutRegister.aspx.cs">
-      <DependentUpon>InOutRegister.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Attendance\InOutRegister.aspx.designer.cs">
-      <DependentUpon>InOutRegister.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Attendance\Service\AttdendanceService.asmx.cs">
-      <DependentUpon>AttdendanceService.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Area.aspx.cs">
-      <DependentUpon>Area.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Area.aspx.designer.cs">
-      <DependentUpon>Area.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Master\AssignIndustry.aspx.cs">
-      <DependentUpon>AssignIndustry.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\AssignIndustry.aspx.designer.cs">
-      <DependentUpon>AssignIndustry.aspx</DependentUpon>
-    </Compile>
     <Compile Include="OMS\Management\Master\branch.aspx.cs">
       <DependentUpon>branch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -639,20 +516,6 @@
     <Compile Include="OMS\Management\Master\Branch_Correspondance.aspx.designer.cs">
       <DependentUpon>Branch_Correspondance.aspx</DependentUpon>
     </Compile>
-    <Compile Include="OMS\Management\Master\Channel.aspx.cs">
-      <DependentUpon>Channel.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Channel.aspx.designer.cs">
-      <DependentUpon>Channel.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Circle.aspx.cs">
-      <DependentUpon>Circle.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Circle.aspx.designer.cs">
-      <DependentUpon>Circle.aspx</DependentUpon>
-    </Compile>
     <Compile Include="OMS\Management\Master\City.aspx.cs">
       <DependentUpon>City.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -660,96 +523,12 @@
     <Compile Include="OMS\Management\Master\City.aspx.designer.cs">
       <DependentUpon>City.aspx</DependentUpon>
     </Compile>
-    <Compile Include="OMS\Management\Master\Contact_BankDetails.aspx.cs">
-      <DependentUpon>Contact_BankDetails.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Contact_BankDetails.aspx.designer.cs">
-      <DependentUpon>Contact_BankDetails.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Master\contact_brokerage.aspx.cs">
-      <DependentUpon>contact_brokerage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\contact_brokerage.aspx.designer.cs">
-      <DependentUpon>contact_brokerage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Contact_Correspondence.aspx.cs">
-      <DependentUpon>Contact_Correspondence.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Contact_Correspondence.aspx.designer.cs">
-      <DependentUpon>Contact_Correspondence.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Contact_Deposit.aspx.cs">
-      <DependentUpon>Contact_Deposit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Contact_Deposit.aspx.designer.cs">
-      <DependentUpon>Contact_Deposit.aspx</DependentUpon>
-    </Compile>
     <Compile Include="OMS\Management\Master\Contact_Document.aspx.cs">
       <DependentUpon>Contact_Document.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="OMS\Management\Master\Contact_Document.aspx.designer.cs">
       <DependentUpon>Contact_Document.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Contact_DPDetails.aspx.cs">
-      <DependentUpon>Contact_DPDetails.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Contact_DPDetails.aspx.designer.cs">
-      <DependentUpon>Contact_DPDetails.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Contact_Education.aspx.cs">
-      <DependentUpon>Contact_Education.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Contact_Education.aspx.designer.cs">
-      <DependentUpon>Contact_Education.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Contact_FamilyMembers.aspx.cs">
-      <DependentUpon>Contact_FamilyMembers.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Contact_FamilyMembers.aspx.designer.cs">
-      <DependentUpon>Contact_FamilyMembers.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Contact_general.aspx.cs">
-      <DependentUpon>Contact_general.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Contact_general.aspx.designer.cs">
-      <DependentUpon>Contact_general.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Contact_GroupMember.aspx.cs">
-      <DependentUpon>Contact_GroupMember.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Contact_GroupMember.aspx.designer.cs">
-      <DependentUpon>Contact_GroupMember.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Master\contact_other.aspx.cs">
-      <DependentUpon>contact_other.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\contact_other.aspx.designer.cs">
-      <DependentUpon>contact_other.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Contact_Registration.aspx.cs">
-      <DependentUpon>Contact_Registration.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Contact_Registration.aspx.designer.cs">
-      <DependentUpon>Contact_Registration.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Master\contact_Subscription.aspx.cs">
-      <DependentUpon>contact_Subscription.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\contact_Subscription.aspx.designer.cs">
-      <DependentUpon>contact_Subscription.aspx</DependentUpon>
     </Compile>
     <Compile Include="OMS\Management\Master\Country.aspx.cs">
       <DependentUpon>Country.aspx</DependentUpon>
@@ -764,13 +543,6 @@
     </Compile>
     <Compile Include="OMS\Management\Master\Designation.aspx.designer.cs">
       <DependentUpon>Designation.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Master\DocumentType.aspx.cs">
-      <DependentUpon>DocumentType.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\DocumentType.aspx.designer.cs">
-      <DependentUpon>DocumentType.aspx</DependentUpon>
     </Compile>
     <Compile Include="OMS\Management\Master\Employee.aspx.cs">
       <DependentUpon>Employee.aspx</DependentUpon>
@@ -870,13 +642,6 @@
     <Compile Include="OMS\Management\Master\empState.aspx.designer.cs">
       <DependentUpon>empState.aspx</DependentUpon>
     </Compile>
-    <Compile Include="OMS\Management\Master\frmAddDocuments.aspx.cs">
-      <DependentUpon>frmAddDocuments.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\frmAddDocuments.aspx.designer.cs">
-      <DependentUpon>frmAddDocuments.aspx</DependentUpon>
-    </Compile>
     <Compile Include="OMS\Management\Master\frmAddUserGroup.aspx.cs">
       <DependentUpon>frmAddUserGroup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -884,26 +649,12 @@
     <Compile Include="OMS\Management\Master\frmAddUserGroup.aspx.designer.cs">
       <DependentUpon>frmAddUserGroup.aspx</DependentUpon>
     </Compile>
-    <Compile Include="OMS\Management\Master\frmContactMain.aspx.cs">
-      <DependentUpon>frmContactMain.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\frmContactMain.aspx.designer.cs">
-      <DependentUpon>frmContactMain.aspx</DependentUpon>
-    </Compile>
     <Compile Include="OMS\Management\Master\frmEmployeeCTC.aspx.cs">
       <DependentUpon>frmEmployeeCTC.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="OMS\Management\Master\frmEmployeeCTC.aspx.designer.cs">
       <DependentUpon>frmEmployeeCTC.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Master\frmLanguageProfi.aspx.cs">
-      <DependentUpon>frmLanguageProfi.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\frmLanguageProfi.aspx.designer.cs">
-      <DependentUpon>frmLanguageProfi.aspx</DependentUpon>
     </Compile>
     <Compile Include="OMS\Management\Master\frm_BranchUdfPopUp.aspx.cs">
       <DependentUpon>frm_BranchUdfPopUp.aspx</DependentUpon>
@@ -926,61 +677,12 @@
     <Compile Include="OMS\Management\Master\frm_pinMaster.aspx.designer.cs">
       <DependentUpon>frm_pinMaster.aspx</DependentUpon>
     </Compile>
-    <Compile Include="OMS\Management\Master\HrAddNewCostDept.aspx.cs">
-      <DependentUpon>HrAddNewCostDept.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\HrAddNewCostDept.aspx.designer.cs">
-      <DependentUpon>HrAddNewCostDept.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Master\HrCost.aspx.cs">
-      <DependentUpon>HrCost.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\HrCost.aspx.designer.cs">
-      <DependentUpon>HrCost.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Master\HRCostBranch.aspx.cs">
-      <DependentUpon>HRCostBranch.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\HRCostBranch.aspx.designer.cs">
-      <DependentUpon>HRCostBranch.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Master\HRCostCenter.aspx.cs">
-      <DependentUpon>HRCostCenter.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\HRCostCenter.aspx.designer.cs">
-      <DependentUpon>HRCostCenter.aspx</DependentUpon>
-    </Compile>
     <Compile Include="OMS\Management\Master\HRCostEmployee.aspx.cs">
       <DependentUpon>HRCostEmployee.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="OMS\Management\Master\HRCostEmployee.aspx.designer.cs">
       <DependentUpon>HRCostEmployee.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Master\JobResponsibility.aspx.cs">
-      <DependentUpon>JobResponsibility.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\JobResponsibility.aspx.designer.cs">
-      <DependentUpon>JobResponsibility.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Master\RootBuilding.aspx.cs">
-      <DependentUpon>RootBuilding.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\RootBuilding.aspx.designer.cs">
-      <DependentUpon>RootBuilding.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Master\RootBuildingInsertUpdate.aspx.cs">
-      <DependentUpon>RootBuildingInsertUpdate.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\RootBuildingInsertUpdate.aspx.designer.cs">
-      <DependentUpon>RootBuildingInsertUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="OMS\Management\Master\RootUserDetails.aspx.cs">
       <DependentUpon>RootUserDetails.aspx</DependentUpon>
@@ -1010,41 +712,6 @@
     <Compile Include="OMS\Management\Master\root_UserGroups.aspx.designer.cs">
       <DependentUpon>root_UserGroups.aspx</DependentUpon>
     </Compile>
-    <Compile Include="OMS\Management\Master\Salesman-Address.aspx.cs">
-      <DependentUpon>Salesman-Address.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Salesman-Address.aspx.designer.cs">
-      <DependentUpon>Salesman-Address.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Salesman-AddressList.aspx.cs">
-      <DependentUpon>Salesman-AddressList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Salesman-AddressList.aspx.designer.cs">
-      <DependentUpon>Salesman-AddressList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Section.aspx.cs">
-      <DependentUpon>Section.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\Section.aspx.designer.cs">
-      <DependentUpon>Section.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Master\TabIMEI.aspx.cs">
-      <DependentUpon>TabIMEI.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\TabIMEI.aspx.designer.cs">
-      <DependentUpon>TabIMEI.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Master\TabIMEIAdd.aspx.cs">
-      <DependentUpon>TabIMEIAdd.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Master\TabIMEIAdd.aspx.designer.cs">
-      <DependentUpon>TabIMEIAdd.aspx</DependentUpon>
-    </Compile>
     <Compile Include="OMS\Management\Master\UserAccountAdd.aspx.cs">
       <DependentUpon>UserAccountAdd.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1072,62 +739,6 @@
     </Compile>
     <Compile Include="OMS\Management\ProjectMainPage.aspx.designer.cs">
       <DependentUpon>ProjectMainPage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Store\Master\frmProductSalesPriceImport.aspx.cs">
-      <DependentUpon>frmProductSalesPriceImport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Store\Master\frmProductSalesPriceImport.aspx.designer.cs">
-      <DependentUpon>frmProductSalesPriceImport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Store\Master\frmSalespricingScheme.aspx.cs">
-      <DependentUpon>frmSalespricingScheme.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Store\Master\frmSalespricingScheme.aspx.designer.cs">
-      <DependentUpon>frmSalespricingScheme.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Store\Master\sColor.aspx.cs">
-      <DependentUpon>sColor.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Store\Master\sColor.aspx.designer.cs">
-      <DependentUpon>sColor.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Store\Master\sMarkets.aspx.cs">
-      <DependentUpon>sMarkets.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Store\Master\sMarkets.aspx.designer.cs">
-      <DependentUpon>sMarkets.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Store\Master\sProductClass.aspx.cs">
-      <DependentUpon>sProductClass.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Store\Master\sProductClass.aspx.designer.cs">
-      <DependentUpon>sProductClass.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Store\Master\sProducts.aspx.cs">
-      <DependentUpon>sProducts.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Store\Master\sProducts.aspx.designer.cs">
-      <DependentUpon>sProducts.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Store\Master\sSize.aspx.cs">
-      <DependentUpon>sSize.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Store\Master\sSize.aspx.designer.cs">
-      <DependentUpon>sSize.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OMS\Management\Store\Settings_Options\sProductMap.aspx.cs">
-      <DependentUpon>sProductMap.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OMS\Management\Store\Settings_Options\sProductMap.aspx.designer.cs">
-      <DependentUpon>sProductMap.aspx</DependentUpon>
     </Compile>
     <Compile Include="OMS\Management\ToolsUtilities\frmchangepassword.aspx.cs">
       <DependentUpon>frmchangepassword.aspx</DependentUpon>
@@ -2197,7 +1808,6 @@
     <Content Include="font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="htmlf\index.html" />
     <Content Include="img\Add.png" />
     <Content Include="img\av.jpg" />
     <Content Include="img\bglogin.jpg" />
@@ -2211,69 +1821,7 @@
     <Content Include="img\profile1.png" />
     <Content Include="img\schedule.png" />
     <Content Include="License.txt" />
-    <Content Include="OMS\Admin\Images\Arr_Collapse.gif" />
-    <Content Include="OMS\Admin\Images\Arr_Expand.gif" />
-    <Content Include="OMS\Admin\Images\Arr_Right.gif" />
-    <Content Include="OMS\Admin\Images\bg_HeaderContent.JPG" />
-    <Content Include="OMS\Admin\Images\bg_InActive.JPG" />
-    <Content Include="OMS\Admin\Images\btn_GvwClose.png" />
     <Content Include="OMS\AlertMessage.aspx" />
-    <Content Include="OMS\CentralData\CSS\GenericAjaxStyle.css" />
-    <Content Include="OMS\CentralData\CSS\GenericCss.css" />
-    <Content Include="OMS\CentralData\Images\attach.png" />
-    <Content Include="OMS\CentralData\Images\attachment.png" />
-    <Content Include="OMS\CentralData\Images\back.png" />
-    <Content Include="OMS\CentralData\Images\background.jpg" />
-    <Content Include="OMS\CentralData\Images\background1111.jpg" />
-    <Content Include="OMS\CentralData\Images\bg-checker.png" />
-    <Content Include="OMS\CentralData\Images\blue_foward.png" />
-    <Content Include="OMS\CentralData\Images\blue_reload.png" />
-    <Content Include="OMS\CentralData\Images\blue_rewind.png" />
-    <Content Include="OMS\CentralData\Images\blue_save.png" />
-    <Content Include="OMS\CentralData\Images\bullet.gif" />
-    <Content Include="OMS\CentralData\Images\close.png" />
-    <Content Include="OMS\CentralData\Images\docdelete.png" />
-    <Content Include="OMS\CentralData\Images\docexists.png" />
-    <Content Include="OMS\CentralData\Images\Edit.jpg" />
-    <Content Include="OMS\CentralData\Images\EHeaderBack.gif" />
-    <Content Include="OMS\CentralData\Images\error.png" />
-    <Content Include="OMS\CentralData\Images\filteroff.png" />
-    <Content Include="OMS\CentralData\Images\filteron.png" />
-    <Content Include="OMS\CentralData\Images\Icon_PDF.jpg" />
-    <Content Include="OMS\CentralData\Images\Icon_PDF_Unable.jpg" />
-    <Content Include="OMS\CentralData\Images\info.png" />
-    <Content Include="OMS\CentralData\Images\loading.gif" />
-    <Content Include="OMS\CentralData\Images\logo_Influx.png" />
-    <Content Include="OMS\CentralData\Images\next.png" />
-    <Content Include="OMS\CentralData\Images\noimage.jpg" />
-    <Content Include="OMS\CentralData\Images\prev.png" />
-    <Content Include="OMS\CentralData\Images\reload.png" />
-    <Content Include="OMS\CentralData\Images\Small_blue_foward.png" />
-    <Content Include="OMS\CentralData\Images\Small_blue_rewind.png" />
-    <Content Include="OMS\CentralData\Images\Small_Edit.jpg" />
-    <Content Include="OMS\CentralData\Images\success.png" />
-    <Content Include="OMS\CentralData\Images\success_16.png" />
-    <Content Include="OMS\CentralData\Images\Transbg_ExpiryMsg.png" />
-    <Content Include="OMS\CentralData\Images\Validation.png" />
-    <Content Include="OMS\CentralData\Images\Warning.png" />
-    <Content Include="OMS\CentralData\Images\Warning_16.png" />
-    <Content Include="OMS\CentralData\JSScript\GenericAjaxList.js" />
-    <Content Include="OMS\CentralData\JSScript\GenericJScript.js" />
-    <Content Include="OMS\CentralData\JSScript\init.js" />
-    <Content Include="OMS\CentralData\JSScript\jquery-1.3.2.js" />
-    <Content Include="OMS\CentralData\JSScript\jquery-1.3.2.min.js" />
-    <Content Include="OMS\CentralData\JSScript\jquery-1.7.2.min.js" />
-    <Content Include="OMS\css\AjaxStyle.css" />
-    <Content Include="OMS\css\demos.css" />
-    <Content Include="OMS\css\dhtmlgoodies_calendar.css" />
-    <Content Include="OMS\css\GenericCss.css" />
-    <Content Include="OMS\css\jquery-ui.css" />
-    <Content Include="OMS\css\jquery.timeentry.css" />
-    <Content Include="OMS\css\menu-bar.css" />
-    <Content Include="OMS\css\menu-item.css" />
-    <Content Include="OMS\css\MultipleSelectionDDLCSS.css" />
-    <Content Include="OMS\css\PageStyle.css" />
-    <Content Include="OMS\css\style.css" />
     <Content Include="OMS\Default.aspx" />
     <Content Include="OMS\ErrorPage.aspx" />
     <Content Include="OMS\ErrorPages\Maintenance.aspx" />
@@ -2529,34 +2077,6 @@
     <Content Include="OMS\Login.aspx" />
     <Content Include="OMS\logo.bmp" />
     <Content Include="OMS\logo.jpg" />
-    <Content Include="OMS\Management\Activities\CSS\SearchPopup.css" />
-    <Content Include="OMS\Management\Activities\CustSaleRateLock.aspx" />
-    <Content Include="OMS\Management\Activities\JS\SearchMultiPopup.js" />
-    <Content Include="OMS\Management\Activities\JS\SearchPopup.js" />
-    <Content Include="OMS\Management\Activities\JS\SearchPopupDatatable.js" />
-    <Content Include="OMS\Management\Activities\leaveapproval.aspx" />
-    <Content Include="OMS\Management\Activities\LeaveSuccessPage.aspx" />
-    <Content Include="OMS\Management\Activities\ProductsBranchMap.aspx" />
-    <Content Include="OMS\Management\Activities\ProductsBranchMapList.aspx" />
-    <Content Include="OMS\Management\Activities\SpecialPriceUpload.aspx" />
-    <Content Include="OMS\Management\Attendance\allEmpAttRecords.aspx" />
-    <Content Include="OMS\Management\Attendance\AttendanceChartReport.aspx" />
-    <Content Include="OMS\Management\Attendance\AttendanceMonthwise.aspx" />
-    <Content Include="OMS\Management\Attendance\attendanceSettings.aspx" />
-    <Content Include="OMS\Management\Attendance\AttendanceView.aspx" />
-    <Content Include="OMS\Management\Attendance\Css\Attendance.css" />
-    <Content Include="OMS\Management\Attendance\EmpAttendanceRecord.aspx" />
-    <Content Include="OMS\Management\Attendance\Frm_Attendance.aspx" />
-    <Content Include="OMS\Management\Attendance\ImportAttendance.aspx" />
-    <Content Include="OMS\Management\Attendance\InOutRegister.aspx" />
-    <Content Include="OMS\Management\Attendance\Js\AttandanceChartReport.js" />
-    <Content Include="OMS\Management\Attendance\Js\Attendance.js" />
-    <Content Include="OMS\Management\Attendance\Js\AttendanceMonthwise.js" />
-    <Content Include="OMS\Management\Attendance\Js\AttendanceView.js" />
-    <Content Include="OMS\Management\Attendance\Js\DailyAttRegister.js" />
-    <Content Include="OMS\Management\Attendance\Js\EmpAttendanceRecord.js" />
-    <Content Include="OMS\Management\Attendance\Js\InOutRegister.js" />
-    <Content Include="OMS\Management\Attendance\Service\AttdendanceService.asmx" />
     <Content Include="OMS\Management\images\1.png" />
     <Content Include="OMS\Management\images\10.png" />
     <Content Include="OMS\Management\images\11.png" />
@@ -2768,30 +2288,13 @@
     <Content Include="OMS\Management\images\sup.JPG" />
     <Content Include="OMS\Management\images\tip.png" />
     <Content Include="OMS\Management\images\Warning.png" />
-    <Content Include="OMS\Management\Master\Area.aspx" />
-    <Content Include="OMS\Management\Master\AssignIndustry.aspx" />
     <Content Include="OMS\Management\Master\branch.aspx" />
     <Content Include="OMS\Management\Master\BranchAddEdit.aspx" />
     <Content Include="OMS\Management\Master\Branch_Correspondance.aspx" />
-    <Content Include="OMS\Management\Master\Channel.aspx" />
-    <Content Include="OMS\Management\Master\Circle.aspx" />
     <Content Include="OMS\Management\Master\City.aspx" />
-    <Content Include="OMS\Management\Master\Contact_BankDetails.aspx" />
-    <Content Include="OMS\Management\Master\contact_brokerage.aspx" />
-    <Content Include="OMS\Management\Master\Contact_Correspondence.aspx" />
-    <Content Include="OMS\Management\Master\Contact_Deposit.aspx" />
     <Content Include="OMS\Management\Master\Contact_Document.aspx" />
-    <Content Include="OMS\Management\Master\Contact_DPDetails.aspx" />
-    <Content Include="OMS\Management\Master\Contact_Education.aspx" />
-    <Content Include="OMS\Management\Master\Contact_FamilyMembers.aspx" />
-    <Content Include="OMS\Management\Master\Contact_general.aspx" />
-    <Content Include="OMS\Management\Master\Contact_GroupMember.aspx" />
-    <Content Include="OMS\Management\Master\contact_other.aspx" />
-    <Content Include="OMS\Management\Master\Contact_Registration.aspx" />
-    <Content Include="OMS\Management\Master\contact_Subscription.aspx" />
     <Content Include="OMS\Management\Master\Country.aspx" />
     <Content Include="OMS\Management\Master\Designation.aspx" />
-    <Content Include="OMS\Management\Master\DocumentType.aspx" />
     <Content Include="OMS\Management\Master\Employee.aspx" />
     <Content Include="OMS\Management\Master\Employee_AddNew.aspx" />
     <Content Include="OMS\Management\Master\Employee_BankDetails.aspx" />
@@ -2806,43 +2309,20 @@
     <Content Include="OMS\Management\Master\Employee_Remarks.aspx" />
     <Content Include="OMS\Management\Master\Employee_Subscription.aspx" />
     <Content Include="OMS\Management\Master\empState.aspx" />
-    <Content Include="OMS\Management\Master\frmAddDocuments.aspx" />
     <Content Include="OMS\Management\Master\frmAddUserGroup.aspx" />
-    <Content Include="OMS\Management\Master\frmContactMain.aspx" />
     <Content Include="OMS\Management\Master\frmEmployeeCTC.aspx" />
-    <Content Include="OMS\Management\Master\frmLanguageProfi.aspx" />
     <Content Include="OMS\Management\Master\frm_BranchUdfPopUp.aspx" />
     <Content Include="OMS\Management\Master\frm_Brand.aspx" />
     <Content Include="OMS\Management\Master\frm_pinMaster.aspx" />
-    <Content Include="OMS\Management\Master\HrAddNewCostDept.aspx" />
-    <Content Include="OMS\Management\Master\HrCost.aspx" />
-    <Content Include="OMS\Management\Master\HRCostBranch.aspx" />
-    <Content Include="OMS\Management\Master\HRCostCenter.aspx" />
     <Content Include="OMS\Management\Master\HRCostEmployee.aspx" />
-    <Content Include="OMS\Management\Master\JobResponsibility.aspx" />
-    <Content Include="OMS\Management\Master\RootBuilding.aspx" />
-    <Content Include="OMS\Management\Master\RootBuildingInsertUpdate.aspx" />
     <Content Include="OMS\Management\Master\RootUserDetails.aspx" />
     <Content Include="OMS\Management\Master\root_user.aspx" />
     <Content Include="OMS\Management\Master\root_UserGroupMember.aspx" />
     <Content Include="OMS\Management\Master\root_UserGroups.aspx" />
-    <Content Include="OMS\Management\Master\Salesman-Address.aspx" />
-    <Content Include="OMS\Management\Master\Salesman-AddressList.aspx" />
-    <Content Include="OMS\Management\Master\Section.aspx" />
-    <Content Include="OMS\Management\Master\TabIMEI.aspx" />
-    <Content Include="OMS\Management\Master\TabIMEIAdd.aspx" />
     <Content Include="OMS\Management\Master\UserAccountAdd.aspx" />
     <Content Include="OMS\Management\Master\UserAccountList.aspx" />
     <Content Include="OMS\Management\Master\UserControls\GSTINSettings.ascx" />
     <Content Include="OMS\Management\ProjectMainPage.aspx" />
-    <Content Include="OMS\Management\Store\Master\frmProductSalesPriceImport.aspx" />
-    <Content Include="OMS\Management\Store\Master\frmSalespricingScheme.aspx" />
-    <Content Include="OMS\Management\Store\Master\sColor.aspx" />
-    <Content Include="OMS\Management\Store\Master\sMarkets.aspx" />
-    <Content Include="OMS\Management\Store\Master\sProductClass.aspx" />
-    <Content Include="OMS\Management\Store\Master\sProducts.aspx" />
-    <Content Include="OMS\Management\Store\Master\sSize.aspx" />
-    <Content Include="OMS\Management\Store\Settings_Options\sProductMap.aspx" />
     <Content Include="OMS\Management\ToolsUtilities\frmchangepassword.aspx" />
     <Content Include="OMS\Management\ToolsUtilities\frmchangeuserspassword.aspx" />
     <Content Include="OMS\Management\windowfiles\close.gif" />
@@ -2877,7 +2357,6 @@
     <Content Include="OMS\windowfiles\min.gif" />
     <Content Include="OMS\windowfiles\resize.gif" />
     <Content Include="OMS\windowfiles\restore.gif" />
-    <Content Include="OMS\css\style.css.bak" />
     <Content Include="App_Code\DataSet1.xsc">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Content>
@@ -2987,7 +2466,6 @@
     <Content Include="assests\fonts\font-awesome\scss\_stacked.scss" />
     <Content Include="assests\fonts\font-awesome\scss\_variables.scss" />
     <Content Include="assests\js\jquery-1.10.2.min.map" />
-    <Content Include="CommonFolderErpCRM\Excel\ProductSalesPriceTemplate.xlsx" />
     <Content Include="assests\pluggins\Transfer\icon_font\font\iconfont.eot" />
     <Content Include="assests\pluggins\Transfer\icon_font\font\iconfont.ttf" />
     <Content Include="assests\pluggins\Transfer\icon_font\font\iconfont.woff" />
@@ -3148,8 +2626,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="CommonFolderErpCRM\CompanyBigLogo\" />
-    <Folder Include="CommonFolderErpCRM\CompanySmallLogo\" />
     <Folder Include="CommonFolder\OrganizationDocument\" />
     <Folder Include="Errors\" />
     <Folder Include="Temporary\" />
