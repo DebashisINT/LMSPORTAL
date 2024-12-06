@@ -34,11 +34,13 @@ namespace ShopAPI.Controllers
         [HttpPost]
         public HttpResponseMessage Login(ClassLogin model)
         {
-            ClassLoginOutput omodel = new ClassLoginOutput();
+            //ClassLoginOutput omodel = new ClassLoginOutput();
+            LMSClassLoginOutput omodel = new LMSClassLoginOutput();
             UserClass oview = new UserClass();
             UserClasscounting ocounting = new UserClasscounting();
             List<WorkTypeslogin> worktype = new List<WorkTypeslogin>();
             List<StateListLogin> statelist = new List<StateListLogin>();
+            LMSUserClass oviewLMS = new LMSUserClass();
 
             try
             {
@@ -78,69 +80,121 @@ namespace ShopAPI.Controllers
                     sqlcon.Open();
 
 
-                    sqlcmd = new SqlCommand("Sp_ApiShopUserLogin", sqlcon);
+                    //sqlcmd = new SqlCommand("Sp_ApiShopUserLogin", sqlcon);
+                    //sqlcmd.Parameters.AddWithValue("@userName", model.username);
+                    //sqlcmd.Parameters.AddWithValue("@password", Encryptpass);
+                    //sqlcmd.Parameters.AddWithValue("@SessionToken", sessionId);
+                    //sqlcmd.Parameters.AddWithValue("@latitude", model.latitude);
+                    //sqlcmd.Parameters.AddWithValue("@longitude", model.longitude);
+                    //sqlcmd.Parameters.AddWithValue("@login_time", model.login_time);
+                    //sqlcmd.Parameters.AddWithValue("@ImeiNo", model.Imei);
+                    //sqlcmd.Parameters.AddWithValue("@location_name", location_name);
+                    //sqlcmd.Parameters.AddWithValue("@version_name", model.version_name);
+                    //sqlcmd.Parameters.AddWithValue("@Weburl", profileImg);
+                    //sqlcmd.Parameters.AddWithValue("@device_token", model.device_token);
+
+
+                    //if (dt.Tables[1].Rows.Count > 0)
+                    //{
+
+                    //    if (Convert.ToString(dt.Tables[1].Rows[0]["success"]) == "200")
+                    //    {
+                    //        oview = APIHelperMethods.ToModel<UserClass>(dt.Tables[1]);
+                    //        ocounting = APIHelperMethods.ToModel<UserClasscounting>(dt.Tables[0]);
+                    //        if (dt.Tables.Count == 3)
+                    //        {
+                    //            if (dt.Tables[2] != null && dt.Tables[2].Rows.Count > 0)
+                    //            {
+                    //                statelist = APIHelperMethods.ToModelList<StateListLogin>(dt.Tables[2]);
+                    //            }
+                    //        }
+
+                    //        omodel.status = "200";
+                    //        omodel.session_token = sessionId;
+                    //        omodel.user_details = oview;
+                    //        omodel.user_count = ocounting;
+                    //        omodel.state_list = statelist;
+                    //        omodel.message = "User successfully logged in.";
+
+                    //    }
+
+                    //    else if (Convert.ToString(dt.Tables[1].Rows[0]["success"]) == "207")
+                    //    {
+                    //        omodel.status = "207";
+                    //        omodel.message = "Your IMEI is not authorized. Please contact with Administrator";
+                    //    }
+
+                    //    else if (Convert.ToString(dt.Tables[1].Rows[0]["success"]) == "202")
+                    //    {
+                    //        omodel.status = "202";
+                    //        omodel.message = "Invalid user credential.";
+                    //    }
+
+                    //    else if (Convert.ToString(dt.Tables[1].Rows[0]["success"]) == "220")
+                    //    {
+                    //        omodel.status = "220";
+                    //        omodel.message = "Login time expired for the day.";
+                    //    }
+                    //    else if (Convert.ToString(dt.Tables[1].Rows[0]["success"]) == "206")
+                    //    {
+                    //        omodel.status = "206";
+                    //        omodel.message = Convert.ToString(dt.Tables[1].Rows[0]["Dynamic_message"]);// "New version is available now. Please update it from the Play Store. Unless you can't login into the app. ";//Html.fromHtml('http://www.google.com')"
+                    //    }
+
+                    //}
+                    //else
+                    //{
+                    //    omodel.status = "202";
+                    //    omodel.message = "Invalid user credential.";
+
+                    //}
+
+
+                    sqlcmd = new SqlCommand("PRC_LMS_ApiUserLogin", sqlcon);
                     sqlcmd.Parameters.AddWithValue("@userName", model.username);
                     sqlcmd.Parameters.AddWithValue("@password", Encryptpass);
-                    sqlcmd.Parameters.AddWithValue("@SessionToken", sessionId);
-                    sqlcmd.Parameters.AddWithValue("@latitude", model.latitude);
-                    sqlcmd.Parameters.AddWithValue("@longitude", model.longitude);
-                    sqlcmd.Parameters.AddWithValue("@login_time", model.login_time);
-                    sqlcmd.Parameters.AddWithValue("@ImeiNo", model.Imei);
-                    sqlcmd.Parameters.AddWithValue("@location_name", location_name);
                     sqlcmd.Parameters.AddWithValue("@version_name", model.version_name);
-                    sqlcmd.Parameters.AddWithValue("@Weburl", profileImg);
                     sqlcmd.Parameters.AddWithValue("@device_token", model.device_token);
-                    
+                    sqlcmd.Parameters.AddWithValue("@SessionToken", sessionId);
+
                     sqlcmd.CommandType = CommandType.StoredProcedure;
                     SqlDataAdapter da = new SqlDataAdapter(sqlcmd);
                     da.Fill(dt);
                     sqlcon.Close();
 
-                    if (dt.Tables[1].Rows.Count > 0)
+                    if (dt.Tables[0].Rows.Count > 0)
                     {
 
-                        if (Convert.ToString(dt.Tables[1].Rows[0]["success"]) == "200")
+                        if (Convert.ToString(dt.Tables[0].Rows[0]["success"]) == "200")
                         {
-                            oview = APIHelperMethods.ToModel<UserClass>(dt.Tables[1]);
-                            ocounting = APIHelperMethods.ToModel<UserClasscounting>(dt.Tables[0]);
-                            if (dt.Tables.Count == 3)
+                            oviewLMS = APIHelperMethods.ToModel<LMSUserClass>(dt.Tables[0]);
+                            //ocounting = APIHelperMethods.ToModel<UserClasscounting>(dt.Tables[0]);
+                            if (dt.Tables.Count == 2)
                             {
-                                if (dt.Tables[2] != null && dt.Tables[2].Rows.Count > 0)
+                                if (dt.Tables[1] != null && dt.Tables[1].Rows.Count > 0)
                                 {
-                                    statelist = APIHelperMethods.ToModelList<StateListLogin>(dt.Tables[2]);
+                                    statelist = APIHelperMethods.ToModelList<StateListLogin>(dt.Tables[1]);
                                 }
                             }
-                            
+
                             omodel.status = "200";
                             omodel.session_token = sessionId;
-                            omodel.user_details = oview;
-                            omodel.user_count = ocounting;
+                            omodel.user_details = oviewLMS;
+                            // omodel.user_count = ocounting;
                             omodel.state_list = statelist;
                             omodel.message = "User successfully logged in.";
-                           
+
                         }
 
-                        else if (Convert.ToString(dt.Tables[1].Rows[0]["success"]) == "207")
-                        {
-                            omodel.status = "207";
-                            omodel.message = "Your IMEI is not authorized. Please contact with Administrator";
-                        }
-
-                        else if (Convert.ToString(dt.Tables[1].Rows[0]["success"]) == "202")
+                        else if (Convert.ToString(dt.Tables[0].Rows[0]["success"]) == "202")
                         {
                             omodel.status = "202";
                             omodel.message = "Invalid user credential.";
                         }
-
-                        else if (Convert.ToString(dt.Tables[1].Rows[0]["success"]) == "220")
-                        {
-                            omodel.status = "220";
-                            omodel.message = "Login time expired for the day.";
-                        }
-                        else if (Convert.ToString(dt.Tables[1].Rows[0]["success"]) == "206")
+                        else if (Convert.ToString(dt.Tables[0].Rows[0]["success"]) == "206")
                         {
                             omodel.status = "206";
-                            omodel.message = Convert.ToString(dt.Tables[1].Rows[0]["Dynamic_message"]);// "New version is available now. Please update it from the Play Store. Unless you can't login into the app. ";//Html.fromHtml('http://www.google.com')"
+                            omodel.message = Convert.ToString(dt.Tables[0].Rows[0]["Dynamic_message"]);// "New version is available now. Please update it from the Play Store. Unless you can't login into the app. ";//Html.fromHtml('http://www.google.com')"
                         }
 
                     }

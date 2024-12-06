@@ -51,15 +51,20 @@ namespace ShopAPI.Controllers
 
 
 
-                sqlcmd = new SqlCommand("Sp_ApiShopUserLogout", sqlcon);
+                //sqlcmd = new SqlCommand("Sp_ApiShopUserLogout", sqlcon);
+                //sqlcmd.Parameters.Add("@user_id", model.user_id);
+                //sqlcmd.Parameters.Add("@SessionToken", model.session_token);
+                //sqlcmd.Parameters.Add("@latitude", model.latitude);
+                //sqlcmd.Parameters.Add("@longitude", model.longitude);
+                //sqlcmd.Parameters.Add("@logout_time", model.logout_time);
+                //sqlcmd.Parameters.Add("@location_name", location_name);
+                //sqlcmd.Parameters.Add("@Autologout", model.Autologout);
+                //sqlcmd.Parameters.Add("@distance", model.distance);
+
+                sqlcmd = new SqlCommand("FSM_LMS_ApiShopUserLogout", sqlcon);
                 sqlcmd.Parameters.Add("@user_id", model.user_id);
                 sqlcmd.Parameters.Add("@SessionToken", model.session_token);
-                sqlcmd.Parameters.Add("@latitude", model.latitude);
-                sqlcmd.Parameters.Add("@longitude", model.longitude);
                 sqlcmd.Parameters.Add("@logout_time", model.logout_time);
-                sqlcmd.Parameters.Add("@location_name", location_name);
-                sqlcmd.Parameters.Add("@Autologout", model.Autologout);
-                sqlcmd.Parameters.Add("@distance", model.distance);
 
 
                 sqlcmd.CommandType = CommandType.StoredProcedure;
