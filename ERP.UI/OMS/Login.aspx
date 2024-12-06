@@ -289,7 +289,7 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
             line-height: normal;
             font-weight: 700;
             letter-spacing: -1px;
-            color: rgba(255,91,103,1);
+            color: #111;
             margin-bottom: 3.5rem;
         }
             .fts h2 span {
@@ -381,7 +381,7 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
             text-align: center;
             /*Rev Pallab*/
             /*background: #333 url('/assests/images/NLogin/LoginDark_bg.png') no-repeat top left;*/
-            background: url('/assests/images/NLogin/LoginDark_bg2.jpg') no-repeat top left;
+            background: url('/assests/images/NLogin/lms-login-background.webp') no-repeat top left;
             /*Rev end Pallab*/
             background-size:cover;
         }
@@ -529,7 +529,7 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
             color: #4a4a4a;
         }
         .mlogos {
-            width:100px;
+            width:180px;
             /*margin-left:-8px*/
             margin-left: 0;
             /*position: absolute;
@@ -768,11 +768,21 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
 
             .left-top-image {
             max-width: 68%;
-            margin-top: 4%;
+            margin-top: 3%;
+            opacity: 0;
+            transform: scale(0.8); /* Start smaller */
+            animation: zoomIn 1s ease-out forwards;
         }
+            @keyframes zoomIn {
+            to {
+              opacity: 1;
+              transform: scale(1); /* Scale back to normal */
+            }
+          }
+
             .login-about-box
             {
-                padding: 15px 15px 15px;
+                padding: 15px 10px 15px;
                 background: #fff;
                 border-radius: 15px;
                 box-shadow: 1px 1px 15px #0000001c;
@@ -793,13 +803,14 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                 padding: 60px 0;
                 max-width: 100%;
                 padding: 0 15px;
-                background: #08638d !important;
+                /*background: #08638d !important;*/
+                background-image: linear-gradient(170deg, #7E0606 0%, #E80C0C 100%);
             }
 
             .mobile-image-part
             {
-                background: url(/assests/images/NLogin/mobile-app-mockup.jpg) top center;
-                min-height: 680px;
+                background: url(/assests/images/NLogin/mobilearn-mobile-img.webp) top center;
+                min-height: 590px;
                 background-size:cover;
                 background-repeat:no-repeat;
             }
@@ -1261,7 +1272,7 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                      <img src="/assests/images/NLogin/screen1.png" class="scrImage wow bounceInUp"  />
                      <div class="chartArea"><div class="hider"></div><div id="chartdiv"></div></div>
                  </div>--%>
-                 <img src="/assests/images/NLogin/left-top-image.png" class="left-top-image light-design"  />
+                 <img src="/assests/images/NLogin/left-top-image.webp" class="left-top-image light-design"  />
                  <%--Rev 2.0 : img add--%>
                  <%--<img src="/assests/images/NLogin/fsm-left-lgt-design.png" class="left-top-image dark-design img-hide" />--%>
                  <%--Rev end 2.0--%>
@@ -1330,7 +1341,7 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                          <div class="ftFooter">
                             <%-- REV 6.0--%>
                              <%--© Copyright <span id="yearCP"></span> Indus Net Technologies--%>
-                              © Copyright <span id="yearCP"></span> Breeze 
+                              © Copyright <span id="yearCP"></span> Mobilearn 
                              <%-- REV 6.0 END--%>
                              <asp:Label ID="lblVersion" runat="server" Text="1.0.4" /> 
                             <a href="Management/Master/view-version-features.aspx" target="_blank" style="display:none">( What's New )</a><br />
@@ -1409,30 +1420,30 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
     <div class="fts">
              <div class="container">
                  <h2 class="">
-                     Automate Processes. Manage Teams. <br>Acquire Leads. Close Sales.
-                     <span>All-in-One Platform</span>
+                     Gamified Micro-Learning for the Next-Gen Workforce
+                     <%--<span>All-in-One Platform</span>--%>
                  </h2>
              <div class="row spaceColumn">
                  
                  <div class="col-md-4 wow slideInLeft" data-wow-duration="2s" data-wow-delay="5s">
                      <div class="login-about-box">
-                        <div class="icon-img"><img src="/assests/images/NLogin/007-destination.png" /></div>
-                        <div class="hdn">Geo-Tracking & Route  <br /> Optimization</div>
-                        <p>System will intelligently capture geolocation at attendance, and will be allowed if it falls in Distribution or first visit location.</p>
+                        <div class="icon-img"><img src="/assests/images/NLogin/icon-1.png" /></div>
+                        <div class="hdn">Engaging Byte-Sized Content</div>
+                        <%--<p>System will intelligently capture geolocation at attendance, and will be allowed if it falls in Distribution or first visit location.</p>--%>
                      </div>
                  </div>
                  <div class="col-md-4 wow slideInLeft" data-wow-duration="2s" data-wow-delay="7s">
                      <div class="login-about-box">
-                        <div class="icon-img"><img src="/assests/images/NLogin/004-user-interface.png" /></div>
-                        <div class="hdn">IMEI/OTP based  <br /> authentication</div>
-                        <p>Each user will be locked with this phone IMEI and will not be able to login on another device without admin action.</p>
+                        <div class="icon-img"><img src="/assests/images/NLogin/icon-2.png" /></div>
+                        <div class="hdn">Gamified Engagement</div>
+                        <%--<p>Each user will be locked with this phone IMEI and will not be able to login on another device without admin action.</p>--%>
                      </div>
                  </div>
                  <div class="col-md-4 wow slideInLeft" data-wow-duration="2s" data-wow-delay="9s">
                      <div class="login-about-box">
-                         <div class="icon-img"><img src="/assests/images/NLogin/001-dashboard.png" /></div>
-                         <div class="hdn">Intuitive Dashboard & <br /> Auto-Reporting</div>
-                         <p>A single dashboard to manage all your team members with real time updates and notifications for updates and voilations.</p>
+                         <div class="icon-img"><img src="/assests/images/NLogin/icon-3.png" /></div>
+                         <div class="hdn">Leaderboard with Performance Stats</div>
+                         <%--<p>A single dashboard to manage all your team members with real time updates and notifications for updates and voilations.</p>--%>
                      </div>
                  </div>
              </div>
@@ -1446,25 +1457,25 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                     <%--<img src="/assests/images/NLogin/mobile-app-mockup.jpg" class="responsiveImg image-fluid" />--%>
                 </div>
                 <div class="col-md-6 right-text-part">
-                    <h2 class="mkHd"> Make Your Field Agents FUTURE READY!</h2>
-                    <h4 class="mkHs">Accelerate Sales. Escalate Revenue.</h4>
+                    <h2 class="mkHd"> Empowering Learning, Anywhere, Anytime.</h2>
+                    <%--<h4 class="mkHs">Accelerate Sales. Escalate Revenue.</h4>--%>
 
                     <div class="row mkBoxes">
                         <div class="col-sm-12 mb-5">
-                            <h5>Smart Route Management</h5>
-                            <p>Stop worrying about planning .Automated route suggestion as per locations to be visited. Time saved is revenue earned.</p>
+                            <h5>Next-Gen UX</h5>
+                            <p>An intuitive user experience designed for modern learners, featuring short videos with like, share, and save options for flexible learning.</p>
                         </div>
                         <div class="col-sm-12 mb-5">
-                            <h5>One-Click OrderManagement</h5>
-                            <p>Hassle-free order creation through a single click. Eliminates onsite visits for order acquisition & saves time real time.</p>
+                            <h5>Personalized and Structured Learning</h5>
+                            <p>Tailored learning paths to deliver the right content at the right time for each employee.</p>
                         </div>
                         <div class="col-sm-12 mb-5">
-                            <h5>Automated Reporting</h5>
-                            <p>Automatically generate reports periodically to know what is going on and take decisions real time.</p>
+                            <h5>Interactive Quizzes</h5>
+                            <p>Transform assessments into engaging experiences with quizzes and gamification.</p>
                         </div>
                         <div class="col-sm-12 mb-5">
-                            <h5>Travel Reimbursement Management</h5>
-                            <p>No more hassles of having multiple portals for filling reimbursements. Single interface for all kinds of updates with status tracking.</p>
+                            <h5>Real-Time Progress Evaluation</h5>
+                            <p>Gain instant insights into employee learning progress and identify gaps as they happen.</p>
                         </div>
                     </div>
                 </div>
@@ -1473,7 +1484,7 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
     </div>
     <div>
         <div class="container text-center resp-pad-left-right" style="padding:50px 0">
-            <h3 style="font-family: 'opcen', Montserrat, sans-serif !important;font-size:26px">Log in to Start Your Digital Journey with Breeze .</h3>
+            <h3 style="font-family: 'opcen', Montserrat, sans-serif !important;font-size:26px">Log in to Discover the Power of Engaging Learning.</h3>
             <div style="height:30px"></div>
             <a href="#" class="cta" id="toLogin">
               <span>Login Now</span>
