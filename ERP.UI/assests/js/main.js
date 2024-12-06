@@ -40,7 +40,7 @@ function checkSessionLogoutMasterPage() {
             }
         },
         error: function (response) {
-            jAlert("Please try again later");
+            //jAlert("Please try again later");
         }
     });
        

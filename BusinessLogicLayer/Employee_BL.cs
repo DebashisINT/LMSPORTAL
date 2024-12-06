@@ -31,7 +31,7 @@ namespace BusinessLogicLayer
             ProcedureExecute proc;
             try
             {
-                using (proc = new ProcedureExecute("EmployeeCTCInsert"))
+                using (proc = new ProcedureExecute("PRC_LMS_EmployeeCTCInsert"))
                 {
                     proc.AddNVarcharPara("@emp_cntId", 100, emp_cntId);
                     proc.AddNVarcharPara("@emp_dateofJoining", 100, emp_dateofJoining);
@@ -104,7 +104,7 @@ namespace BusinessLogicLayer
 
             try
             {
-                using (proc = new ProcedureExecute("EmployeeInsert"))
+                using (proc = new ProcedureExecute("PRC_LMS_EmployeeInsert"))
                 {
                     proc.AddVarcharPara("@cnt_ucc", 100, cnt_ucc);
 

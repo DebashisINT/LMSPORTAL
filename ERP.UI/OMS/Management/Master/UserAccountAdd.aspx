@@ -487,13 +487,26 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
         //        return false;
         //    }
         //}
-        function ValidateCTC() {
+        function ValidateControls() {
             //Rev work start 26.07.2022 mantise no:25046            
             var FirstName = document.getElementById('txtFirstNmae').value;
             if (FirstName.trim().length == 0) {
                 $('#MandatoryFirstName').css({ 'display': 'block' });
                 return false;
-            }            
+            } 
+            var FirstName = document.getElementById('txtuserid').value;
+            if (FirstName.trim().length == 0) {
+                $('#MandatoryLoginid').css({ 'display': 'block' });
+                return false;
+            } 
+            var FirstName = document.getElementById('txtPassword').value;
+            if (FirstName.trim().length == 0) {
+                $('#MandatoryPassword').css({ 'display': 'block' });
+                return false;
+            } 
+
+
+
             //Rev work close 26.07.2022 mantise no:25046
             if (document.getElementById("cmbBranch").value == "0") {
                 $('#MandatoryBranch').css({ 'display': 'block' });
@@ -1252,62 +1265,47 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                         <ContentTemplate>
                             <div class="">
                                 <div class="col-md-3">
-                                    <label>First Name<span style="color: red">*</span></label>
+                                    <label>User Name<span style="color: red">*</span></label>
                                     <div style="position: relative">
-                                        <%--Rev work start 26.07.2022 mantise no:25046--%>
-                                        <%--<asp:TextBox ID="txtFirstNmae" runat="server" Width="100%" MaxLength="20" CssClass="form-control"></asp:TextBox>--%>
-                                        <%--Rev 4.0 [MaxLength="20" changed to MaxLength="50" ] --%>
                                         <asp:TextBox ID="txtFirstNmae" runat="server" Width="100%" MaxLength="50" CssClass="form-control" TabIndex="1"></asp:TextBox>
-                                        <%--Rev work close 26.07.2022 mantise no:25046--%>
                                         <span id="MandatoryFirstName" class="pullleftClass fa fa-exclamation-circle iconRed " style="color: red; position: absolute; right: -4px; top: 10px; display: none" title="Mandatory"></span>
-                                        <%--  <dxe:ASPxTextBox ID="txtFirstNmae" runat="server" Width="225px" TabIndex="2">
-                                                 </dxe:ASPxTextBox>--%>
+                                       
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <label>Middle Name</label>
-                                    <div>
-                                        <%--Rev work start 26.07.2022 mantise no:25046--%>
-                                        <%--<asp:TextBox ID="txtMiddleName" runat="server" Width="100%" MaxLength="20" CssClass="form-control">--%>
-                                        <asp:TextBox ID="txtMiddleName" runat="server" Width="100%" MaxLength="20" CssClass="form-control" TabIndex="2">
-                                        <%--Rev work close 26.07.2022 mantise no:25046--%>
-                                        </asp:TextBox>
+                                    <label>User Login ID<span style="color: red">*</span></label>
+                                    <div style="position: relative">
+                                        <asp:TextBox ID='txtuserid' runat="server" Width="100%" CssClass="form-control" ValidationGroup="a" value="" MaxLength="50" autocomplete="off" TabIndex="2"></asp:TextBox>
+                                        <span id="MandatoryLoginid" class="pullleftClass fa fa-exclamation-circle iconRed " style="color: red; position: absolute; right: -18px; top: 10px; display: none" title="Mandatory"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <label>Last Name</label>
-                                    <div>
-                                        <%--Rev work start 26.07.2022 mantise no:25046--%>
-                                        <%--<asp:TextBox ID="txtLastName" runat="server" Width="100%" MaxLength="20" CssClass="form-control">--%>
-                                        <asp:TextBox ID="txtLastName" runat="server" Width="100%" MaxLength="20" CssClass="form-control" TabIndex="3">
-                                        <%--Rev work close 26.07.2022 mantise no:25046--%>
-                                        </asp:TextBox>
+                                    <label>Password<span style="color: red">*</span></label>
+                                    <div style="position: relative">
+                                        <asp:TextBox ID='txtPassword' runat="server" Width="100%" CssClass="form-control" ValidationGroup="a" value="" MaxLength="50" autocomplete="off" TabIndex="3"></asp:TextBox>
+                                        <span id="MandatoryPassword" class="pullleftClass fa fa-exclamation-circle iconRed " style="color: red; position: absolute; right: -18px; top: 10px; display: none" title="Mandatory"></span>
                                     </div>
                                 </div>
-                                <%--Rev 1.0--%>
-                                <%--<div class="col-md-3">--%>
-                                 <div class="col-md-3 h-branch-select">
-                                 <%--Rev end 1.0--%>
+                                <div class="col-md-3 h-branch-select">
                                     <label>Branch<span style="color: red">*</span></label>
                                     <div style="position: relative">
-                                        <%--Rev work start 26.07.2022 mantise no:25046--%>
-                                        <%--<asp:DropDownList ID="cmbBranch" runat="server" Width="100%">--%>
                                         <asp:DropDownList ID="cmbBranch" runat="server" Width="100%" TabIndex="4">
-                                            <%--Rev work close 26.07.2022 mantise no:25046--%>
                                         </asp:DropDownList>
                                         <span id="MandatoryBranch" class="pullleftClass fa fa-exclamation-circle iconRed " style="color: red; position: absolute; right: -18px; top: 10px; display: none" title="Mandatory"></span>
                                     </div>
                                 </div>
-                                <%--Rev 1.0--%>
-                                <%--<div class="col-md-3">--%>
                                  <div class="col-md-3 h-branch-select">
-                                 <%--Rev end 1.0--%>
+                                    <label>Department<span style="color: red">*</span></label>
+                                    <div style="position: relative">
+                                        <asp:DropDownList ID="cmbDept" runat="server" Width="100%" TabIndex="5">
+                                        </asp:DropDownList>
+                                        <span id="MandatoryDepartment" class="pullleftClass fa fa-exclamation-circle iconRed " style="color: red; position: absolute; right: -18px; top: 10px; display: none" title="Mandatory"></span>
+                                    </div>
+                                </div>
+                                 <div class="col-md-3 h-branch-select">
                                     <label>Designation<span style="color: red">*</span></label>
                                     <div style="position: relative">
-                                        <%--Rev work start 26.07.2022 mantise no:25046--%>
-                                        <%--<asp:DropDownList ID="cmbDesg" runat="server" Width="100%" TabIndex="5">--%>
-                                        <asp:DropDownList ID="cmbDesg" runat="server" Width="100%" TabIndex="5">
-                                            <%--Rev work close 26.07.2022 mantise no:25046--%>
+                                        <asp:DropDownList ID="cmbDesg" runat="server" Width="100%" TabIndex="6">
                                         </asp:DropDownList>
                                         <span id="MandatoryDesignation" class="pullleftClass fa fa-exclamation-circle iconRed " style="color: red; position: absolute; right: -18px; top: 10px; display: none" title="Mandatory"></span>
                                     </div>
@@ -1315,175 +1313,40 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                                  <div class="col-md-3">
                                     <label>Report To<span style="color: red">*</span></label>
                                     <div style="position: relative">
-                                        <%-- <asp:DropDownList data-placeholder="Select or type here" Visible="false" runat="server" ID="ddlReportTo" class="chzn-select" Style="width: 255px;">
-                                            </asp:DropDownList>
-                                            <asp:ListBox ID="lstReportTo" CssClass="chsn" runat="server" Width="250px" data-placeholder="Select..."></asp:ListBox>--%>
-                                        <%--Rev work start 26.07.2022 mantise no:25046--%>
-                                        <%--<dxe:ASPxButtonEdit ID="txtReportTo" runat="server" ReadOnly="true" ClientInstanceName="ctxtReportTo" TabIndex="8" Width="100%">--%>
-                                        <dxe:ASPxButtonEdit ID="txtReportTo" runat="server" ReadOnly="true" ClientInstanceName="ctxtReportTo" TabIndex="6" Width="100%">
-                                            <%--Rev work close 26.07.2022 mantise no:25046--%>
+                                        <dxe:ASPxButtonEdit ID="txtReportTo" runat="server" ReadOnly="true" ClientInstanceName="ctxtReportTo" TabIndex="7" Width="100%">
                                             <Buttons>
                                                 <dxe:EditButton>
                                                 </dxe:EditButton>
                                             </Buttons>
                                             <ClientSideEvents ButtonClick="function(s,e){ReportToButnClick();}" KeyDown="ReportTobtnKeyDown" />
                                         </dxe:ASPxButtonEdit>
-                                        <%--   <asp:TextBox ID="txtReportTo" runat="server" Width="225px" Visible="true" TabIndex="17"></asp:TextBox>--%>
                                         <span id="MandatoryReportTo" class="pullleftClass fa fa-exclamation-circle iconRed " style="color: red; position: absolute; right: -18px; top: 5px; display: none" title="Mandatory"></span>
                                         <asp:HiddenField ID="txtReportTo_hidden" runat="server" />
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <label>User Login ID<span style="color: red">*</span></label>
+                                <div class="col-md-3 h-branch-select">
+                                    <label>Group<span style="color: red">*</span></label>
                                     <div style="position: relative">
-                                        <%--Rev work start 26.07.2022 mantise no:25046--%>
-                                        <%--<asp:TextBox ID='txtuserid' runat="server" Width="100%" CssClass="form-control" ValidationGroup="a" value=" " MaxLength="50" autocomplete="off"></asp:TextBox>--%>
-                                        <asp:TextBox ID='txtuserid' runat="server" Width="100%" CssClass="form-control" ValidationGroup="a" value="" MaxLength="50" autocomplete="off" TabIndex="7"></asp:TextBox>
-                                          <%--Rev work close 26.07.2022 mantise no:25046--%> 
-                                        <span id="MandatoryLoginid" class="pullleftClass fa fa-exclamation-circle iconRed " style="color: red; position: absolute; right: -18px; top: 10px; display: none" title="Mandatory"></span>
-                                    </div>
-                                </div>
-                                <%--Rev 1.0--%>
-                                <%--<div class="col-md-3">--%>
-                                 <div class="col-md-3 h-branch-select">
-                                 <%--Rev end 1.0--%>
-                                    <label>User Group<span style="color: red">*</span></label>
-                                    <div style="position: relative">
-                                         <%--Rev work start 26.07.2022 mantise no:25046--%>
-                                        <%--<asp:DropDownList ID="ddlGroups" runat="server" CssClass="sml" Width="100%"></asp:DropDownList>--%>
                                         <asp:DropDownList ID="ddlGroups" runat="server" CssClass="sml" Width="100%" TabIndex="8"></asp:DropDownList>
-                                        <%--Rev work close 26.07.2022 mantise no:25046--%> 
                                         <span id="MandatoryGroup" class="pullleftClass fa fa-exclamation-circle iconRed " style="color: red; position: absolute; right: -18px; top: 10px; display: none" title="Mandatory"></span>
                                     </div>
                                 </div>
-                                <%--Rev 1.0--%>
-                                <%--<div class="col-md-3">--%>
-                                <%--Rev 2.0 [id="divUserType" runat="server" added] --%>
-                                 <div class="col-md-3 h-branch-select" id="divUserType" runat="server">
-                                 <%--Rev end 1.0--%>
-                                    <label>User Type<span style="color: red">*</span></label>
+                                <div class="col-md-3">
+                                    <label>Remarks</label>
                                     <div style="position: relative">
-                                        <%--Rev work start 26.07.2022 mantise no:25046--%>
-                                        <%--<asp:DropDownList ID="ddlType" runat="server" CssClass="sml" Width="100%"></asp:DropDownList>--%>
-                                        <asp:DropDownList ID="ddlType" runat="server" CssClass="sml" Width="100%" TabIndex="9"></asp:DropDownList>
-                                        <%--Rev work close 26.07.2022 mantise no:25046--%> 
-                                        <span id="MandatoryType" class="pullleftClass fa fa-exclamation-circle iconRed " style="color: red; position: absolute; right: -18px; top: 10px; display: none" title="Mandatory"></span>
-                                    </div>
-                                </div>
-
-                                <%--Rev 2.0 [id="divChannel" runat="server" added] --%>
-                                 <div class="col-md-3" id="divChannel" runat="server">
-                                    <label>Channel Type</label>
-                                    <div style="position: relative">
-                                        <%--Rev work start 26.07.2022 mantise no:25046--%>
-                                        <%--<dxe:ASPxButtonEdit ID="txtChannels" runat="server" ReadOnly="true" ClientInstanceName="ctxtChannels" TabIndex="8" Width="100%">--%>
-                                        <dxe:ASPxButtonEdit ID="txtChannels" runat="server" ReadOnly="true" ClientInstanceName="ctxtChannels" TabIndex="10" Width="100%">
-                                            <%--Rev work close 26.07.2022 mantise no:25046--%>
-                                            <Buttons>
-                                                <dxe:EditButton>
-                                                </dxe:EditButton>
-                                            </Buttons>
-                                            <ClientSideEvents ButtonClick="function(s,e){ChannelButnClick();}" KeyDown="ChannelbtnKeyDown" />
-                                        </dxe:ASPxButtonEdit>
-                                        <dxe:ASPxCheckBox ID="chkChannelDefault" runat="server" Text="Set as Default">
-                                            <ClientSideEvents CheckedChanged="function (s, e) {ChannelDefault_Checked();}" />
-                                        </dxe:ASPxCheckBox>
-                                         <%--Mantis Issue 25148--%>
-                                        <span id="MandatoryChannel" class="pullleftClass fa fa-exclamation-circle iconRed " style="color: red; position: absolute; right: -18px; top: 10px; display: none" title="Mandatory"></span>
-                                        <%--End of Mantis Issue 25148--%>
-
-                                        <asp:HiddenField ID="txtChannel_hidden" runat="server" />
-                                        <asp:HiddenField ID="calledFromChannelLookup_hidden" runat="server" />
-                                        <%--Mantis Issue 25148--%>
-                                        <asp:HiddenField ID="IsChannelCircleSectionMandatory" runat="server" />
-                                        <%--End of Mantis Issue 25148--%>
-                                    </div>
-                                </div>
-
-                                <%--Rev 2.0 [id="divCircle" runat="server" added] --%>
-                                <div class="col-md-3" id="divCircle" runat="server" >
-                                    <label>Circle</label>
-                                    <div style="position: relative">
-                                        <%--Rev work start 26.07.2022--%>
-                                        <%--<dxe:ASPxButtonEdit ID="txtCircle" runat="server" ReadOnly="true" ClientInstanceName="ctxtCircles" TabIndex="8" Width="100%">--%>
-                                        <dxe:ASPxButtonEdit ID="txtCircle" runat="server" ReadOnly="true" ClientInstanceName="ctxtCircles" TabIndex="11" Width="100%">
-                                            <%--Rev work close 26.07.2022--%>
-                                            <Buttons>
-                                                <dxe:EditButton>
-                                                </dxe:EditButton>
-                                            </Buttons>
-                                            <ClientSideEvents ButtonClick="function(s,e){CircleButnClick();}" KeyDown="CirclebtnKeyDown" />
-                                        </dxe:ASPxButtonEdit>
-                                        <dxe:ASPxCheckBox ID="chkCircleDefault" runat="server" Text="Set as Default">
-                                            <ClientSideEvents CheckedChanged="function (s, e) {CircleDefault_Checked();}" />
-                                        </dxe:ASPxCheckBox>
-                                        <%--Mantis Issue 25148--%>
-                                        <span id="MandatoryCircle" class="pullleftClass fa fa-exclamation-circle iconRed " style="color: red; position: absolute; right: -18px; top: 10px; display: none" title="Mandatory"></span>
-                                        <%--End of Mantis Issue 25148--%>
-                                        <asp:HiddenField ID="txtCircle_hidden" runat="server" />
-                                        <asp:HiddenField ID="calledFromCircleLookup_hidden" runat="server" />
-                                    </div>
-                                </div>
-
-                                <%--Rev 2.0 [id="divSection" runat="server" added] --%>
-                                <div class="col-md-3" id="divSection" runat="server">
-                                    <label>Section</label>
-                                    <div style="position: relative">
-                                         <%--Rev work start 26.07.2022--%>
-                                        <%--<dxe:ASPxButtonEdit ID="txtSection" runat="server" ReadOnly="true" ClientInstanceName="ctxtSections" TabIndex="8" Width="100%">--%>
-                                        <dxe:ASPxButtonEdit ID="txtSection" runat="server" ReadOnly="true" ClientInstanceName="ctxtSections" TabIndex="12" Width="100%">
-                                             <%--Rev work close 26.07.2022--%>
-                                            <Buttons>
-                                                <dxe:EditButton>
-                                                </dxe:EditButton>
-                                            </Buttons>
-                                            <ClientSideEvents ButtonClick="function(s,e){SectionButnClick();}" KeyDown="SectionbtnKeyDown" />
-                                        </dxe:ASPxButtonEdit>
-                                        <dxe:ASPxCheckBox ID="chkSectionDefault" runat="server" Text="Set as Default">
-                                            <ClientSideEvents CheckedChanged="function (s, e) {SectionDefault_Checked();}" />
-                                        </dxe:ASPxCheckBox>
-                                        <%--Mantis Issue 25148--%>
-                                        <span id="MandatorySection" class="pullleftClass fa fa-exclamation-circle iconRed " style="color: red; position: absolute; right: -18px; top: 10px; display: none" title="Mandatory"></span>
-                                        <%--End of Mantis Issue 25148--%>
-                                        <asp:HiddenField ID="txtSection_hidden" runat="server" />
-                                        <asp:HiddenField ID="calledFromSectionLookup_hidden" runat="server" />
-                                    </div>
-                                </div>
-
-                                 <div class="col-md-3">
-                                    <label>Contact No</label>
-                                    <div style="position: relative">
-                                         <%--Rev work start 26.07.2022--%>
-                                        <%--<asp:TextBox ID="txtPhno" runat="server" Width="100%" MaxLength="20" CssClass="form-control"></asp:TextBox>--%>    
-                                        <asp:TextBox ID="txtPhno" runat="server" Width="100%" MaxLength="20" CssClass="form-control" TabIndex="13"></asp:TextBox> 
-                                        <%--Rev work close 26.07.2022--%>                                   
+                                        <asp:TextBox ID="txtRemarks" runat="server" Width="100%" MaxLength="20" CssClass="form-control" TabIndex="9"></asp:TextBox> 
                                     </div>
                                 </div>          
                             <div style="clear: both"></div>
                             <div class="col-md-12" style="padding-top: 15px;">
-                                <asp:Button ID="btnCTC" CssClass="btn btn-primary btnUpdate" Text="Save & Proceed" runat="server" OnClientClick="setvalue()" OnClick="btnCTC_Click" />
+                                <asp:Button ID="btnSave" CssClass="btn btn-primary btnSave" Text="Save & Proceed" runat="server" OnClientClick="setvalue()" OnClick="btnSave_Click" />
                             </div>
                             </div>
 
                         </ContentTemplate>
-                     <%--   <Triggers>
-                            <asp:AsyncPostBackTrigger ControlID="btnSave" />
-                        </Triggers>--%>
                     </asp:UpdatePanel>
                 </td>
             </tr>
-            <%-- <tr id="TrJoin" runat="server">
-                <td>
-                    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                        <ContentTemplate>--%>
-
-            <%-- </ContentTemplate>
-                        <Triggers>
-                            <asp:AsyncPostBackTrigger ControlID="btnJoin" />
-                        </Triggers>
-                    </asp:UpdatePanel>
-                </td>
-            </tr>--%>
             <tr id="TrCTC" runat="server">
                 <td>
                     <asp:UpdatePanel ID="UpdatePanel3" runat="server">
@@ -1499,13 +1362,13 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                             </table>
                         </ContentTemplate>
                         <Triggers>
-                            <asp:AsyncPostBackTrigger ControlID="btnCTC" />
+                            <asp:AsyncPostBackTrigger ControlID="btnSave" />
                         </Triggers>
                     </asp:UpdatePanel>
                 </td>
             </tr>            
         </table>
-        <dxe:ASPxLoadingPanel ID="LoadingPanel" runat="server" ClientInstanceName="LoadingPanel" ContainerElementID="btnCTC"
+        <dxe:ASPxLoadingPanel ID="LoadingPanel" runat="server" ClientInstanceName="LoadingPanel" ContainerElementID="btnSave"
             Modal="True">
         </dxe:ASPxLoadingPanel>
 

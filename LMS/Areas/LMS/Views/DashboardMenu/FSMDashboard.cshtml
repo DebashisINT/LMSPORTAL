@@ -244,10 +244,13 @@ Rev Number   DATE            VERSION     DEVELOPER       CHANGES
         if (settingsid == "1") {
             stateid = LMSstateids.join(','); //;cmbState.GetValue();
             var obj1 = {};
+
             obj1.stateid = stateid;
+            var Url = '@Url.Action("DashboardBranchComboboxLMS", "DashboardMenu")'
             $.ajax({
                 type: "POST",
-                url: "/DashboardMenu/DashboardBranchComboboxLMS",
+                //url: "/DashboardMenu/DashboardBranchComboboxLMS",
+                url: Url,
                 data: JSON.stringify(obj1),
                 async: true,
                 contentType: "application/json; charset=utf-8",
@@ -373,9 +376,12 @@ Rev Number   DATE            VERSION     DEVELOPER       CHANGES
         obj.branchid = LMSbranchids.join(',');;
 
         if (hdnLMS > 0) {
+            var Url = '@Url.Action("GETLMSCOUNTDATA", "DashboardMenu")'
+
             $.ajax({
                 type: "POST",
-                url: "/DashboardMenu/GETLMSCOUNTDATA",
+                //url: "/DashboardMenu/GETLMSCOUNTDATA",
+                url: Url,
                 data: JSON.stringify(obj),
                 async: true,
                 contentType: "application/json; charset=utf-8",
@@ -1553,9 +1559,11 @@ Rev Number   DATE            VERSION     DEVELOPER       CHANGES
         var obj1 = {};
         obj1.stateid = stateid;
 
+        var Url = '@Url.Action("DashboardBranchCombobox", "DashboardMenu")'
         $.ajax({
             type: "POST",
-            url: "/DashboardMenu/DashboardBranchCombobox",
+            //url: "/DashboardMenu/DashboardBranchCombobox",
+            url: Url,
             data: JSON.stringify(obj1),
             async: true,
             contentType: "application/json; charset=utf-8",
@@ -1623,9 +1631,11 @@ Rev Number   DATE            VERSION     DEVELOPER       CHANGES
         // Mantis Issue 24729
         obj.branchid = branchid;
         // End of Mantis Issue 24729
+        var Url = '@Url.Action("GetDashboardDataVisit", "DashboardMenu")'
         $.ajax({
             type: "POST",
-            url: "/DashboardMenu/GetDashboardDataVisit",
+            //url: "/DashboardMenu/GetDashboardDataVisit",
+            url: Url,
             data: JSON.stringify(obj),
             async: true,
             contentType: "application/json; charset=utf-8",
@@ -1656,9 +1666,11 @@ Rev Number   DATE            VERSION     DEVELOPER       CHANGES
         // Mantis Issue 24729
         obj.branchid = branchid;
         // End of Mantis Issue 24729
+        var Url = '@Url.Action("GetDashboardData", "DashboardMenu")'
         $.ajax({
             type: "POST",
-            url: "/DashboardMenu/GetDashboardData",
+            //url: "/DashboardMenu/GetDashboardData",
+            url: Url,
             data: JSON.stringify(obj),
             async: true,
             contentType: "application/json; charset=utf-8",
@@ -1754,9 +1766,11 @@ Rev Number   DATE            VERSION     DEVELOPER       CHANGES
         // Mantis Issue 24729
 
         // susanta 05-04-22
+        var Url = '@Url.Action("DashboardBranchCombobox", "DashboardMenu")'
         $.ajax({
             type: "POST",
-            url: "/DashboardMenu/DashboardBranchCombobox",
+            //url: "/DashboardMenu/DashboardBranchCombobox",
+            url: Url,
             data: JSON.stringify(obj),
             async: true,
             contentType: "application/json; charset=utf-8",
@@ -5333,9 +5347,11 @@ Rev Number   DATE            VERSION     DEVELOPER       CHANGES
         // End of Mantis Issue 24729
 
         if (hdnTotalEmployees > 0 || hdnAtWork > 0 || hdnOnLeave > 0 || hdnNotLoggedIn > 0) {
+            var Url = '@Url.Action("GetDashboardData", "DashboardMenu")'
             $.ajax({
                 type: "POST",
-                url: "/DashboardMenu/GetDashboardData",
+                //url: "/DashboardMenu/GetDashboardData",
+                url: Url,
                 data: JSON.stringify(obj),
                 async: true,
                 contentType: "application/json; charset=utf-8",

@@ -664,47 +664,27 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                                     </PropertiesTextEdit>
                                     <EditFormSettings Caption="User Name:" Visible="True" />
                                 </dxe:GridViewDataTextColumn>
-                                <dxe:GridViewDataTextColumn VisibleIndex="2" Caption="User Type" FieldName="STAGE"  Width="200px">
-                                </dxe:GridViewDataTextColumn>
-                                <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="3" FieldName="BRANCHNAME"
+                                
+                                <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="2" FieldName="BRANCHNAME"
                                     Caption="Branch" Width="270px" >
                                     <PropertiesTextEdit>
                                     </PropertiesTextEdit>
                                     <EditFormSettings Visible="false" />
                                 </dxe:GridViewDataTextColumn>
                                 <%--Rev 2.0 [ caption changed from Report To to WD ID--%>
-                                <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="4" FieldName="REPORTTO"
-                                    Caption="WD ID" Width="300px">
+                                <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="3" FieldName="REPORTTO"
+                                    Caption="Report To" Width="300px">
                                     <PropertiesTextEdit>
                                     </PropertiesTextEdit>
                                     <EditFormSettings Visible="false" />
                                 </dxe:GridViewDataTextColumn>                                
-                                <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="5" FieldName="CHANNELNAME"
-                                    Caption="Channel"  Width="150px">
-                                    <PropertiesTextEdit>
-                                    </PropertiesTextEdit>
-                                    <EditFormSettings Visible="false" />
-                                </dxe:GridViewDataTextColumn>                               
-                                <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="6" FieldName="CIRCLENAME"
-                                    Caption="Circle" Width="220px" >
-                                    <PropertiesTextEdit>
-                                    </PropertiesTextEdit>
-                                    <EditFormSettings Visible="false" />
-                                </dxe:GridViewDataTextColumn>
-                                <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="7" FieldName="SECTIONNAME"
-                                    Caption="Section" Width="220px">
-                                    <PropertiesTextEdit>
-                                    </PropertiesTextEdit>
-                                    <EditFormSettings Visible="false" />
-                                </dxe:GridViewDataTextColumn>   
-                                <%--Rev 2.0--%>   
-                                <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="8" FieldName="deg_designation"
+                                <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="4" FieldName="deg_designation"
                                     Caption="Designation" Width="180px">
                                     <PropertiesTextEdit>
                                     </PropertiesTextEdit>
                                     <EditFormSettings Visible="false" />
                                 </dxe:GridViewDataTextColumn>   
-                                <%--End of Rev 2.0--%>                         
+                                                       
                             </Columns>                          
                             <SettingsSearchPanel Visible="True" />
                             <Settings ShowStatusBar="Hidden" ShowFilterRow="true" ShowGroupPanel="True" ShowFilterRowMenu="true" />                           

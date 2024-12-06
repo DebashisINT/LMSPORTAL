@@ -1,13 +1,6 @@
 ﻿//====================================================== Revision History ==========================================================
 // Rev Number       DATE              VERSION          DEVELOPER           CHANGES
-// 1.0              17/02/2023        2.0.39           Sanchita            A setting required for 'User Account' Master module in FSM Portal
-//                                                                         Refer: 25669
-// 2.0              23/03/2023        2.0.39           Sanchita            Duplicate office address getting saved.
-//                                                                         Refer: 25747
-// 3.0              23/03/2023        2.0.39           Sanchita            Also Party Type in User Master not getting mapped to Shop in ITC.
-//                                                                         Refer: 25748    
-// 4.0              16/0/2024        V2.0.47           Sanchita            These two DS types need to be inserted in the table where the rest of the DS types are available (RMD, Conv DS, Conv TL etc)
-//                                                                         Mantis: 27356 
+// Written by Sanchita
 //====================================================== Revision History ==========================================================
 using System;
 using System.Collections.Generic;
@@ -26,6 +19,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using BusinessLogicLayer.SalesERP;
+using DevExpress.Charts.Native;
 
 namespace ERP.OMS.Management.Master
 {
@@ -48,7 +42,7 @@ namespace ERP.OMS.Management.Master
         DateTime CreateDate;
         string usergroup = "";
         // Rev 1.0
-        public string IsShowUserAccountForITC = "0";
+        //public string IsShowUserAccountForITC = "0";
         // End of Rev 1.0
 
         protected void Page_Load(object sender, EventArgs e)
@@ -56,65 +50,65 @@ namespace ERP.OMS.Management.Master
             CreateUser = Convert.ToInt32(HttpContext.Current.Session["userid"]);//Session UserID
             CreateDate = Convert.ToDateTime(oDBEngine.GetDate().ToShortDateString());
 
-            // Rev 1.0
-            IsShowUserAccountForITC = "0";
-            DBEngine obj1 = new DBEngine();
-            IsShowUserAccountForITC = Convert.ToString(obj1.GetDataTable("select [value] from FTS_APP_CONFIG_SETTINGS WHERE [Key]='IsShowUserAccountForITC'").Rows[0][0]);
+            //// Rev 1.0
+            //IsShowUserAccountForITC = "0";
+            //DBEngine obj1 = new DBEngine();
+            //IsShowUserAccountForITC = Convert.ToString(obj1.GetDataTable("select [value] from FTS_APP_CONFIG_SETTINGS WHERE [Key]='IsShowUserAccountForITC'").Rows[0][0]);
 
-            if (IsShowUserAccountForITC == "1")
-            {
-                divUserType.Visible = true;
-                divChannel.Visible = true;
-                divCircle.Visible = true;
-                divSection.Visible = true;
-            }
-            else
-            {
-                divUserType.Visible = false;
-                divChannel.Visible = false;
-                divCircle.Visible = false;
-                divSection.Visible = false;
-            }
-            // End of Rev 1.0
+            //if (IsShowUserAccountForITC == "1")
+            //{
+            //    divUserType.Visible = true;
+            //    divChannel.Visible = true;
+            //    divCircle.Visible = true;
+            //    divSection.Visible = true;
+            //}
+            //else
+            //{
+            //    divUserType.Visible = false;
+            //    divChannel.Visible = false;
+            //    divCircle.Visible = false;
+            //    divSection.Visible = false;
+            //}
+            //// End of Rev 1.0
 
             if (!IsPostBack)
             {
                 Page.ClientScript.RegisterStartupScript(GetType(), "PageLD", "<script>Pageload();</script>");
                 ShowForm();
                 //Mantis Issue 25148
-                GetConfigSettings();
+                //GetConfigSettings();
                 //End of Mantis Issue 25148
             }
-            if (txtChannels.Text != "")
-            {
-                chkChannelDefault.ClientEnabled = true;
-            }
-            else
-            {
-                chkChannelDefault.Checked = false;
-                chkChannelDefault.ClientEnabled = false;
-            }
+            //if (txtChannels.Text != "")
+            //{
+            //    chkChannelDefault.ClientEnabled = true;
+            //}
+            //else
+            //{
+            //    chkChannelDefault.Checked = false;
+            //    chkChannelDefault.ClientEnabled = false;
+            //}
 
-            if (txtCircle.Text != "")
-            {
-                chkCircleDefault.ClientEnabled = true;
-            }
-            else
-            {
-                chkCircleDefault.Checked = false;
-                chkCircleDefault.ClientEnabled = false;
-            }
+            //if (txtCircle.Text != "")
+            //{
+            //    chkCircleDefault.ClientEnabled = true;
+            //}
+            //else
+            //{
+            //    chkCircleDefault.Checked = false;
+            //    chkCircleDefault.ClientEnabled = false;
+            //}
 
-            if (txtSection.Text != "")
-            {
-                chkSectionDefault.ClientEnabled = true;
-            }
-            else
-            {
-                chkSectionDefault.Checked = false;
-                chkSectionDefault.ClientEnabled = false;
-            }
-            btnCTC.Attributes.Add("Onclick", "Javascript:return ValidateCTC();");
+            //if (txtSection.Text != "")
+            //{
+            //    chkSectionDefault.ClientEnabled = true;
+            //}
+            //else
+            //{
+            //    chkSectionDefault.Checked = false;
+            //    chkSectionDefault.ClientEnabled = false;
+            //}
+           btnSave.Attributes.Add("Onclick", "Javascript:return ValidateControls();");
         }
         private void ShowForm()
         {
@@ -122,43 +116,51 @@ namespace ERP.OMS.Management.Master
             string[,] Data = oDBEngine.GetFieldValue("tbl_master_branch", "branch_id, branch_description ", null, 2, "branch_description");
             oclsDropDownList.AddDataToDropDownList(Data, cmbBranch);
             //Data = oDBEngine.GetFieldValue("tbl_master_Designation", "deg_id, deg_designation ", null, 2, "deg_designation");
-            // Rev 1.0
-            //Data = oDBEngine.GetFieldValue("tbl_master_Designation", "deg_id, deg_designation ", "deg_designation in('DS','TL')", 2, "deg_designation");
+            //// Rev 1.0
+            ////Data = oDBEngine.GetFieldValue("tbl_master_Designation", "deg_id, deg_designation ", "deg_designation in('DS','TL')", 2, "deg_designation");
 
-            if (IsShowUserAccountForITC == "1")
-            {
-                Data = oDBEngine.GetFieldValue("tbl_master_Designation", "deg_id, deg_designation ", "deg_designation in('DS','TL')", 2, "deg_designation");
-            }
-            else
-            {
-                Data = oDBEngine.GetFieldValue("tbl_master_Designation", "deg_id, deg_designation ", null, 2, "deg_designation");
-            }
-            // End of Rev 1.0
-
+            //if (IsShowUserAccountForITC == "1")
+            //{
+            //    Data = oDBEngine.GetFieldValue("tbl_master_Designation", "deg_id, deg_designation ", "deg_designation in('DS','TL')", 2, "deg_designation");
+            //}
+            //else
+            //{
+            //    Data = oDBEngine.GetFieldValue("tbl_master_Designation", "deg_id, deg_designation ", null, 2, "deg_designation");
+            //}
+            //// End of Rev 1.0
+            ///
+            Data = oDBEngine.GetFieldValue("tbl_master_Designation", "deg_id, deg_designation ", null, 2, "deg_designation");
             oclsDropDownList.AddDataToDropDownList(Data, cmbDesg);
-            Data = oDBEngine.GetFieldValue("FTS_Stage", "StageID, Stage ", null, 2, "Stage");
-            oclsDropDownList.AddDataToDropDownList(Data, ddlType);
-            
+
+            Data = oDBEngine.GetFieldValue("tbl_master_costCenter", "cost_id, cost_description ", "cost_costCenterType='Department'", 2, "cost_description");
+            oclsDropDownList.AddDataToDropDownList(Data, cmbDept);
+
+            //Data = oDBEngine.GetFieldValue("FTS_Stage", "StageID, Stage ", null, 2, "Stage");
+            //oclsDropDownList.AddDataToDropDownList(Data, ddlType);
+
             //Data = oDBEngine.GetFieldValue("tbl_master_userGroup", "grp_id, grp_name ", null, 2, "grp_name");
             // Rev 1.0
             //Data = oDBEngine.GetFieldValue("tbl_master_userGroup", "grp_id, grp_name ", "grp_name in ('ATTEND-USER','FIELD-USER')", 2, "grp_name");
-            if (IsShowUserAccountForITC == "1")
-            {
-                Data = oDBEngine.GetFieldValue("tbl_master_userGroup", "grp_id, grp_name ", "grp_name in ('ATTEND-USER','FIELD-USER')", 2, "grp_name");
-            }
-            else
-            {
-                Data = oDBEngine.GetFieldValue("tbl_master_userGroup", "grp_id, grp_name ", null, 2, "grp_name");
-            }
-            // End of Rev 1.0
+            //if (IsShowUserAccountForITC == "1")
+            //{
+            //    Data = oDBEngine.GetFieldValue("tbl_master_userGroup", "grp_id, grp_name ", "grp_name in ('ATTEND-USER','FIELD-USER')", 2, "grp_name");
+            //}
+            //else
+            //{
+            //    Data = oDBEngine.GetFieldValue("tbl_master_userGroup", "grp_id, grp_name ", null, 2, "grp_name");
+            //}
+            //// End of Rev 1.0
             
+            Data = oDBEngine.GetFieldValue("tbl_master_userGroup", "grp_id, grp_name ", null, 2, "grp_name");
+
             oclsDropDownList.AddDataToDropDownList(Data, ddlGroups);
 
 
             cmbBranch.Items.Insert(0, new ListItem("--Select--", "0"));
             cmbDesg.Items.Insert(0, new ListItem("--Select--", "0"));
-            ddlType.Items.Insert(0, new ListItem("--Select--", "0"));
+            //ddlType.Items.Insert(0, new ListItem("--Select--", "0"));
             ddlGroups.Items.Insert(0, new ListItem("--Select--", "0"));
+            cmbDept.Items.Insert(0, new ListItem("--Select--", "0"));
         }
         [WebMethod]
         public static List<string> GetreportTo(string firstname, string shortname)
@@ -190,7 +192,7 @@ namespace ERP.OMS.Management.Master
             ProcedureExecute proc = new ProcedureExecute("PRC_FetchReportTo");
             
             //proc.AddPara("@action", "ADDNEW_USERACCOUNT");
-            proc.AddPara("@action", "ADDNEW_WD");
+            proc.AddPara("@action", "ADDNEW");
             
             proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["userid"]));
             proc.AddPara("@firstname", reqStr);
@@ -506,60 +508,18 @@ namespace ERP.OMS.Management.Master
             }
             return finyear;
         }
-        protected void btnCTC_Click(object sender, EventArgs e)
+        protected void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
-                 
-                //if (calledFromChannelLookup_hidden.Value == "1" || calledFromCircleLookup_hidden.Value == "1" || calledFromSectionLookup_hidden.Value == "1")
-                if (IsChannelCircleSectionMandatory.Value == "0" && (calledFromChannelLookup_hidden.Value == "1" || calledFromCircleLookup_hidden.Value == "1" || calledFromSectionLookup_hidden.Value == "1") )
-                    
-                {
-                    calledFromChannelLookup_hidden.Value = "0";
-                    calledFromCircleLookup_hidden.Value = "0";
-                    calledFromSectionLookup_hidden.Value = "0";
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "GeneralLoading", "stopLoading();", true);
-                    return;
-                }
-               
-
                 int LoginIDExist = 0;
-               /* string[,] checkUser = oDBEngine.GetFieldValue("tbl_master_user", "user_loginId", " user_loginId='" + txtuserid.Text.ToString().Trim() + "'", 1);
-                string check = checkUser[0, 0];
-                if (check != "n")
-                {
-                    LoginIDExist = 1;
 
-                }*/
-
-                
-                //string ulogid = string.Empty;
-                //string empuniqid = string.Empty;
-
-               
-                //DataTable Logindt = oDBEngine.GetDataTable("Select u.user_loginid,e.emp_uniqueCode From tbl_master_user u,tbl_master_employee e " +
-                //"Where u.user_contactid=e.emp_contactid and u.user_loginid='" + txtuserid.Text.ToString().Trim() + "'");
-
-                // Duplicate validation if found in tbl_master_user- 'User_Loginid' or tbl_master_employee-'emp_uniqueCode'
                 DataTable Logindt = oDBEngine.GetDataTable("SELECT emp_uniqueCode FROM TBL_MASTER_EMPLOYEE WHERE emp_uniqueCode='" + txtuserid.Text.ToString().Trim() + "' UNION " +
                                                              "select user_loginid from tbl_master_user where user_loginid='" + txtuserid.Text.ToString().Trim() + "'");
                 if (Logindt != null && Logindt.Rows.Count > 0)
-                 {
-                     //ulogid = Logindt.Rows[0]["user_loginid"].ToString();
-                     //empuniqid = Logindt.Rows[0]["emp_uniqueCode"].ToString();
-                     LoginIDExist = 1;
-                 }
-                 //else
-                 //{
-                 //    ulogid = "n";
-                 //    empuniqid = "n";
-                 //}
-
-                 //if (ulogid != "n" || empuniqid!="n")
-                 //{
-                 //    LoginIDExist = 1;
-                 //}
-
+                {
+                    LoginIDExist = 1;
+                }
                 
 
                 if (LoginIDExist == 0)
@@ -588,32 +548,12 @@ namespace ERP.OMS.Management.Master
                         // ------------ Check for different validation ---------------
                         return;
                     }
-                    String ChannelType = txtChannel_hidden.Value.ToString();
-                    String Circle = txtCircle_hidden.Value.ToString();
-                    String Section = txtSection_hidden.Value.ToString();
-
+                    String ChannelType = "";
+                    String Circle = "";
+                    String Section = "";
                     String DefaultType = "";
                     
-                    //if (chkChannelDefault.Checked == true)
-                    //{
-                    //    DefaultType = "Channel";
-                    //}
-                    //else if (chkCircleDefault.Checked == true)
-                    //{
-                    //    DefaultType = "Circle";
-                    //}
-                    //else if (chkSectionDefault.Checked == true || Section!="")
-                    //{
-                    //    DefaultType = "Section";
-                    //}
-
-                    if (Section != "")
-                    {
-                        DefaultType = "Section";
-                    }
                     
-                    // End of Mantis Issue 24655
-
                     //=======================For naming Part / 1st part ========================================
                     Employee_BL objEmployee = new Employee_BL();
                     bool chkAllow = false;
@@ -623,13 +563,13 @@ namespace ERP.OMS.Management.Master
                     string Gender = "1";
                     string JoiningDate = "";
 
+                    // STEP 1 INSERT : [tbl_master_contact, tbl_master_employee, FTS_EmployeeBranchMap, FTS_EmployeeBranchMap_Log, ]
                     string InternalID = objEmployee.btnSave_Click_BL(Convert.ToString(DBNull.Value), Salutation, txtFirstNmae.Text,
-                    txtMiddleName.Text, txtLastName.Text, AliasName, "0", Gender, Convert.ToString(DBNull.Value), Convert.ToString(DBNull.Value), Convert.ToString(DBNull.Value),
+                    "", "", AliasName, "0", Gender, Convert.ToString(DBNull.Value), Convert.ToString(DBNull.Value), Convert.ToString(DBNull.Value),
                     Convert.ToString(DBNull.Value), Convert.ToString(DBNull.Value), Convert.ToString(DBNull.Value), Convert.ToString(DBNull.Value), Convert.ToString(DBNull.Value),
                     chkAllow, Convert.ToString(DBNull.Value), Convert.ToString(ChannelType), Convert.ToString(Circle), Convert.ToString(Section), DefaultType);
 
                     
-                    //string EmpType = "1";
                     string[] ET = oDBEngine.GetFieldValue1("tbl_master_employeeType", "emptpy_id", "emptpy_code='RG'", 1);
                     string EmpType = ET[0].ToString();
                     
@@ -674,21 +614,21 @@ namespace ERP.OMS.Management.Master
                             value = "emp_din=' ', emp_dateofJoining ='" + now + "', emp_dateofLeaving ='" + DBNull.Value + "',emp_ReasonLeaving  ='" + DBNull.Value + "', emp_NextEmployer ='" + DBNull.Value + "', emp_AddNextEmployer  ='" + DBNull.Value + "',LastModifyDate='" + oDBEngine.GetDate().ToString() + "',LastModifyUser='" + Session["userid"].ToString() + "'";
                             Int32 rowsEffected = oDBEngine.SetFieldValue("tbl_master_employee", value, " emp_contactid ='" + HttpContext.Current.Session["KeyVal_InternalID"] + "'");
 
-                            if (Session["KeyVal_InternalID"] != "n")
-                            {
+                            //if (Session["KeyVal_InternalID"] != "n")
+                            //{
 
-                                DataTable DT_empCTC = oDBEngine.GetDataTable(" tbl_trans_employeeCTC ", " emp_id ", " emp_cntId='" + Convert.ToString(Session["KeyVal_InternalID"]) + "'");
-                                if (DT_empCTC.Rows.Count > 0)
-                                    //JoiningDate.Value = oDBEngine.GetDate();
-                                    now = oDBEngine.GetDate();
-                                else
-                                {
-                                    DataTable dt = oDBEngine.GetDataTable(" tbl_master_employee", "emp_dateofJoining", " (emp_contactId = '" + Convert.ToString(Session["KeyVal_InternalID"]) + "')");
-                                    if (dt.Rows.Count > 0)
-                                        // JoiningDate.Value = dt.Rows[0][0];
-                                        JoiningDate = dt.Rows[0][0].ToString();
-                                }
-                            }
+                            //    DataTable DT_empCTC = oDBEngine.GetDataTable(" tbl_trans_employeeCTC ", " emp_id ", " emp_cntId='" + Convert.ToString(Session["KeyVal_InternalID"]) + "'");
+                            //    if (DT_empCTC.Rows.Count > 0)
+                            //        //JoiningDate.Value = oDBEngine.GetDate();
+                            //        now = oDBEngine.GetDate();
+                            //    else
+                            //    {
+                            //        DataTable dt = oDBEngine.GetDataTable(" tbl_master_employee", "emp_dateofJoining", " (emp_contactId = '" + Convert.ToString(Session["KeyVal_InternalID"]) + "')");
+                            //        if (dt.Rows.Count > 0)
+                            //            // JoiningDate.Value = dt.Rows[0][0];
+                            //            JoiningDate = dt.Rows[0][0].ToString();
+                            //    }
+                            //}
 
                             if (rowsEffected > 0)
                             {
@@ -696,29 +636,30 @@ namespace ERP.OMS.Management.Master
 
                                 string emp_cntId = Convert.ToString(HttpContext.Current.Session["KeyVal_InternalID"]);
                                 CntID = Convert.ToString(HttpContext.Current.Session["KeyVal_InternalID"]);
-                                string joiningDate = string.Empty;
-                                string emp_LeaveSchemeAppliedFrom = string.Empty;
-                                //if (JoiningDate.Value != null)
-                                if (now != null)
-                                {
-                                    //joiningDate = JoiningDate.Value.ToString();
-                                    joiningDate = now.ToString();
-                                }
-                                else
-                                {
-                                    joiningDate = "";
-                                }
+                                string joiningDate = "";
+                                string emp_LeaveSchemeAppliedFrom = "";
+                                
+                                ////if (JoiningDate.Value != null)
+                                //if (now != null)
+                                //{
+                                //    //joiningDate = JoiningDate.Value.ToString();
+                                //    joiningDate = now.ToString();
+                                //}
+                                //else
+                                //{
+                                //    joiningDate = "";
+                                //}
 
-                                //if (cmbLeaveEff.Value != null)
-                                if (now != null)
-                                {
-                                    //emp_LeaveSchemeAppliedFrom = cmbLeaveEff.Value.ToString();
-                                    emp_LeaveSchemeAppliedFrom = now.ToString();
-                                }
-                                else
-                                {
-                                    emp_LeaveSchemeAppliedFrom = "";
-                                }
+                                ////if (cmbLeaveEff.Value != null)
+                                //if (now != null)
+                                //{
+                                //    //emp_LeaveSchemeAppliedFrom = cmbLeaveEff.Value.ToString();
+                                //    emp_LeaveSchemeAppliedFrom = now.ToString();
+                                //}
+                                //else
+                                //{
+                                //    emp_LeaveSchemeAppliedFrom = "";
+                                //}
 
                                 //string ReportHead = txtAReportHead_hidden.Value;
                                 string ReportHead = "";
@@ -754,30 +695,31 @@ namespace ERP.OMS.Management.Master
                                 //string EmpWorkingHours = "1";
                                 //string LeaveScheme = "2";
 
-                                string jobresponsibility = "";
+                                string jobresponsibility = "0";
                                 string Department = "";
-                                string EmpWorkingHours = "";
+                                string EmpWorkingHours = "0";
                                 string LeaveScheme = "";
 
-                                DataTable dtJ = oDBEngine.GetDataTable("tbl_master_jobResponsibility", "job_id", " (job_responsibility = 'Marketing & Sales')");
-                                if (dtJ.Rows.Count > 0)
-                                    jobresponsibility = dtJ.Rows[0][0].ToString();
+                                //DataTable dtJ = oDBEngine.GetDataTable("tbl_master_jobResponsibility", "job_id", " (job_responsibility = 'Marketing & Sales')");
+                                //if (dtJ.Rows.Count > 0)
+                                //    jobresponsibility = dtJ.Rows[0][0].ToString();
 
-                                DataTable dtD = oDBEngine.GetDataTable("tbl_master_costCenter", "cost_id", " (cost_description = 'Marketing & Sales')");
-                                if (dtD.Rows.Count > 0)
-                                    Department = dtD.Rows[0][0].ToString();
+                                //DataTable dtD = oDBEngine.GetDataTable("tbl_master_costCenter", "cost_id", " (cost_description = 'Marketing & Sales')");
+                                //if (dtD.Rows.Count > 0)
+                                //    Department = dtD.Rows[0][0].ToString();
 
-                                DataTable dtW = oDBEngine.GetDataTable("tbl_EmpWorkingHours", "Id", " (Name = 'Default')");
-                                if (dtW.Rows.Count > 0)
-                                    EmpWorkingHours = dtW.Rows[0][0].ToString();
+                                //DataTable dtW = oDBEngine.GetDataTable("tbl_EmpWorkingHours", "Id", " (Name = 'Default')");
+                                //if (dtW.Rows.Count > 0)
+                                //    EmpWorkingHours = dtW.Rows[0][0].ToString();
 
-                                DataTable dtL = oDBEngine.GetDataTable("tbl_master_LeaveScheme", "ls_id", " (ls_name = 'Default')");
-                                if (dtL.Rows.Count > 0)
-                                    LeaveScheme = dtL.Rows[0][0].ToString();
-                                
+                                //DataTable dtL = oDBEngine.GetDataTable("tbl_master_LeaveScheme", "ls_id", " (ls_name = 'Default')");
+                                //if (dtL.Rows.Count > 0)
+                                //    LeaveScheme = dtL.Rows[0][0].ToString();
 
+
+                                // STEP 2 INSERT : []
                                 objEmployee_BL.btnCTC_Click_BL(emp_cntId, joiningDate, Organization, jobresponsibility, cmbDesg.SelectedItem.Value, EmpType,
-                                Department, txtReportTo_hidden.Value, ReportHead, Colleague, EmpWorkingHours, LeaveScheme, emp_LeaveSchemeAppliedFrom, cmbBranch.SelectedItem.Value,
+                                cmbDept.SelectedItem.Value, txtReportTo_hidden.Value, ReportHead, Colleague, EmpWorkingHours, LeaveScheme, emp_LeaveSchemeAppliedFrom, cmbBranch.SelectedItem.Value,
                                 Convert.ToString(DBNull.Value), Colleague1, Colleague2);
 
                                 oDBEngine.SetFieldValue("tbl_master_contact", "Cnt_UCC ='" + empCompCode.ToString() + "'", " cnt_internalid ='" + emp_cntId + "'");
@@ -823,7 +765,9 @@ namespace ERP.OMS.Management.Master
                                 string branch_pin = string.Empty;
                                 string branch_area = string.Empty;
                                 string Phoneno = string.Empty;
-                                Phoneno = txtPhno.Text;
+                                string Remarks = txtRemarks.Text;
+                                //Phoneno = txtPhno.Text;
+                                Phoneno = "";
 
                                 if (dtAddr.Rows.Count > 0)
                                 {
@@ -848,7 +792,7 @@ namespace ERP.OMS.Management.Master
                                 int x = InsertPhone(emp_cntId, Phoneno);
 
                                 //usermaster insert
-                                string password = "123";
+                                string password = txtPassword.Text;
 
                                 Encryption epasswrd = new Encryption();
                                 string Encryptpass = epasswrd.Encrypt(password.Trim());
@@ -885,19 +829,19 @@ namespace ERP.OMS.Management.Master
                                     empuserid = dtempuserid.Rows[0]["user_id"].ToString();
                                     
                                 }
-                                DataTable dtshopcode = oDBEngine.GetDataTable("select s.Shop_Code from tbl_Master_shop s,tbl_master_employee e,tbl_master_user u where s.type='4' and s.EntityCode=e.emp_uniqueCode " +
-                                 "and e.emp_contactId=u.user_contactId and u.user_id=s.shop_createuser and e.emp_uniqueCode='"+reportto_uniqueid+"'");
-                                if (dtshopcode.Rows.Count > 0)
-                                {
-                                    shop_code = dtshopcode.Rows[0]["Shop_Code"].ToString();
-                                }
+                                //DataTable dtshopcode = oDBEngine.GetDataTable("select s.Shop_Code from tbl_Master_shop s,tbl_master_employee e,tbl_master_user u where s.type='4' and s.EntityCode=e.emp_uniqueCode " +
+                                // "and e.emp_contactId=u.user_contactId and u.user_id=s.shop_createuser and e.emp_uniqueCode='"+reportto_uniqueid+"'");
+                                //if (dtshopcode.Rows.Count > 0)
+                                //{
+                                //    shop_code = dtshopcode.Rows[0]["Shop_Code"].ToString();
+                                //}
+                                shop_code = "";
 
-                                
                                 //SaveAssignParty(shop_code, empuserid, reportto_uniqueid, reportto_userid, cmbBranch.SelectedValue.ToString());
 
-                                string selected_users = reportto_userid + "," + empuserid;
-                                SaveAssignParty(shop_code, selected_users, reportto_uniqueid, reportto_userid, cmbBranch.SelectedValue.ToString());
-                                
+                                // string selected_users = reportto_userid + "," + empuserid;
+                                // SaveAssignParty(shop_code, selected_users, reportto_uniqueid, reportto_userid, cmbBranch.SelectedValue.ToString());
+
                                 Response.Redirect("/OMS/Management/Master/UserAccountList.aspx");
                             }
                         }
@@ -919,42 +863,42 @@ namespace ERP.OMS.Management.Master
             //Rev work close 27.07.2022 mantise no:0025046: User Account
         }
 
-        private void SaveAssignParty(string shop_code, string empuserid, string reportto_uniqueid, string reportto_userid, string branch)
-        {
-            string returnmsg = "";
-            if (HttpContext.Current.Session["userid"] != null)
-            {
+        //private void SaveAssignParty(string shop_code, string empuserid, string reportto_uniqueid, string reportto_userid, string branch)
+        //{
+        //    string returnmsg = "";
+        //    if (HttpContext.Current.Session["userid"] != null)
+        //    {
                 
-                string PARTY_TYPE = "";
-                DataTable dtS = oDBEngine.GetDataTable("tbl_shoptype", "shop_typeId", " (Name = 'DISTRIBUTOR')");
-                if (dtS.Rows.Count > 0)
-                    PARTY_TYPE = dtS.Rows[0][0].ToString();
+        //        string PARTY_TYPE = "";
+        //        DataTable dtS = oDBEngine.GetDataTable("tbl_shoptype", "shop_typeId", " (Name = 'DISTRIBUTOR')");
+        //        if (dtS.Rows.Count > 0)
+        //            PARTY_TYPE = dtS.Rows[0][0].ToString();
                 
 
-                DataTable Userdt = new DataTable();
-                ProcedureExecute proc = new ProcedureExecute("prc_EmployeeShopMapInsertUpdate");
-                proc.AddPara("@ACTION", "AssignShopUserNew");
-                proc.AddPara("@SHOP_CODE", shop_code);
+        //        DataTable Userdt = new DataTable();
+        //        ProcedureExecute proc = new ProcedureExecute("prc_EmployeeShopMapInsertUpdate");
+        //        proc.AddPara("@ACTION", "AssignShopUserNew");
+        //        proc.AddPara("@SHOP_CODE", shop_code);
                 
-                //proc.AddPara("@PARTY_TYPE", 4);
-                proc.AddPara("@PARTY_TYPE", PARTY_TYPE);
+        //        //proc.AddPara("@PARTY_TYPE", 4);
+        //        proc.AddPara("@PARTY_TYPE", PARTY_TYPE);
                 
-                proc.AddPara("@Users", empuserid);
-                proc.AddPara("@NAME", reportto_uniqueid);
-                proc.AddPara("@headerid", 0);
-                proc.AddPara("@userid", reportto_userid);                
-                proc.AddPara("@BRANCHID",Convert.ToInt32(branch));                
-                Userdt = proc.GetTable();
-                if (Userdt != null)
-                {
-                    returnmsg = "OK";
-                }
-                else
-                {
-                    returnmsg = "Already exists";
-                }
-            }
-        }
+        //        proc.AddPara("@Users", empuserid);
+        //        proc.AddPara("@NAME", reportto_uniqueid);
+        //        proc.AddPara("@headerid", 0);
+        //        proc.AddPara("@userid", reportto_userid);                
+        //        proc.AddPara("@BRANCHID",Convert.ToInt32(branch));                
+        //        Userdt = proc.GetTable();
+        //        if (Userdt != null)
+        //        {
+        //            returnmsg = "OK";
+        //        }
+        //        else
+        //        {
+        //            returnmsg = "Already exists";
+        //        }
+        //    }
+        //}
         public int InsertUser(string Encryptpass, string emp_cntId)
         {
             ProcedureExecute proc;
@@ -1122,7 +1066,7 @@ namespace ERP.OMS.Management.Master
                 int MRPInOrder = 0;
                 //Rev work start 26.07.2022 mantise no:25046
                 int FaceRegTypeID = 0;
-                FaceRegTypeID = Convert.ToInt32(ddlType.SelectedValue.ToString());
+                //FaceRegTypeID = Convert.ToInt32(ddlType.SelectedValue.ToString());
                 //Rev work close 26.07.2022 mantise no:25046
 
                 
@@ -1130,19 +1074,20 @@ namespace ERP.OMS.Management.Master
                 //string Stage = ddlType.SelectedValue.ToString();
                 //string Desg = cmbDesg.SelectedValue.ToString();
 
-                string[] channel = txtChannels.Text.ToString().Split(',');
-                string Stage = ddlType.SelectedItem.ToString();
+                //string[] channel =  txtChannels.Text.ToString().Split(',');
+                //string Stage = ddlType.SelectedItem.ToString();
                 string Desg = cmbDesg.SelectedItem.ToString();
+                string Remarks = txtRemarks.Text;
                 
 
                 
                 string user_name = txtFirstNmae.Text.ToString().Trim();
 
-                if (txtMiddleName.Text.Trim() != "")
-                    user_name = user_name + " " + txtMiddleName.Text.ToString().Trim();
+                //if (txtMiddleName.Text.Trim() != "")
+                //    user_name = user_name + " " + txtMiddleName.Text.ToString().Trim();
 
-                if (txtLastName.Text.Trim() != "")
-                    user_name = user_name + " " + txtLastName.Text.ToString().Trim();
+                //if (txtLastName.Text.Trim() != "")
+                //    user_name = user_name + " " + txtLastName.Text.ToString().Trim();
                 
 
 
@@ -1151,223 +1096,7 @@ namespace ERP.OMS.Management.Master
 
                 using (proc = new ProcedureExecute("PRC_FTSInsertUpdateUser"))
                 {
-                    //if (channel == "1" && Desg == "291" && Stage == "1" || Stage == "2"))
-
-                    //if (channel == "1" && Desg == "291" && Stage == "1")
-                    // Rev 4.0
-                    //if (channel.Contains("CFP") && Desg == "DS" && (Stage == "Conv SR" || Stage == "RMD") && ddlGroups.SelectedItem.ToString() == "FIELD-USER")
-                    if (channel.Contains("CFP") && Desg == "DS" && (Stage == "Conv SR" || Stage == "RMD" || Stage == "Stockist DS" || Stage == "Emerging DS") && ddlGroups.SelectedItem.ToString() == "FIELD-USER")
-                        // End of Rev 4.0
-
-                    {
-                        proc.AddPara("@ACTION", "INSERT");
-                        
-                        //proc.AddPara("@txtusername", txtuserid.Text.Trim());
-                        proc.AddPara("@txtusername", user_name);
-                        
-                        proc.AddPara("@b_id", cmbBranch.SelectedValue.ToString());
-                        proc.AddPara("@txtuserid", txtuserid.Text.Trim());
-                        proc.AddPara("@Encryptpass", Encryptpass);
-                        proc.AddPara("@contact", emp_cntId);
-                        proc.AddPara("@usergroup", ddlGroups.SelectedValue.ToString());
-                        proc.AddPara("@CreateDate", CreateDate.ToString());
-                        proc.AddPara("@CreateUser", CreateUser);
-                        proc.AddPara("@superuser", "N");
-                        proc.AddPara("@ddDataEntry", "F");
-                        proc.AddPara("@IPAddress", "");
-                        proc.AddPara("@isactive", isactive);
-                        proc.AddPara("@isactivemac", isactivemac);
-                        proc.AddPara("@txtgps", 500);
-
-                        proc.AddPara("@istargetsettings", istargetsettings);
-                        proc.AddPara("@isLeaveApprovalEnable", isLeaveApprovalEnable);
-                        proc.AddPara("@IsAutoRevisitEnable", 1);
-                        proc.AddPara("@IsShowPlanDetails", IsShowPlanDetails);
-                        proc.AddPara("@IsMoreDetailsMandatory", IsMoreDetailsMandatory);
-                        proc.AddPara("@IsShowMoreDetailsMandatory", IsShowMoreDetailsMandatory);
-
-                        proc.AddPara("@isMeetingAvailable", isMeetingAvailable);
-                        proc.AddPara("@isRateNotEditable", isRateNotEditable);
-                        proc.AddPara("@IsShowTeamDetails", 0);
-                        proc.AddPara("@IsAllowPJPUpdateForTeam", IsAllowPJPUpdateForTeam);
-                        proc.AddPara("@willReportShow", willReportShow);
-                        proc.AddPara("@isFingerPrintMandatoryForAttendance", isFingerPrintMandatoryForAttendance);
-                        proc.AddPara("@isFingerPrintMandatoryForVisit", isFingerPrintMandatoryForVisit);
-                        proc.AddPara("@isSelfieMandatoryForAttendance", isSelfieMandatoryForAttendance);
-
-                        proc.AddPara("@isAttendanceReportShow", isAttendanceReportShow);
-                        proc.AddPara("@isPerformanceReportShow", isPerformanceReportShow);
-                        proc.AddPara("@isVisitReportShow", isVisitReportShow);
-                        proc.AddPara("@willTimesheetShow", willTimesheetShow);
-                        proc.AddPara("@isAttendanceFeatureOnly", isAttendanceFeatureOnly);
-                        proc.AddPara("@isOrderShow", isOrderShow);
-                        proc.AddPara("@isVisitShow", 1);
-                        proc.AddPara("@iscollectioninMenuShow", iscollectioninMenuShow);
-                        proc.AddPara("@isShopAddEditAvailable", 1);
-                        proc.AddPara("@isEntityCodeVisible", isEntityCodeVisible);
-                        proc.AddPara("@isAreaMandatoryInPartyCreation", isAreaMandatoryInPartyCreation);
-                        proc.AddPara("@isShowPartyInAreaWiseTeam", isShowPartyInAreaWiseTeam);
-                        proc.AddPara("@isChangePasswordAllowed", isChangePasswordAllowed);
-                        proc.AddPara("@isHomeRestrictAttendance", 1);
-                        proc.AddPara("@isQuotationShow", isQuotationShow);
-                        proc.AddPara("@IsStateMandatoryinReport", IsStateMandatoryinReport);
-
-                        proc.AddPara("@isAchievementEnable", isAchievementEnable);
-                        proc.AddPara("@isTarVsAchvEnable", isTarVsAchvEnable);
-                        proc.AddPara("@shopLocAccuracy", 500.00);
-                        proc.AddPara("@homeLocDistance", "100.00");
-
-                        proc.AddPara("@isQuotationPopupShow", isQuotationPopupShow);
-                        proc.AddPara("@isOrderReplacedWithTeam", isOrderReplacedWithTeam);
-                        proc.AddPara("@isMultipleAttendanceSelection", isMultipleAttendanceSelection);
-                        proc.AddPara("@isOfflineTeam", isOfflineTeam);
-                        proc.AddPara("@isDDShowForMeeting", isDDShowForMeeting);
-                        proc.AddPara("@isDDMandatoryForMeeting", isDDMandatoryForMeeting);
-                        proc.AddPara("@isAllTeamAvailable", isAllTeamAvailable);
-                        proc.AddPara("@isRecordAudioEnable", isRecordAudioEnable);
-                        proc.AddPara("@isNextVisitDateMandatory", isNextVisitDateMandatory);
-                        proc.AddPara("@isShowCurrentLocNotifiaction", isShowCurrentLocNotifiaction);
-                        proc.AddPara("@isUpdateWorkTypeEnable", isUpdateWorkTypeEnable);
-                        proc.AddPara("@isLeaveEnable", isLeaveEnable);
-                        proc.AddPara("@isOrderMailVisible", isOrderMailVisible);
-                        proc.AddPara("@LateVisitSMS", LateVisitSMS);
-                        proc.AddPara("@isShopEditEnable", 1);
-                        proc.AddPara("@isTaskEnable", isTaskEnable);
-
-
-                        //proc.AddPara("@PartyType", "1");
-                        // Rev 3.0
-                        //string PARTY_TYPE = "";
-                        //DataTable dtS = oDBEngine.GetDataTable("tbl_shoptype", "shop_typeId", " (Name = 'DEALER')");
-                        //if (dtS.Rows.Count > 0)
-                        //    PARTY_TYPE = dtS.Rows[0][0].ToString();
-
-                        //proc.AddPara("@PartyType", PARTY_TYPE);
-
-                        if(IsShowUserAccountForITC == "1")
-                        {
-                            proc.AddPara("@PartyType", "1");
-                        }
-                        else
-                        {
-                            proc.AddPara("@PartyType", "0");
-                        }
-                        // End of Rev 3.0
-
-
-                        proc.AddPara("@isAppInfoEnable", 1);
-                        proc.AddPara("@willDynamicShow", willDynamicShow);
-                        proc.AddPara("@willActivityShow", willActivityShow);
-                        proc.AddPara("@isDocumentRepoShow", isDocumentRepoShow);
-                        proc.AddPara("@isChatBotShow", isChatBotShow);
-                        proc.AddPara("@isAttendanceBotShow", isAttendanceBotShow);
-                        proc.AddPara("@isVisitBotShow", isVisitBotShow);
-                        proc.AddPara("@appInfoMins", 99);
-
-
-                        proc.AddPara("@isInstrumentCompulsory", isInstrumentCompulsory);
-                        proc.AddPara("@isBankCompulsory", isBankCompulsory);
-
-                        proc.AddPara("@isComplementaryUser", isComplementaryUser);
-                        proc.AddPara("@isVisitPlanShow", isVisitPlanShow);
-                        proc.AddPara("@isVisitPlanMandatory", isVisitPlanMandatory);
-                        proc.AddPara("@isAttendanceDistanceShow", isAttendanceDistanceShow);
-                        proc.AddPara("@willTimelineWithFixedLocationShow", willTimelineWithFixedLocationShow);
-                        proc.AddPara("@isShowOrderRemarks", isShowOrderRemarks);
-                        proc.AddPara("@isShowOrderSignature", isShowOrderSignature);
-                        proc.AddPara("@isShowSmsForParty", isShowSmsForParty);
-                        proc.AddPara("@isShowTimeline", 0);
-                        proc.AddPara("@willScanVisitingCard", willScanVisitingCard);
-                        proc.AddPara("@isCreateQrCode", isCreateQrCode);
-                        proc.AddPara("@isScanQrForRevisit", isScanQrForRevisit);
-                        proc.AddPara("@isShowLogoutReason", isShowLogoutReason);
-                        proc.AddPara("@willShowHomeLocReason", willShowHomeLocReason);
-                        proc.AddPara("@willShowShopVisitReason", willShowShopVisitReason);
-                        proc.AddPara("@willShowPartyStatus", willShowPartyStatus);
-                        proc.AddPara("@willShowEntityTypeforShop", willShowEntityTypeforShop);
-                        proc.AddPara("@isShowRetailerEntity", isShowRetailerEntity);
-                        proc.AddPara("@isShowDealerForDD", isShowDealerForDD);
-                        proc.AddPara("@isShowBeatGroup", isShowBeatGroup);
-                        proc.AddPara("@isShowShopBeatWise", isShowShopBeatWise);
-                        proc.AddPara("@isShowBankDetailsForShop", isShowBankDetailsForShop);
-                        proc.AddPara("@isShowOTPVerificationPopup", isShowOTPVerificationPopup);
-                        proc.AddPara("@isShowMicroLearing", isShowMicroLearing);
-                        proc.AddPara("@isMultipleVisitEnable", 0);
-                        proc.AddPara("@isShowVisitRemarks", isShowVisitRemarks);
-                        proc.AddPara("@isShowNearbyCustomer", 1);
-                        proc.AddPara("@isServiceFeatureEnable", isServiceFeatureEnable);
-                        proc.AddPara("@isPatientDetailsShowInOrder", isPatientDetailsShowInOrder);
-                        proc.AddPara("@isPatientDetailsShowInCollection", isPatientDetailsShowInCollection);
-                        proc.AddPara("@isAttachmentMandatory", isAttachmentMandatory);
-                        proc.AddPara("@isShopImageMandatory", isShopImageMandatory);
-
-                        proc.AddPara("@isLogShareinLogin", 1);
-                        proc.AddPara("@IsCompetitorenable", IsCompetitorenable);
-                        proc.AddPara("@IsOrderStatusRequired", IsOrderStatusRequired);
-                        proc.AddPara("@IsCurrentStockEnable", IsCurrentStockEnable);
-                        proc.AddPara("@IsCurrentStockApplicableforAll", IsCurrentStockApplicableforAll);
-                        proc.AddPara("@IscompetitorStockRequired", IscompetitorStockRequired);
-                        proc.AddPara("@IsCompetitorStockforParty", IsCompetitorStockforParty);
-                        proc.AddPara("@ShowFaceRegInMenu", 0);
-                        proc.AddPara("@IsFaceDetection", 1);
-
-                        proc.AddPara("@IsUserwiseDistributer", 1);
-                        proc.AddPara("@IsPhotoDeleteShow", 0);
-                        proc.AddPara("@IsAllDataInPortalwithHeirarchy", 1);
-                        proc.AddPara("@IsFaceDetectionWithCaptcha", IsFaceDetectionWithCaptcha);
-
-                        proc.AddPara("@IsShowMenuAddAttendance", 0);
-                        proc.AddPara("@IsShowMenuAttendance", IsShowMenuAttendance);
-                        proc.AddPara("@IsShowMenuShops", IsShowMenuShops);
-                        proc.AddPara("@IsShowMenuOutstandingDetailsPPDD", IsShowMenuOutstandingDetailsPPDD);
-                        proc.AddPara("@IsShowMenuStockDetailsPPDD", IsShowMenuStockDetailsPPDD);
-                        proc.AddPara("@IsShowMenuTA", IsShowMenuTA);
-                        proc.AddPara("@IsShowMenuMISReport", IsShowMenuMISReport);
-                        proc.AddPara("@IsShowMenuReimbursement", IsShowMenuReimbursement);
-                        proc.AddPara("@IsShowMenuAchievement", IsShowMenuAchievement);
-                        proc.AddPara("@IsShowMenuMapView", IsShowMenuMapView);
-                        proc.AddPara("@IsShowMenuShareLocation", IsShowMenuShareLocation);
-                        proc.AddPara("@IsShowMenuHomeLocation", IsShowMenuHomeLocation);
-                        proc.AddPara("@IsShowMenuWeatherDetails", IsShowMenuWeatherDetails);
-                        proc.AddPara("@IsShowMenuChat", IsShowMenuChat);
-                        proc.AddPara("@IsShowMenuScanQRCode", IsShowMenuScanQRCode);
-                        proc.AddPara("@IsShowMenuPermissionInfo", IsShowMenuPermissionInfo);
-                        proc.AddPara("@IsShowMenuAnyDesk", IsShowMenuAnyDesk);
-
-                        proc.AddPara("@IsDocRepoFromPortal", IsDocRepoFromPortal);
-                        proc.AddPara("@IsDocRepShareDownloadAllowed", IsDocRepShareDownloadAllowed);
-                        proc.AddPara("@IsScreenRecorderEnable", IsScreenRecorderEnable);
-
-                        proc.AddPara("@IsShowPartyOnAppDashboard", 1);
-                        proc.AddPara("@IsShowAttendanceOnAppDashboard", IsShowAttendanceOnAppDashboard);
-                        proc.AddPara("@IsShowTotalVisitsOnAppDashboard", IsShowTotalVisitsOnAppDashboard);
-                        proc.AddPara("@IsShowVisitDurationOnAppDashboard", IsShowVisitDurationOnAppDashboard);
-                        proc.AddPara("@IsShowDayStart", 1);
-                        proc.AddPara("@IsshowDayStartSelfie", IsshowDayStartSelfie);
-                        proc.AddPara("@IsShowDayEnd", 1);
-                        proc.AddPara("@IsshowDayEndSelfie", IsshowDayEndSelfie);
-                        proc.AddPara("@IsShowLeaveInAttendance", IsShowLeaveInAttendance);
-                        proc.AddPara("@IsLeaveGPSTrack", IsLeaveGPSTrack);
-                        proc.AddPara("@IsShowActivitiesInTeam", IsShowActivitiesInTeam);
-                        proc.AddPara("@IsShowMarkDistVisitOnDshbrd", 1);
-
-                        proc.AddPara("@IsRevisitRemarksMandatory", IsRevisitRemarksMandatory);
-                        proc.AddPara("@GPSAlert", 1);
-                        proc.AddPara("@GPSAlertwithSound", GPSAlertwithSound);
-                        proc.AddPara("@FaceRegistrationFrontCamera", FaceRegistrationFrontCamera);
-                        proc.AddPara("@MRPInOrder", MRPInOrder);
-                        proc.AddPara("@isHorizontalPerformReportShow", isHorizontalPerformReportShow);
-                        //Rev work start 26.07.2022 mantise no:25046
-                        proc.AddPara("@FaceRegTypeID", FaceRegTypeID);
-                        //Rev work close 26.07.2022 mantise no:25046
-                        
-                        proc.AddPara("@CalledFromUserAccount", 1);
-                        proc.AddPara("@ChType_CFP", 1);
-                        
-                     }
-                    else
-                    {
-                        proc.AddPara("@ACTION", "INSERT");
+                       proc.AddPara("@ACTION", "INSERT");
                         
                         //proc.AddPara("@txtusername", txtuserid.Text.Trim());
                         proc.AddPara("@txtusername", user_name);
@@ -1441,18 +1170,19 @@ namespace ERP.OMS.Management.Master
                         proc.AddPara("@isShopEditEnable", 0);
                         proc.AddPara("@isTaskEnable", isTaskEnable);
 
-                        // Rev 3.0
-                        //proc.AddPara("@PartyType", "1");
+                        //// Rev 3.0
+                        ////proc.AddPara("@PartyType", "1");
 
-                        if (IsShowUserAccountForITC == "1")
-                        {
-                            proc.AddPara("@PartyType", "1");
-                        }
-                        else
-                        {
-                            proc.AddPara("@PartyType", "0");
-                        }
-                        // End of Rev 3.0
+                        //if (IsShowUserAccountForITC == "1")
+                        //{
+                        //    proc.AddPara("@PartyType", "1");
+                        //}
+                        //else
+                        //{
+                        //    proc.AddPara("@PartyType", "0");
+                        //}
+                        //// End of Rev 3.0
+                         proc.AddPara("@PartyType", "0");
 
 
                         proc.AddPara("@isAppInfoEnable", 1);
@@ -1561,20 +1291,17 @@ namespace ERP.OMS.Management.Master
                         
                         proc.AddPara("@CalledFromUserAccount", 1);
                         proc.AddPara("@ChType_CFP", 0);
-                        
-                    }
-                    
 
                     DataTable dt = proc.GetTable();
 
                     string[,] userid = oDBEngine.GetFieldValue("tbl_master_user", "max(user_id)", null, 1);
-                    DataSet dsApprove = new DataSet();
-                    dsApprove = oDBEngine.PopulateData("ID", "FTS_LEAVE_APPROVER", "APPROVAR_ID='" + userid[0, 0] + "'");
+                    //DataSet dsApprove = new DataSet();
+                    //dsApprove = oDBEngine.PopulateData("ID", "FTS_LEAVE_APPROVER", "APPROVAR_ID='" + userid[0, 0] + "'");
 
-                    if (dsApprove.Tables["TableName"].Rows.Count > 0)
-                    {
-                        oDBEngine.DeleteValue("FTS_LEAVE_APPROVER", "APPROVAR_ID='" + userid[0, 0] + "'");
-                    }
+                    //if (dsApprove.Tables["TableName"].Rows.Count > 0)
+                    //{
+                    //    oDBEngine.DeleteValue("FTS_LEAVE_APPROVER", "APPROVAR_ID='" + userid[0, 0] + "'");
+                    //}
 
                     string splitsegname = segname[0, 0].Split('-')[0].ToString().Trim();
                     string[,] exchsegid = oDBEngine.GetFieldValue("Master_Exchange", "top 1 Exchange_Id", "Exchange_ShortName='" + splitsegname + "'", 1);
@@ -1624,29 +1351,29 @@ namespace ERP.OMS.Management.Master
             }
         }
 
-        //Mantis Issue 25148
-        private void GetConfigSettings()
-        {
-            DataTable dtCon = oDBEngine.GetDataTable("select [Key],[Value],[Description] from FTS_APP_CONFIG_SETTINGS");
-            if (dtCon.Rows.Count > 0)
-            {
-                foreach (DataRow dr in dtCon.Rows)
-                {
-                    if (Convert.ToString(dr["key"]) == "IsChannelCircleSectionMandatory")
-                    {
-                        if (Convert.ToString(dr["Value"]) == "1")
-                        {
-                            IsChannelCircleSectionMandatory.Value = "1";
-                        }
-                        else
-                        {
-                            IsChannelCircleSectionMandatory.Value = "0";
-                        }
-                    }
-                }
-            }
-        }
-        //End of Mantis Issue 25148
+        ////Mantis Issue 25148
+        //private void GetConfigSettings()
+        //{
+        //    DataTable dtCon = oDBEngine.GetDataTable("select [Key],[Value],[Description] from FTS_APP_CONFIG_SETTINGS");
+        //    if (dtCon.Rows.Count > 0)
+        //    {
+        //        foreach (DataRow dr in dtCon.Rows)
+        //        {
+        //            if (Convert.ToString(dr["key"]) == "IsChannelCircleSectionMandatory")
+        //            {
+        //                if (Convert.ToString(dr["Value"]) == "1")
+        //                {
+        //                    IsChannelCircleSectionMandatory.Value = "1";
+        //                }
+        //                else
+        //                {
+        //                    IsChannelCircleSectionMandatory.Value = "0";
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+        ////End of Mantis Issue 25148
 
     }
 }
