@@ -41,42 +41,7 @@ namespace ERP.OMS.Management.Master
         {
             rights = BusinessLogicLayer.CommonBLS.CommonBL.GetUserRightSession("/management/master/UserAccountList.aspx");
 
-            //------- For Read Only User in SQL Datasource Connection String   Start-----------------
-
-            //if (HttpContext.Current.Session["EntryProfileType"] != null)
-            //{
-            //    if (Convert.ToString(HttpContext.Current.Session["EntryProfileType"]) == "R")
-            //    {
-            //        RootUserDataSource.ConnectionString = ConfigurationSettings.AppSettings["DBReadOnlyConnection"];
-            //    }
-            //    else
-            //    {
-            //        RootUserDataSource.ConnectionString = ConfigurationSettings.AppSettings["DBConnectionDefault"];
-            //    }
-            //}
-            //------- For Read Only User in SQL Datasource Connection String   End-----------------
-
-            // Rev 1.0
-            string IsShowUserAccountForITC = "0";
-            DBEngine obj1 = new DBEngine();
-            IsShowUserAccountForITC = Convert.ToString(obj1.GetDataTable("select [value] from FTS_APP_CONFIG_SETTINGS WHERE [Key]='IsShowUserAccountForITC'").Rows[0][0]);
-
-            if (IsShowUserAccountForITC == "1")
-            {
-                userGrid.Columns[3].Visible = true;
-                userGrid.Columns[6].Visible = true;
-                userGrid.Columns[7].Visible = true;
-                userGrid.Columns[8].Visible = true;
-            }
-            else
-            {
-                userGrid.Columns[3].Visible = false;
-                userGrid.Columns[6].Visible = false;
-                userGrid.Columns[7].Visible = false;
-                userGrid.Columns[8].Visible = false;
-            }
-            // End of Rev 1.0
-
+            
             if (!IsPostBack)
             {
                 userGrid.SettingsCookies.CookiesID = "BreeezeErpGridCookiesroot_useruserGrid";
@@ -91,9 +56,7 @@ namespace ERP.OMS.Management.Master
             string strFromDOJ = String.Empty, strToDOJ = String.Empty;
 
             DataTable dt = new DataTable();
-            ProcedureExecute proc = new ProcedureExecute("Prc_UserAccountData");
-            proc.AddPara("@FromJoinDate", strFromDOJ == "" ? "1900-01-01" : strFromDOJ);
-            proc.AddPara("@ToJoinDate", strToDOJ == "" ? "9999-12-31" : strToDOJ);
+            ProcedureExecute proc = new ProcedureExecute("Prc_LMS_UserAccountData");
             proc.AddIntegerPara("@User_id", Convert.ToInt32(HttpContext.Current.Session["userid"]));
             dt = proc.GetTable();
             return dt;
