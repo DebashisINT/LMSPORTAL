@@ -691,6 +691,13 @@
     <Compile Include="OMS\Management\Master\HrCost.aspx.designer.cs">
       <DependentUpon>HrCost.aspx</DependentUpon>
     </Compile>
+    <Compile Include="OMS\Management\Master\HRCostBranch.aspx.cs">
+      <DependentUpon>HRCostBranch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OMS\Management\Master\HRCostBranch.aspx.designer.cs">
+      <DependentUpon>HRCostBranch.aspx</DependentUpon>
+    </Compile>
     <Compile Include="OMS\Management\Master\HRCostCenter.aspx.cs">
       <DependentUpon>HRCostCenter.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2337,6 +2344,7 @@
     <Content Include="OMS\Management\Master\frm_pinMaster.aspx" />
     <Content Include="OMS\Management\Master\HrAddNewCostDept.aspx" />
     <Content Include="OMS\Management\Master\HrCost.aspx" />
+    <Content Include="OMS\Management\Master\HRCostBranch.aspx" />
     <Content Include="OMS\Management\Master\HRCostCenter.aspx" />
     <Content Include="OMS\Management\Master\HRCostEmployee.aspx" />
     <Content Include="OMS\Management\Master\RootUserDetails.aspx" />
