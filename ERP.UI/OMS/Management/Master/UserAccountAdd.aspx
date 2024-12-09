@@ -1,9 +1,9 @@
 ﻿<%--====================================================== Revision History ==========================================================
 Rev Number         DATE              VERSION          DEVELOPER           CHANGES
 1.0                09-02-2023        2.0.39           Pallab              25656 : Master module design modification 
-2.0                17/02/2023        2.0.39           Sanchita            A setting required for 'User Account' Master module in FSM Portal
+2.0                17/02/2023        2.0.39           Sanchita            A setting required for 'Login Configuration' Master module in FSM Portal
                                                                           Refer: 25669  
-3.0                20/04/2023        2.0.40           Pallab              Add User Account module employee search popup auto focus add and "cancel" button color change
+3.0                20/04/2023        2.0.40           Pallab              Add Login Configuration module employee search popup auto focus add and "cancel" button color change
                                                                           Refer: 25866
 4.0                22-05-2023       v2.0.40           Sanchita            The first name field of the employee master should consider 150 character from the application end. 
                                                                           For this module the First Name is increased up to 50 since both Employee name
@@ -1248,12 +1248,12 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
 
 
     <div class="breadCumb">
-        <span>Add User Account</span>
+        <span>Add Login Configuration</span>
         <div class="crossBtnN">
-            <%--Rev work start 27.07.2022 mantise no:0025046: User Account --%>
+            <%--Rev work start 27.07.2022 mantise no:0025046: Login Configuration --%>
             <%--<a href="UserAccountAdd.aspx">--%>
             <a href="UserAccountList.aspx">
-            <%--Rev work close 27.07.2022 mantise no:0025046: User Account --%>
+            <%--Rev work close 27.07.2022 mantise no:0025046: Login Configuration --%>
                 <i class="fa fa-times"></i></a></div>
     </div>
 
