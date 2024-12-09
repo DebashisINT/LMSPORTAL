@@ -1,7 +1,7 @@
 ﻿<%--====================================================== Revision History ==========================================================
 Rev Number         DATE              VERSION          DEVELOPER           CHANGES
 1.0                09-02-2023        2.0.39           Pallab              25656 : Master module design modification 
-2.0                17/02/2023        2.0.39           Sanchita            A setting required for 'User Account' Master module in FSM Portal
+2.0                17/02/2023        2.0.39           Sanchita            A setting required for 'Login Configuration' Master module in FSM Portal
                                                                           Refer: 25669  
 ====================================================== Revision History ==========================================================--%>
 
@@ -602,7 +602,7 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
         }
     </script>  
 </asp:Content>
-<%--Rev work start .Refer: 25046 27.07.2022 New Listing page create for new User Account Page--%>
+<%--Rev work start .Refer: 25046 27.07.2022 New Listing page create for new Login Configuration Page--%>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="breadCumb">
         <span>Users Account</span>
