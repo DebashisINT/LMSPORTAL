@@ -1332,14 +1332,20 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                                     </div>
                                 </div>
                                 <div class="col-md-3">
+                                    <label></label>
+                                    <div style="position: relative">
+                                        <dxe:ASPxCheckBox ID="chkIsInActive" runat="server" Text="Tick to Make Inactive" CssClass="C-checkbox" TabIndex="9"></dxe:ASPxCheckBox> 
+                                    </div>
+                                </div>  
+                                <div class="col-md-3">
                                     <label>Remarks</label>
                                     <div style="position: relative">
-                                        <asp:TextBox ID="txtRemarks" runat="server" Width="100%" MaxLength="20" CssClass="form-control" TabIndex="9"></asp:TextBox> 
+                                        <asp:TextBox ID="txtRemarks" runat="server" Width="100%" MaxLength="20" CssClass="form-control" TabIndex="10"></asp:TextBox> 
                                     </div>
                                 </div>          
                             <div style="clear: both"></div>
                             <div class="col-md-12" style="padding-top: 15px;">
-                                <asp:Button ID="btnSave" CssClass="btn btn-primary btnSave" Text="Save & Proceed" runat="server" OnClientClick="setvalue()" OnClick="btnSave_Click" />
+                                <asp:Button ID="btnSave" CssClass="btn btn-primary btnSave" Text="Save & Proceed" TabIndex="11" runat="server" OnClientClick="setvalue()" OnClick="btnSave_Click" />
                             </div>
                             </div>
 
