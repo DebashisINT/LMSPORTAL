@@ -20,6 +20,8 @@ using System.Data.SqlClient;
 using System.Configuration;
 using BusinessLogicLayer.SalesERP;
 using DevExpress.Charts.Native;
+using DocumentFormat.OpenXml.Office.Word;
+using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace ERP.OMS.Management.Master
 {
@@ -115,52 +117,72 @@ namespace ERP.OMS.Management.Master
 
             string[,] Data = oDBEngine.GetFieldValue("tbl_master_branch", "branch_id, branch_description ", null, 2, "branch_description");
             oclsDropDownList.AddDataToDropDownList(Data, cmbBranch);
-            //Data = oDBEngine.GetFieldValue("tbl_master_Designation", "deg_id, deg_designation ", null, 2, "deg_designation");
-            //// Rev 1.0
-            ////Data = oDBEngine.GetFieldValue("tbl_master_Designation", "deg_id, deg_designation ", "deg_designation in('DS','TL')", 2, "deg_designation");
-
-            //if (IsShowUserAccountForITC == "1")
-            //{
-            //    Data = oDBEngine.GetFieldValue("tbl_master_Designation", "deg_id, deg_designation ", "deg_designation in('DS','TL')", 2, "deg_designation");
-            //}
-            //else
-            //{
-            //    Data = oDBEngine.GetFieldValue("tbl_master_Designation", "deg_id, deg_designation ", null, 2, "deg_designation");
-            //}
-            //// End of Rev 1.0
-            ///
+            
             Data = oDBEngine.GetFieldValue("tbl_master_Designation", "deg_id, deg_designation ", null, 2, "deg_designation");
             oclsDropDownList.AddDataToDropDownList(Data, cmbDesg);
 
             Data = oDBEngine.GetFieldValue("tbl_master_costCenter", "cost_id, cost_description ", "cost_costCenterType='Department'", 2, "cost_description");
             oclsDropDownList.AddDataToDropDownList(Data, cmbDept);
 
-            //Data = oDBEngine.GetFieldValue("FTS_Stage", "StageID, Stage ", null, 2, "Stage");
-            //oclsDropDownList.AddDataToDropDownList(Data, ddlType);
-
-            //Data = oDBEngine.GetFieldValue("tbl_master_userGroup", "grp_id, grp_name ", null, 2, "grp_name");
-            // Rev 1.0
-            //Data = oDBEngine.GetFieldValue("tbl_master_userGroup", "grp_id, grp_name ", "grp_name in ('ATTEND-USER','FIELD-USER')", 2, "grp_name");
-            //if (IsShowUserAccountForITC == "1")
-            //{
-            //    Data = oDBEngine.GetFieldValue("tbl_master_userGroup", "grp_id, grp_name ", "grp_name in ('ATTEND-USER','FIELD-USER')", 2, "grp_name");
-            //}
-            //else
-            //{
-            //    Data = oDBEngine.GetFieldValue("tbl_master_userGroup", "grp_id, grp_name ", null, 2, "grp_name");
-            //}
-            //// End of Rev 1.0
-            
             Data = oDBEngine.GetFieldValue("tbl_master_userGroup", "grp_id, grp_name ", null, 2, "grp_name");
 
             oclsDropDownList.AddDataToDropDownList(Data, ddlGroups);
 
 
-            cmbBranch.Items.Insert(0, new ListItem("--Select--", "0"));
-            cmbDesg.Items.Insert(0, new ListItem("--Select--", "0"));
+            cmbBranch.Items.Insert(0, new System.Web.UI.WebControls.ListItem("--Select--", "0"));
+            cmbDesg.Items.Insert(0, new System.Web.UI.WebControls.ListItem("--Select--", "0"));
             //ddlType.Items.Insert(0, new ListItem("--Select--", "0"));
-            ddlGroups.Items.Insert(0, new ListItem("--Select--", "0"));
-            cmbDept.Items.Insert(0, new ListItem("--Select--", "0"));
+            ddlGroups.Items.Insert(0, new System.Web.UI.WebControls.ListItem("--Select--", "0"));
+            cmbDept.Items.Insert(0, new System.Web.UI.WebControls.ListItem("--Select--", "0"));
+
+            if (Request.QueryString["id"] != null && Request.QueryString["id"]!="Add")
+            {
+                string user_loginid = Request.QueryString["id"].ToString();
+
+                BusinessLogicLayer.DBEngine oDBEngine = new BusinessLogicLayer.DBEngine(ConfigurationSettings.AppSettings["DBConnectionDefault"]);
+                DataTable DT = new DataTable();
+                DT.Rows.Clear();
+                ProcedureExecute proc = new ProcedureExecute("PRC_LMS_USERACCOUNTADDEDIT");
+                proc.AddPara("@action", "EDITUSERDATA");
+                proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["userid"]));
+                proc.AddPara("@USER_LOGINID", user_loginid);
+                DT = proc.GetTable();
+
+                foreach (DataRow dr in DT.Rows)
+                {
+                    Encryption epasswrd = new Encryption();
+                    string Encryptpass = epasswrd.Decrypt(dr["user_password"].ToString());
+
+                    txtFirstNmae.Text = dr["user_name"].ToString();
+                    txtuserid.Text = dr["user_loginId"].ToString();
+                    txtPassword.Text = Encryptpass;
+                    cmbBranch.SelectedValue = dr["user_branchId"].ToString(); 
+                    cmbDept.SelectedValue = dr["emp_Department"].ToString();
+                    cmbDesg.SelectedValue = dr["emp_Designation"].ToString();
+                    
+                    txtReportTo.Text = dr["emp_reportTo_name"].ToString();
+                    txtReportTo_hidden.Value = dr["emp_reportTo"].ToString();
+
+                    ddlGroups.SelectedValue = dr["user_group"].ToString();
+                    txtRemarks.Text = dr["USER_REMARKS"].ToString();
+
+                    if (dr["user_inactive"].ToString().Trim() == "Y")
+                    {
+                        chkIsInActive.Checked = true;
+                    }
+                    else
+                    {
+                        chkIsInActive.Checked = false;
+                    }
+
+                    
+                }
+
+                txtuserid.ReadOnly = true;
+                txtFirstNmae.ReadOnly = true;
+
+            }
+
         }
         [WebMethod]
         public static List<string> GetreportTo(string firstname, string shortname)
@@ -168,7 +190,7 @@ namespace ERP.OMS.Management.Master
             BusinessLogicLayer.DBEngine oDBEngine = new BusinessLogicLayer.DBEngine(ConfigurationSettings.AppSettings["DBConnectionDefault"]);
             DataTable DT = new DataTable();
             DT.Rows.Clear();
-            ProcedureExecute proc = new ProcedureExecute("PRC_FetchReportTo");
+            ProcedureExecute proc = new ProcedureExecute("PRC_LMS_USERACCOUNTADDEDIT");
             proc.AddPara("@action", "ADDNEW");
             proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["userid"]));
             proc.AddPara("@firstname", firstname);
@@ -189,7 +211,7 @@ namespace ERP.OMS.Management.Master
             List<Employeels> listEmployee = new List<Employeels>();
             BusinessLogicLayer.DBEngine oDBEngine = new BusinessLogicLayer.DBEngine(ConfigurationSettings.AppSettings["DBConnectionDefault"]);
             DataTable dt = new DataTable();
-            ProcedureExecute proc = new ProcedureExecute("PRC_FetchReportTo");
+            ProcedureExecute proc = new ProcedureExecute("PRC_LMS_USERACCOUNTADDEDIT");
             
             //proc.AddPara("@action", "ADDNEW_USERACCOUNT");
             proc.AddPara("@action", "ADDNEW");
@@ -512,345 +534,386 @@ namespace ERP.OMS.Management.Master
         {
             try
             {
-                int LoginIDExist = 0;
-
-                DataTable Logindt = oDBEngine.GetDataTable("SELECT emp_uniqueCode FROM TBL_MASTER_EMPLOYEE WHERE emp_uniqueCode='" + txtuserid.Text.ToString().Trim() + "' UNION " +
-                                                             "select user_loginid from tbl_master_user where user_loginid='" + txtuserid.Text.ToString().Trim() + "'");
-                if (Logindt != null && Logindt.Rows.Count > 0)
+                if (Convert.ToString(Request.QueryString["id"]) == "Add")
                 {
-                    LoginIDExist = 1;
-                }
-                
+                    int LoginIDExist = 0;
 
-                if (LoginIDExist == 0)
-                {
-                     
-                    //string Organization = "68";
-                    //DataTable dtS = new DataTable();
-                    //dtS = oDBEngine.GetDataTable("tbl_master_company", "onrole_schema_id, offrole_schema_id", "cmp_id=" + Organization + "");
-
-                    string Organization = "";
-                    DataTable dtS = oDBEngine.GetDataTable("tbl_master_company", "onrole_schema_id, offrole_schema_id, cmp_id", null);
-                    if (dtS.Rows.Count > 0)
+                    DataTable Logindt = oDBEngine.GetDataTable("SELECT emp_uniqueCode FROM TBL_MASTER_EMPLOYEE WHERE emp_uniqueCode='" + txtuserid.Text.ToString().Trim() + "' UNION " +
+                                                                 "select user_loginid from tbl_master_user where user_loginid='" + txtuserid.Text.ToString().Trim() + "'");
+                    if (Logindt != null && Logindt.Rows.Count > 0)
                     {
-                        Organization = dtS.Rows[0]["cmp_id"].ToString();
+                        LoginIDExist = 1;
                     }
 
-                    if (dtS.Rows.Count > 0 && ( dtS.Rows[0]["onrole_schema_id"].ToString() == "" || dtS.Rows[0]["offrole_schema_id"].ToString() == "") )
-                    {
-                        // ------------ Check IF company Schema Exists -------------
-                        string alert = "'Please define Company On & Off Role Schema for " + Organization + "'";
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "General", "jAlert(" + alert + ");", true);
-                        return;
-                    }
-                    else if (!checkNMakeEmpCode(Convert.ToInt32(Organization)))
-                    {
-                        // ------------ Check for different validation ---------------
-                        return;
-                    }
-                    String ChannelType = "";
-                    String Circle = "";
-                    String Section = "";
-                    String DefaultType = "";
-                    
-                    
-                    //=======================For naming Part / 1st part ========================================
-                    Employee_BL objEmployee = new Employee_BL();
-                    bool chkAllow = false;
 
-                    string Salutation = "1";
-                    string AliasName = "";
-                    string Gender = "1";
-                    string JoiningDate = "";
-
-                    // STEP 1 INSERT : [tbl_master_contact, tbl_master_employee, FTS_EmployeeBranchMap, FTS_EmployeeBranchMap_Log, ]
-                    string InternalID = objEmployee.btnSave_Click_BL(Convert.ToString(DBNull.Value), Salutation, txtFirstNmae.Text,
-                    "", "", AliasName, "0", Gender, Convert.ToString(DBNull.Value), Convert.ToString(DBNull.Value), Convert.ToString(DBNull.Value),
-                    Convert.ToString(DBNull.Value), Convert.ToString(DBNull.Value), Convert.ToString(DBNull.Value), Convert.ToString(DBNull.Value), Convert.ToString(DBNull.Value),
-                    chkAllow, Convert.ToString(DBNull.Value), Convert.ToString(ChannelType), Convert.ToString(Circle), Convert.ToString(Section), DefaultType);
-
-                    
-                    string[] ET = oDBEngine.GetFieldValue1("tbl_master_employeeType", "emptpy_id", "emptpy_code='RG'", 1);
-                    string EmpType = ET[0].ToString();
-                    
-
-                    //if (EmpType == "19")
-                    //{
-                    //    string contactPrefix = string.Empty;
-                    //    switch (EmpType)
-                    //    {
-                    //        case "19":
-                    //            contactPrefix = "DV";
-                    //            break;
-                    //    }
-                    //    Employee_AddNew_BL objEmployee_AddNew_BL = new Employee_AddNew_BL();
-                    //    string contactID = Request.Form["ctl00$ContentPlaceHolder1$ContactType"].ToString();
-                    //    if (!string.IsNullOrEmpty(contactID))
-                    //    {
-                    //        objEmployee_AddNew_BL.InsertContactType_BL(InternalID, contactID, contactPrefix);
-                    //    }
-                    //}
-                    ///////###################################################//////
-
-                    HttpContext.Current.Session["KeyVal_InternalID"] = InternalID;
-                    string[,] cnt_id = oDBEngine.GetFieldValue(" tbl_master_contact", " cnt_id", " cnt_internalId='" + InternalID + "'", 1);
-                    if (cnt_id[0, 0].ToString() != "n")
+                    if (LoginIDExist == 0)
                     {
 
-                        //===============================For join Date/ 2nd Part=====================================
-                        oGenericMethod = new BusinessLogicLayer.GenericMethod();
-                        string value = string.Empty;
-                        //Checking For Expiry Date 
-                        DateTime now = DateTime.Now;
-                        //string ValidationResult = oGenericMethod.IsProductExpired(Convert.ToDateTime(cmbDOJ.Value));
-                        string ValidationResult = oGenericMethod.IsProductExpired(Convert.ToDateTime(now));
-                        if (Convert.ToBoolean(ValidationResult.Split('~')[0]))
+                        //string Organization = "68";
+                        //DataTable dtS = new DataTable();
+                        //dtS = oDBEngine.GetDataTable("tbl_master_company", "onrole_schema_id, offrole_schema_id", "cmp_id=" + Organization + "");
+
+                        string Organization = "";
+                        DataTable dtS = oDBEngine.GetDataTable("tbl_master_company", "onrole_schema_id, offrole_schema_id, cmp_id", null);
+                        if (dtS.Rows.Count > 0)
                         {
-                            //ScriptManager.RegisterStartupScript(this, this.GetType(), "Vscript", "jAlert('" + ValidationResult.Split('~')[1] + "');", true);
+                            Organization = dtS.Rows[0]["cmp_id"].ToString();
                         }
-                        else
+
+                        if (dtS.Rows.Count > 0 && (dtS.Rows[0]["onrole_schema_id"].ToString() == "" || dtS.Rows[0]["offrole_schema_id"].ToString() == ""))
                         {
-                            //value = "emp_din=' ', emp_dateofJoining ='" + cmbDOJ.Value + "', emp_dateofLeaving ='" + DBNull.Value + "',emp_ReasonLeaving  ='" + DBNull.Value + "', emp_NextEmployer ='" + DBNull.Value + "', emp_AddNextEmployer  ='" + DBNull.Value + "',LastModifyDate='" + oDBEngine.GetDate().ToString() + "',LastModifyUser='" + Session["userid"].ToString() + "'";
-                            value = "emp_din=' ', emp_dateofJoining ='" + now + "', emp_dateofLeaving ='" + DBNull.Value + "',emp_ReasonLeaving  ='" + DBNull.Value + "', emp_NextEmployer ='" + DBNull.Value + "', emp_AddNextEmployer  ='" + DBNull.Value + "',LastModifyDate='" + oDBEngine.GetDate().ToString() + "',LastModifyUser='" + Session["userid"].ToString() + "'";
-                            Int32 rowsEffected = oDBEngine.SetFieldValue("tbl_master_employee", value, " emp_contactid ='" + HttpContext.Current.Session["KeyVal_InternalID"] + "'");
+                            // ------------ Check IF company Schema Exists -------------
+                            string alert = "'Please define Company On & Off Role Schema for " + Organization + "'";
+                            ScriptManager.RegisterStartupScript(this, this.GetType(), "General", "jAlert(" + alert + ");", true);
+                            return;
+                        }
+                        else if (!checkNMakeEmpCode(Convert.ToInt32(Organization)))
+                        {
+                            // ------------ Check for different validation ---------------
+                            return;
+                        }
+                        String ChannelType = "";
+                        String Circle = "";
+                        String Section = "";
+                        String DefaultType = "";
 
-                            //if (Session["KeyVal_InternalID"] != "n")
-                            //{
 
-                            //    DataTable DT_empCTC = oDBEngine.GetDataTable(" tbl_trans_employeeCTC ", " emp_id ", " emp_cntId='" + Convert.ToString(Session["KeyVal_InternalID"]) + "'");
-                            //    if (DT_empCTC.Rows.Count > 0)
-                            //        //JoiningDate.Value = oDBEngine.GetDate();
-                            //        now = oDBEngine.GetDate();
-                            //    else
-                            //    {
-                            //        DataTable dt = oDBEngine.GetDataTable(" tbl_master_employee", "emp_dateofJoining", " (emp_contactId = '" + Convert.ToString(Session["KeyVal_InternalID"]) + "')");
-                            //        if (dt.Rows.Count > 0)
-                            //            // JoiningDate.Value = dt.Rows[0][0];
-                            //            JoiningDate = dt.Rows[0][0].ToString();
-                            //    }
-                            //}
+                        //=======================For naming Part / 1st part ========================================
+                        Employee_BL objEmployee = new Employee_BL();
+                        bool chkAllow = false;
 
-                            if (rowsEffected > 0)
+                        string Salutation = "1";
+                        string AliasName = "";
+                        string Gender = "1";
+                        string JoiningDate = "";
+
+                        // STEP 1 INSERT : [tbl_master_contact, tbl_master_employee, FTS_EmployeeBranchMap, FTS_EmployeeBranchMap_Log, ]
+                        string InternalID = objEmployee.btnSave_Click_BL(Convert.ToString(DBNull.Value), Salutation, txtFirstNmae.Text,
+                        "", "", AliasName, "0", Gender, Convert.ToString(DBNull.Value), Convert.ToString(DBNull.Value), Convert.ToString(DBNull.Value),
+                        Convert.ToString(DBNull.Value), Convert.ToString(DBNull.Value), Convert.ToString(DBNull.Value), Convert.ToString(DBNull.Value), Convert.ToString(DBNull.Value),
+                        chkAllow, Convert.ToString(DBNull.Value), Convert.ToString(ChannelType), Convert.ToString(Circle), Convert.ToString(Section), DefaultType);
+
+
+                        string[] ET = oDBEngine.GetFieldValue1("tbl_master_employeeType", "emptpy_id", "emptpy_code='RG'", 1);
+                        string EmpType = ET[0].ToString();
+
+
+                        //if (EmpType == "19")
+                        //{
+                        //    string contactPrefix = string.Empty;
+                        //    switch (EmpType)
+                        //    {
+                        //        case "19":
+                        //            contactPrefix = "DV";
+                        //            break;
+                        //    }
+                        //    Employee_AddNew_BL objEmployee_AddNew_BL = new Employee_AddNew_BL();
+                        //    string contactID = Request.Form["ctl00$ContentPlaceHolder1$ContactType"].ToString();
+                        //    if (!string.IsNullOrEmpty(contactID))
+                        //    {
+                        //        objEmployee_AddNew_BL.InsertContactType_BL(InternalID, contactID, contactPrefix);
+                        //    }
+                        //}
+                        ///////###################################################//////
+
+                        HttpContext.Current.Session["KeyVal_InternalID"] = InternalID;
+                        string[,] cnt_id = oDBEngine.GetFieldValue(" tbl_master_contact", " cnt_id", " cnt_internalId='" + InternalID + "'", 1);
+                        if (cnt_id[0, 0].ToString() != "n")
+                        {
+
+                            //===============================For join Date/ 2nd Part=====================================
+                            oGenericMethod = new BusinessLogicLayer.GenericMethod();
+                            string value = string.Empty;
+                            //Checking For Expiry Date 
+                            DateTime now = DateTime.Now;
+                            //string ValidationResult = oGenericMethod.IsProductExpired(Convert.ToDateTime(cmbDOJ.Value));
+                            string ValidationResult = oGenericMethod.IsProductExpired(Convert.ToDateTime(now));
+                            if (Convert.ToBoolean(ValidationResult.Split('~')[0]))
                             {
-                                Employee_BL objEmployee_BL = new Employee_BL();
+                                //ScriptManager.RegisterStartupScript(this, this.GetType(), "Vscript", "jAlert('" + ValidationResult.Split('~')[1] + "');", true);
+                            }
+                            else
+                            {
+                                //value = "emp_din=' ', emp_dateofJoining ='" + cmbDOJ.Value + "', emp_dateofLeaving ='" + DBNull.Value + "',emp_ReasonLeaving  ='" + DBNull.Value + "', emp_NextEmployer ='" + DBNull.Value + "', emp_AddNextEmployer  ='" + DBNull.Value + "',LastModifyDate='" + oDBEngine.GetDate().ToString() + "',LastModifyUser='" + Session["userid"].ToString() + "'";
+                                value = "emp_din=' ', emp_dateofJoining ='" + now + "', emp_dateofLeaving ='" + DBNull.Value + "',emp_ReasonLeaving  ='" + DBNull.Value + "', emp_NextEmployer ='" + DBNull.Value + "', emp_AddNextEmployer  ='" + DBNull.Value + "',LastModifyDate='" + oDBEngine.GetDate().ToString() + "',LastModifyUser='" + Session["userid"].ToString() + "'";
+                                Int32 rowsEffected = oDBEngine.SetFieldValue("tbl_master_employee", value, " emp_contactid ='" + HttpContext.Current.Session["KeyVal_InternalID"] + "'");
 
-                                string emp_cntId = Convert.ToString(HttpContext.Current.Session["KeyVal_InternalID"]);
-                                CntID = Convert.ToString(HttpContext.Current.Session["KeyVal_InternalID"]);
-                                string joiningDate = "";
-                                string emp_LeaveSchemeAppliedFrom = "";
-                                
-                                ////if (JoiningDate.Value != null)
-                                //if (now != null)
+                                //if (Session["KeyVal_InternalID"] != "n")
                                 //{
-                                //    //joiningDate = JoiningDate.Value.ToString();
-                                //    joiningDate = now.ToString();
-                                //}
-                                //else
-                                //{
-                                //    joiningDate = "";
-                                //}
 
-                                ////if (cmbLeaveEff.Value != null)
-                                //if (now != null)
-                                //{
-                                //    //emp_LeaveSchemeAppliedFrom = cmbLeaveEff.Value.ToString();
-                                //    emp_LeaveSchemeAppliedFrom = now.ToString();
-                                //}
-                                //else
-                                //{
-                                //    emp_LeaveSchemeAppliedFrom = "";
+                                //    DataTable DT_empCTC = oDBEngine.GetDataTable(" tbl_trans_employeeCTC ", " emp_id ", " emp_cntId='" + Convert.ToString(Session["KeyVal_InternalID"]) + "'");
+                                //    if (DT_empCTC.Rows.Count > 0)
+                                //        //JoiningDate.Value = oDBEngine.GetDate();
+                                //        now = oDBEngine.GetDate();
+                                //    else
+                                //    {
+                                //        DataTable dt = oDBEngine.GetDataTable(" tbl_master_employee", "emp_dateofJoining", " (emp_contactId = '" + Convert.ToString(Session["KeyVal_InternalID"]) + "')");
+                                //        if (dt.Rows.Count > 0)
+                                //            // JoiningDate.Value = dt.Rows[0][0];
+                                //            JoiningDate = dt.Rows[0][0].ToString();
+                                //    }
                                 //}
 
-                                //string ReportHead = txtAReportHead_hidden.Value;
-                                string ReportHead = "";
-                                if (ReportHead == "")
+                                if (rowsEffected > 0)
                                 {
-                                    ReportHead = "0";
-                                }
+                                    Employee_BL objEmployee_BL = new Employee_BL();
 
-                                //string Colleague = txtColleague_hidden.Value;
-                                string Colleague = "";
-                                if (Colleague == "")
-                                {
-                                    Colleague = "0";
-                                }
+                                    string emp_cntId = Convert.ToString(HttpContext.Current.Session["KeyVal_InternalID"]);
+                                    CntID = Convert.ToString(HttpContext.Current.Session["KeyVal_InternalID"]);
+                                    string joiningDate = "";
+                                    string emp_LeaveSchemeAppliedFrom = "";
 
-                                //string Colleague1 = txtColleague1_hidden.Value;
-                                string Colleague1 = "";
-                                if (Colleague1 == "")
-                                {
-                                    Colleague1 = "0";
-                                }
+                                    ////if (JoiningDate.Value != null)
+                                    //if (now != null)
+                                    //{
+                                    //    //joiningDate = JoiningDate.Value.ToString();
+                                    //    joiningDate = now.ToString();
+                                    //}
+                                    //else
+                                    //{
+                                    //    joiningDate = "";
+                                    //}
 
-                                //string Colleague2 = txtColleague2_hidden.Value;
-                                string Colleague2 = "";
-                                if (Colleague2 == "")
-                                {
-                                    Colleague2 = "0";
-                                }
+                                    ////if (cmbLeaveEff.Value != null)
+                                    //if (now != null)
+                                    //{
+                                    //    //emp_LeaveSchemeAppliedFrom = cmbLeaveEff.Value.ToString();
+                                    //    emp_LeaveSchemeAppliedFrom = now.ToString();
+                                    //}
+                                    //else
+                                    //{
+                                    //    emp_LeaveSchemeAppliedFrom = "";
+                                    //}
 
-                                
-                                //string jobresponsibility = "8";
-                                //string Department = "3";
-                                //string EmpWorkingHours = "1";
-                                //string LeaveScheme = "2";
-
-                                string jobresponsibility = "0";
-                                string Department = "";
-                                string EmpWorkingHours = "0";
-                                string LeaveScheme = "";
-
-                                //DataTable dtJ = oDBEngine.GetDataTable("tbl_master_jobResponsibility", "job_id", " (job_responsibility = 'Marketing & Sales')");
-                                //if (dtJ.Rows.Count > 0)
-                                //    jobresponsibility = dtJ.Rows[0][0].ToString();
-
-                                //DataTable dtD = oDBEngine.GetDataTable("tbl_master_costCenter", "cost_id", " (cost_description = 'Marketing & Sales')");
-                                //if (dtD.Rows.Count > 0)
-                                //    Department = dtD.Rows[0][0].ToString();
-
-                                //DataTable dtW = oDBEngine.GetDataTable("tbl_EmpWorkingHours", "Id", " (Name = 'Default')");
-                                //if (dtW.Rows.Count > 0)
-                                //    EmpWorkingHours = dtW.Rows[0][0].ToString();
-
-                                //DataTable dtL = oDBEngine.GetDataTable("tbl_master_LeaveScheme", "ls_id", " (ls_name = 'Default')");
-                                //if (dtL.Rows.Count > 0)
-                                //    LeaveScheme = dtL.Rows[0][0].ToString();
-
-
-                                // STEP 2 INSERT : []
-                                objEmployee_BL.btnCTC_Click_BL(emp_cntId, joiningDate, Organization, jobresponsibility, cmbDesg.SelectedItem.Value, EmpType,
-                                cmbDept.SelectedItem.Value, txtReportTo_hidden.Value, ReportHead, Colleague, EmpWorkingHours, LeaveScheme, emp_LeaveSchemeAppliedFrom, cmbBranch.SelectedItem.Value,
-                                Convert.ToString(DBNull.Value), Colleague1, Colleague2);
-
-                                oDBEngine.SetFieldValue("tbl_master_contact", "Cnt_UCC ='" + empCompCode.ToString() + "'", " cnt_internalid ='" + emp_cntId + "'");
-                                oDBEngine.SetFieldValue("tbl_master_employee", "emp_uniquecode='" + empCompCode.ToString() + "'", "emp_contactID='" + emp_cntId + "'");
-                                //Rev work start 26.07.2022 mantise no:25046
-                                //AliasName = empCompCode.ToString(); 
-                                AliasName = txtuserid.Text; 
-                                string OtherID = AliasName;
-                                //Rev work close 26.07.2022 mantise no:25046
-                                if (AliasName.ToString() != "")
-                                {
-                                    DataTable dt = oDBEngine.GetDataTable("SELECT cnt_id FROM tbl_master_contact WHERE cnt_UCC = '" + AliasName.ToString().Trim() +
-                                   "' AND cnt_internalId != '" + Session["KeyVal_InternalID"] + "' AND cnt_internalId IN(SELECT emp_cntId FROM tbl_trans_employeeCTC " +
-                                   " WHERE emp_Organization IN (SELECT tte.emp_Organization FROM tbl_trans_employeeCTC tte WHERE emp_cntId = '" + Session["KeyVal_InternalID"] + "'))");
-
-                                    if (dt.Rows.Count > 0)
+                                    //string ReportHead = txtAReportHead_hidden.Value;
+                                    string ReportHead = "";
+                                    if (ReportHead == "")
                                     {
-                                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert12", "jAlert('Employee Code already Exists!..');", true);
+                                        ReportHead = "0";
+                                    }
+
+                                    //string Colleague = txtColleague_hidden.Value;
+                                    string Colleague = "";
+                                    if (Colleague == "")
+                                    {
+                                        Colleague = "0";
+                                    }
+
+                                    //string Colleague1 = txtColleague1_hidden.Value;
+                                    string Colleague1 = "";
+                                    if (Colleague1 == "")
+                                    {
+                                        Colleague1 = "0";
+                                    }
+
+                                    //string Colleague2 = txtColleague2_hidden.Value;
+                                    string Colleague2 = "";
+                                    if (Colleague2 == "")
+                                    {
+                                        Colleague2 = "0";
+                                    }
+
+
+                                    //string jobresponsibility = "8";
+                                    //string Department = "3";
+                                    //string EmpWorkingHours = "1";
+                                    //string LeaveScheme = "2";
+
+                                    string jobresponsibility = "0";
+                                    string Department = "";
+                                    string EmpWorkingHours = "0";
+                                    string LeaveScheme = "";
+
+                                    //DataTable dtJ = oDBEngine.GetDataTable("tbl_master_jobResponsibility", "job_id", " (job_responsibility = 'Marketing & Sales')");
+                                    //if (dtJ.Rows.Count > 0)
+                                    //    jobresponsibility = dtJ.Rows[0][0].ToString();
+
+                                    //DataTable dtD = oDBEngine.GetDataTable("tbl_master_costCenter", "cost_id", " (cost_description = 'Marketing & Sales')");
+                                    //if (dtD.Rows.Count > 0)
+                                    //    Department = dtD.Rows[0][0].ToString();
+
+                                    //DataTable dtW = oDBEngine.GetDataTable("tbl_EmpWorkingHours", "Id", " (Name = 'Default')");
+                                    //if (dtW.Rows.Count > 0)
+                                    //    EmpWorkingHours = dtW.Rows[0][0].ToString();
+
+                                    //DataTable dtL = oDBEngine.GetDataTable("tbl_master_LeaveScheme", "ls_id", " (ls_name = 'Default')");
+                                    //if (dtL.Rows.Count > 0)
+                                    //    LeaveScheme = dtL.Rows[0][0].ToString();
+
+
+                                    // STEP 2 INSERT : [tbl_trans_employeeCTC,tbl_master_address, FTS_EmployeeBranchMap, tbl_FTS_MapEmployeeGrade , tbl_master_employee(update), tbl_master_user(update) ]
+                                    objEmployee_BL.btnCTC_Click_BL(emp_cntId, joiningDate, Organization, jobresponsibility, cmbDesg.SelectedItem.Value, EmpType,
+                                    cmbDept.SelectedItem.Value, txtReportTo_hidden.Value, ReportHead, Colleague, EmpWorkingHours, LeaveScheme, emp_LeaveSchemeAppliedFrom, cmbBranch.SelectedItem.Value,
+                                    Convert.ToString(DBNull.Value), Colleague1, Colleague2);
+
+                                    oDBEngine.SetFieldValue("tbl_master_contact", "Cnt_UCC ='" + empCompCode.ToString() + "'", " cnt_internalid ='" + emp_cntId + "'");
+                                    oDBEngine.SetFieldValue("tbl_master_employee", "emp_uniquecode='" + empCompCode.ToString() + "'", "emp_contactID='" + emp_cntId + "'");
+                                    //Rev work start 26.07.2022 mantise no:25046
+                                    //AliasName = empCompCode.ToString(); 
+                                    AliasName = txtuserid.Text;
+                                    string OtherID = AliasName;
+                                    //Rev work close 26.07.2022 mantise no:25046
+                                    if (AliasName.ToString() != "")
+                                    {
+                                        DataTable dt = oDBEngine.GetDataTable("SELECT cnt_id FROM tbl_master_contact WHERE cnt_UCC = '" + AliasName.ToString().Trim() +
+                                       "' AND cnt_internalId != '" + Session["KeyVal_InternalID"] + "' AND cnt_internalId IN(SELECT emp_cntId FROM tbl_trans_employeeCTC " +
+                                       " WHERE emp_Organization IN (SELECT tte.emp_Organization FROM tbl_trans_employeeCTC tte WHERE emp_cntId = '" + Session["KeyVal_InternalID"] + "'))");
+
+                                        if (dt.Rows.Count > 0)
+                                        {
+                                            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert12", "jAlert('Employee Code already Exists!..');", true);
+                                        }
+                                        else
+                                        {
+                                            oDBEngine.SetFieldValue("tbl_master_employee", "emp_uniquecode='" + AliasName.ToString() + "', cnt_OtherID = '" + OtherID.ToString() + "'", "emp_contactID='" + Session["KeyVal_InternalID"] + "'");
+                                            oDBEngine.SetFieldValue("tbl_master_contact", "cnt_ucc='" + AliasName.ToString() + "',cnt_ShortName='" + AliasName.ToString() + "', cnt_OtherID = '" + OtherID.ToString() + "'", "cnt_internalid='" + Session["KeyVal_InternalID"] + "'");
+                                            DataTable dtchk = oDBEngine.GetDataTable("tbl_master_contact", " cnt_id ", "cnt_internalid='" + Session["KeyVal_InternalID"] + "'");
+                                        }
                                     }
                                     else
                                     {
-                                        oDBEngine.SetFieldValue("tbl_master_employee", "emp_uniquecode='" + AliasName.ToString() + "', cnt_OtherID = '" + OtherID.ToString() + "'", "emp_contactID='" + Session["KeyVal_InternalID"] + "'");
-                                        oDBEngine.SetFieldValue("tbl_master_contact", "cnt_ucc='" + AliasName.ToString() + "',cnt_ShortName='" + AliasName.ToString() + "', cnt_OtherID = '" + OtherID.ToString() + "'", "cnt_internalid='" + Session["KeyVal_InternalID"] + "'");
-                                        DataTable dtchk = oDBEngine.GetDataTable("tbl_master_contact", " cnt_id ", "cnt_internalid='" + Session["KeyVal_InternalID"] + "'");
+                                        ScriptManager.RegisterStartupScript(this, this.GetType(), "General", "jAlert('Employee ID can not be blank');", true);
                                     }
+
+                                    DataTable dtAddr = oDBEngine.GetDataTable("SELECT branch_id,branch_internalId,branch_code,branch_address1,branch_address2,branch_address3,branch_country, " +
+                                        "branch_state,branch_city,branch_pin,branch_area " +
+                                    "FROM tbl_master_branch WHERE branch_id = '" + cmbBranch.SelectedValue.ToString() + "'");
+
+                                    string branch_id = string.Empty;
+                                    string branch_address1 = string.Empty;
+                                    string branch_address2 = string.Empty;
+                                    string branch_address3 = string.Empty;
+                                    string branch_country = string.Empty;
+                                    string branch_state = string.Empty;
+                                    string branch_city = string.Empty;
+                                    string branch_pin = string.Empty;
+                                    string branch_area = string.Empty;
+                                    string Phoneno = string.Empty;
+                                    string Remarks = txtRemarks.Text;
+                                    //Phoneno = txtPhno.Text;
+                                    Phoneno = "";
+
+                                    if (dtAddr.Rows.Count > 0)
+                                    {
+                                        branch_id = dtAddr.Rows[0]["branch_id"].ToString();
+                                        branch_address1 = dtAddr.Rows[0]["branch_address1"].ToString();
+                                        branch_address2 = dtAddr.Rows[0]["branch_address2"].ToString();
+                                        branch_address3 = dtAddr.Rows[0]["branch_address3"].ToString();
+                                        branch_country = dtAddr.Rows[0]["branch_country"].ToString();
+                                        branch_state = dtAddr.Rows[0]["branch_state"].ToString();
+                                        branch_city = dtAddr.Rows[0]["branch_city"].ToString();
+                                        branch_pin = dtAddr.Rows[0]["branch_pin"].ToString();
+                                        branch_area = dtAddr.Rows[0]["branch_area"].ToString();
+                                    }
+
+                                    ////Address insert
+                                    // Rev 2.0 [ Address already getting inserted while CTC add by objEmployee_BL.btnCTC_Click_BL - Mantis 25531, 25533 ]
+                                    //int n = InsertAddress(emp_cntId, branch_address1, branch_address2, branch_address3, branch_country,
+                                    //    branch_state, branch_city, branch_pin, branch_area, branch_id);
+                                    // End of Rev 2.0
+
+                                    //Phone no insert
+                                    // STEP 3 : [tbl_master_phonefax]
+                                    int x = InsertPhone(emp_cntId, Phoneno);
+
+                                    //usermaster insert
+                                    string password = txtPassword.Text;
+
+                                    Encryption epasswrd = new Encryption();
+                                    string Encryptpass = epasswrd.Encrypt(password.Trim());
+
+                                    usergroup = getuserGroup();
+                                    //if (usergroup != "" && usergroup != "Select Group")
+                                    //{
+                                    //    int y = InsertUser(Encryptpass, emp_cntId);
+                                    //}
+
+                                    // STEP 4 : INSERT [TBL_MASTER_USER, PRC_FTSTblMasterUser_Audit, FTS_EmployeeBranchMap, FTS_EMPSTATEMAPPING]
+                                    int y = InsertUser(Encryptpass, emp_cntId);
+
+                                    //User state mapping
+                                    SalesPersontracking ob = new SalesPersontracking();
+                                    DataTable dtfromtosumervisor = SalesPersontracking.SubmitEmployeeState(emp_cntId, branch_state, Convert.ToString(HttpContext.Current.Session["userid"]));
+
+                                    //Assign party                                
+                                    string reportto_uniqueid = string.Empty;
+                                    string reportto_userid = string.Empty;
+                                    string empuserid = string.Empty;
+                                    string shop_code = string.Empty;
+
+                                    //DataTable dtassignparty = oDBEngine.GetDataTable("select e.emp_uniquecode,u.user_id from tbl_master_employee e ,tbl_master_user u where e.emp_id=( " +
+                                    //"select ctc.emp_reportTo from tbl_master_employee emp,tbl_trans_employeeCTC ctc where emp.emp_contactId=ctc.emp_cntId and emp.emp_contactId='" + emp_cntId + "')and e.emp_contactId=u.user_contactId");
+                                    //if (dtassignparty.Rows.Count > 0)
+                                    //{
+                                    //    reportto_uniqueid = dtassignparty.Rows[0]["emp_uniquecode"].ToString();
+                                    //    reportto_userid = dtassignparty.Rows[0]["user_id"].ToString();
+                                    //}
+                                    //DataTable dtempuserid = oDBEngine.GetDataTable("select user_id from tbl_master_user where user_contactId='" + emp_cntId + "'");
+                                    //if (dtempuserid.Rows.Count > 0)
+                                    //{
+
+                                    //    // empuserid = dtassignparty.Rows[0]["user_id"].ToString();
+                                    //    empuserid = dtempuserid.Rows[0]["user_id"].ToString();
+
+                                    //}
+                                    //DataTable dtshopcode = oDBEngine.GetDataTable("select s.Shop_Code from tbl_Master_shop s,tbl_master_employee e,tbl_master_user u where s.type='4' and s.EntityCode=e.emp_uniqueCode " +
+                                    // "and e.emp_contactId=u.user_contactId and u.user_id=s.shop_createuser and e.emp_uniqueCode='"+reportto_uniqueid+"'");
+                                    //if (dtshopcode.Rows.Count > 0)
+                                    //{
+                                    //    shop_code = dtshopcode.Rows[0]["Shop_Code"].ToString();
+                                    //}
+                                    shop_code = "";
+
+                                    //SaveAssignParty(shop_code, empuserid, reportto_uniqueid, reportto_userid, cmbBranch.SelectedValue.ToString());
+
+                                    // string selected_users = reportto_userid + "," + empuserid;
+                                    // SaveAssignParty(shop_code, selected_users, reportto_uniqueid, reportto_userid, cmbBranch.SelectedValue.ToString());
+
+                                    Response.Redirect("/OMS/Management/Master/UserAccountList.aspx");
                                 }
-                                else
-                                {
-                                    ScriptManager.RegisterStartupScript(this, this.GetType(), "General", "jAlert('Employee ID can not be blank');", true);
-                                }
-
-                                DataTable dtAddr = oDBEngine.GetDataTable("SELECT branch_id,branch_internalId,branch_code,branch_address1,branch_address2,branch_address3,branch_country, " +
-                                    "branch_state,branch_city,branch_pin,branch_area " +
-                                "FROM tbl_master_branch WHERE branch_id = '" + cmbBranch.SelectedValue.ToString() + "'");
-
-                                string branch_id = string.Empty;
-                                string branch_address1 = string.Empty;
-                                string branch_address2 = string.Empty;
-                                string branch_address3 = string.Empty;
-                                string branch_country = string.Empty;
-                                string branch_state = string.Empty;
-                                string branch_city = string.Empty;
-                                string branch_pin = string.Empty;
-                                string branch_area = string.Empty;
-                                string Phoneno = string.Empty;
-                                string Remarks = txtRemarks.Text;
-                                //Phoneno = txtPhno.Text;
-                                Phoneno = "";
-
-                                if (dtAddr.Rows.Count > 0)
-                                {
-                                    branch_id = dtAddr.Rows[0]["branch_id"].ToString();
-                                    branch_address1 = dtAddr.Rows[0]["branch_address1"].ToString();
-                                    branch_address2 = dtAddr.Rows[0]["branch_address2"].ToString();
-                                    branch_address3 = dtAddr.Rows[0]["branch_address3"].ToString();
-                                    branch_country = dtAddr.Rows[0]["branch_country"].ToString();
-                                    branch_state = dtAddr.Rows[0]["branch_state"].ToString();
-                                    branch_city = dtAddr.Rows[0]["branch_city"].ToString();
-                                    branch_pin = dtAddr.Rows[0]["branch_pin"].ToString();
-                                    branch_area = dtAddr.Rows[0]["branch_area"].ToString();
-                                }
-
-                                ////Address insert
-                                // Rev 2.0 [ Address already getting inserted while CTC add by objEmployee_BL.btnCTC_Click_BL - Mantis 25531, 25533 ]
-                                //int n = InsertAddress(emp_cntId, branch_address1, branch_address2, branch_address3, branch_country,
-                                //    branch_state, branch_city, branch_pin, branch_area, branch_id);
-                                // End of Rev 2.0
-
-                                //Phone no insert
-                                int x = InsertPhone(emp_cntId, Phoneno);
-
-                                //usermaster insert
-                                string password = txtPassword.Text;
-
-                                Encryption epasswrd = new Encryption();
-                                string Encryptpass = epasswrd.Encrypt(password.Trim());
-
-                                usergroup = getuserGroup();
-                                //if (usergroup != "" && usergroup != "Select Group")
-                                //{
-                                //    int y = InsertUser(Encryptpass, emp_cntId);
-                                //}
-                                int y = InsertUser(Encryptpass, emp_cntId);
-
-                                //User state mapping
-                                SalesPersontracking ob = new SalesPersontracking();
-                                DataTable dtfromtosumervisor = SalesPersontracking.SubmitEmployeeState(emp_cntId, branch_state, Convert.ToString(HttpContext.Current.Session["userid"]));
-
-                                //Assign party                                
-                                string reportto_uniqueid = string.Empty;
-                                string reportto_userid = string.Empty;
-                                string empuserid = string.Empty;
-                                string shop_code = string.Empty;
-
-                                DataTable dtassignparty = oDBEngine.GetDataTable("select e.emp_uniquecode,u.user_id from tbl_master_employee e ,tbl_master_user u where e.emp_id=( " +
-                                "select ctc.emp_reportTo from tbl_master_employee emp,tbl_trans_employeeCTC ctc where emp.emp_contactId=ctc.emp_cntId and emp.emp_contactId='" + emp_cntId + "')and e.emp_contactId=u.user_contactId");
-                                if (dtassignparty.Rows.Count > 0)
-                                {
-                                    reportto_uniqueid = dtassignparty.Rows[0]["emp_uniquecode"].ToString();
-                                    reportto_userid = dtassignparty.Rows[0]["user_id"].ToString();
-                                }
-                                DataTable dtempuserid = oDBEngine.GetDataTable("select user_id from tbl_master_user where user_contactId='" + emp_cntId + "'");
-                                if(dtempuserid.Rows.Count>0)
-                                {
-                                    
-                                   // empuserid = dtassignparty.Rows[0]["user_id"].ToString();
-                                    empuserid = dtempuserid.Rows[0]["user_id"].ToString();
-                                    
-                                }
-                                //DataTable dtshopcode = oDBEngine.GetDataTable("select s.Shop_Code from tbl_Master_shop s,tbl_master_employee e,tbl_master_user u where s.type='4' and s.EntityCode=e.emp_uniqueCode " +
-                                // "and e.emp_contactId=u.user_contactId and u.user_id=s.shop_createuser and e.emp_uniqueCode='"+reportto_uniqueid+"'");
-                                //if (dtshopcode.Rows.Count > 0)
-                                //{
-                                //    shop_code = dtshopcode.Rows[0]["Shop_Code"].ToString();
-                                //}
-                                shop_code = "";
-
-                                //SaveAssignParty(shop_code, empuserid, reportto_uniqueid, reportto_userid, cmbBranch.SelectedValue.ToString());
-
-                                // string selected_users = reportto_userid + "," + empuserid;
-                                // SaveAssignParty(shop_code, selected_users, reportto_uniqueid, reportto_userid, cmbBranch.SelectedValue.ToString());
-
-                                Response.Redirect("/OMS/Management/Master/UserAccountList.aspx");
                             }
                         }
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "General", "jAlert('Duplicate user id found ! Please Talk to Administrator.!..');", true);
                     }
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "General", "jAlert('Duplicate user id found ! Please Talk to Administrator.!..');", true);
+                    string user_loginid = Request.QueryString["id"].ToString();
+
+                    string password = txtPassword.Text;
+                    Encryption epasswrd = new Encryption();
+                    string Encryptpass = epasswrd.Encrypt(password.Trim());
+
+                    string isactive = "N";
+                    if (chkIsInActive.Checked == true)
+                        isactive = "Y";
+                    
+
+                    BusinessLogicLayer.DBEngine oDBEngine = new BusinessLogicLayer.DBEngine(ConfigurationSettings.AppSettings["DBConnectionDefault"]);
+                    DataTable DT = new DataTable();
+                    DT.Rows.Clear();
+                    ProcedureExecute proc = new ProcedureExecute("PRC_LMS_USERACCOUNTADDEDIT");
+                    proc.AddPara("@action", "MODIFYUSERDATA");
+                    proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["userid"]));
+                    //proc.AddPara("@FIRSTNAME", txtFirstNmae.Text);
+                    proc.AddPara("@USER_LOGINID", user_loginid);
+                    proc.AddPara("@PASSWORD", Encryptpass);
+                    proc.AddPara("@BRANCHID", cmbBranch.SelectedValue);
+                    proc.AddPara("@DEPT", cmbDept.SelectedValue);
+                    proc.AddPara("@DESIGNATION", cmbDesg.SelectedValue);
+                    proc.AddPara("@REPORTTO", txtReportTo_hidden.Value);
+                    proc.AddPara("@GROUP", ddlGroups.SelectedValue);
+                    proc.AddPara("@ISACTIVE", isactive);
+                    proc.AddPara("@REMARKS", txtRemarks.Text);
+
+                    DT = proc.GetTable();
+
+                    Response.Redirect("/OMS/Management/Master/UserAccountList.aspx");
                 }
+                
             }
             catch
             {
@@ -906,6 +969,9 @@ namespace ERP.OMS.Management.Master
             {
                 //Rev work start 27.07.2022 mantise no:25046
                 string isactive = "N";
+                if (chkIsInActive.Checked == true)
+                    isactive = "Y";
+
                 string isactivemac = "N";
                 int istargetsettings = 0;
                 
@@ -1094,7 +1160,7 @@ namespace ERP.OMS.Management.Master
                 string[,] grpsegment = oDBEngine.GetFieldValue("tbl_master_userGroup", "top 1 grp_segmentid", "grp_id in (" + usergroup.ToString() + ")", 1);
                 string[,] segname = oDBEngine.GetFieldValue("tbl_master_segment", "seg_name", "seg_id='" + grpsegment[0, 0] + "'", 1);
 
-                using (proc = new ProcedureExecute("PRC_FTSInsertUpdateUser"))
+                using (proc = new ProcedureExecute("PRC_LMS_InsertUpdateUser"))
                 {
                        proc.AddPara("@ACTION", "INSERT");
                         
@@ -1114,6 +1180,7 @@ namespace ERP.OMS.Management.Master
                         proc.AddPara("@isactive", isactive);
                         proc.AddPara("@isactivemac", isactivemac);
                         proc.AddPara("@txtgps", 500);
+                        proc.AddPara("@Remarks", Remarks);
 
                         proc.AddPara("@istargetsettings", istargetsettings);
                         proc.AddPara("@isLeaveApprovalEnable", isLeaveApprovalEnable);
@@ -1291,6 +1358,7 @@ namespace ERP.OMS.Management.Master
                         
                         proc.AddPara("@CalledFromUserAccount", 1);
                         proc.AddPara("@ChType_CFP", 0);
+                        
 
                     DataTable dt = proc.GetTable();
 

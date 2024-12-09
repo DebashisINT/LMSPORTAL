@@ -114,6 +114,15 @@ namespace ERP.OMS.Management.Master
         protected global::System.Web.UI.WebControls.DropDownList ddlGroups;
 
         /// <summary>
+        /// chkIsInActive control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxCheckBox chkIsInActive;
+
+        /// <summary>
         /// txtRemarks control.
         /// </summary>
         /// <remarks>

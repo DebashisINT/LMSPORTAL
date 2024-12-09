@@ -596,6 +596,10 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
         }
         function EndCall(obj) {
         }
+        function OnEditButtonClick(keyValue) {
+            var url = 'UserAccountAdd.aspx?id=' + keyValue;
+            window.location.href = url;
+        }
     </script>  
 </asp:Content>
 <%--Rev work start .Refer: 25046 27.07.2022 New Listing page create for new User Account Page--%>
@@ -648,15 +652,15 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                             Settings-HorizontalScrollBarMode="Auto">                           
                             <Columns>
                                 <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="0" FieldName="UID"
-                                    Caption="UID" Width="0" SortOrder="Descending">
+                                    Caption="UID" Width="0%" SortOrder="Descending">
                                     <EditFormSettings></EditFormSettings>
                                 </dxe:GridViewDataTextColumn>
                                 <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="0" FieldName="USER_ID"
-                                    Caption="User ID" Width="180px" >
+                                    Caption="User ID" Width="20%" >
                                     <EditFormSettings></EditFormSettings>
                                 </dxe:GridViewDataTextColumn>
                                 <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="1" FieldName="USER_NAME"
-                                    Caption="User Name" Width="260px">
+                                    Caption="User Name" Width="20%">
                                     <PropertiesTextEdit>
                                         <ValidationSettings ErrorDisplayMode="ImageWithText" ErrorTextPosition="Bottom" SetFocusOnError="True">
                                             <RequiredField ErrorText="Please Enter user Name" IsRequired="True" />
@@ -666,24 +670,49 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                                 </dxe:GridViewDataTextColumn>
                                 
                                 <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="2" FieldName="BRANCHNAME"
-                                    Caption="Branch" Width="270px" >
+                                    Caption="Branch" Width="20%" >
                                     <PropertiesTextEdit>
                                     </PropertiesTextEdit>
                                     <EditFormSettings Visible="false" />
                                 </dxe:GridViewDataTextColumn>
                                 <%--Rev 2.0 [ caption changed from Report To to WD ID--%>
                                 <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="3" FieldName="REPORTTO"
-                                    Caption="Report To" Width="300px">
+                                    Caption="Report To" Width="20%">
                                     <PropertiesTextEdit>
                                     </PropertiesTextEdit>
                                     <EditFormSettings Visible="false" />
                                 </dxe:GridViewDataTextColumn>                                
                                 <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="4" FieldName="deg_designation"
-                                    Caption="Designation" Width="180px">
+                                    Caption="Designation" Width="20%">
                                     <PropertiesTextEdit>
                                     </PropertiesTextEdit>
                                     <EditFormSettings Visible="false" />
                                 </dxe:GridViewDataTextColumn>   
+                                <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="5" FieldName="user_inactive"
+                                    Caption="Active" Width="10%">
+                                    <PropertiesTextEdit>
+                                    </PropertiesTextEdit>
+                                    <EditFormSettings Visible="false" />
+                                </dxe:GridViewDataTextColumn>   
+
+                                <dxe:GridViewDataTextColumn VisibleIndex="6" CellStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center" Width="10%">
+                                
+                                    <DataItemTemplate>
+                                         <%--<% if (rights.CanEdit)
+                                            { %>--%>
+                                        <a href="javascript:void(0);" onclick="OnEditButtonClick('<%# Container.KeyValue %>')" title="Edit User" class="pad">
+                                            <img src="../../../assests/images/Edit.png" />
+                                        </a>
+                                          <%--<% } %>--%>
+                                         <%--<% if (rights.CanDelete)
+                                           { %>--%>
+                                         <%--<a href="javascript:void(0);" onclick="MakeActive('<%# Container.KeyValue %>')" title="Active/Inactive User">
+                                            <img src="../../../assests/images/Delete.png" /></a>--%>
+                                         <%--<% } %>--%>
+                                    </DataItemTemplate>
+                                    <HeaderTemplate>Actions</HeaderTemplate>
+                                    <EditFormSettings Visible="False"></EditFormSettings>
+                                </dxe:GridViewDataTextColumn>
                                                        
                             </Columns>                          
                             <SettingsSearchPanel Visible="True" />
