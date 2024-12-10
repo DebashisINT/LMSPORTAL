@@ -18,7 +18,7 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
 <head>
     <%--REV 6.0--%>
     <%--<title>Login to BreezeERP</title>--%>
-    <title>Login to BreezeFSM</title>
+    <title>Login to LMS</title>
     <%--REV 6.0 END--%>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

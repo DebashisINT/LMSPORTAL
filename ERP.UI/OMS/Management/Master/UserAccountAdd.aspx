@@ -557,41 +557,41 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
             }
             
             //Mantis Issue 25148
-            if ($("#IsChannelCircleSectionMandatory").val() == "1") {
-                //if ($("#txtChannels").val() == "") {
-                if (ctxtChannels.GetText() == "") {
-                    //jAlert("Please select channel type.", "Alert", function () {
+            //if ($("#IsChannelCircleSectionMandatory").val() == "1") {
+            //    //if ($("#txtChannels").val() == "") {
+            //    if (ctxtChannels.GetText() == "") {
+            //        //jAlert("Please select channel type.", "Alert", function () {
 
-                    //});
-                    $('#MandatoryChannel').css({ 'display': 'block' });
-                    return false;
-                }
-                else {
-                    $('#MandatoryChannel').css({ 'display': 'none' });
-                }
-                //if ($("#txtCircle").val() == "") {
-                if (ctxtCircles.GetText() == "") {
-                    //jAlert("Please select circle.", "Alert", function () {
+            //        //});
+            //        $('#MandatoryChannel').css({ 'display': 'block' });
+            //        return false;
+            //    }
+            //    else {
+            //        $('#MandatoryChannel').css({ 'display': 'none' });
+            //    }
+            //    //if ($("#txtCircle").val() == "") {
+            //    if (ctxtCircles.GetText() == "") {
+            //        //jAlert("Please select circle.", "Alert", function () {
 
-                    //});
-                    $('#MandatoryCircle').css({ 'display': 'block' });
-                    return false;
-                }
-                else {
-                    $('#MandatoryCircle').css({ 'display': 'none' });
-                }
-                //if ($("#txtSection").val() == "") {
-                if (ctxtSections.GetText() == "") {
-                    //jAlert("Please select Section.", "Alert", function () {
+            //        //});
+            //        $('#MandatoryCircle').css({ 'display': 'block' });
+            //        return false;
+            //    }
+            //    else {
+            //        $('#MandatoryCircle').css({ 'display': 'none' });
+            //    }
+            //    //if ($("#txtSection").val() == "") {
+            //    if (ctxtSections.GetText() == "") {
+            //        //jAlert("Please select Section.", "Alert", function () {
 
-                    //});
-                    $('#MandatorySection').css({ 'display': 'block' });
-                    return false;
-                }
-                else {
-                    $('#MandatorySection').css({ 'display': 'none' });
-                }
-            }
+            //        //});
+            //        $('#MandatorySection').css({ 'display': 'block' });
+            //        return false;
+            //    }
+            //    else {
+            //        $('#MandatorySection').css({ 'display': 'none' });
+            //    }
+            //}
             //End of Mantis Issue 25148
             var today = new Date();
             startLoading();
