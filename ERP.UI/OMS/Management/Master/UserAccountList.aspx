@@ -605,7 +605,7 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
 <%--Rev work start .Refer: 25046 27.07.2022 New Listing page create for new Login Configuration Page--%>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="breadCumb">
-        <span>Users Account</span>
+        <span>Login Configuration</span>
     </div>
 
     <div class="container mt-4">
