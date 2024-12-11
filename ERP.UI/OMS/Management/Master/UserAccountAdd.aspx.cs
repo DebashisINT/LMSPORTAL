@@ -178,8 +178,8 @@ namespace ERP.OMS.Management.Master
                     
                 }
 
-                txtuserid.ReadOnly = true;
-                txtFirstNmae.ReadOnly = true;
+                //txtuserid.ReadOnly = true;
+                //txtFirstNmae.ReadOnly = true;
 
             }
 
@@ -898,8 +898,9 @@ namespace ERP.OMS.Management.Master
                     ProcedureExecute proc = new ProcedureExecute("PRC_LMS_USERACCOUNTADDEDIT");
                     proc.AddPara("@action", "MODIFYUSERDATA");
                     proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["userid"]));
-                    //proc.AddPara("@FIRSTNAME", txtFirstNmae.Text);
+                    proc.AddPara("@FIRSTNAME", txtFirstNmae.Text);
                     proc.AddPara("@USER_LOGINID", user_loginid);
+                    proc.AddPara("@USER_NEWLOGINID", txtuserid.Text);
                     proc.AddPara("@PASSWORD", Encryptpass);
                     proc.AddPara("@BRANCHID", cmbBranch.SelectedValue);
                     proc.AddPara("@DEPT", cmbDept.SelectedValue);
