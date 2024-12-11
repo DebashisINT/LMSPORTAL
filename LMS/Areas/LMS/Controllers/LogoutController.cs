@@ -15,7 +15,14 @@ namespace LMS.Areas.LMS.Controllers
         }
         public ActionResult Logout()
         {
-            return Redirect("/OMS/Signoff.aspx");
+            //return Redirect("/OMS/Signoff.aspx");
+
+            Session.Clear();
+
+            Session.Abandon();
+
+            return RedirectToAction("Index", "Login");
+
         }
 
         public ActionResult ChangePassword()
