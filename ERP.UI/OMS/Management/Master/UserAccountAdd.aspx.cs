@@ -110,7 +110,7 @@ namespace ERP.OMS.Management.Master
             //    chkSectionDefault.Checked = false;
             //    chkSectionDefault.ClientEnabled = false;
             //}
-           btnSave.Attributes.Add("Onclick", "Javascript:return ValidateControls();");
+           //btnSave.Attributes.Add("Onclick", "Javascript:return ValidateControls();");
         }
         private void ShowForm()
         {

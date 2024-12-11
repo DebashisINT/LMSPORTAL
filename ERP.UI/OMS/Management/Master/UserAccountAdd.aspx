@@ -349,13 +349,21 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
             $('#lstReportTo').fadeIn();
         }
         //Mantis Issue 25148
-        function setvalue() {
-            //document.getElementById("txtReportTo_hidden").value = document.getElementById("lstReportTo").value;
-        }
+        //function setvalue() {
+        //    //document.getElementById("txtReportTo_hidden").value = document.getElementById("lstReportTo").value;
+        //}
+
         //End of Mantis Issue 25148
-        function setvalue() {
-            //document.getElementById("txtReportTo_hidden").value = document.getElementById("lstReportTo").value;
+        //function setvalue() {
+        //    //document.getElementById("txtReportTo_hidden").value = document.getElementById("lstReportTo").value;
+        //}
+
+        function ClientSaveClick(s, e) {
+            returnValue = ValidateControls(s, e);
+
+            return returnValue;
         }
+
         function startLoading() {
             LoadingPanel.Show();
         }
@@ -487,37 +495,62 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
         //        return false;
         //    }
         //}
-        function ValidateControls() {
+        function ValidateControls(s, e) {
             //Rev work start 26.07.2022 mantise no:25046            
             var FirstName = document.getElementById('txtFirstNmae').value;
             if (FirstName.trim().length == 0) {
                 $('#MandatoryFirstName').css({ 'display': 'block' });
+                e.processOnServer = false;
                 return false;
             } 
+            else {
+                $('#MandatoryFirstName').css({ 'display': 'none' });
+            }
+
             var FirstName = document.getElementById('txtuserid').value;
             if (FirstName.trim().length == 0) {
                 $('#MandatoryLoginid').css({ 'display': 'block' });
+                e.processOnServer = false;
                 return false;
             } 
+            else {
+                $('#MandatoryLoginid').css({ 'display': 'none' });
+            }
+
             var FirstName = document.getElementById('txtPassword').value;
             if (FirstName.trim().length == 0) {
                 $('#MandatoryPassword').css({ 'display': 'block' });
+                e.processOnServer = false;
                 return false;
             } 
-
+            else {
+                $('#MandatoryPassword').css({ 'display': 'none' });
+            }
 
 
             //Rev work close 26.07.2022 mantise no:25046
             if (document.getElementById("cmbBranch").value == "0") {
                 $('#MandatoryBranch').css({ 'display': 'block' });
+                e.processOnServer = false;
                 return false;
             }
             else {
                 $('#MandatoryBranch').css({ 'display': 'none' });
             }
+
+            if (document.getElementById("cmbDept").value == "0") {
+                $('#MandatoryDepartment').css({ 'display': 'block' });
+                e.processOnServer = false;
+                return false;
+            }
+            else {
+                $('#MandatoryDepartment').css({ 'display': 'none' });
+            }
+
             if (document.getElementById("cmbDesg").value == "0") {
                 //alert('Please Select Designation.');
                 $('#MandatoryDesignation').css({ 'display': 'block' });
+                e.processOnServer = false;
                 return false;
             }
             else {
@@ -526,6 +559,7 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
             if (document.getElementById("txtReportTo_hidden").value == '') {
                 //alert('Please Select Reporting Head.');
                 $('#MandatoryReportTo').css({ 'display': 'block' });
+                e.processOnServer = false;
                 return false;
             }
             else {
@@ -535,6 +569,7 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
             
             if (document.getElementById("txtuserid").value.trim() == "") {
                 $('#MandatoryLoginid').css({ 'display': 'block' });
+                e.processOnServer = false;
                 return false;
             }
             else {
@@ -542,59 +577,61 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
             }
             if (document.getElementById("ddlGroups").value == "0") {
                 $('#MandatoryGroup').css({ 'display': 'block' });
+                e.processOnServer = false;
                 return false;
             }
             else {
                 $('#MandatoryGroup').css({ 'display': 'none' });
             }
+            return true;
 
-            if (document.getElementById("ddlType").value == "0") {
-                $('#MandatoryType').css({ 'display': 'block' });
-                return false;
-            }
-            else {
-                $('#MandatoryType').css({ 'display': 'none' });
-            }
+            ////if (document.getElementById("ddlType").value == "0") {
+            ////    $('#MandatoryType').css({ 'display': 'block' });
+            ////    return false;
+            ////}
+            ////else {
+            ////    $('#MandatoryType').css({ 'display': 'none' });
+            ////}
             
-            //Mantis Issue 25148
-            //if ($("#IsChannelCircleSectionMandatory").val() == "1") {
-            //    //if ($("#txtChannels").val() == "") {
-            //    if (ctxtChannels.GetText() == "") {
-            //        //jAlert("Please select channel type.", "Alert", function () {
+            ////Mantis Issue 25148
+            ////if ($("#IsChannelCircleSectionMandatory").val() == "1") {
+            ////    //if ($("#txtChannels").val() == "") {
+            ////    if (ctxtChannels.GetText() == "") {
+            ////        //jAlert("Please select channel type.", "Alert", function () {
 
-            //        //});
-            //        $('#MandatoryChannel').css({ 'display': 'block' });
-            //        return false;
-            //    }
-            //    else {
-            //        $('#MandatoryChannel').css({ 'display': 'none' });
-            //    }
-            //    //if ($("#txtCircle").val() == "") {
-            //    if (ctxtCircles.GetText() == "") {
-            //        //jAlert("Please select circle.", "Alert", function () {
+            ////        //});
+            ////        $('#MandatoryChannel').css({ 'display': 'block' });
+            ////        return false;
+            ////    }
+            ////    else {
+            ////        $('#MandatoryChannel').css({ 'display': 'none' });
+            ////    }
+            ////    //if ($("#txtCircle").val() == "") {
+            ////    if (ctxtCircles.GetText() == "") {
+            ////        //jAlert("Please select circle.", "Alert", function () {
 
-            //        //});
-            //        $('#MandatoryCircle').css({ 'display': 'block' });
-            //        return false;
-            //    }
-            //    else {
-            //        $('#MandatoryCircle').css({ 'display': 'none' });
-            //    }
-            //    //if ($("#txtSection").val() == "") {
-            //    if (ctxtSections.GetText() == "") {
-            //        //jAlert("Please select Section.", "Alert", function () {
+            ////        //});
+            ////        $('#MandatoryCircle').css({ 'display': 'block' });
+            ////        return false;
+            ////    }
+            ////    else {
+            ////        $('#MandatoryCircle').css({ 'display': 'none' });
+            ////    }
+            ////    //if ($("#txtSection").val() == "") {
+            ////    if (ctxtSections.GetText() == "") {
+            ////        //jAlert("Please select Section.", "Alert", function () {
 
-            //        //});
-            //        $('#MandatorySection').css({ 'display': 'block' });
-            //        return false;
-            //    }
-            //    else {
-            //        $('#MandatorySection').css({ 'display': 'none' });
-            //    }
-            //}
-            //End of Mantis Issue 25148
-            var today = new Date();
-            startLoading();
+            ////        //});
+            ////        $('#MandatorySection').css({ 'display': 'block' });
+            ////        return false;
+            ////    }
+            ////    else {
+            ////        $('#MandatorySection').css({ 'display': 'none' });
+            ////    }
+            ////}
+            ////End of Mantis Issue 25148
+            //var today = new Date();
+            //startLoading();
         }
         //function ValidateEMPID() {
         //    if (document.getElementById("txtAliasName").value == '') {
@@ -1269,7 +1306,7 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                                     <div style="position: relative">
                                         <asp:TextBox ID="txtFirstNmae" runat="server" Width="100%" MaxLength="50" CssClass="form-control" TabIndex="1"></asp:TextBox>
                                         <span id="MandatoryFirstName" class="pullleftClass fa fa-exclamation-circle iconRed " style="color: red; position: absolute; right: -4px; top: 10px; display: none" title="Mandatory"></span>
-                                       
+                                        
                                     </div>
                                 </div>
                                 <div class="col-md-3">
@@ -1345,7 +1382,12 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                                 </div>          
                             <div style="clear: both"></div>
                             <div class="col-md-12" style="padding-top: 15px;">
-                                <asp:Button ID="btnSave" CssClass="btn btn-primary btnSave" Text="Save & Proceed" TabIndex="11" runat="server" OnClientClick="setvalue()" OnClick="btnSave_Click" />
+                                <%--<asp:Button ID="btnSave" CssClass="btn btn-primary btnSave" Text="Save & Proceed" TabIndex="11" runat="server" OnClientClick="setvalue()" OnClick="btnSave_Click" UseSubmitBehavior="false" />--%>
+                                
+                                <dxe:ASPxButton ID="btnSave" ClientInstanceName="cbtnSave" runat="server" AutoPostBack="False" Text="Save & Proceed" OnClick="btnSave_Click" CssClass="btn btn-primary btnSave" UseSubmitBehavior="False">
+                                    <ClientSideEvents Click="function(s, e) {ClientSaveClick(s,e);}" />
+                                </dxe:ASPxButton>
+
                             </div>
                             </div>
 
