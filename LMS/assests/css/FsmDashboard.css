@@ -990,7 +990,7 @@
 
     .multiselect.dropdown-toggle {
         background: #fff;
-        border-radius: 0;
+        border-radius: 50px;
     }
 
     .transNotLogged {
@@ -1287,7 +1287,7 @@
     width: 2.7em;
     height: 101%;
     /*fill: #919294;*/
-    fill: #4c80b9;
+    fill: #900c0c;
 }
 
         .tabs-style-shape nav li a svg:nth-child(2),
@@ -1299,19 +1299,19 @@
             margin-right: -1px;
         }
 
-    .tabs-style-shape nav li a span {
-        display: block;
-        overflow: hidden;
-        padding: 0.32em 0;
-        /*background-color: #919294;*/
-        background-color: #4c80b9;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        /*Rev Pallab*/
-        /*font-size: 16px;*/
-        font-size: 15px;
-        /*Rev End Pallab*/
-    }
+.tabs-style-shape nav li a span {
+    display: block;
+    overflow: hidden;
+    padding: 0.32em 0;
+    /*background-color: #919294;*/
+    background-color: #900c0c;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    /*Rev Pallab*/
+    /*font-size: 16px;*/
+    font-size: 15px;
+    /*Rev End Pallab*/
+}
 
 @media only screen and (max-width: 1505px) and (min-width: 1455px) {
 
@@ -1346,11 +1346,11 @@
 }
 
 .tabs-style-shape nav li a:hover span {
-    background-color: #241cad;
+    background-color: #cc2e5d;
 }
 
 .tabs-style-shape nav li a:hover svg {
-    fill: #241cad;
+    fill: #cc2e5d;
 }
 
     .tabs-style-shape nav li a:active, .tabs-style-shape nav li a:focus, .tabs-style-shape nav li a:hover {
@@ -1387,7 +1387,7 @@
     background: #fff;
     padding: 20px;
     border-radius: 0 15px 20px 20px;
-    box-shadow: 1px 1px 15px #053164;
+    box-shadow: 1px 1px 30px #0531644a;
     margin-top: -1px;
 }
 
@@ -1993,7 +1993,7 @@
 /*rev 1.0*/
 .btn.details-btn {
     /*background-color: #71a8eb;*/
-    background-color: #164f92;
+    background-color: #ef1557;
     /*width: 55px;
     height: 55px;*/
     /*border-radius: 50% !important;*/
@@ -2011,13 +2011,13 @@
 
 @-webkit-keyframes pulse-afct {
     0% {
-        box-shadow: 0 0 0 0 #164f929e;
+        box-shadow: 0 0 0 0 #ef15574a;
     }
 }
 
 @keyframes pulse-afct {
     0% {
-        box-shadow: 0 0 0 0 #164f929e;
+        box-shadow: 0 0 0 0 #ef15574a;
     }
 }
 .pl-50
@@ -2025,7 +2025,7 @@
     padding-left: 40px !important;
 }
 .btn.details-btn:hover {
-    background-color: #164f92;
+    background-color: #ef1557;
     color: #fff !important;
 }
 .btn.details-btn:focus {
