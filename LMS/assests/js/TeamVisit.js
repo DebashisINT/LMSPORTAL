@@ -1,12 +1,4 @@
-﻿//====================================================== Revision History ===========================================================
-//@* Rev Number         DATE                VERSION          DEVELOPER           CHANGES *@
-//@* 1.0                26 - 06 - 2023      2.0.41           Pallab              26413: FSM dashboard tab boxes click event disable, when "show data" button not clicked *@
-//@* 2.0                07 - 07 - 2023      2.0.42           Pallab              FSM dashboard tab data not coming in ITC, when "Employees On Leave" box hide.refer: 26529
-//@* 3.0                03 - 08 - 2023      2.0.42           Pallab              Clicked state or branch selection without click "show data" button, tab box number data showing, disable click event.refer: 26663
-//@* 4.0                04-08-2023          V2.0.42          Sanchita            Data not comming in Field Visit and Team Visit tab when Visit tab is off. Mantis : 26672
-//====================================================== Revision History ===========================================================
-
-$(document).ready(function () {
+﻿$(document).ready(function () {
 
     $('#cmbStateTV').multiselect({
         includeSelectAllOption: true,
@@ -14,7 +6,7 @@ $(document).ready(function () {
         maxHeight: 400,
         enableCaseInsensitiveFiltering: true,
         onDropdownHide: function (event) {
-            GetSateValueTV();
+            GetSateValue();
         }
     }).multiselect('selectAll', false).multiselect('updateButtonText');
     $('#cmbBranchTV').multiselect({
@@ -40,116 +32,113 @@ $(document).ready(function () {
             }
         }
 
-        // Mantis Issue 25455
-        //if (settingsid == "1") {
-        //    var obj = {};
-        //    obj.ID = "1";
-        //    obj.action = "AT_WORK";
-        //    obj.rptype = "Summary";
-        //    obj.empid = "";
-        //    obj.stateid = stateids.join(',');// cmbState.GetValue();
+        if (settingsid == "1") {
+            var obj = {};
+            obj.ID = "1";
+            obj.action = "AT_WORK";
+            obj.rptype = "Summary";
+            obj.empid = "";
+            obj.stateid = stateids.join(',');// cmbState.GetValue();
 
-        //    var isObject = typeof branchidsTV
-        //    if (isObject == "object") {
-        //        if (branchidsTV != null && branchidsTV.length > 0) {
-        //            obj.branchid = branchidsTV.join(',');
-        //        } else {
-        //            obj.branchid = "";
+            var isObject = typeof branchidsTV
+            if (isObject == "object") {
+                if (branchidsTV != null && branchidsTV.length > 0) {
+                    obj.branchid = branchidsTV.join(',');
+                } else {
+                    obj.branchid = "";
 
-        //        }
-        //    } else {
-        //        if (branchidsTV != null && branchidsTV.length > 0) {
-        //            obj.branchid = branchidsTV;
-        //        }
-        //        else {
-        //            obj.branchid = "";
-        //        }
-        //    }
-        //    obj.designid = "";
-        //    objsettings.push(obj);
-        //}
+                }
+            } else {
+                if (branchidsTV != null && branchidsTV.length > 0) {
+                    obj.branchid = branchidsTV;
+                }
+                else {
+                    obj.branchid = "";
+                }
+            }
+            obj.designid = "";
+            objsettings.push(obj);
+        }
 
-        //WindowSize = $(window).width();
+        WindowSize = $(window).width();
 
 
-        //$("#lblAtWorkTV").html("<img src='/assests/images/Spinner.gif' />");
-        //$("#lblOnLeaveTV").html("<img src='/assests/images/Spinner.gif' />");
-        //$("#lblNotLoggedInTV").html("<img src='/assests/images/Spinner.gif' />");
-        //$("#lblTotalTV").html("<img src='/assests/images/Spinner.gif' />");
-        //stateid = stateidsTV.join(',');// cmbState.GetValue();
-        //$("#salesmanheader").html("State wise Summary");
-        //$("#salesmanheaderTeam").html("State wise Summary");
-        //stateid = stateidsTV.join(',');// cmbState.GetValue();
-        //// Mantis Issue 24729
-        //var isObject = typeof branchidsTV
-        //if (isObject == "object") {
-        //    if (branchidsTV != null && branchidsTV.length > 0) {
-        //        branchid = branchidsTV.join(',');
-        //    } else {
-        //        branchid = "";
+        $("#lblAtWorkTV").html("<img src='/assests/images/Spinner.gif' />");
+        $("#lblOnLeaveTV").html("<img src='/assests/images/Spinner.gif' />");
+        $("#lblNotLoggedInTV").html("<img src='/assests/images/Spinner.gif' />");
+        $("#lblTotalTV").html("<img src='/assests/images/Spinner.gif' />");
+        stateid = stateidsTV.join(',');// cmbState.GetValue();
+        $("#salesmanheader").html("State wise Summary");
+        $("#salesmanheaderTeam").html("State wise Summary");
+        stateid = stateidsTV.join(',');// cmbState.GetValue();
+        // Mantis Issue 24729
+        var isObject = typeof branchidsTV
+        if (isObject == "object") {
+            if (branchidsTV != null && branchidsTV.length > 0) {
+                branchid = branchidsTV.join(',');
+            } else {
+                branchid = "";
 
-        //    }
-        //} else {
-        //    if (branchidsTV != null && branchidsTV.length > 0) {
-        //        branchid = branchidsTV;
-        //    }
-        //    else {
-        //        branchid = "";
-        //    }
-        //}
+            }
+        } else {
+            if (branchidsTV != null && branchidsTV.length > 0) {
+                branchid = branchidsTV;
+            }
+            else {
+                branchid = "";
+            }
+        }
 
-        //objData = {};
+        objData = {};
 
-        //var hdnTotalEmployeesTV = $('#hdnTotalEmployeesTV').val();
-        //var hdnAtWorkTV = $('#hdnAtWorkTV').val();
-        //var hdnOnLeaveTV = $('#hdnOnLeaveTV').val();
-        //var hdnNotLoggedInTV = $('#hdnNotLoggedInTV').val();
-        //var hdnStatewiseSummaryTV = $('#hdnStatewiseSummaryTV').val();
-        //var hdnStatewiseSummaryTeamTV = $('#hdnStatewiseSummaryTeamTV').val();
+        var hdnTotalEmployeesTV = $('#hdnTotalEmployeesTV').val();
+        var hdnAtWorkTV = $('#hdnAtWorkTV').val();
+        var hdnOnLeaveTV = $('#hdnOnLeaveTV').val();
+        var hdnNotLoggedInTV = $('#hdnNotLoggedInTV').val();
+        var hdnStatewiseSummaryTV = $('#hdnStatewiseSummaryTV').val();
+        var hdnStatewiseSummaryTeamTV = $('#hdnStatewiseSummaryTeamTV').val();
 
-        //var obj = {};
-        //obj.stateid = stateid;
-        //// Mantis Issue 24729
-        //obj.branchid = branchid;
-        //// End of Mantis Issue 24729
+        var obj = {};
+        obj.stateid = stateid;
+        // Mantis Issue 24729
+        obj.branchid = branchid;
+        // End of Mantis Issue 24729
 
-        //if (hdnTotalEmployeesTV > 0 || hdnAtWorkTV > 0 || hdnOnLeaveTV > 0 || hdnNotLoggedInTV > 0) {
-        //    $.ajax({
-        //        type: "POST",
-        //        url: "/DashboardMenu/GetDashboardDataVisit",
-        //        data: JSON.stringify(obj),
-        //        async: true,
-        //        contentType: "application/json; charset=utf-8",
-        //        dataType: "json",
-        //        success: function (response) {
-        //            if (hdnAtWorkTV > 0) {
-        //                $("#EAWTV").html(response.lblAtWork);
-        //            }
-        //            if (hdnOnLeaveTV > 0) {
-        //                $("#EOLTV").html(response.lblOnLeave);
-        //            }
-        //            if (hdnNotLoggedInTV > 0) {
-        //                $("#NLITV").html(response.lblNotLoggedIn);
-        //            }
-        //            if (hdnTotalEmployeesTV > 0) {
-        //                $("#EMPTV").html(response.lblTotal);
-        //            }
-        //        },
-        //        error: function (response) {
-        //            jAlert("Please try again later");
-        //        }
-        //    });
-        //    // ajax Team visit
-        //    if ($("#hdnStatewiseSummaryTeamTabTV").val() == 1) {
-        //        TeamVisitData(obj)
-        //    }
-        //}
-        
-        //if (hdnStatewiseSummaryTV > 0) {
-        //    //gridsalesman.ClearFilter();
-        //    //gridsalesman.Refresh();
-        //}
-        // End of Mantis Issue 25455
+        if (hdnTotalEmployeesTV > 0 || hdnAtWorkTV > 0 || hdnOnLeaveTV > 0 || hdnNotLoggedInTV > 0) {
+            $.ajax({
+                type: "POST",
+                url: "/DashboardMenu/GetDashboardDataVisit",
+                data: JSON.stringify(obj),
+                async: true,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (hdnAtWorkTV > 0) {
+                        $("#EAWTV").html(response.lblAtWork);
+                    }
+                    if (hdnOnLeaveTV > 0) {
+                        $("#EOLTV").html(response.lblOnLeave);
+                    }
+                    if (hdnNotLoggedInTV > 0) {
+                        $("#NLITV").html(response.lblNotLoggedIn);
+                    }
+                    if (hdnTotalEmployeesTV > 0) {
+                        $("#EMPTV").html(response.lblTotal);
+                    }
+                },
+                error: function (response) {
+                    jAlert("Please try again later");
+                }
+            });
+            // ajax Team visit
+            if ($("#hdnStatewiseSummaryTeamTabTV").val() == 1) {
+                TeamVisitData(obj)
+            }
+        }
+        if (hdnStatewiseSummaryTV > 0) {
+            //gridsalesman.ClearFilter();
+            //gridsalesman.Refresh();
+        }
     }
     else {
         $('.bodymain_areastatewise').hide();
@@ -224,12 +213,6 @@ function GetBranchValueTV() {
 }
     
 function cmbBranchChangeTV() {
-    /*Rev 3.0*/
-    if (!isShowTeamVisitDataClicked) {
-
-        return; // Disable click event
-    }
-    /*Rev end 3.0*/
     let newBranch = $('#cmbBranchTV').val();
 
     var isObject = typeof newBranch
@@ -252,145 +235,6 @@ function cmbBranchChangeTV() {
 }
 
 // End of Mantis Issue 24729
-// Mantis Issue 25455
-
-/*Rev 1.0*/
-var isShowTeamVisitDataClicked = false;
-/*Rev end 1.0*/
-
-function ShowTeamVisitData() {
-    /*Rev 1.0*/
-    isShowTeamVisitDataClicked = true;
-    $('#a4tv').addClass('zoom');
-    /*$('#a4tv').removeAttribute('title');*/
-    $('#a1tv').addClass('zoom');
-    $('#a2tv').addClass('zoom');
-    $('#a3tv').addClass('zoom');
-    /*Rev 2.0*/
-    //var element4 = document.getElementById("a4tv");
-    //var element1 = document.getElementById("a1tv");
-    //var element2 = document.getElementById("a2tv");
-    //var element3 = document.getElementById("a3tv");
-    //element1.removeAttribute('title');
-    //element2.removeAttribute('title');
-    //element3.removeAttribute('title');
-    //element4.removeAttribute('title');
-    /*Rev 2.0*/
-    /*Rev end 1.0*/
-    if (settingsid == "1") {
-        var obj = {};
-        obj.ID = "1";
-        obj.action = "AT_WORK";
-        obj.rptype = "Summary";
-        obj.empid = "";
-        // Rev 4.0
-        //obj.stateid = stateids.join(',');// cmbState.GetValue();
-        obj.stateid = stateidsTV.join(',');// cmbState.GetValue();
-        // End of Rev 4.0
-
-        var isObject = typeof branchidsTV
-        if (isObject == "object") {
-            if (branchidsTV != null && branchidsTV.length > 0) {
-                obj.branchid = branchidsTV.join(',');
-            } else {
-                obj.branchid = "";
-
-            }
-        } else {
-            if (branchidsTV != null && branchidsTV.length > 0) {
-                obj.branchid = branchidsTV;
-            }
-            else {
-                obj.branchid = "";
-            }
-        }
-        obj.designid = "";
-        objsettings.push(obj);
-    }
-
-    WindowSize = $(window).width();
-
-    $(".teamvisit-tb-hand").hide();
-    // Mantis Issue 25455
-    //$("#lblAtWorkTV").html("<img src='/assests/images/Spinner.gif' />");
-    //$("#lblOnLeaveTV").html("<img src='/assests/images/Spinner.gif' />");
-    //$("#lblNotLoggedInTV").html("<img src='/assests/images/Spinner.gif' />");
-    //$("#lblTotalTV").html("<img src='/assests/images/Spinner.gif' />");
-    $("#EMPTV").html("<img src='/assests/images/Spinner.gif' />");
-    $("#EAWTV").html("<img src='/assests/images/Spinner.gif' />");
-    $("#EOLTV").html("<img src='/assests/images/Spinner.gif' />");
-    $("#NLITV").html("<img src='/assests/images/Spinner.gif' />");
-    // End of Mantis Issue 25455
-    stateid = stateidsTV.join(',');// cmbState.GetValue();
-    $("#salesmanheader").html("State wise Summary");
-    $("#salesmanheaderTeam").html("State wise Summary");
-    stateid = stateidsTV.join(',');// cmbState.GetValue();
-    // Mantis Issue 24729
-    var isObject = typeof branchidsTV
-    if (isObject == "object") {
-        if (branchidsTV != null && branchidsTV.length > 0) {
-            branchid = branchidsTV.join(',');
-        } else {
-            branchid = "";
-
-        }
-    } else {
-        if (branchidsTV != null && branchidsTV.length > 0) {
-            branchid = branchidsTV;
-        }
-        else {
-            branchid = "";
-        }
-    }
-
-    objData = {};
-
-    var hdnTotalEmployeesTV = $('#hdnTotalEmployeesTV').val();
-    var hdnAtWorkTV = $('#hdnAtWorkTV').val();
-    var hdnOnLeaveTV = $('#hdnOnLeaveTV').val();
-    var hdnNotLoggedInTV = $('#hdnNotLoggedInTV').val();
-    var hdnStatewiseSummaryTV = $('#hdnStatewiseSummaryTV').val();
-    var hdnStatewiseSummaryTeamTV = $('#hdnStatewiseSummaryTeamTV').val();
-
-    var obj = {};
-    obj.stateid = stateid;
-    // Mantis Issue 24729
-    obj.branchid = branchid;
-    // End of Mantis Issue 24729
-
-    if (hdnTotalEmployeesTV > 0 || hdnAtWorkTV > 0 || hdnOnLeaveTV > 0 || hdnNotLoggedInTV > 0) {
-        $.ajax({
-            type: "POST",
-            url: "/DashboardMenu/GetDashboardDataVisit",
-            data: JSON.stringify(obj),
-            async: true,
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (response) {
-                if (hdnAtWorkTV > 0) {
-                    $("#EAWTV").html(response.lblAtWork);
-                }
-                if (hdnOnLeaveTV > 0) {
-                    $("#EOLTV").html(response.lblOnLeave);
-                }
-                if (hdnNotLoggedInTV > 0) {
-                    $("#NLITV").html(response.lblNotLoggedIn);
-                }
-                if (hdnTotalEmployeesTV > 0) {
-                    $("#EMPTV").html(response.lblTotal);
-                }
-            },
-            error: function (response) {
-                jAlert("Please try again later");
-            }
-        });
-        // ajax Team visit
-        if ($("#hdnStatewiseSummaryTeamTabTV").val() == 1) {
-            TeamVisitData(obj)
-        }
-    }
-}
-// End of Mantis Issue 25455
 // Susanta
 
 var stateidTV = "";
@@ -474,47 +318,25 @@ function gridsalesmanclick(degsi) {
             obj.action = "AT_WORK";
             obj.rptype = "Detail";
             obj.empid = "";
-            // Rev 4.0
-            //obj.stateid = stateids.join(','); //cmbState.GetValue();
-            obj.stateid = stateidsTV.join(','); //cmbState.GetValue();
-            // End of Rev 4.0
+            obj.stateid = stateids.join(','); //cmbState.GetValue();
             // Mantis Issue 24729
 
-            // Rev 4.0
-            //var isObject = typeof branchids
-            //if (isObject == "object") {
-            //    if (branchids != null && branchids.length > 0) {
-            //        obj.branchid = branchids.join(',');
-            //    } else {
-            //        obj.branchid = "";
-
-            //    }
-            //} else {
-            //    if (branchids != null && branchids.length > 0) {
-            //        obj.branchid = branchids;
-            //    }
-            //    else {
-            //        obj.branchid = "";
-            //    }
-            //}
-
-            var isObject = typeof branchidsTV
+            var isObject = typeof branchids
             if (isObject == "object") {
-                if (branchidsTV != null && branchidsTV.length > 0) {
-                    obj.branchid = branchidsTV.join(',');
+                if (branchids != null && branchids.length > 0) {
+                    obj.branchid = branchids.join(',');
                 } else {
                     obj.branchid = "";
 
                 }
             } else {
-                if (branchidsTV != null && branchidsTV.length > 0) {
-                    obj.branchid = branchidsTV;
+                if (branchids != null && branchids.length > 0) {
+                    obj.branchid = branchids;
                 }
                 else {
                     obj.branchid = "";
                 }
             }
-            // End of Rev 4.0
             // End of Mantis Issue 24729
             obj.designid = degid;
             objsettings.push(obj);
@@ -547,46 +369,24 @@ function assignedclick(id, EMPNAME) {
         obj.action = "VISITTODAY";
         obj.rptype = "Detail";
         obj.empid = id;
-        // Rev 4.0
-        //obj.stateid = stateids.join(',');//cmbState.GetValue();
-        obj.stateid = stateidsTV.join(',');//cmbState.GetValue();
-        // End of Rev 4.0
+        obj.stateid = stateids.join(',');//cmbState.GetValue();
 
-        // Rev 4.0
-        //var isObject = typeof branchids
-        //if (isObject == "object") {
-        //    if (branchids != null && branchids.length > 0) {
-        //        obj.branchid = branchids.join(',');
-        //    } else {
-        //        obj.branchid = "";
-
-        //    }
-        //} else {
-        //    if (branchids != null && branchids.length > 0) {
-        //        obj.branchid = branchids;
-        //    }
-        //    else {
-        //        obj.branchid = "";
-        //    }
-        //}
-
-        var isObject = typeof branchidsTV
+        var isObject = typeof branchids
         if (isObject == "object") {
-            if (branchidsTV != null && branchidsTV.length > 0) {
-                obj.branchid = branchidsTV.join(',');
+            if (branchids != null && branchids.length > 0) {
+                obj.branchid = branchids.join(',');
             } else {
                 obj.branchid = "";
 
             }
         } else {
-            if (branchidsTV != null && branchidsTV.length > 0) {
-                obj.branchid = branchidsTV;
+            if (branchids != null && branchids.length > 0) {
+                obj.branchid = branchids;
             }
             else {
                 obj.branchid = "";
             }
         }
-        // End of Rev 4.0
 
         //if (branchids != null && branchids.length > 0) {
         //    obj.branchid = branchids.join(',');
@@ -599,12 +399,6 @@ function assignedclick(id, EMPNAME) {
     }
 }
 function cmbStatechangeTV() {
-    /*Rev 3.0*/
-    if (!isShowTeamVisitDataClicked) {
-
-        return; // Disable click event
-    }
-    /*Rev end 3.0*/
     settingsid = "1";
 
     for (var i = objsettings.length - 1; i >= 0; i--) {
@@ -716,7 +510,7 @@ function reloadBoxDataTV(branchidsTV) {
     $('#mapTV').show();
 
     var obj = {};
-    obj.stateid = stateid;
+    obj.stateid = stateidTV;
     // Mantis Issue 24729
     obj.branchid = branchid;
     // End of Mantis Issue 24729
@@ -728,10 +522,10 @@ function reloadBoxDataTV(branchidsTV) {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {
-            $("#EAWTV").text(response.lblAtWork);
-            $("#EOLTV").text(response.lblOnLeave);
-            $("#NLITV").text(response.lblNotLoggedIn);
-            $("#EMPTV").text(response.lblTotal);
+            $("#lblAtWorkTV").text(response.lblAtWork);
+            $("#lblOnLeaveTV").text(response.lblOnLeave);
+            $("#lblNotLoggedInTV").text(response.lblNotLoggedIn);
+            $("#lblTotalTV").text(response.lblTotal);
             $("#lbltotalshopTV").text(response.TotalVisit);
             $("#lblnewvisitTV").text(response.NewVisit);
             $("#lblrevisitTV").text(response.ReVisit);
@@ -765,10 +559,7 @@ function AtWorkClickTV(elem) {
     $('#collapseTwoTV').addClass('in');
     Type = "Attendance";
     FilterName = "AT_WORK";
-    // Rev 4.0
-    //stateid = stateids.join(',');// cmbState.GetValue();
-    stateid = stateidsTV.join(',');// cmbState.GetValue();
-    // End of Rev 4.0
+    stateid = stateids.join(',');// cmbState.GetValue();
 
     //$("#gridHeadedtext").text("Employee Attendance Summary - Employees At Work");
 
@@ -796,10 +587,7 @@ function NotLoggedInClickTV(elem) {
     $('#collapseTwoTV').addClass('in');
     Type = "Attendance";
     FilterName = "NOT_LOGIN";
-    // Rev 4.0
-    //stateid = stateids.join(',');//cmbState.GetValue();
-    stateid = stateidsTV.join(',');//cmbState.GetValue();
-    // End of Rev 4.0
+    stateid = stateids.join(',');//cmbState.GetValue();
 
     //$("#gridHeadedtext").text("Employee Attendance Summary - Employees Not Logged In");
 
@@ -827,10 +615,7 @@ function OnLeaveClickTV(elem) {
     $('#collapseTwoTV').addClass('in');
     Type = "Attendance";
     FilterName = "ON_LEAVE";
-    // Rev 4.0
-    //stateid = stateids.join(',');// cmbState.GetValue();
-    stateid = stateidsTV.join(',');// cmbState.GetValue();
-    // End of Rev 4.0
+    stateid = stateids.join(',');// cmbState.GetValue();
 
     //$("#gridHeadedtext").text("Employee Attendance Summary - Employees On Leave");
     //gridsummarydashboard.Refresh();
@@ -858,10 +643,7 @@ function OnTotalClickTV(elem) {
     $('#collapseTwoTV').addClass('in');
     Type = "Attendance";
     FilterName = "EMP";
-    // Rev 4.0
-    //stateid = stateids.join(',');// cmbState.GetValue();
-    stateid = stateidsTV.join(',');// cmbState.GetValue();
-    // End of Rev 4.0
+    stateid = stateids.join(',');// cmbState.GetValue();
 
     //$("#gridHeadedtext").text("Employee Attendance Summary - Total Employees");
     //gridsummarydashboard.Refresh();
@@ -887,10 +669,7 @@ function shopclickTeam(id, EMPNAME) {
 
 function showMapTV() {
 
-    // Rev 4.0
-    //stateid = stateids.join(',');// cmbState.GetValue();
-    stateid = stateidsTV.join(',');// cmbState.GetValue();
-    // End of Rev 4.0
+    stateid = stateids.join(',');// cmbState.GetValue();
     GetAddressTV(stateid);
     $('#mapTV').removeClass('hide');
 }

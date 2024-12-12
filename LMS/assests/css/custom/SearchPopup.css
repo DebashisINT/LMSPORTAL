@@ -1,10 +1,5 @@
-﻿/*====================================================== Revision History ==========================================================
-@*Rev Number         DATE              VERSION          DEVELOPER           CHANGES*@
-@*1.0                01-06-2023        2.0.40           Pallab              26275: Order Summary module "Product List" popup cross button issue fix
-====================================================== Revision History ==========================================================*/
-
-.dynamicPopupTbl {
-                    border: 1px solid #ccc; 
+﻿ .dynamicPopupTbl {
+                    border: 1px solid #ccc;
                 }
                  .dynamicPopupTbl>tbody>tr>td {
                         overflow: hidden;
@@ -36,6 +31,7 @@
                      height: 14px;
                     margin-bottom: 0;
                         font: 12px Tahoma, Geneva, sans-serif;
+                        width: 100%;
                 }
                 .focusrow {
                     background-color: #3CA5DF;
@@ -51,21 +47,31 @@
             height: 23px;
             font-size: 15px;
             }
-/*Rev 1.0*/
-.close {
-    color: #fff !important;
-    opacity: .8 !important;
-    font-weight: 400 !important;
-}
 
-    .close:hover, .close:focus {
-        color: #fff !important;
-        opacity: 1 !important;
-    }
 
-.modal .modal-header {
-    background: #094e8c;
+.modal-header {
+    background: #094e8c !important;
+    background-image: none !important;
+    padding: 11px 20px;
+    border: none;
     border-radius: 5px 5px 0 0 !important;
+    color: #fff;
+    /*border-radius: 10px 10px 0 0 !important;*/
 }
 
-/*Rev end 1.0*/
+.modal-content {
+    border: none;
+    border-radius: 10px;
+}
+
+.modal-header .modal-title {
+    font-size: 14px;
+}
+
+.close {
+    font-weight: 400 !important;
+    font-size: 25px !important;
+    color: #fff !important;
+    text-shadow: none !important;
+    opacity: .5 !important;
+}

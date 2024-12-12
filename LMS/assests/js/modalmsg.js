@@ -5,7 +5,7 @@ function jConfirm(message, textTitle, CallBack) {
         $('<div></div>').appendTo('body')
                           .html('<div><h6>' + message + '</h6></div>')
                           .dialog({
-                              modal: true, title: textTitle, zIndex: 100000000, autoOpen: true,
+                              modal: true, title: textTitle, zIndex: 10000, autoOpen: true,
                               width: 'auto', resizable: false,
                               buttons: {
                                   "Yes":{
@@ -49,7 +49,7 @@ function jAlert(message, textTitle, CallBack) {
                       .html('<div><h6>' + message + '</h6></div>')
                       .dialog({
                           
-                          modal: true, title: title, zIndex: 100000000, autoOpen: true,
+                          modal: true, title: title, zIndex: 10000, autoOpen: true,
                               width: 'auto', resizable: false,
                               buttons: {
                                   OK: function () { 
