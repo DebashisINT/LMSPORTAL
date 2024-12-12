@@ -18,10 +18,14 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
 <head>
     <%--REV 6.0--%>
     <%--<title>Login to BreezeERP</title>--%>
-    <title>Login to LMS</title>
+    <title>Login to Mobilearn</title>
     <%--REV 6.0 END--%>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta property="og:image" content="/assests/images/NLogin/share-img.webp">
+    <meta property="og:image:width" content="630">
+    <meta property="og:image:height" content="630">
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700;800&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
 
@@ -381,7 +385,8 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
             text-align: center;
             /*Rev Pallab*/
             /*background: #333 url('/assests/images/NLogin/LoginDark_bg.png') no-repeat top left;*/
-            background: url('/assests/images/NLogin/lms-login-background.webp') no-repeat top left;
+            /*background: url('/assests/images/NLogin/lms-login-background.webp') no-repeat top left;*/
+            background: url('/assests/images/NLogin/lms-login-background-5.jpg') no-repeat top left;
             /*Rev end Pallab*/
             background-size:cover;
         }
@@ -1272,7 +1277,8 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                      <img src="/assests/images/NLogin/screen1.png" class="scrImage wow bounceInUp"  />
                      <div class="chartArea"><div class="hider"></div><div id="chartdiv"></div></div>
                  </div>--%>
-                 <img src="/assests/images/NLogin/left-top-image.webp" class="left-top-image light-design"  />
+                 <%--<img src="/assests/images/NLogin/left-top-image.webp" class="left-top-image light-design"  />--%>
+                 <img src="/assests/images/NLogin/left-top-image-new.png" class="left-top-image light-design"  />
                  <%--Rev 2.0 : img add--%>
                  <%--<img src="/assests/images/NLogin/fsm-left-lgt-design.png" class="left-top-image dark-design img-hide" />--%>
                  <%--Rev end 2.0--%>
