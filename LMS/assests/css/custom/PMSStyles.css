@@ -1,10 +1,4 @@
-﻿
-/*====================================================== Revision History ===========================================================*/
-/*Rev Number     DATE             VERSION       DEVELOPER         CHANGES*/
-/*1.0            11-01-2023       2.0.37        Pallab            dashboard popup header border radius add*/
-/*====================================================== Revision History ===========================================================*/
-
-/* Updated on 15.05.2019*/
+﻿/* Updated on 15.05.2019*/
 .pTop20 {
     padding-top:20px !important;
 }
@@ -30,28 +24,20 @@
     border-radius: 20px;
 }
 .pmsModal .modal-header {
-    /*background: #3ca1e8;*/
-    background: #165291;
+    background: #3ca1e8;
     background-image: none !important;
     padding: 11px 20px;
-    border: none;
-    font-weight: normal;
-    /*rev 1.0*/
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    /*rev end 1.0*/
+    border:none;
+    font-weight:normal;
 }
 .pmsModal .close {
     float: right;
     position: absolute;
     top: 13px;
-    right: 20px;
+    right: 25px;
     color: #f3e1e1;
     opacity: 1;
     text-shadow: none;
-    font-size: 32px !important;
-    font-weight: 400;
-    line-height: 23px;
 }
 .pmsModal .close:hover {
     color:#fff;
