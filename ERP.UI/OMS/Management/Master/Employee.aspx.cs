@@ -425,7 +425,7 @@ namespace ERP.OMS.Management.Master
             }
             catch
             {
-                // return RedirectToAction("Logout", "Login", new { Area = "" });
+                // return RedirectToAction("Login", "LMSLogin", new { area = "LMS" });
 
             }
             return Ds;

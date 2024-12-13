@@ -48,7 +48,7 @@ namespace LMS.Areas.LMS.Controllers
             }
             catch
             {
-                return RedirectToAction("Logout", "Login", new { Area = "" });
+                return RedirectToAction("Login", "LMSLogin", new { area = "LMS" });
             }
         }
 
@@ -69,7 +69,7 @@ namespace LMS.Areas.LMS.Controllers
             }
             catch
             {
-                return RedirectToAction("Logout", "Login", new { Area = "" });
+                return RedirectToAction("Login", "LMSLogin", new { area = "LMS" });
             }
         }
         public ActionResult GetContentList()
@@ -88,7 +88,7 @@ namespace LMS.Areas.LMS.Controllers
             }
             catch
             {
-                return RedirectToAction("Logout", "Login", new { Area = "" });
+                return RedirectToAction("Login", "LMSLogin", new { area = "LMS" });
             }
         }
 

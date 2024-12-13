@@ -15,13 +15,15 @@ namespace LMS.Areas.LMS.Controllers
         }
         public ActionResult Logout()
         {
-            return Redirect("/OMS/Signoff.aspx");
+            //return Redirect("/OMS/Signoff.aspx");
 
-            //Session.Clear();
+            Session.Clear();
 
-            //Session.Abandon();
+            Session.Abandon();
 
-            //return RedirectToAction("Index", "Login");
+            return RedirectToAction("Login", "LMSLogin", new { area = "LMS" });
+
+            //return RedirectToAction("Login", "LMS/LMSLogin");
 
         }
 
