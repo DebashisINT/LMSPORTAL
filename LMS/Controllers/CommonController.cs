@@ -22,14 +22,16 @@ namespace LMS.Controllers
 
         public ActionResult RedirectToLogin(string rurl)
         {
-            string url = "/OMS/Login.aspx";
+            return RedirectToAction("Login", "LMSLogin", new { area = "LMS" });
 
-            if (!string.IsNullOrWhiteSpace(rurl))
-            {
-                url += "?rurl=" + rurl;
-            }
+            //string url = "/OMS/Login.aspx";
 
-            return Redirect(url);
+            //if (!string.IsNullOrWhiteSpace(rurl))
+            //{
+            //    url += "?rurl=" + rurl;
+            //}
+
+            //return Redirect(url);
         }
     }
 }

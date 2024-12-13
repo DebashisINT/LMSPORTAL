@@ -1,12 +1,12 @@
 ﻿
-
+@using LMS.Models;
 @model LMS.Models.LoginModel
-
 
 @{
     Layout = "";
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Login";
 }
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -818,7 +818,7 @@
     </style>
 </head>
 <body>
-    @using (Html.BeginForm("SubmitForm", "Login", FormMethod.Post, new { @id = "fromsalesman" }))
+    @using (Html.BeginForm("SubmitForm", "LMSLogin", FormMethod.Post, new { @id = "fromsalesman" }))
     {
         <section class="mainLogin">
             <div class="flexArea">
@@ -957,4 +957,5 @@
     }
 </body>
 </html>
+
 

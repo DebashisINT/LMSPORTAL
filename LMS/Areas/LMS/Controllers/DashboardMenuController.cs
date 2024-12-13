@@ -64,7 +64,7 @@ namespace LMS.Areas.LMS.Controllers
             }
             catch
             {
-                return RedirectToAction("Logout", "Login", new { Area = "" });
+                return RedirectToAction("Login", "LMSLogin", new { area = "LMS" });
             }
         }
         public ActionResult FSMDashboard()
@@ -108,7 +108,7 @@ namespace LMS.Areas.LMS.Controllers
             }
             else
             {
-                return RedirectToAction("Logout", "Login", new { Area = "" });
+                return RedirectToAction("Login", "LMSLogin", new { area = "LMS" });
             }
 
 

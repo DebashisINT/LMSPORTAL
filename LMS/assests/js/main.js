@@ -33,7 +33,8 @@ function checkSessionLogoutMasterPage() {
                     allowOutsideClick: false,
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.parent.location.href = '/oms/login.aspx';
+                        //window.parent.location.href = '/oms/login.aspx';
+                        window.parent.location.href = '/LMS/LMSLogin/Login';
                     }
                 })
                 /*Rev end 2.0*/

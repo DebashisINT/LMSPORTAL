@@ -791,7 +791,7 @@ namespace LMS.Areas.LMS.Controllers
             }
             catch
             {
-                return RedirectToAction("Logout", "Login", new { Area = "" });
+                return RedirectToAction("Login", "LMSLogin", new { area = "LMS" });
             }
         }
 
@@ -1054,7 +1054,7 @@ namespace LMS.Areas.LMS.Controllers
 
                 rootObj.message.data.UserName = Customer;
                 rootObj.message.data.UserID = Requesttype;
-                rootObj.message.data.header = "New Topic Added";
+                rootObj.message.data.header = "New Content Added";
                 rootObj.message.data.type = "lms_content_assign";
                 rootObj.message.data.imgNotification_Icon = imgNotification_Icon;
 
@@ -1133,7 +1133,7 @@ namespace LMS.Areas.LMS.Controllers
             }
             catch
             {
-                return RedirectToAction("Logout", "Login", new { Area = "" });
+                return RedirectToAction("Login", "LMSLogin", new { area = "LMS" });
             }
         }
 
@@ -1421,7 +1421,7 @@ namespace LMS.Areas.LMS.Controllers
             }
             catch
             {
-                return RedirectToAction("Logout", "Login", new { Area = "" });
+                return RedirectToAction("Login", "LMSLogin", new { area = "LMS" });
             }
         }
 
@@ -1461,7 +1461,7 @@ namespace LMS.Areas.LMS.Controllers
             }
             catch
             {
-                return RedirectToAction("Logout", "Login", new { Area = "" });
+                return RedirectToAction("Login", "LMSLogin", new { area = "LMS" });
             }
         }
 
@@ -1556,7 +1556,7 @@ namespace LMS.Areas.LMS.Controllers
             }
             catch
             {
-                return RedirectToAction("Logout", "Login", new { Area = "" });
+                return RedirectToAction("Login", "LMSLogin", new { area = "LMS" });
             }
         }
         public JsonResult ShowContentDetailsForEdit(string ContentId)

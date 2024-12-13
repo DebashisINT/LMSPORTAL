@@ -8,33 +8,20 @@ using System.Web;
 using System.Web.Mvc;
 using UtilityLayer;
 
-namespace LMS.Controllers
+namespace LMS.Areas.LMS.Controllers
 {
-    public class LoginController : Controller
+    public class LMSLoginController : Controller
     {
+        // GET: LMS/LMSLogin
         LoginModel model = new LoginModel();
         DBEngine oDBEngine = new DBEngine(ConfigurationManager.AppSettings["DBConnectionDefault"]);
 
 
-        public ActionResult Index()
+        public ActionResult Login()
         {
-            return View();
-        }
-        public ActionResult Logout()
-        {
-            return Redirect("/OMS/Signoff.aspx");
+            return View("Login");
         }
 
-        public ActionResult ChangePassword()
-        {
-            //Mantise issue: 0025122
-            //return Redirect("/OMS/Management/ToolsUtilities/frmchangepassword.aspx");
-            // Rev 1.0
-            //return Redirect("/OMS/Management/ToolsUtilities/frmchangeuserspassword.aspx");
-            return Redirect("/OMS/Management/ToolsUtilities/frmchangepassword.aspx");
-            // End of Rev 1.0
-            //End of  Mantise issue: 0025122
-        }
         public ActionResult SubmitForm(LoginModel omodel)
         {
 
@@ -45,7 +32,7 @@ namespace LMS.Controllers
             Validuser = oDBEngine.AuthenticateUser(omodel.username, Encryptpass).ToString();
             if (Validuser == "Y")
             {
-                return RedirectToAction("FSMDashboard", "LMS/DashboardMenu");
+                return RedirectToAction("FSMDashboard", "DashboardMenu");
             }
 
             else
