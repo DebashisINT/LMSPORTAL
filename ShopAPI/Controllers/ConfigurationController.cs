@@ -43,7 +43,7 @@ namespace ShopAPI.Controllers
                 SqlCommand sqlcmd = new SqlCommand();
                 SqlConnection sqlcon = new SqlConnection(con);
                 sqlcon.Open();
-                sqlcmd = new SqlCommand("proc_FTS_Configuration", sqlcon);
+                sqlcmd = new SqlCommand("PRC_LMS_Configuration", sqlcon);
                 //Rev Debashis : Row:772
                 //sqlcmd.Parameters.Add("@Action", "GlobalCheck");
                 sqlcmd.Parameters.AddWithValue("@Action", "GlobalCheck");
@@ -102,7 +102,7 @@ namespace ShopAPI.Controllers
                 SqlCommand sqlcmd = new SqlCommand();
                 SqlConnection sqlcon = new SqlConnection(con);
                 sqlcon.Open();
-                sqlcmd = new SqlCommand("proc_FTS_Configuration", sqlcon);
+                sqlcmd = new SqlCommand("PRC_LMS_Configuration", sqlcon);
                 //End of Rev Debashis : Row:772
                 //sqlcmd.Parameters.Add("@Action", "UserCheck");
                 //sqlcmd.Parameters.Add("@UserID", model.user_id);
