@@ -1,4 +1,5 @@
 ﻿using BusinessLogicLayer;
+using DevExpress.Map.Kml;
 using LMS.Models;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,9 @@ namespace LMS.Areas.LMS.Controllers
 
         public ActionResult Login()
         {
-            return View("Login");
+            ViewBag.ApplicationVersion = oDBEngine.GetApplicationVersion();
+
+            return View();
         }
 
         public ActionResult SubmitForm(LoginModel omodel)
