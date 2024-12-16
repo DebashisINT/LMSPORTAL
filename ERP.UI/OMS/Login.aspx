@@ -28,6 +28,7 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
     <meta property="og:image:height" content="630">
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700;800&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
     <script type="text/javascript" src="/assests/js/jquery.min.js"></script>
 
@@ -386,7 +387,7 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
             /*Rev Pallab*/
             /*background: #333 url('/assests/images/NLogin/LoginDark_bg.png') no-repeat top left;*/
             /*background: url('/assests/images/NLogin/lms-login-background.webp') no-repeat top left;*/
-            background: url('/assests/images/NLogin/lms-login-background-5.jpg') no-repeat top left;
+            background: url('/assests/images/NLogin/portal-login-bg.webp') no-repeat top left;
             /*Rev end Pallab*/
             background-size:cover;
         }
@@ -1196,6 +1197,26 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
              }
          }
          /*Rev end 5.0*/
+
+         .login-banner-text
+         {
+             font-family: "Poppins", sans-serif;
+             font-weight: 700;
+             font-size: 50px;
+             padding: 20px 60px;
+             line-height: 62px;
+         }
+
+         .login-banner-text span
+         {
+             color: #F11717;
+         }
+
+         .login-left-img
+         {
+             width: 62%;
+             margin-top: 50px;
+         }
     </style>
     
     <script>
@@ -1278,10 +1299,13 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                      <div class="chartArea"><div class="hider"></div><div id="chartdiv"></div></div>
                  </div>--%>
                  <%--<img src="/assests/images/NLogin/left-top-image.webp" class="left-top-image light-design"  />--%>
-                 <img src="/assests/images/NLogin/left-top-image-new.png" class="left-top-image light-design"  />
+                 <%--<img src="/assests/images/NLogin/left-top-image-new.png" class="left-top-image light-design"  />--%>
                  <%--Rev 2.0 : img add--%>
                  <%--<img src="/assests/images/NLogin/fsm-left-lgt-design.png" class="left-top-image dark-design img-hide" />--%>
                  <%--Rev end 2.0--%>
+
+                 <h2 class="login-banner-text"><span>Gamified</span> Micro-Learning for the <span>Next-Gen</span> Workforce</h2>
+                 <img src="/assests/images/NLogin/login-page-left-top.webp" class="w-100 login-left-img"  />
              </div>
             
              <div class="formArea">
@@ -1456,15 +1480,13 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
          </div>
      </div>
     <div class="app-section">
-        <%--<div class="container">--%>
+        
             <div class="row">
                 <div class="col-md-6 mobile-image-part"> 
-                   <%-- <img src="/assests/images/NLogin/loginPh.png" class="responsiveImg" />--%>
-                    <%--<img src="/assests/images/NLogin/mobile-app-mockup.jpg" class="responsiveImg image-fluid" />--%>
+                   
                 </div>
                 <div class="col-md-6 right-text-part">
                     <h2 class="mkHd"> Empowering Learning, Anywhere, Anytime.</h2>
-                    <%--<h4 class="mkHs">Accelerate Sales. Escalate Revenue.</h4>--%>
 
                     <div class="row mkBoxes">
                         <div class="col-sm-12 mb-5">
@@ -1486,7 +1508,6 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                     </div>
                 </div>
             </div>
-        <%--</div>--%>
     </div>
     <div>
         <div class="container text-center resp-pad-left-right" style="padding:50px 0">
