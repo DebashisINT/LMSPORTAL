@@ -18,6 +18,7 @@ using System.Configuration;
 using System.IO;
 using DataAccessLayer;
 using System.Web.UI;
+using System.Net.PeerToPeer;
 
 namespace BusinessLogicLayer
 {
@@ -868,6 +869,20 @@ namespace BusinessLogicLayer
                     return "Y";
                 }
             }
+        }
+
+        public string GetApplicationVersion()
+        {
+            string ApplicationVersion = "";
+
+            string[,] arrApplicationVersion = GetFieldValue("Master_CurrentDBVersion", "CurrentDBVersion_Number", null, 1);
+
+            if (arrApplicationVersion != null)
+            {
+                ApplicationVersion = arrApplicationVersion[0, 0].ToString();
+            }
+
+            return ApplicationVersion;
         }
 
         #region Data Table creation
