@@ -240,8 +240,8 @@ ul{
 
 .sideNavigation {
     position: absolute;
-    /*background: #4caf50;*/
-    background: #e5575f;
+    background: #4caf50;
+    /*background: #e5575f;*/
     top: 75px;
     border-radius: 20px;
     width: 79px;
@@ -1480,7 +1480,7 @@ table.dxgvTable_PlasticBlue > tbody >tr.dxgvFooter_PlasticBlue{
 
 #dropdownMenu2 {
     padding: 7px 12px 7px 8px;
-    background: #d5e8ff;
+    background: #ffe0e0;
     border-radius: 32px;
     transition: all .3s;
 }

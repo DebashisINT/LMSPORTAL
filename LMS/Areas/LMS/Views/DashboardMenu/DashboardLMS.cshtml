@@ -71,7 +71,7 @@
         }
 
         .newStyleMN.lms-dashboard .widgBox {
-            padding-bottom: 3px !important;
+            padding-bottom: 2px !important;
         }
 
         .newStyleMN.lms-dashboard .widgBox {
@@ -139,6 +139,29 @@
             font-size: 18px;
             color: #222;
         }
+
+        .box-holder .hdd-rp {
+ 
+            font-weight: 600;
+
+        }
+
+        .toggleFullScreen {
+            top: 29px;
+            position: absolute;
+            right: 35px;
+            font-size: 14px;
+            display: block;
+            z-index: 5;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            border-radius: 50px;
+            background: #d6e9ff;
+            text-align: center;
+            line-height: 30px;
+            color: #082f5c;
+        }
     </style>
     <script>
         $(function () {
@@ -148,6 +171,25 @@
                     my: "left top",
                     at: "right+5 top-5"
                 }
+            });
+
+            var toggleFullScreenElements = document.querySelectorAll('.toggleFullScreen');
+            toggleFullScreenElements.forEach(function (element) {
+                element.addEventListener('click', function () {
+                    var parentBoxFull = this.parentNode;
+                    parentBoxFull.classList.toggle('full-screen');
+
+                    var toggleButton = this.querySelector('img');
+                    if (parentBoxFull.classList.contains('full-screen')) {
+                        parentBoxFull.classList.remove('full-screen');
+                        this.setAttribute('data-original-title', 'Minimize');
+                        toggleButton.src = '/assests/images/minimize.png';
+                    } else {
+                        parentBoxFull.classList.add('full-screen');
+                        this.setAttribute('data-original-title', 'Maximize');
+                        toggleButton.src = '/assests/images/maximize.png';
+                    }
+                });
             });
         });
     </script>

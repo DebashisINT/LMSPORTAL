@@ -17,6 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700;800&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
     <script type="text/javascript" src="/assests/js/jquery.min.js"></script>
 
@@ -211,18 +212,39 @@
         }
 
         .fts {
-            padding: 60px 0;
-            text-align: center
+            padding: 50px 0 60px;
+            text-align: center;
+            background: #e7eaff;
         }
 
+            .fts h2 {
+                font-family: "Poppins", sans-serif;
+                font-size: 35px;
+                line-height: normal;
+                font-weight: 700;
+                letter-spacing: -1px;
+                color: #111;
+                margin-bottom: 3.5rem;
+            }
+
+                .fts h2 span {
+                    font-family: "Poppins", sans-serif;
+                    font-size: 25px;
+                    line-height: 45px;
+                    font-weight: 600;
+                    color: rgba(39,32,99,1);
+                    display: block;
+                    clear: both;
+                }
+
             .fts img {
-                width: 80px;
-                margin-bottom: 25px;
-                margin-top: 20px
+                width: 50px;
+                /*margin-bottom: 25px;
+                margin-top: 20px*/
             }
 
         section h2 {
-            font-family: 'Montserrat', sans-serif;
+            font-family: "Poppins", sans-serif;
             font-size: 40px;
             line-height: normal;
             font-weight: 700;
@@ -232,7 +254,7 @@
         }
 
             section h2 span {
-                font-family: 'Open Sans', sans-serif;
+                font-family: "Poppins", sans-serif;
                 font-size: 30px;
                 line-height: 45px;
                 font-weight: 600;
@@ -243,14 +265,15 @@
 
         .hdn {
             text-align: center;
-            font-family: 'Open Sans', sans-serif;
+            font-family: "Poppins", sans-serif;
             font-weight: 600;
             color: rgba(39,32,99,1);
-            font-size: 21px;
-            line-height: 30px;
+            font-size: 18px;
+            line-height: 25px;
             margin-bottom: 15px;
             letter-spacing: -.08rem;
             padding: 0 0.5rem;
+            margin-top: 15px;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -442,7 +465,8 @@
             text-align: center;
             /*Rev Pallab*/
             /*background: #333 url('/assests/images/NLogin/LoginDark_bg.png') no-repeat top left;*/
-            background: url('/assests/images/NLogin/LoginDark_bg2.jpg') no-repeat top left;
+            /*background: url('/assests/images/NLogin/LoginDark_bg2.jpg') no-repeat top left;*/
+            background: url('/assests/images/NLogin/portal-login-bg.webp') no-repeat top left;
             /*Rev end Pallab*/
             background-size: cover;
         }
@@ -815,7 +839,227 @@
             max-width: 68%;
             margin-top: 4%;
         }
+
+
+        .login-banner-text {
+            font-family: "Poppins", sans-serif;
+            font-weight: 700;
+            font-size: 50px;
+            padding: 20px 60px;
+            line-height: 62px;
+        }
+
+            .login-banner-text span {
+                color: #F11717;
+            }
+
+        .login-left-img {
+            width: 62%;
+            margin-top: 50px;
+        }
+
+
+        .login-about-box {
+            padding: 15px 10px 15px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 1px 1px 15px #0000001c;
+        }
+
+        .icon-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50px;
+            background: #d7e4ff;
+            margin: auto;
+            text-align: center;
+            line-height: 80px;
+        }
+
+        .mobile-image-part {
+            background: url(/assests/images/NLogin/mobilearn-mobile-img.webp) top center;
+            min-height: 612px;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .app-section {
+            padding: 60px 0;
+            max-width: 100%;
+            padding: 0 15px;
+            /*background: #08638d !important;*/
+            background-image: linear-gradient(170deg, #7E0606 0%, #E80C0C 100%);
+        }
+
+        /*.mobile-image-part {
+            background: url(/assests/images/NLogin/mobilearn-mobile-img.webp) top center;
+            min-height: 590px;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }*/
+        .mb-5 {
+            margin-bottom: 30px;
+        }
+
+        .right-text-part {
+            padding: 50px 120px 50px 50px;
+        }
+
+            .right-text-part h5 {
+                margin-bottom: 5px;
+            }
+
+        .mkHd {
+            font-family: "Poppins", sans-serif;
+            font-size: 32px;
+            line-height: normal;
+            font-weight: 700;
+            letter-spacing: -1px;
+            /*color: rgba(255,91,103,1);*/
+            color: #fff;
+            margin-bottom: 1.5rem;
+            margin-top: 0;
+        }
+
+        .mkHs {
+            font-family: "Poppins", sans-serif;
+            font-size: 22px;
+            color: #ffffff;
+            margin-bottom: 3rem;
+        }
+
+        .mkBoxes h5, .mkBoxes p {
+            font-family: "Poppins", sans-serif;
+        }
+
+        .mkBoxes h5 {
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .mkBoxes p {
+            font-size: 15px;
+            color: #ddd;
+        }
+
+
+        .creditsSec {
+            position: absolute;
+            left: 20px;
+            bottom: 20px;
+            z-index: 109;
+        }
+
+        .droper {
+            position: absolute;
+            bottom: 90%;
+            color: #fff;
+            background: #17158f;
+            min-width: 250px;
+            border-radius: 11px;
+            overflow: hidden;
+            display: none;
+            opacity: 0;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 0px 15px rgb(0 0 0 / 20%);
+        }
+
+            .droper.active {
+                display: block;
+                opacity: 1;
+                bottom: 120%;
+            }
+
+        .secToggler {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            border: 1px solid #9ab2ef;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease-in;
+            cursor: pointer;
+            background: #fff;
+        }
+
+            .secToggler i {
+                font-size: 23px;
+                cursor: pointer;
+                display: inline-block;
+            }
+
+            .secToggler:hover {
+                background: #e7eaff;
+                border-color: #fff;
+                box-shadow: 0 0 0 3px #288fce, 0 0 0 4px rgb(255 255 255 / 20%);
+            }
+
+        .mnHeader {
+            padding: 7px 15px;
+            border-bottom: 1px solid #0b1322;
+            font-size: 1.6rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .scrCnter {
+            padding: 8px 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+            .scrCnter ul {
+                list-style-type: none;
+                padding: 0;
+            }
+
+                .scrCnter ul > li {
+                    padding: 7px 0 7px 7px;
+                    border-bottom: 1px solid #273958;
+                }
+
+                    .scrCnter ul > li.crhdss {
+                        background: #e2f5e7;
+                        font-weight: 500;
+                        border-bottom: 1px dashed;
+                    }
+
+        #clCr {
+            float: right;
+            cursor: pointer;
+        }
+
+        .visit-website-btn {
+            padding: 14px 20px;
+            background: #d21515;
+            border-radius: 50px;
+            box-shadow: 1px 1px 15px #1111114f;
+            color: #ffffff;
+            position: absolute;
+            left: 85px;
+            bottom: 0;
+            bottom: 20px;
+            font-weight: 500;
+        }
+
+            .visit-website-btn:hover, .visit-website-btn:focus {
+                color: #fff;
+            }
     </style>
+
+    <script>
+        $(document).ready(function () {
+            $(".secToggler").on("click", function () {
+                $(".droper").toggleClass("active");
+            });
+            $("#clCr").click(function () {
+                $(".droper").removeClass("active");
+            });
+        });
+    </script>
 </head>
 <body>
     @using (Html.BeginForm("SubmitForm", "LMSLogin", FormMethod.Post, new { @id = "fromsalesman" }))
@@ -824,16 +1068,18 @@
             <div class="flexArea">
                 <div class="contentArea">
                     @*<div class="tagLine"><h3>Designed to fulfill your</h3><h1 class="emp">Business Requirements</h1><h4>Simple, Intuitive and Easy to use</h4></div>
-                             <div class="xoptions">
-                                 <ul>
-                                     <li><img src="~/assests/images/NLogin/checked.png" /> Live Tracking</li>
-                                     <li><img src="~/assests/images/NLogin/checked.png" /> Infographic Data Presentation</li>
-                                     <li><img src="~/assests/images/NLogin/checked.png" /> 24x7 Customer Support</li>
-                                 </ul>
-                             </div>
-                             <img src="~/assests/images/NLogin/screen1.png" class="scrImage wow bounceInUp"  />
-                        <div class="chartArea"><div class="hider"></div><div id="chartdiv"></div></div>*@
-                    <img src="~/assests/images/NLogin/left-top-image.png" class="left-top-image" />
+                 <div class="xoptions">
+                     <ul>
+                         <li><img src="~/assests/images/NLogin/checked.png" /> Live Tracking</li>
+                         <li><img src="~/assests/images/NLogin/checked.png" /> Infographic Data Presentation</li>
+                         <li><img src="~/assests/images/NLogin/checked.png" /> 24x7 Customer Support</li>
+                     </ul>
+                 </div>
+                 <img src="~/assests/images/NLogin/screen1.png" class="scrImage wow bounceInUp"  />
+                <div class="chartArea"><div class="hider"></div><div id="chartdiv"></div></div>*@
+                    @*<img src="~/assests/images/NLogin/left-top-image.png" class="left-top-image" />*@
+                    <h1 class="login-banner-text"><span>Gamified</span> Micro-Learning for the <span>Next-Gen</span> Workforce</h1>
+                    <img src="/assests/images/NLogin/login-page-left-top.png" class="w-100 login-left-img" />
                 </div>
                 <div class="formArea">
                     <form action="" method="post" runat="server" novalidate="novalidate">
@@ -861,43 +1107,144 @@
                                 <input type="submit" value="Sign in" class="btn btn-block loginbtn" />
 
                                 <div class="ftFooter">
-                                    © Copyright 2023 Indus Net Technologies.<br />
-                                    [BreezeERP Version <span id="lblVersion">2.0.29]</span>
+                                    © Copyright 2024 Mobilearn <span id="lblVersion">1.0.1</span>
+
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
-        </section>
-        <section class="fts">
-            <div class="container">
-                <h2 class="">
-                    Automate Processes. Manage Teams. <br>Acquire Leads. Close Sales.
-                    <span>All-in-One Platform</span>
-                </h2>
-                <div class="row">
-                    <div class="col-md-12">
 
-                    </div>
-                    <div class="col-md-4 wow slideInLeft" data-wow-duration="2s" data-wow-delay="5s">
-                        <img src="~/assests/images/NLogin/007-destination.png" />
-                        <div class="hdn">Geo-Tracking & Route  <br /> Optimization</div>
-                        <div>Lorem Ipsum è un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum è cons.Lorem Ipsum è un testo segnaposto utilizzato nel settore della tipografia e della stampa</div>
-                    </div>
-                    <div class="col-md-4 wow slideInLeft" data-wow-duration="2s" data-wow-delay="7s">
-                        <img src="~/assests/images/NLogin/004-user-interface.png" />
-                        <div class="hdn">IMEI/OTP based  <br /> authentication</div>
-                        <div>Lorem Ipsum è un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum è cons.Lorem Ipsum è un testo segnaposto utilizzato nel settore della tipografia e della stampa</div>
-                    </div>
-                    <div class="col-md-4 wow slideInLeft" data-wow-duration="2s" data-wow-delay="9s">
-                        <img src="~/assests/images/NLogin/001-dashboard.png" />
-                        <div class="hdn">Intuitive Dashboard & <br /> Auto-Reporting</div>
-                        <div>Lorem Ipsum è un testo segnaposto utilizzato nel settore della tipografia e della stampa. Lorem Ipsum è cons.Lorem Ipsum è un testo segnaposto utilizzato nel settore della tipografia e della stampa</div>
+            <div class="creditsSec " id="rc_app_1562">
+                <div class="secToggler" id="rc_app_15652"><img src="/assests/images/group.png" style="width:32px" /></div>
+                <div class="droper">
+                    <div class="mnHeader">Team Behind <span id="clCr"><i class="fa fa-close"></i></span></div>
+                    <div class="scrCnter" id="rc_app_156655">
+                        <ul class="tc_s5621f_fg">
+
+                            <li><span class="nameCR">Abhinav Dahiwade</span></li>
+                            <li><span class="nameCR">Abhishek Munshi</span></li>
+                            <li><span class="nameCR">Ananya Deb</span></li>
+                            <li><span class="nameCR">Ankan Das</span></li>
+                            <li><span class="nameCR">Arindam Ghosal</span></li>
+                            <li><span class="nameCR">Arunabha Saha</span></li>
+                            <li><span class="nameCR">Aritra Das</span></li>
+                            <li><span class="nameCR">Ashmita Roy Chowdhury</span></li>
+                            <li><span class="nameCR">Avijit Bonu</span></li>
+                            <li><span class="nameCR">Bapi Dutta</span></li>
+                            <li><span class="nameCR">Bhaskar Chatterjee</span></li>
+                            <li><span class="nameCR">Chinmoy Maiti</span></li>
+                            <li class="tc_sfsf_fg"><span class="nameCR">Debashis Talukder</span></li>
+                            <li><span class="nameCR">Debjyoti Dhar</span></li>
+                            <li><span class="nameCR">Deep Narayan Mahajan</span></li>
+                            <li><span class="nameCR">Goutam Kumar Das</span></li>
+                            <li><span class="nameCR">Indranil Dey</span></li>
+                            <li><span class="nameCR">Jitendra Jha</span></li>
+                            <li><span class="nameCR">Kaushik Gupta</span></li>
+                            <li><span class="nameCR">Maynak Nandi</span></li>
+                            <li><span class="nameCR">Pallab Mukherjee</span></li>
+                            <li><span class="nameCR">Pijush Kumar Bhattacharya</span></li>
+                            <li><span class="nameCR">Pratik Ghosh</span></li>
+                            <li><span class="nameCR">Puja Basak</span></li>
+                            <li class="tc_s5221f_fg"><span class="nameCR">Priti Ghosh</span></li>
+                            <li><span class="nameCR">Priyanka</span></li>
+                            <li><span class="nameCR">Rajdip Mukherjee</span></li>
+                            <li><span class="nameCR">Saheli Bhattacharya</span></li>
+                            <li><span class="nameCR">Saikat Das</span></li>
+                            <li><span class="nameCR">Sanchita Saha</span></li>
+                            <li><span class="nameCR">Sanjoy Ganguly</span></li>
+                            <li><span class="nameCR">Santanu Mukherjee</span></li>
+                            <li><span class="nameCR">Sayantani Mandal</span></li>
+                            <li><span class="nameCR">Shantanu Saha</span></li>
+                            <li><span class="nameCR">Sneha das</span></li>
+                            <li><span class="nameCR">Sourav Goswami</span></li>
+                            <li><span class="nameCR">Subhra Mukherjee</span></li>
+                            <li><span class="nameCR">Sudip Biswas</span></li>
+                            <li><span class="nameCR">Sudip Kumar Pal</span></li>
+                            <li><span class="nameCR">Suman Bachar</span></li>
+                            <li><span class="nameCR">Suman Roy</span></li>
+                            <li><span class="nameCR">Surojit Chatterjee</span></li>
+                            <li><span class="nameCR">Susanta Kundu</span></li>
+                            <li><span class="nameCR">Suvankar Dey</span></li>
+                            <li><span class="nameCR">Swatilekha Mukherjee</span></li>
+                            <li><span class="nameCR">Swarnadeep Goswami</span></li>
+                            <li><span class="nameCR">Santanu Roy</span></li>
+                            <li><span class="nameCR">Tanmoy Ghosh</span></li>
+
+
+                        </ul>
                     </div>
                 </div>
             </div>
+
+            <a href="https://mobilearn.in/" target="_blank" class="visit-website-btn">Visit Our Site</a>
+
         </section>
+        <div class="fts">
+            <div class="container">
+                <h2 class="">
+                    Gamified Micro-Learning for the Next-Gen Workforce
+                    
+                </h2>
+                <div class="row spaceColumn">
+
+                    <div class="col-md-4 wow slideInLeft" data-wow-duration="2s" data-wow-delay="5s">
+                        <div class="login-about-box">
+                            <div class="icon-img"><img src="/assests/images/NLogin/icon-1.png" /></div>
+                            <div class="hdn">Engaging Byte-Sized Content</div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-4 wow slideInLeft" data-wow-duration="2s" data-wow-delay="7s">
+                        <div class="login-about-box">
+                            <div class="icon-img"><img src="/assests/images/NLogin/icon-2.png" /></div>
+                            <div class="hdn">Gamified Engagement</div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-4 wow slideInLeft" data-wow-duration="2s" data-wow-delay="9s">
+                        <div class="login-about-box">
+                            <div class="icon-img"><img src="/assests/images/NLogin/icon-3.png" /></div>
+                            <div class="hdn">Leaderboard with Performance Stats</div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="app-section">
+
+            <div class="row">
+                <div class="col-md-6 mobile-image-part">
+
+                </div>
+                <div class="col-md-6 right-text-part">
+                    <h2 class="mkHd"> Empowering Learning, Anywhere, Anytime.</h2>
+
+                    <div class="row mkBoxes">
+                        <div class="col-sm-12 mb-5">
+                            <h5>Next-Gen UX</h5>
+                            <p>An intuitive user experience designed for modern learners, featuring short videos with like, share, and save options for flexible learning.</p>
+                        </div>
+                        <div class="col-sm-12 mb-5">
+                            <h5>Personalized and Structured Learning</h5>
+                            <p>Tailored learning paths to deliver the right content at the right time for each employee.</p>
+                        </div>
+                        <div class="col-sm-12 mb-5">
+                            <h5>Interactive Quizzes</h5>
+                            <p>Transform assessments into engaging experiences with quizzes and gamification.</p>
+                        </div>
+                        <div class="col-sm-12 mb-5">
+                            <h5>Real-Time Progress Evaluation</h5>
+                            <p>Gain instant insights into employee learning progress and identify gaps as they happen.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <section>
             <div class="container text-center" style="padding:80px 0">
                 <h3 style="font-family: 'opcen', Montserrat, sans-serif !important;font-size:26px">Log in to Start Your Digital Journey with Breeze .</h3>
