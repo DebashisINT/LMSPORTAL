@@ -903,7 +903,6 @@
     <Content Include="Areas\LMS\Views\Systemsettings\Index.cshtml" />
     <Content Include="Areas\LMS\Views\LMSLogin\Login.cshtml" />
     <Content Include="Areas\LMS\Views\DashboardMenu\LMSDashboard.cshtml" />
-    <Content Include="Areas\LMS\Views\DashboardMenu\Dashborad1.cshtml" />
     <None Include="assests\js\jquery-1.10.2.intellisense.js" />
     <Content Include="assests\js\jquery-1.10.2.js" />
     <Content Include="assests\js\jquery-1.10.2.min.js" />

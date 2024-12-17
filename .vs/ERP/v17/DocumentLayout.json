@@ -3,28 +3,12 @@
   "WorkspaceRootPath": "D:\\GIT\\GitHub\\LMSPORTAL\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{73962037-5EA7-4BD8-B60A-384897AFDD44}|LMS\\LMS.csproj|d:\\git\\github\\lmsportal\\lms\\areas\\lms\\views\\dashboardmenu\\fsmdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{73962037-5EA7-4BD8-B60A-384897AFDD44}|LMS\\LMS.csproj|solutionrelative:lms\\areas\\lms\\views\\dashboardmenu\\fsmdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{73962037-5EA7-4BD8-B60A-384897AFDD44}|LMS\\LMS.csproj|d:\\git\\github\\lmsportal\\lms\\areas\\lms\\views\\lmslogin\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{73962037-5EA7-4BD8-B60A-384897AFDD44}|LMS\\LMS.csproj|solutionrelative:lms\\areas\\lms\\views\\lmslogin\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{73962037-5EA7-4BD8-B60A-384897AFDD44}|LMS\\LMS.csproj|d:\\git\\github\\lmsportal\\lms\\areas\\lms\\controllers\\dashboardmenucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{73962037-5EA7-4BD8-B60A-384897AFDD44}|LMS\\LMS.csproj|solutionrelative:lms\\areas\\lms\\controllers\\dashboardmenucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|d:\\git\\github\\lmsportal\\erp.ui\\oms\\management\\master\\root_usergroups.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|solutionrelative:erp.ui\\oms\\management\\master\\root_usergroups.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|d:\\git\\github\\lmsportal\\erp.ui\\oms\\management\\master\\root_usergroups.aspx.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|solutionrelative:erp.ui\\oms\\management\\master\\root_usergroups.aspx.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{73962037-5EA7-4BD8-B60A-384897AFDD44}|LMS\\LMS.csproj|d:\\git\\github\\lmsportal\\lms\\areas\\lms\\controllers\\lmscontentuploadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{73962037-5EA7-4BD8-B60A-384897AFDD44}|LMS\\LMS.csproj|solutionrelative:lms\\areas\\lms\\controllers\\lmscontentuploadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E80420D8-44AE-4336-84D0-8499A550AFFB}|ShopAPI\\ShopAPI.csproj|d:\\git\\github\\lmsportal\\shopapi\\controllers\\lmsinfodetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E80420D8-44AE-4336-84D0-8499A550AFFB}|ShopAPI\\ShopAPI.csproj|solutionrelative:shopapi\\controllers\\lmsinfodetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{73962037-5EA7-4BD8-B60A-384897AFDD44}|LMS\\LMS.csproj|d:\\git\\github\\lmsportal\\lms\\areas\\lms\\controllers\\lmslogincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{73962037-5EA7-4BD8-B60A-384897AFDD44}|LMS\\LMS.csproj|solutionrelative:lms\\areas\\lms\\controllers\\lmslogincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,84 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "root_UserGroups.aspx.cs",
-              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Management\\Master\\root_UserGroups.aspx.cs",
-              "RelativeDocumentMoniker": "ERP.UI\\OMS\\Management\\Master\\root_UserGroups.aspx.cs",
-              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Management\\Master\\root_UserGroups.aspx.cs",
-              "RelativeToolTip": "ERP.UI\\OMS\\Management\\Master\\root_UserGroups.aspx.cs",
-              "ViewState": "AQIAABsAAAAAAAAAAAAswC4AAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T10:19:34.743Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "root_UserGroups.aspx.designer.cs",
-              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Management\\Master\\root_UserGroups.aspx.designer.cs",
-              "RelativeDocumentMoniker": "ERP.UI\\OMS\\Management\\Master\\root_UserGroups.aspx.designer.cs",
-              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\OMS\\Management\\Master\\root_UserGroups.aspx.designer.cs",
-              "RelativeToolTip": "ERP.UI\\OMS\\Management\\Master\\root_UserGroups.aspx.designer.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T10:19:32.586Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "LMSContentUploadController.cs",
-              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\LMS\\Areas\\LMS\\Controllers\\LMSContentUploadController.cs",
-              "RelativeDocumentMoniker": "LMS\\Areas\\LMS\\Controllers\\LMSContentUploadController.cs",
-              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\LMS\\Areas\\LMS\\Controllers\\LMSContentUploadController.cs",
-              "RelativeToolTip": "LMS\\Areas\\LMS\\Controllers\\LMSContentUploadController.cs",
-              "ViewState": "AQIAAOsEAAAAAAAAAAAcwPcEAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T08:29:50.31Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "FSMDashboard.cshtml",
-              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\LMS\\Areas\\LMS\\Views\\DashboardMenu\\FSMDashboard.cshtml",
-              "RelativeDocumentMoniker": "LMS\\Areas\\LMS\\Views\\DashboardMenu\\FSMDashboard.cshtml",
-              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\LMS\\Areas\\LMS\\Views\\DashboardMenu\\FSMDashboard.cshtml",
-              "RelativeToolTip": "LMS\\Areas\\LMS\\Views\\DashboardMenu\\FSMDashboard.cshtml",
-              "ViewState": "AQIAAFkEAAAAAAAAAAAuwGYEAAAoAAAA",
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\LMS\\Areas\\LMS\\Views\\LMSLogin\\Login.cshtml",
+              "RelativeDocumentMoniker": "LMS\\Areas\\LMS\\Views\\LMSLogin\\Login.cshtml",
+              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\LMS\\Areas\\LMS\\Views\\LMSLogin\\Login.cshtml",
+              "RelativeToolTip": "LMS\\Areas\\LMS\\Views\\LMSLogin\\Login.cshtml",
+              "ViewState": "AQIAADsEAAAAAAAAAAAIwEwEAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-12T07:44:26.601Z",
+              "WhenOpened": "2024-12-17T05:57:25.823Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "DashboardMenuController.cs",
-              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\LMS\\Areas\\LMS\\Controllers\\DashboardMenuController.cs",
-              "RelativeDocumentMoniker": "LMS\\Areas\\LMS\\Controllers\\DashboardMenuController.cs",
-              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\LMS\\Areas\\LMS\\Controllers\\DashboardMenuController.cs",
-              "RelativeToolTip": "LMS\\Areas\\LMS\\Controllers\\DashboardMenuController.cs",
-              "ViewState": "AQIAADYAAAAAAAAAAAAcwEcAAAAMAAAA",
+              "Title": "LMSLoginController.cs",
+              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\LMS\\Areas\\LMS\\Controllers\\LMSLoginController.cs",
+              "RelativeDocumentMoniker": "LMS\\Areas\\LMS\\Controllers\\LMSLoginController.cs",
+              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\LMS\\Areas\\LMS\\Controllers\\LMSLoginController.cs",
+              "RelativeToolTip": "LMS\\Areas\\LMS\\Controllers\\LMSLoginController.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAswBcAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T06:29:31.891Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "LMSInfoDetailsController.cs",
-              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ShopAPI\\Controllers\\LMSInfoDetailsController.cs",
-              "RelativeDocumentMoniker": "ShopAPI\\Controllers\\LMSInfoDetailsController.cs",
-              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ShopAPI\\Controllers\\LMSInfoDetailsController.cs",
-              "RelativeToolTip": "ShopAPI\\Controllers\\LMSInfoDetailsController.cs",
-              "ViewState": "AQIAAGMDAAAAAAAAAADwv3MDAAA0AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-12T05:55:35.862Z",
+              "WhenOpened": "2024-12-17T05:50:43.107Z",
               "EditorCaption": ""
             }
           ]
