@@ -1098,32 +1098,12 @@
                                 @Html.TextBoxFor(m => m.username, new { @class = "form-control " })
 
                             </div>
-                            <div style="text-align: left">
-                                <em style="color: red; position: relative; right: -160px; top: -35px;"></em>
-                                <span style="color: red;">
-                                    <asp:RequiredFieldValidator ID="rqvUserName" runat="server"
-                                                                ControlToValidate="txtUserName"
-                                                                ErrorMessage="Please enter User Name."
-                                                                ForeColor="Red" ValidationGroup="login" Display="Dynamic">
-                                    </asp:RequiredFieldValidator>
-                                </span>
-                            </div>
-
+                            
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 @*<img src="/assests/images/NLogin/password.png" class="inputIcons" />*@
                                 <img src="/assests/images/NLogin/password-2.png" class="inputIcons" />
                                 @Html.TextBoxFor(m => m.password, new { @class = "form-control " })
-                            </div>
-                            <div style="text-align: left">
-                                <em style="color: red; position: relative; right: 55px; top: 160px;"></em>
-                                <span style="color: red">
-                                    <asp:RequiredFieldValidator ID="rqvPassword" runat="server"
-                                                                ControlToValidate="txtPassword"
-                                                                ErrorMessage="Please enter Password."
-                                                                ForeColor="Red" ValidationGroup="login" Display="Dynamic">
-                                    </asp:RequiredFieldValidator>
-                                </span>
                             </div>
 
                             <div style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #4a4a4a; text-align: center; ">Application best viewed at <a href="#">1280 x 720</a> resolution in <a href="#">Google Chrome</a> 59 or above</div>
