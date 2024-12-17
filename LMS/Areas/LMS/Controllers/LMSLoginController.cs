@@ -24,6 +24,22 @@ namespace LMS.Areas.LMS.Controllers
             ViewBag.ApplicationVersion = oDBEngine.GetApplicationVersion();
             ViewBag.ValidateMessage = "";
 
+            if (Session["userid"] != null)
+            {
+
+                if (Request.Cookies["ERPACTIVEURL"] != null && Convert.ToString(Request.Cookies["ERPACTIVEURL"].Value) == "1")
+                {
+                    Response.Redirect("/OMS/MultiTabError.aspx", true);
+                }
+                 
+                Session["DeveloperRedirect"] = "Yes";
+
+                HttpCookie ERPACTIVEURL = new HttpCookie("ERPACTIVEURL");
+                ERPACTIVEURL.Value = "1";
+                Response.Cookies.Add(ERPACTIVEURL);
+
+            }
+
             return View();
         }
 
@@ -56,6 +72,16 @@ namespace LMS.Areas.LMS.Controllers
                 Validuser = oDBEngine.AuthenticateUser(omodel.username, Encryptpass).ToString();
                 if (Validuser == "Y")
                 {
+                    HttpCookie cookie = new HttpCookie("sKey");
+                    cookie.Value = omodel.username;
+                    cookie.Expires = DateTime.Now.AddDays(1);
+                    Response.Cookies.Add(cookie);
+
+                    HttpCookie ERPACTIVEURL = new HttpCookie("ERPACTIVEURL");
+                    ERPACTIVEURL.Value = "1";
+                    Response.Cookies.Add(ERPACTIVEURL);
+
+
                     return RedirectToAction("LMSDashboard", "DashboardMenu");
                 }
 
