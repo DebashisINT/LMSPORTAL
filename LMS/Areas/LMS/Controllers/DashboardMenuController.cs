@@ -67,7 +67,7 @@ namespace LMS.Areas.LMS.Controllers
                 return RedirectToAction("Login", "LMSLogin", new { area = "LMS" });
             }
         }
-        public ActionResult FSMDashboard()
+        public ActionResult LMSDashboard()
         {
             TempData["LMSDashboardGridView"] = null;
             if (Session["userid"] != null)
@@ -147,7 +147,7 @@ namespace LMS.Areas.LMS.Controllers
         public JsonResult GETLMSCOUNTDATA(string stateid, string branchid)
         {
             Dashboard dashboarddataobj = new Dashboard();
-            FSMDashboard Dashboarddata = new FSMDashboard();
+            LMSDashboard Dashboarddata = new LMSDashboard();
             try
             {
                 DataSet objData = dashboarddataobj.LINQFORLMSDASHBOARD(stateid, branchid);
@@ -202,7 +202,7 @@ namespace LMS.Areas.LMS.Controllers
         public PartialViewResult DashBoardGVLMS(FSMDashBoardFilter dd)
         {
             DataTable dt = new DataTable();
-            String con = System.Configuration.ConfigurationSettings.AppSettings["DBConnectionDefault"];
+            String con = System.Configuration.ConfigurationManager.AppSettings["DBConnectionDefault"];
             SqlCommand sqlcmd = new SqlCommand();
             SqlConnection sqlcon = new SqlConnection(con);
             sqlcon.Open();

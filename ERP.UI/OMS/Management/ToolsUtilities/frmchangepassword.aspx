@@ -83,7 +83,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="breadCumb">
             <span>Change Password</span>
-            <div class="crossBtnN"><a href="../master/Root_User.aspx"><i class="fa fa-times"></i></a></div>
+            <div class="crossBtnN"><a href="../Master/UserAccountList.aspx"><i class="fa fa-times"></i></a></div>
     </div>
     <div class="container">
         <table class="TableMain100 mt-5 " style="text-align: left;">

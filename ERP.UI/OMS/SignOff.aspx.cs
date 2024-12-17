@@ -61,7 +61,7 @@ public partial class SignOff : System.Web.UI.Page
         Session.Abandon();
         DestroyUserRightSession();
 
-        Response.Redirect("login.aspx", false);
+        Response.Redirect("/LMS/LMSLogin/Login", false);
     }
     public static void DestroyUserRightSession()
     {

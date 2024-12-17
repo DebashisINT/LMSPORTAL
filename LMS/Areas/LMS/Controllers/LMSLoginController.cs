@@ -1,5 +1,6 @@
 ﻿using BusinessLogicLayer;
 using DevExpress.Map.Kml;
+using DevExpress.Xpo.Logger;
 using LMS.Models;
 using System;
 using System.Collections.Generic;
@@ -21,27 +22,42 @@ namespace LMS.Areas.LMS.Controllers
         public ActionResult Login()
         {
             ViewBag.ApplicationVersion = oDBEngine.GetApplicationVersion();
+            ViewBag.ValidateMessage = "";
 
             return View();
         }
 
         public ActionResult SubmitForm(LoginModel omodel)
         {
-
-            Encryption epasswrd = new Encryption();
-            string Encryptpass = epasswrd.Encrypt(omodel.password.Trim());
-
-            string Validuser;
-            Validuser = oDBEngine.AuthenticateUser(omodel.username, Encryptpass).ToString();
-            if (Validuser == "Y")
+            if(omodel.username is null || omodel.username =="" )
             {
-                return RedirectToAction("FSMDashboard", "DashboardMenu");
+                ViewBag.ValidateMessage = "Please enter User Name.";
+                return View("Login");
             }
-
+            else if (omodel.password is null || omodel.password == "")
+            {
+                ViewBag.ValidateMessage = "Please enter Password.";
+                return View("Login");
+            }
             else
             {
-                return View();
+                Encryption epasswrd = new Encryption();
+                string Encryptpass = epasswrd.Encrypt(omodel.password.Trim());
+
+                string Validuser;
+                Validuser = oDBEngine.AuthenticateUser(omodel.username, Encryptpass).ToString();
+                if (Validuser == "Y")
+                {
+                    return RedirectToAction("LMSDashboard", "DashboardMenu");
+                }
+
+                else
+                {
+                    ViewBag.ValidateMessage = Validuser;
+                    return View("Login");
+                }
             }
+            
         }
     }
 }

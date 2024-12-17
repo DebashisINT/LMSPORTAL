@@ -593,7 +593,7 @@ Rev 4.0     Sanchita    V2.0.45     14-02-2024      Change Password option not w
                             </a>
                         </li>--%>
                         <li>
-                            <a class="dropdown-item" href="/OMS/SignOff.aspx">
+                            <a class="dropdown-item" href="/LMS/LMSLogin/Login">
                                 <span class="lnr lnr-exit"></span>
                                 <span>Logout</span>
                             </a>
