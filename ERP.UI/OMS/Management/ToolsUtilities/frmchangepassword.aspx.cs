@@ -54,7 +54,7 @@ namespace ERP.OMS.Management.ToolsUtilities
               
                 Session.Abandon();
 
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "jAlert('Password has been changed successfully. You need to Re-login.','Alert',function(){window.location='/OMS/SignOff.aspx'}); ", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect", "jAlert('Password has been changed successfully. You need to Re-login.','Alert',function(){window.location='/LMS/LMSLogin/Login'}); ", true);
 
                 TxtConfirmPassword.Text = "";
                 TxtNewPassword.Text = "";

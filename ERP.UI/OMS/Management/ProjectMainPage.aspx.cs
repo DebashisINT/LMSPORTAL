@@ -39,7 +39,7 @@ namespace ERP.OMS.Management
                     if (dt.Rows.Count > 0)
                     {
                         Response.Redirect(page.GetRouteUrl("DefaultMap",
-                        new { Controller = "DashboardMenu", Action = "FSMDashboard" }), false); //Tanmoy Replace with blank dashboard
+                        new { Controller = "DashboardMenu", Action = "LMSDashboard" }), false); //Tanmoy Replace with blank dashboard
                      //   Response.Redirect(page.GetRouteUrl("DefaultMap",
                      //new { Controller = "DashboardMenu", Action = "BlankDashboard" }), false);
                     }
@@ -58,7 +58,7 @@ namespace ERP.OMS.Management
 
 
                 //Response.Redirect(page.GetRouteUrl("DefaultMap",
-                //  new { Controller = "DashboardMenu", Action = "FSMDashboard" }), false);
+                //  new { Controller = "DashboardMenu", Action = "LMSDashboard" }), false);
 
 
                 //string userid = Session["userid"].ToString();

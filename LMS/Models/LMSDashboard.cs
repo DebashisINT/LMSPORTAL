@@ -1,6 +1,4 @@
 ﻿/*********************************************************************************************************
- * 1.0     V2.0.41     Sanchita    02/06/2023      FSM - Message will be fired from first tab when logged out from the 2nd tab. Refer: 26273  
- * 2.0     V2.0.48     Priti       21-08-2024      LMS Dashboard.Mantis: 0027667
  *********************************************************************************************************************************/
 using BusinessLogicLayer;
 using DataAccessLayer;
@@ -12,7 +10,7 @@ using System.Web;
 
 namespace LMS.Models
 {
-    public class FSMDashboard
+    public class LMSDashboard
     {
         //public List<string> Parameter { get; set; }
         //public List<int> Not_Login { get; set; }
