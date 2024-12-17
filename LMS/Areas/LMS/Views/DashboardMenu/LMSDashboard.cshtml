@@ -3476,6 +3476,18 @@ Rev Number   DATE            VERSION     DEVELOPER       CHANGES
 </style>
 <!--Leave list end-->
 
+<style type="text/css">
+    .blank-dashboard-text {
+        margin-top: 250px;
+        padding: 14px 30px;
+        cursor: default;
+        color: #fff;
+        background-color: #f0ad4e;
+        display: inline-block;
+        border-radius: 5px;
+    }
+</style>
+
 <script src="~/assests/js/FieldVisit.js?v=1.2"></script>
 <script src="~/assests/js/TeamVisit.js?v=1.2"></script>
 @*Mantis Issue 25468*@
@@ -3587,6 +3599,20 @@ Rev Number   DATE            VERSION     DEVELOPER       CHANGES
             </div>
         </div>
     }
+    else
+    {
+        <div class="row text-center">
+            <span class="blank-dashboard-text" style="">Welcome to FSM Application. Ask your supervisor to configure Dashboard for you. Thanks.</span>
+
+        </div>
+    }
+}
+else
+{
+    <div class="row text-center">
+        <span class="blank-dashboard-text" style="">Welcome to FSM Application. Ask your supervisor to configure Dashboard for you. Thanks.</span>
+
+    </div>
 }
 
 <input type="hidden" id="hdnPermissionLevel" value="@(ViewBag.PermissionLevel == null ? "" : ViewBag.PermissionLevel)" />
@@ -3629,7 +3655,7 @@ Rev Number   DATE            VERSION     DEVELOPER       CHANGES
                         </ul>
                     </nav>
                     <div class="tab-content mainAreaTAb">
-                        
+
                         <div role="tabpanel" class="tab-pane" id="leaveList">
                             <div class="row">
                                 <div class="col-md-12 px-5">
@@ -3828,7 +3854,7 @@ Rev Number   DATE            VERSION     DEVELOPER       CHANGES
 
                             </div>
                         }
-                        
+
                     </div>
                 </div>
             </section>
