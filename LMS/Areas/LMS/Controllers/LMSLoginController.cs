@@ -29,16 +29,24 @@ namespace LMS.Areas.LMS.Controllers
 
         public ActionResult SubmitForm(LoginModel omodel)
         {
-            if(omodel.username is null || omodel.username =="" )
+            ViewBag.ValidateMessage = "";
+
+            if ((omodel.username is null || omodel.username == "") && (omodel.password is null || omodel.password == ""))
             {
-                ViewBag.ValidateMessage = "Please enter User Name.";
+                ViewBag.ValidateMessage = "Please enter User Name and Password";
+                return View("Login");
+            }
+            else if (omodel.username is null || omodel.username =="" )
+            {
+                ViewBag.ValidateMessage = "Please enter User Name";
                 return View("Login");
             }
             else if (omodel.password is null || omodel.password == "")
             {
-                ViewBag.ValidateMessage = "Please enter Password.";
+                ViewBag.ValidateMessage = "Please enter Password";
                 return View("Login");
             }
+            
             else
             {
                 Encryption epasswrd = new Encryption();
