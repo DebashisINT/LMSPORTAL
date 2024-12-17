@@ -32,6 +32,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <script language="javascript" type="text/javascript">
+
+
         window.history.forward();
         function noBack() { window.history.forward(); }
         function ForNextPage() {
@@ -1060,6 +1062,7 @@
             });
         });
     </script>
+    
 </head>
 <body>
     @using (Html.BeginForm("SubmitForm", "LMSLogin", FormMethod.Post, new { @id = "fromsalesman" }))
@@ -1092,7 +1095,6 @@
                         <div class="formBox">
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                @*<img src="/assests/images/NLogin/user.png" class="inputIcons" />*@
                                 <img src="/assests/images/NLogin/user-2.png" class="inputIcons" />
                                 <asp:TextBox ID="txtUserName" CssClass="form-control " runat="server" placeholder=" User Name" TabIndex="1"></asp:TextBox>
                                 @Html.TextBoxFor(m => m.username, new { @class = "form-control " })
@@ -1101,9 +1103,9 @@
                             
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                @*<img src="/assests/images/NLogin/password.png" class="inputIcons" />*@
                                 <img src="/assests/images/NLogin/password-2.png" class="inputIcons" />
-                                @Html.TextBoxFor(m => m.password, new { @class = "form-control " })
+                                @Html.TextBoxFor(m => m.password, new { @class = "form-control ", Type = "password", id = "passwordInput" })
+                                <span class="passWordView"><i class="fa fa-eye-slash" id="togglePassword" ></i></span>
                             </div>
 
                             <div style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #4a4a4a; text-align: center; ">Application best viewed at <a href="#">1280 x 720</a> resolution in <a href="#">Google Chrome</a> 59 or above</div>
@@ -1307,5 +1309,35 @@
     }
 </body>
 </html>
+<script>
+    document.getElementById('togglePassword').addEventListener('click', function () {
+        const passwordInput = document.getElementById('passwordInput');
+        const icon = this;
 
-
+        // Toggle input type between password and text
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    });
+</script>
+<style>
+    .passWordView {
+        position: absolute;
+        right: 14px;
+        top: 38px;
+        width: 21px;
+        height: 20px;
+        font-size: 13px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
