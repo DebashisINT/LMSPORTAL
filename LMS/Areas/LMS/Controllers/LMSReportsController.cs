@@ -101,7 +101,7 @@ namespace LMS.Areas.LMS.Controllers
         public IEnumerable GetReport(string is_pageload)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ERP_ConnectionString"].ConnectionString;          
-            string Userid = Convert.ToString(Session["userid"]);
+            string Userid = Convert.ToString(Session["LMSuserid"]);
 
             if (is_pageload != "1")
             {
@@ -125,7 +125,7 @@ namespace LMS.Areas.LMS.Controllers
         public JsonResult CreateLINQTable(string UserIds, string Topic_Id, string Content_Id,  DateTime fromdate, DateTime todate,string _Status)
         {
             string output = "";            
-            obj.CreateTable(UserIds, Topic_Id, Content_Id,fromdate, todate, Convert.ToString(Session["userid"]), _Status);
+            obj.CreateTable(UserIds, Topic_Id, Content_Id,fromdate, todate, Convert.ToString(Session["LMSuserid"]), _Status);
             return Json(output, JsonRequestBehavior.AllowGet);
         }
         public ActionResult ExporSummaryList(int type)
@@ -302,7 +302,7 @@ namespace LMS.Areas.LMS.Controllers
                 DataSet ds = new DataSet();
                 ProcedureExecute proc = new ProcedureExecute("PRC_LMS_REPORTS");
                 proc.AddPara("@Action", "GETREPORTSCOUNTDATA");
-                proc.AddPara("@USER_ID", Convert.ToString(HttpContext.Session["userid"]));
+                proc.AddPara("@USER_ID", Convert.ToString(HttpContext.Session["LMSuserid"]));
                 ds = proc.GetDataSet();
 
 

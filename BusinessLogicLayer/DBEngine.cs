@@ -73,9 +73,9 @@ namespace BusinessLogicLayer
             }
             else
             {
-                if (HttpContext.Current.Session["EntryProfileType"] != null)
+                if (HttpContext.Current.Session["LMSEntryProfileType"] != null)
                 {
-                    if (Convert.ToString(HttpContext.Current.Session["EntryProfileType"]) == "R")
+                    if (Convert.ToString(HttpContext.Current.Session["LMSEntryProfileType"]) == "R")
                     {//DBReadOnlyConnection
 
 
@@ -108,9 +108,9 @@ namespace BusinessLogicLayer
             }
             else
             {
-                if (HttpContext.Current.Session["EntryProfileType"] != null)
+                if (HttpContext.Current.Session["LMSEntryProfileType"] != null)
                 {
-                    if (Convert.ToString(HttpContext.Current.Session["EntryProfileType"]) == "R")
+                    if (Convert.ToString(HttpContext.Current.Session["LMSEntryProfileType"]) == "R")
                     {//DBReadOnlyConnection
                         //  connection = ConfigurationSettings.AppSettings["DBReadOnlyConnection"]; --MULTI
 
@@ -326,47 +326,47 @@ namespace BusinessLogicLayer
 
 
                             oGenericMethod = new GenericMethod();
-                            HttpContext.Current.Session["userid"] = ValidUser[0, 0].ToString();
-                            HttpContext.Current.Session["username"] = ValidUser[0, 1].ToString();
-                            HttpContext.Current.Session["userpassword"] = ValidUser[0, 2].ToString();
-                            HttpContext.Current.Session["usercontactID"] = ValidUser[0, 3].ToString();
-                            HttpContext.Current.Session["userbranchID"] = ValidUser[0, 4].ToString();
-                            HttpContext.Current.Session["usergoup"] = ValidUser[0, 5].ToString();
-                            HttpContext.Current.Session["userlastsegment"] = ValidUser[0, 6].ToString();
-                            HttpContext.Current.Session["userContactType"] = ValidUser[0, 7].ToString();
-                            HttpContext.Current.Session["TimeForTickerDisplay"] = ValidUser[0, 8].ToString();
-                            HttpContext.Current.Session["EmployeeID"] = ValidUser[0, 9].ToString();
-                            HttpContext.Current.Session["EntryProfileType"] = ValidUser[0, 12].ToString();
-                            HttpContext.Current.Session["userAllowAccessIP"] = ValidUser[0, 16].ToString();
+                            HttpContext.Current.Session["LMSuserid"] = ValidUser[0, 0].ToString();
+                            HttpContext.Current.Session["LMSusername"] = ValidUser[0, 1].ToString();
+                            HttpContext.Current.Session["LMSuserpassword"] = ValidUser[0, 2].ToString();
+                            HttpContext.Current.Session["LMSusercontactID"] = ValidUser[0, 3].ToString();
+                            HttpContext.Current.Session["LMSuserbranchID"] = ValidUser[0, 4].ToString();
+                            HttpContext.Current.Session["LMSusergoup"] = ValidUser[0, 5].ToString();
+                            HttpContext.Current.Session["LMSuserlastsegment"] = ValidUser[0, 6].ToString();
+                            HttpContext.Current.Session["LMSuserContactType"] = ValidUser[0, 7].ToString();
+                            HttpContext.Current.Session["LMSTimeForTickerDisplay"] = ValidUser[0, 8].ToString();
+                            HttpContext.Current.Session["LMSEmployeeID"] = ValidUser[0, 9].ToString();
+                            HttpContext.Current.Session["LMSEntryProfileType"] = ValidUser[0, 12].ToString();
+                            HttpContext.Current.Session["LMSuserAllowAccessIP"] = ValidUser[0, 16].ToString();
                             // ............. Code Commented by Sam on 07112016 due to get user its own cnt_internalid....................
-                            HttpContext.Current.Session["owninternalid"] = Convert.ToString(ValidUser[0, 17]);
-                            HttpContext.Current.Session["cntId"] = Convert.ToString(ValidUser[0, 18]);
+                            HttpContext.Current.Session["LMSowninternalid"] = Convert.ToString(ValidUser[0, 17]);
+                            HttpContext.Current.Session["LMScntId"] = Convert.ToString(ValidUser[0, 18]);
 
                             // ............. Code Above Commented by Sam on 07112016 due to get user its own cnt_internalid....................
-                            HttpContext.Current.Session["LastCompany"] = string.Empty;
-                            HttpContext.Current.Session["LastFinYear"] = string.Empty;
-                            HttpContext.Current.Session["LastSettNo"] = string.Empty;
-                            HttpContext.Current.Session["DataTable_Menu"] = GetDataTable("tbl_trans_menu", "mnu_id, mnu_menuName, mnu_menuLink, mun_parentId, mnu_segmentId, mnu_image", "mnu_menulink not like '%frmwip%'", null);
+                            HttpContext.Current.Session["LMSLastCompany"] = string.Empty;
+                            HttpContext.Current.Session["LMSLastFinYear"] = string.Empty;
+                            HttpContext.Current.Session["LMSLastSettNo"] = string.Empty;
+                            HttpContext.Current.Session["LMSDataTable_Menu"] = GetDataTable("tbl_trans_menu", "mnu_id, mnu_menuName, mnu_menuLink, mun_parentId, mnu_segmentId, mnu_image", "mnu_menulink not like '%frmwip%'", null);
                             //Rev Debashis Mantis-0024716
                             DataTable dtLoginPortalwithHeirarchy = new DataTable();
-                            dtLoginPortalwithHeirarchy = GetDataTable("select HierarchywiseLoginInPortal from tbl_master_user where user_id='" + HttpContext.Current.Session["userid"] + "'");
+                            dtLoginPortalwithHeirarchy = GetDataTable("select HierarchywiseLoginInPortal from tbl_master_user where user_id='" + HttpContext.Current.Session["LMSuserid"] + "'");
                             //End of Rev Debashis Mantis-0024716
-                            string[,] EmployeereportTo = GetFieldValue(" tbl_trans_employeeCTC ", " emp_reportTo ", " emp_cntId='" + HttpContext.Current.Session["usercontactID"] + "'", 1);
+                            string[,] EmployeereportTo = GetFieldValue(" tbl_trans_employeeCTC ", " emp_reportTo ", " emp_cntId='" + HttpContext.Current.Session["LMSusercontactID"] + "'", 1);
 
                             if (EmployeereportTo[0, 0].Trim() == "0")
-                                HttpContext.Current.Session["superuser"] = "Y";
+                                HttpContext.Current.Session["LMSsuperuser"] = "Y";
                             else
-                                HttpContext.Current.Session["superuser"] = "";
+                                HttpContext.Current.Session["LMSsuperuser"] = "";
                             if (ValidUser[0, 10].ToString().Trim() == "Y")  //_must be treated as superuser: taking top level Hierarchy!
                             {
                                 /////NewMethodwFindOUtEmployeeHierarch
-                                HttpContext.Current.Session["userchildHierarchy"] = GeEmployeeHierarchy(ValidUser[0, 15].ToString());
+                                HttpContext.Current.Session["LMSuserchildHierarchy"] = GeEmployeeHierarchy(ValidUser[0, 15].ToString());
                                 // Rev 2.0
-                                //string branch = getBranch(HttpContext.Current.Session["userbranchID"].ToString(), "") + HttpContext.Current.Session["userbranchID"].ToString();
-                                string branch = getBranchForLogin(HttpContext.Current.Session["userbranchID"].ToString(), "") + HttpContext.Current.Session["userbranchID"].ToString();
+                                //string branch = getBranch(HttpContext.Current.Session["LMSuserbranchID"].ToString(), "") + HttpContext.Current.Session["LMSuserbranchID"].ToString();
+                                string branch = getBranchForLogin(HttpContext.Current.Session["LMSuserbranchID"].ToString(), "") + HttpContext.Current.Session["LMSuserbranchID"].ToString();
                                 // End of Rev 2.0
                                 actual = "";
-                                HttpContext.Current.Session["userbranchHierarchy"] = branch;
+                                HttpContext.Current.Session["LMSuserbranchHierarchy"] = branch;
                             }
                             else
                             {
@@ -375,30 +375,30 @@ namespace BusinessLogicLayer
                                 //string userlist = getChildUserNotColleague(ValidUser[0, 0].ToString(), "");
 
                                 //actual = "";
-                                //HttpContext.Current.Session["userchildHierarchy"] = userlist;
+                                //HttpContext.Current.Session["LMSuserchildHierarchy"] = userlist;
                                 string userlist = "";
                                 actual = "";
                                 if (dtLoginPortalwithHeirarchy.Rows[0][0].ToString() == "True")
                                 {
                                     userlist = getChildUserNotColleague(ValidUser[0, 0].ToString(), "");
-                                    HttpContext.Current.Session["userchildHierarchy"] = userlist;
+                                    HttpContext.Current.Session["LMSuserchildHierarchy"] = userlist;
                                 }
                                 else
                                 {
-                                    HttpContext.Current.Session["userchildHierarchy"] = HttpContext.Current.Session["userid"].ToString();
+                                    HttpContext.Current.Session["LMSuserchildHierarchy"] = HttpContext.Current.Session["LMSuserid"].ToString();
                                 }
                                 //End of Rev Debashis Mantis-0024716
 
                                 //Rev Debashis Mantis-0025209
                                 //DataSet dsbranchhrchy = new DataSet();
                                 //string[] strSpParam = new string[1];
-                                //strSpParam[0] = "branchid|" + GenericStoreProcedure.ParamDBType.Int + "|10|" + HttpContext.Current.Session["userbranchID"].ToString() + "|" + GenericStoreProcedure.ParamType.ExParam;
+                                //strSpParam[0] = "branchid|" + GenericStoreProcedure.ParamDBType.Int + "|10|" + HttpContext.Current.Session["LMSuserbranchID"].ToString() + "|" + GenericStoreProcedure.ParamType.ExParam;
 
                                 //GenericStoreProcedure oGenericStoreProcedure = new GenericStoreProcedure();
                                 //try
                                 //{
                                 //    dsbranchhrchy = oGenericStoreProcedure.Procedure_DataSet(strSpParam, "Hr_GetBranchSubTree");
-                                //    HttpContext.Current.Session["userbranchHierarchy"] = dsbranchhrchy.Tables[0].Rows[0][0].ToString();
+                                //    HttpContext.Current.Session["LMSuserbranchHierarchy"] = dsbranchhrchy.Tables[0].Rows[0][0].ToString();
                                 //}
                                 //catch { }
                                 CommonBL cbl = new CommonBL();
@@ -408,17 +408,17 @@ namespace BusinessLogicLayer
                                     userlist = getChildUserNotColleague(ValidUser[0, 0].ToString(), "");
 
                                     actual = "";
-                                    //HttpContext.Current.Session["userchildHierarchy"] = userlist;
+                                    //HttpContext.Current.Session["LMSuserchildHierarchy"] = userlist;
 
                                     DataSet dsbranchhrchy = new DataSet();
                                     string[] strSpParam = new string[1];
-                                    strSpParam[0] = "branchid|" + GenericStoreProcedure.ParamDBType.Int + "|10|" + HttpContext.Current.Session["userbranchID"].ToString() + "|" + GenericStoreProcedure.ParamType.ExParam;
+                                    strSpParam[0] = "branchid|" + GenericStoreProcedure.ParamDBType.Int + "|10|" + HttpContext.Current.Session["LMSuserbranchID"].ToString() + "|" + GenericStoreProcedure.ParamType.ExParam;
 
                                     GenericStoreProcedure oGenericStoreProcedure = new GenericStoreProcedure();
                                     try
                                     {
                                         dsbranchhrchy = oGenericStoreProcedure.Procedure_DataSet(strSpParam, "Hr_GetBranchSubTree");
-                                        HttpContext.Current.Session["userbranchHierarchy"] = dsbranchhrchy.Tables[0].Rows[0][0].ToString();
+                                        HttpContext.Current.Session["LMSuserbranchHierarchy"] = dsbranchhrchy.Tables[0].Rows[0][0].ToString();
                                     }
                                     catch { }
                                 }
@@ -428,34 +428,34 @@ namespace BusinessLogicLayer
 
                                     if (string.IsNullOrEmpty(branchs))
                                     {
-                                        branchs = HttpContext.Current.Session["userbranchID"].ToString();
+                                        branchs = HttpContext.Current.Session["LMSuserbranchID"].ToString();
                                     }
 
-                                    HttpContext.Current.Session["userbranchHierarchy"] = branchs;
+                                    HttpContext.Current.Session["LMSuserbranchHierarchy"] = branchs;
                                 }
                                 //End of Rev Debashis Mantis-0025209
                             }
                             //___This will get all accessebla pages for reaspective segment
                             getAccessPages();
-                            string[] segmentname = proc.GetFieldValue1("tbl_master_segment", "Seg_Name", "Seg_id=" + HttpContext.Current.Session["userlastsegment"], 1);
+                            string[] segmentname = proc.GetFieldValue1("tbl_master_segment", "Seg_Name", "Seg_id=" + HttpContext.Current.Session["LMSuserlastsegment"], 1);
                             string[] sname = segmentname[0].Split('-');
                             if (sname.Length > 1)
                             {
                                 string[] ExchangeSegmentID = proc.GetFieldValue1("Master_ExchangeSegments MES,Master_Exchange ME", "MES.ExchangeSegment_ID", "MES.ExchangeSegment_Code='" + sname[1] + "'And MES.ExchangeSegment_ExchangeID=ME.Exchange_ID AND ME.Exchange_ShortName='" + sname[0] + "'", 1);
-                                HttpContext.Current.Session["ExchangeSegmentID"] = ExchangeSegmentID[0].ToString();
+                                HttpContext.Current.Session["LMSExchangeSegmentID"] = ExchangeSegmentID[0].ToString();
                             }
                             if (sname[0] == "Accounts")
                             {
                                 string[] ExchangeSegmentID = proc.GetFieldValue1("Master_ExchangeSegments MES,Master_Exchange ME", "MES.ExchangeSegment_ID", "MES.ExchangeSegment_Code='ACC'And MES.ExchangeSegment_ExchangeID=ME.Exchange_ID AND ME.Exchange_ShortName='" + sname[0] + "'", 1);
-                                HttpContext.Current.Session["ExchangeSegmentID"] = ExchangeSegmentID[0].ToString();
+                                HttpContext.Current.Session["LMSExchangeSegmentID"] = ExchangeSegmentID[0].ToString();
                             }
                             //Subhabrata
-                            if (Convert.ToString(HttpContext.Current.Session["userbranchID"]) != "")
+                            if (Convert.ToString(HttpContext.Current.Session["LMSuserbranchID"]) != "")
                             {
                                 DataTable dt1 = new DataTable();
                                 ProcedureExecute proc1 = new ProcedureExecute("GetSiblingsBranchIds");
 
-                                proc1.AddIntegerPara("@BranchId", Convert.ToInt32(HttpContext.Current.Session["userbranchID"]));
+                                proc1.AddIntegerPara("@BranchId", Convert.ToInt32(HttpContext.Current.Session["LMSuserbranchID"]));
 
                                 dt1 = proc1.GetTable();
                                 string SibLingBranch = string.Empty;
@@ -469,22 +469,22 @@ namespace BusinessLogicLayer
                                 }
 
 
-                                HttpContext.Current.Session["UserSiblingBranchHierarchy"] = HttpContext.Current.Session["userbranchHierarchy"] + "," + SibLingBranch;
+                                HttpContext.Current.Session["LMSUserSiblingBranchHierarchy"] = HttpContext.Current.Session["LMSuserbranchHierarchy"] + "," + SibLingBranch;
 
                             }//End
 
-                            if (HttpContext.Current.Session["userlastsegment"].ToString() != "")
+                            if (HttpContext.Current.Session["LMSuserlastsegment"].ToString() != "")
                             {
                                 DataTable UserLastSegmentInfo = oGenericMethod.GetUserLastSegmentDetail();
                                 if (UserLastSegmentInfo.Rows.Count > 0)
                                 {
-                                    //HttpContext.Current.Session["LastCompany"] = "COR0000002";
-                                    HttpContext.Current.Session["usersegid"] = UserLastSegmentInfo.Rows[0][0].ToString().Trim();
-                                    HttpContext.Current.Session["LastCompany"] = UserLastSegmentInfo.Rows[0][1].ToString();
+                                    //HttpContext.Current.Session["LMSLastCompany"] = "COR0000002";
+                                    HttpContext.Current.Session["LMSusersegid"] = UserLastSegmentInfo.Rows[0][0].ToString().Trim();
+                                    HttpContext.Current.Session["LMSLastCompany"] = UserLastSegmentInfo.Rows[0][1].ToString();
                                     // Code Added by Sam to fetch All child Company Of Parent Company
                                     // To show Account Head belongs to Parent and Child Company
                                     // Version 1.0.0.1
-                                    string parentcompany = "'" + HttpContext.Current.Session["LastCompany"].ToString() + "'";
+                                    string parentcompany = "'" + HttpContext.Current.Session["LMSLastCompany"].ToString() + "'";
                                     GetChildCompany(parentcompany);
                                     //string CompanyList = getCompanyList(parentcompany, "");
                                     //string AllCompany = "";
@@ -502,31 +502,31 @@ namespace BusinessLogicLayer
 
                                     // Version 1.0.0.1 End
 
-                                    HttpContext.Current.Session["LastFinYear"] = UserLastSegmentInfo.Rows[0][2].ToString();
-                                    HttpContext.Current.Session["LastSettNo"] = UserLastSegmentInfo.Rows[0][3].ToString();
+                                    HttpContext.Current.Session["LMSLastFinYear"] = UserLastSegmentInfo.Rows[0][2].ToString();
+                                    HttpContext.Current.Session["LMSLastSettNo"] = UserLastSegmentInfo.Rows[0][3].ToString();
                                     HttpContext.Current.Session["LedgerView"] = UserLastSegmentInfo.Rows[0][6].ToString();
                                     HttpContext.Current.Session["StartdateFundsPayindate"] = UserLastSegmentInfo.Rows[0][5].ToString();// fetch startdate and FundsPayin from Master_Settlements
                                     ////////////////////////Entry Lock System Session Creation/////////////////////////////
                                     string SegmentID = null;
                                     DataTable DtLockEntrySystem = null;
-                                    string UserLastSegment = HttpContext.Current.Session["userlastsegment"].ToString();
+                                    string UserLastSegment = HttpContext.Current.Session["LMSuserlastsegment"].ToString();
                                     if (UserLastSegment != "1" && UserLastSegment != "4" && UserLastSegment != "6")
                                     {
                                         if (UserLastSegment == "9" || UserLastSegment == "10")
                                         {
-                                            DtLockEntrySystem = GetDataTable("tbl_master_CompanyExchange", "Exch_InternalID", "Exch_CompID='" + HttpContext.Current.Session["LastCompany"].ToString() + "' and Exch_TMCode='" + HttpContext.Current.Session["UserSegID"].ToString() + "'");
+                                            DtLockEntrySystem = GetDataTable("tbl_master_CompanyExchange", "Exch_InternalID", "Exch_CompID='" + HttpContext.Current.Session["LMSLastCompany"].ToString() + "' and Exch_TMCode='" + HttpContext.Current.Session["LMSusersegid"].ToString() + "'");
                                             SegmentID = DtLockEntrySystem.Rows[0][0].ToString();
                                             DtLockEntrySystem = null;
                                         }
                                         else
                                         {
-                                            SegmentID = HttpContext.Current.Session["UserSegID"].ToString();
+                                            SegmentID = HttpContext.Current.Session["LMSusersegid"].ToString();
                                         }
 
                                         //======================================Expiry Module==========================
                                         //Set Expiry From Encrypted File
-                                        if (HttpContext.Current.Session["UserLastSegment"] != null && HttpContext.Current.Session["LastCompany"] != null
-                                            && HttpContext.Current.Session["UserLastSegment"] != "" && HttpContext.Current.Session["LastCompany"] != "")
+                                        if (HttpContext.Current.Session["LMSuserlastsegment"] != null && HttpContext.Current.Session["LMSLastCompany"] != null
+                                            && HttpContext.Current.Session["LMSuserlastsegment"] != "" && HttpContext.Current.Session["LMSLastCompany"] != "")
                                             oGenericMethod.EncryptDecript(1, "SetExpiryDate~", System.AppDomain.CurrentDomain.BaseDirectory + "License.txt");
                                         //======================================End Expiry Module==========================
 
@@ -677,13 +677,13 @@ namespace BusinessLogicLayer
                                 }
                                 //}
 
-                                //string[,] segId = GetFieldValue("tbl_trans_LastSegment", "ls_lastdpcoid,ls_lastCompany,ls_lastFinYear,ls_lastSettlementNo,(select cast(Settlements_StartDateTime as varchar)+','+cast(Settlements_FundsPayin as varchar) from Master_Settlements where  Ltrim(RTRIM(settlements_Number))=ls_lastSettlementNo and ltrim(RTRIM(settlements_TypeSuffix))=ls_lastSettlementType)", "ls_lastSegment='" + HttpContext.Current.Session["userlastsegment"] + "' and ls_cntId='" + HttpContext.Current.Session["usercontactID"] + "'", 5);
+                                //string[,] segId = GetFieldValue("tbl_trans_LastSegment", "ls_lastdpcoid,ls_lastCompany,ls_lastFinYear,ls_lastSettlementNo,(select cast(Settlements_StartDateTime as varchar)+','+cast(Settlements_FundsPayin as varchar) from Master_Settlements where  Ltrim(RTRIM(settlements_Number))=ls_lastSettlementNo and ltrim(RTRIM(settlements_TypeSuffix))=ls_lastSettlementType)", "ls_lastSegment='" + HttpContext.Current.Session["LMSuserlastsegment"] + "' and ls_cntId='" + HttpContext.Current.Session["LMSusercontactID"] + "'", 5);
                                 //if (segId[0, 0] != "n")
                                 //{
-                                //    HttpContext.Current.Session["usersegid"] = segId[0, 0].ToString().Trim();
-                                //    HttpContext.Current.Session["LastCompany"] = segId[0, 1].ToString();
-                                //    HttpContext.Current.Session["LastFinYear"] = segId[0, 2].ToString();
-                                //    HttpContext.Current.Session["LastSettNo"] = segId[0, 3].ToString();
+                                //    HttpContext.Current.Session["LMSusersegid"] = segId[0, 0].ToString().Trim();
+                                //    HttpContext.Current.Session["LMSLastCompany"] = segId[0, 1].ToString();
+                                //    HttpContext.Current.Session["LMSLastFinYear"] = segId[0, 2].ToString();
+                                //    HttpContext.Current.Session["LMSLastSettNo"] = segId[0, 3].ToString();
                                 //    HttpContext.Current.Session["StartdateFundsPayindate"] = segId[0, 4].ToString();// fetch startdate and FundsPayin from Master_Settlements
 
                                 //}
@@ -760,95 +760,95 @@ namespace BusinessLogicLayer
                         {
                             oGenericMethod = new GenericMethod();
                             HttpContext.Current.Session["userType"] = "DV";
-                            HttpContext.Current.Session["userid"] = ValidUser[0, 0].ToString();
-                            HttpContext.Current.Session["username"] = ValidUser[0, 1].ToString();
-                            HttpContext.Current.Session["userpassword"] = ValidUser[0, 2].ToString();
-                            HttpContext.Current.Session["usercontactID"] = ValidUser[0, 3].ToString();
-                            HttpContext.Current.Session["userbranchID"] = ValidUser[0, 4].ToString();
-                            HttpContext.Current.Session["usergoup"] = ValidUser[0, 5].ToString();
-                            HttpContext.Current.Session["userlastsegment"] = ValidUser[0, 6].ToString();
-                            HttpContext.Current.Session["userContactType"] = ValidUser[0, 7].ToString();
-                            HttpContext.Current.Session["TimeForTickerDisplay"] = ValidUser[0, 8].ToString();
-                            //HttpContext.Current.Session["EmployeeID"] = ValidUser[0, 9].ToString();
-                            HttpContext.Current.Session["EntryProfileType"] = ValidUser[0, 12].ToString();
-                            //HttpContext.Current.Session["userAllowAccessIP"] = ValidUser[0, 16].ToString();
+                            HttpContext.Current.Session["LMSuserid"] = ValidUser[0, 0].ToString();
+                            HttpContext.Current.Session["LMSusername"] = ValidUser[0, 1].ToString();
+                            HttpContext.Current.Session["LMSuserpassword"] = ValidUser[0, 2].ToString();
+                            HttpContext.Current.Session["LMSusercontactID"] = ValidUser[0, 3].ToString();
+                            HttpContext.Current.Session["LMSuserbranchID"] = ValidUser[0, 4].ToString();
+                            HttpContext.Current.Session["LMSusergoup"] = ValidUser[0, 5].ToString();
+                            HttpContext.Current.Session["LMSuserlastsegment"] = ValidUser[0, 6].ToString();
+                            HttpContext.Current.Session["LMSuserContactType"] = ValidUser[0, 7].ToString();
+                            HttpContext.Current.Session["LMSTimeForTickerDisplay"] = ValidUser[0, 8].ToString();
+                            //HttpContext.Current.Session["LMSEmployeeID"] = ValidUser[0, 9].ToString();
+                            HttpContext.Current.Session["LMSEntryProfileType"] = ValidUser[0, 12].ToString();
+                            //HttpContext.Current.Session["LMSuserAllowAccessIP"] = ValidUser[0, 16].ToString();
 
-                            // HttpContext.Current.Session["owninternalid"] = Convert.ToString(ValidUser[0, 17]);
-                            //  HttpContext.Current.Session["cntId"] = Convert.ToString(ValidUser[0, 18]);
+                            // HttpContext.Current.Session["LMSowninternalid"] = Convert.ToString(ValidUser[0, 17]);
+                            //  HttpContext.Current.Session["LMScntId"] = Convert.ToString(ValidUser[0, 18]);
 
                             // ............. Code Above Commented by Sam on 07112016 due to get user its own cnt_internalid....................
-                            HttpContext.Current.Session["LastCompany"] = string.Empty;
-                            HttpContext.Current.Session["LastFinYear"] = string.Empty;
-                            HttpContext.Current.Session["LastSettNo"] = string.Empty;
-                            //   string[,] EmployeereportTo = GetFieldValue(" tbl_trans_employeeCTC ", " emp_reportTo ", " emp_cntId='" + HttpContext.Current.Session["usercontactID"] + "'", 1);
+                            HttpContext.Current.Session["LMSLastCompany"] = string.Empty;
+                            HttpContext.Current.Session["LMSLastFinYear"] = string.Empty;
+                            HttpContext.Current.Session["LMSLastSettNo"] = string.Empty;
+                            //   string[,] EmployeereportTo = GetFieldValue(" tbl_trans_employeeCTC ", " emp_reportTo ", " emp_cntId='" + HttpContext.Current.Session["LMSusercontactID"] + "'", 1);
 
                             //if (EmployeereportTo[0, 0].Trim() == "0")
-                            //    HttpContext.Current.Session["superuser"] = "Y";
+                            //    HttpContext.Current.Session["LMSsuperuser"] = "Y";
                             //else
-                            //    HttpContext.Current.Session["superuser"] = "";
+                            //    HttpContext.Current.Session["LMSsuperuser"] = "";
 
                             if (ValidUser[0, 10].ToString().Trim() == "Y")  //_must be treated as superuser: taking top level Hierarchy!
                             {
                                 /////NewMethodwFindOUtEmployeeHierarch
-                                //HttpContext.Current.Session["userchildHierarchy"] = GeEmployeeHierarchy(ValidUser[0, 15].ToString());
-                                // string branch = getBranch(HttpContext.Current.Session["userbranchID"].ToString(), "") + HttpContext.Current.Session["userbranchID"].ToString();
+                                //HttpContext.Current.Session["LMSuserchildHierarchy"] = GeEmployeeHierarchy(ValidUser[0, 15].ToString());
+                                // string branch = getBranch(HttpContext.Current.Session["LMSuserbranchID"].ToString(), "") + HttpContext.Current.Session["LMSuserbranchID"].ToString();
                                 //actual = "";
-                                // HttpContext.Current.Session["userbranchHierarchy"] = branch;
+                                // HttpContext.Current.Session["LMSuserbranchHierarchy"] = branch;
                             }
                             else
                             {
                                 //string userlist = getChildUserNotColleague(ValidUser[0, 0].ToString(), "");
                                 //actual = "";
-                                //HttpContext.Current.Session["userchildHierarchy"] = userlist;
+                                //HttpContext.Current.Session["LMSuserchildHierarchy"] = userlist;
 
                                 //DataSet dsbranchhrchy = new DataSet();
                                 //string[] strSpParam = new string[1];
-                                //strSpParam[0] = "branchid|" + GenericStoreProcedure.ParamDBType.Int + "|10|" + HttpContext.Current.Session["userbranchID"].ToString() + "|" + GenericStoreProcedure.ParamType.ExParam;
+                                //strSpParam[0] = "branchid|" + GenericStoreProcedure.ParamDBType.Int + "|10|" + HttpContext.Current.Session["LMSuserbranchID"].ToString() + "|" + GenericStoreProcedure.ParamType.ExParam;
 
                                 //GenericStoreProcedure oGenericStoreProcedure = new GenericStoreProcedure();
                                 //try
                                 //{
                                 //    dsbranchhrchy = oGenericStoreProcedure.Procedure_DataSet(strSpParam, "Hr_GetBranchSubTree");
-                                //    HttpContext.Current.Session["userbranchHierarchy"] = dsbranchhrchy.Tables[0].Rows[0][0].ToString();
+                                //    HttpContext.Current.Session["LMSuserbranchHierarchy"] = dsbranchhrchy.Tables[0].Rows[0][0].ToString();
                                 //}
                                 //catch { }
                             }
                             //___This will get all accessebla pages for reaspective segment
                             //getAccessPages();
-                            //string[] segmentname = proc.GetFieldValue1("tbl_master_segment", "Seg_Name", "Seg_id=" + HttpContext.Current.Session["userlastsegment"], 1);
+                            //string[] segmentname = proc.GetFieldValue1("tbl_master_segment", "Seg_Name", "Seg_id=" + HttpContext.Current.Session["LMSuserlastsegment"], 1);
                             //string[] sname = segmentname[0].Split('-');
                             //if (sname.Length > 1)
                             //{
                             //    string[] ExchangeSegmentID = proc.GetFieldValue1("Master_ExchangeSegments MES,Master_Exchange ME", "MES.ExchangeSegment_ID", "MES.ExchangeSegment_Code='" + sname[1] + "'And MES.ExchangeSegment_ExchangeID=ME.Exchange_ID AND ME.Exchange_ShortName='" + sname[0] + "'", 1);
-                            //HttpContext.Current.Session["ExchangeSegmentID"] = ExchangeSegmentID[0].ToString();
-                            HttpContext.Current.Session["ExchangeSegmentID"] = "1";
+                            //HttpContext.Current.Session["LMSExchangeSegmentID"] = ExchangeSegmentID[0].ToString();
+                            HttpContext.Current.Session["LMSExchangeSegmentID"] = "1";
                             // }
                             //if (sname[0] == "Accounts")
                             //{
                             //    string[] ExchangeSegmentID = proc.GetFieldValue1("Master_ExchangeSegments MES,Master_Exchange ME", "MES.ExchangeSegment_ID", "MES.ExchangeSegment_Code='ACC'And MES.ExchangeSegment_ExchangeID=ME.Exchange_ID AND ME.Exchange_ShortName='" + sname[0] + "'", 1);
-                            //    HttpContext.Current.Session["ExchangeSegmentID"] = ExchangeSegmentID[0].ToString();
+                            //    HttpContext.Current.Session["LMSExchangeSegmentID"] = ExchangeSegmentID[0].ToString();
                             //}
 
-                            if (HttpContext.Current.Session["userlastsegment"].ToString() != "")
+                            if (HttpContext.Current.Session["LMSuserlastsegment"].ToString() != "")
                             {
                                 DataTable UserLastSegmentInfo = oGenericMethod.GetUserLastSegmentDetail();
                                 if (UserLastSegmentInfo.Rows.Count > 0)
                                 {
-                                    //HttpContext.Current.Session["LastCompany"] = "COR0000002";
-                                    HttpContext.Current.Session["usersegid"] = UserLastSegmentInfo.Rows[0][0].ToString().Trim();
-                                    HttpContext.Current.Session["LastCompany"] = UserLastSegmentInfo.Rows[0][1].ToString();
+                                    //HttpContext.Current.Session["LMSLastCompany"] = "COR0000002";
+                                    HttpContext.Current.Session["LMSusersegid"] = UserLastSegmentInfo.Rows[0][0].ToString().Trim();
+                                    HttpContext.Current.Session["LMSLastCompany"] = UserLastSegmentInfo.Rows[0][1].ToString();
                                     // Code Added by Sam to fetch All child Company Of Parent Company
                                     // To show Account Head belongs to Parent and Child Company
                                     // Version 1.0.0.1
-                                    string parentcompany = "'" + HttpContext.Current.Session["LastCompany"].ToString() + "'";
+                                    string parentcompany = "'" + HttpContext.Current.Session["LMSLastCompany"].ToString() + "'";
                                     GetChildCompany(parentcompany);
 
 
 
                                     // Version 1.0.0.1 End
 
-                                    HttpContext.Current.Session["LastFinYear"] = UserLastSegmentInfo.Rows[0][2].ToString();
-                                    HttpContext.Current.Session["LastSettNo"] = UserLastSegmentInfo.Rows[0][3].ToString();
+                                    HttpContext.Current.Session["LMSLastFinYear"] = UserLastSegmentInfo.Rows[0][2].ToString();
+                                    HttpContext.Current.Session["LMSLastSettNo"] = UserLastSegmentInfo.Rows[0][3].ToString();
                                     HttpContext.Current.Session["LedgerView"] = UserLastSegmentInfo.Rows[0][6].ToString();
                                     HttpContext.Current.Session["StartdateFundsPayindate"] = UserLastSegmentInfo.Rows[0][5].ToString();// fetch startdate and FundsPayin from Master_Settlements
 
@@ -1499,10 +1499,10 @@ namespace BusinessLogicLayer
                     tem_id = part[1];
                     tem_SenderType = part[2];
                 }
-                int NoOfRowsEffected = InsurtFieldValue(" tbl_trans_email ", " hem_senderemail,hem_mailmsg,hem_mailsub,hem_temid,hem_sendertype,hem_activityid, CreateDate,CreateUser ", "'" + sendermail + "','" + message + "','" + subject + "','" + tem_id + "','" + tem_SenderType + "','','" + DateTime.Now + "', '" + HttpContext.Current.Session["userid"] + "'");
+                int NoOfRowsEffected = InsurtFieldValue(" tbl_trans_email ", " hem_senderemail,hem_mailmsg,hem_mailsub,hem_temid,hem_sendertype,hem_activityid, CreateDate,CreateUser ", "'" + sendermail + "','" + message + "','" + subject + "','" + tem_id + "','" + tem_SenderType + "','','" + DateTime.Now + "', '" + HttpContext.Current.Session["LMSuserid"] + "'");
                 //_______End____//
                 //_______inserting Data in tbl_trans_email_recipient___//
-                string[,] lastID = GetFieldValue(" tbl_trans_email ", " top 1 hem_id ", " CreateUser=" + HttpContext.Current.Session["userid"] + " and hem_mailsub='" + subject + "'", 1, " CreateDate desc ");
+                string[,] lastID = GetFieldValue(" tbl_trans_email ", " top 1 hem_id ", " CreateUser=" + HttpContext.Current.Session["LMSuserid"] + " and hem_mailsub='" + subject + "'", 1, " CreateDate desc ");
                 if (lastID[0, 0] != "n")
                 {
                     EmailIDUpdate(TargetIds, lastID[0, 0], "To");
@@ -1612,11 +1612,11 @@ namespace BusinessLogicLayer
                     //___ inter in tbl_trans_BulkEmail __//
                     //___ status: Y--> Sebded, N--> Send At perticular Time, C--> Cancel The mail
 
-                    int NoOfRowsEffected = InsurtFieldValue(" tbl_trans_BulkEmail ", " be_BulkTemplateId,be_status,be_send_createTime,be_send_createUser ", "'" + TemplateIdForRecipientEmailId + "','Y','" + System.DateTime.Now + "','" + HttpContext.Current.Session["userid"] + "'");
+                    int NoOfRowsEffected = InsurtFieldValue(" tbl_trans_BulkEmail ", " be_BulkTemplateId,be_status,be_send_createTime,be_send_createUser ", "'" + TemplateIdForRecipientEmailId + "','Y','" + System.DateTime.Now + "','" + HttpContext.Current.Session["LMSuserid"] + "'");
                     //_______End____//
 
                     //_______inserting Data in tbl_trans_email_attachments___//
-                    string[,] lastID = GetFieldValue(" tbl_trans_BulkEmail ", " top 1 be_Id ", " be_send_createUser=" + HttpContext.Current.Session["userid"] + " and be_BulkTemplateId='" + TemplateIdForRecipientEmailId + "'", 1, " be_send_createTime desc ");
+                    string[,] lastID = GetFieldValue(" tbl_trans_BulkEmail ", " top 1 be_Id ", " be_send_createUser=" + HttpContext.Current.Session["LMSuserid"] + " and be_BulkTemplateId='" + TemplateIdForRecipientEmailId + "'", 1, " be_send_createTime desc ");
                     if (lastID[0, 0] != "n")
                     {
                         if (attachmentDetails != null)
@@ -1630,10 +1630,10 @@ namespace BusinessLogicLayer
                 }
                 else
                 {
-                    int NoOfRowsEffected = InsurtFieldValue(" tbl_trans_BulkEmail ", " be_BulkTemplateId,be_status,be_send_createTime,be_send_createUser ", "'" + TemplateIdForRecipientEmailId + "','N','" + System.DateTime.Now + "','" + HttpContext.Current.Session["userid"] + "'");
+                    int NoOfRowsEffected = InsurtFieldValue(" tbl_trans_BulkEmail ", " be_BulkTemplateId,be_status,be_send_createTime,be_send_createUser ", "'" + TemplateIdForRecipientEmailId + "','N','" + System.DateTime.Now + "','" + HttpContext.Current.Session["LMSuserid"] + "'");
 
                     //_______inserting Data in tbl_trans_email_attachments___//
-                    string[,] lastID = GetFieldValue(" tbl_trans_BulkEmail ", " top 1 be_Id ", " be_send_createUser=" + HttpContext.Current.Session["userid"] + " and be_BulkTemplateId='" + TemplateIdForRecipientEmailId + "'", 1, " be_send_createTime desc ");
+                    string[,] lastID = GetFieldValue(" tbl_trans_BulkEmail ", " top 1 be_Id ", " be_send_createUser=" + HttpContext.Current.Session["LMSuserid"] + " and be_BulkTemplateId='" + TemplateIdForRecipientEmailId + "'", 1, " be_send_createTime desc ");
                     if (lastID[0, 0] != "n")
                     {
                         if (attachmentDetails != null)
@@ -2331,7 +2331,7 @@ namespace BusinessLogicLayer
 
             //_______taking valid menue from tbl_trans_access _____//
 
-            DataTable GroupIds = GetDataTable(" tbl_master_usergroup ", " grp_id ", " grp_segmentId=" + SegmentNumber + " and grp_id IN (" + HttpContext.Current.Session["usergoup"] + ")");
+            DataTable GroupIds = GetDataTable(" tbl_master_usergroup ", " grp_id ", " grp_segmentId=" + SegmentNumber + " and grp_id IN (" + HttpContext.Current.Session["LMSusergoup"] + ")");
 
             string groupIDlist = "";
             string menuIDlist = "";
@@ -2348,11 +2348,11 @@ namespace BusinessLogicLayer
             if (groupIDlist != "")
             {
                 DataTable menuID;
-                if (HttpContext.Current.Session["userlastsegment"] != SegmentNumber)
+                if (HttpContext.Current.Session["LMSuserlastsegment"] != SegmentNumber)
                 {
                     menuID = GetDataTable(" tbl_trans_access ", " Distinct acc_menuId ", " acc_userGroupId in (" + groupIDlist + ")");
 
-                    HttpContext.Current.Session["userlastsegment"] = SegmentNumber;
+                    HttpContext.Current.Session["LMSuserlastsegment"] = SegmentNumber;
                     //__this will use in page validation
                     getAccessPages();
                 }
@@ -2370,7 +2370,7 @@ namespace BusinessLogicLayer
             }
             //_____________________________________________________//
             // creating a datatable and taking all values from session table!
-            DataTable MenuDataTable = (DataTable)HttpContext.Current.Session["DataTable_Menu"];
+            DataTable MenuDataTable = (DataTable)HttpContext.Current.Session["LMSDataTable_Menu"];
 
             // now creating table row!
             DataRow[] DatarowHead;// = new DataRow();
@@ -2442,7 +2442,7 @@ namespace BusinessLogicLayer
             List<string> MenuList = new List<string>();
             //_______taking valid menue from tbl_trans_access _____//
 
-            DataTable GroupIds = GetDataTable(" tbl_master_usergroup ", " grp_id ", "grp_id IN (" + HttpContext.Current.Session["usergoup"] + ")");
+            DataTable GroupIds = GetDataTable(" tbl_master_usergroup ", " grp_id ", "grp_id IN (" + HttpContext.Current.Session["LMSusergoup"] + ")");
 
             string groupIDlist = "";
             string menuIDlist = "";
@@ -2459,11 +2459,11 @@ namespace BusinessLogicLayer
             if (groupIDlist != "")
             {
                 DataTable menuID;
-                //if (HttpContext.Current.Session["userlastsegment"] != SegmentNumber)
+                //if (HttpContext.Current.Session["LMSuserlastsegment"] != SegmentNumber)
                 //{
                 //    menuID = GetDataTable(" tbl_trans_access ", " Distinct acc_menuId ", " acc_userGroupId in (" + groupIDlist + ")");
 
-                //    HttpContext.Current.Session["userlastsegment"] = SegmentNumber;
+                //    HttpContext.Current.Session["LMSuserlastsegment"] = SegmentNumber;
                 //    //__this will use in page validation
                 //    getAccessPages();
                 //}
@@ -2481,7 +2481,7 @@ namespace BusinessLogicLayer
             }
             //_____________________________________________________//
             // creating a datatable and taking all values from session table!
-            DataTable MenuDataTable = (DataTable)HttpContext.Current.Session["DataTable_Menu"];
+            DataTable MenuDataTable = (DataTable)HttpContext.Current.Session["LMSDataTable_Menu"];
 
             // now creating table row!
             DataRow[] DatarowHead;// = new DataRow();
@@ -3821,9 +3821,9 @@ namespace BusinessLogicLayer
             string fields = " msg_createuser, msg_createdate, msg_targetuser, msg_content, msg_messageread, msg_sourceid, CreateDate, CreateUser";
             string Values = "";
             if (TypeOfAct_pass_message_or_activity == "message")
-                Values = createUser + ",'" + System.DateTime.Now + "'," + targetUser + ",'" + message + "',0,0,'" + System.DateTime.Now + "'," + HttpContext.Current.Session["userid"];
+                Values = createUser + ",'" + System.DateTime.Now + "'," + targetUser + ",'" + message + "',0,0,'" + System.DateTime.Now + "'," + HttpContext.Current.Session["LMSuserid"];
             if (TypeOfAct_pass_message_or_activity == "activity")
-                Values = "0,'" + System.DateTime.Now + "'," + targetUser + ",'" + message + "',0," + sourceID + ",'" + System.DateTime.Now + "'," + HttpContext.Current.Session["userid"];
+                Values = "0,'" + System.DateTime.Now + "'," + targetUser + ",'" + message + "',0," + sourceID + ",'" + System.DateTime.Now + "'," + HttpContext.Current.Session["LMSuserid"];
             int NoOfRowsEffected = InsurtFieldValue(" tbl_master_message ", fields, Values);
         }
 
@@ -3858,11 +3858,11 @@ namespace BusinessLogicLayer
                         createdate = "D" + createdate.Replace('/', '.');
                         try
                         {
-                            string filepath = "..\\Messages\\" + HttpContext.Current.Session["userid"].ToString() + ".xml";
+                            string filepath = "..\\Messages\\" + HttpContext.Current.Session["LMSuserid"].ToString() + ".xml";
                             if (File.Exists(filepath) == true)
                             {
                                 //____Use Existing file______________//
-                                string path = "..\\Messages\\" + HttpContext.Current.Session["userid"].ToString() + ".xml";
+                                string path = "..\\Messages\\" + HttpContext.Current.Session["LMSuserid"].ToString() + ".xml";
                                 Xml_sender.Load(path);
                                 if (Xml_sender.SelectSingleNode("\\" + createdate) == null)
                                 {
@@ -3909,7 +3909,7 @@ namespace BusinessLogicLayer
                                         childNode5.InnerText = "0";
                                     parentNode_3.AppendChild(childNode5);
 
-                                    string path1 = "..\\Messages\\" + HttpContext.Current.Session["userid"].ToString() + ".xml";
+                                    string path1 = "..\\Messages\\" + HttpContext.Current.Session["LMSuserid"].ToString() + ".xml";
                                     Xml_sender.Save(path1.Trim());
                                     result = "Done";
                                 }
@@ -3963,7 +3963,7 @@ namespace BusinessLogicLayer
                                     childNode5.InnerText = "0";
                                 parentNode_3.AppendChild(childNode5);
 
-                                string path = "..\\Messages\\" + HttpContext.Current.Session["userid"].ToString() + ".xml";
+                                string path = "..\\Messages\\" + HttpContext.Current.Session["LMSuserid"].ToString() + ".xml";
                                 XmlDoc.Save(path.Trim());
 
                                 result = "Done";
@@ -4135,8 +4135,8 @@ namespace BusinessLogicLayer
 
         public void getAccessPages()
         {
-            string[,] groups = GetFieldValue(" tbl_master_user ", " user_group ", " user_id=" + HttpContext.Current.Session["userid"], 1);
-            string wherecondition = "  grp_segmentId =" + HttpContext.Current.Session["userlastsegment"] + " AND grp_id IN (" + groups[0, 0] + ")";
+            string[,] groups = GetFieldValue(" tbl_master_user ", " user_group ", " user_id=" + HttpContext.Current.Session["LMSuserid"], 1);
+            string wherecondition = "  grp_segmentId =" + HttpContext.Current.Session["LMSuserlastsegment"] + " AND grp_id IN (" + groups[0, 0] + ")";
             string[,] usergroupCurrent = GetFieldValue(" tbl_master_userGroup ", " grp_id ", wherecondition, 1);
 
             HttpContext.Current.Session["DataTable_MenuAccess"] = GetDataTable(" tbl_trans_access ", " Distinct acc_menuId,acc_view,(select mnu_menuLink from tbl_trans_menu where mnu_id=acc_menuId ) as url ", " acc_userGroupId in (" + usergroupCurrent[0, 0] + ")");
@@ -4161,11 +4161,11 @@ namespace BusinessLogicLayer
                     createdate = "D" + createdate.Replace('/', '.');
                     try
                     {
-                        string filepath = "..\\Documents\\" + HttpContext.Current.Session["userid"].ToString() + ".xml";
+                        string filepath = "..\\Documents\\" + HttpContext.Current.Session["LMSuserid"].ToString() + ".xml";
                         if (File.Exists(filepath) == true)
                         {
                             //____Use Existing file______________//
-                            string path = "..\\Documents\\" + HttpContext.Current.Session["userid"].ToString() + ".xml";
+                            string path = "..\\Documents\\" + HttpContext.Current.Session["LMSuserid"].ToString() + ".xml";
                             Xml_sender.Load(path);
 
                             XmlElement parentNode_1;
@@ -4269,10 +4269,10 @@ namespace BusinessLogicLayer
                             parentNode_1.AppendChild(childNode18);
 
                             childNode19 = Xml_sender.CreateElement("CreateUser");
-                            childNode19.InnerText = HttpContext.Current.Session["userid"].ToString();
+                            childNode19.InnerText = HttpContext.Current.Session["LMSuserid"].ToString();
                             parentNode_1.AppendChild(childNode19);
 
-                            string path1 = "..\\Documents\\" + HttpContext.Current.Session["userid"].ToString() + ".xml";
+                            string path1 = "..\\Documents\\" + HttpContext.Current.Session["LMSuserid"].ToString() + ".xml";
                             Xml_sender.Save(path1.Trim());
                             result = "Done";
                         }
@@ -4381,10 +4381,10 @@ namespace BusinessLogicLayer
                             parentNode_1.AppendChild(childNode18);
 
                             childNode19 = XmlDoc.CreateElement("CreateUser");
-                            childNode19.InnerText = HttpContext.Current.Session["userid"].ToString();
+                            childNode19.InnerText = HttpContext.Current.Session["LMSuserid"].ToString();
                             parentNode_1.AppendChild(childNode19);
 
-                            string path1 = "..\\Documents\\" + HttpContext.Current.Session["userid"].ToString() + ".xml";
+                            string path1 = "..\\Documents\\" + HttpContext.Current.Session["LMSuserid"].ToString() + ".xml";
                             XmlDoc.Save(path1.Trim());
                             result = "Done";
                         }
@@ -4418,11 +4418,11 @@ namespace BusinessLogicLayer
                     createdate = "D" + createdate.Replace('/', '.');
                     try
                     {
-                        string filepath = "..\\Documents\\" + " Sub " + HttpContext.Current.Session["userid"].ToString() + ".xml";
+                        string filepath = "..\\Documents\\" + " Sub " + HttpContext.Current.Session["LMSuserid"].ToString() + ".xml";
                         if (File.Exists(filepath) == true)
                         {
                             //____Use Existing file______________//
-                            string path = "..\\Documents\\" + " Sub " + HttpContext.Current.Session["userid"].ToString() + ".xml";
+                            string path = "..\\Documents\\" + " Sub " + HttpContext.Current.Session["LMSuserid"].ToString() + ".xml";
                             Xml_sender.Load(path);
 
                             XmlElement parentNode_1;
@@ -4492,7 +4492,7 @@ namespace BusinessLogicLayer
                             childNode12.InnerText = DT.Rows[j]["CreateUser"].ToString().Trim();
                             parentNode_1.AppendChild(childNode12);
 
-                            string path1 = "..\\Documents\\" + " Sub " + HttpContext.Current.Session["userid"].ToString() + ".xml";
+                            string path1 = "..\\Documents\\" + " Sub " + HttpContext.Current.Session["LMSuserid"].ToString() + ".xml";
                             Xml_sender.Save(path1.Trim());
                             result = "Done";
                         }
@@ -4569,7 +4569,7 @@ namespace BusinessLogicLayer
                             childNode12.InnerText = DT.Rows[j]["CreateUser"].ToString().Trim();
                             parentNode_1.AppendChild(childNode12);
 
-                            string path1 = "..\\Documents\\" + " Sub " + HttpContext.Current.Session["userid"].ToString() + ".xml";
+                            string path1 = "..\\Documents\\" + " Sub " + HttpContext.Current.Session["LMSuserid"].ToString() + ".xml";
                             XmlDoc.Save(path1.Trim());
                             result = "Done";
                         }
@@ -4590,7 +4590,7 @@ namespace BusinessLogicLayer
             ERPACTIVEURL.Value = "1";
             HttpContext.Current.Response.Cookies.Add(ERPACTIVEURL);
 
-            if ((HttpContext.Current.Session["userid"] != null) && HttpContext.Current.Session["usergoup"] != null)
+            if ((HttpContext.Current.Session["LMSuserid"] != null) && HttpContext.Current.Session["LMSusergoup"] != null)
             {
                 string[] PageName = URL.ToString().Split('/');
                 if (PageName[4] != "SignOff.aspx")
@@ -4601,7 +4601,7 @@ namespace BusinessLogicLayer
 
                         string uri = (new Uri(URL, UriKind.Absolute)).PathAndQuery;
                         //  HttpContext.Current.Session["LastLandingUri"] = uri; 
-                        HttpContext.Current.Cache["LastLandingUri_" + Convert.ToString(HttpContext.Current.Session["userid"]).Trim()] = uri;
+                        HttpContext.Current.Cache["LastLandingUri_" + Convert.ToString(HttpContext.Current.Session["LMSuserid"]).Trim()] = uri;
                         HttpContext.Current.Session["PageAccess"] = pageAccess;
                         //Session["PageAccess"] = "All";
                     }
@@ -4633,7 +4633,7 @@ namespace BusinessLogicLayer
 
         public void Call_CheckUserSession(string URL)
         {
-            if ((HttpContext.Current.Session["userid"] != null) && HttpContext.Current.Session["usergoup"] != null)
+            if ((HttpContext.Current.Session["LMSuserid"] != null) && HttpContext.Current.Session["LMSusergoup"] != null)
             {
 
             }
@@ -4655,7 +4655,7 @@ namespace BusinessLogicLayer
         {
             // Now we construct a SQL command that will fetch fields from the Suplied table
             //First value for Closing and Second Value for Opening
-            string FinYear = HttpContext.Current.Session["LastFinYear"].ToString();
+            string FinYear = HttpContext.Current.Session["LMSLastFinYear"].ToString();
             string lcSql = null;
             int Day = Date.Day;
             int month = Date.Month;
@@ -4705,7 +4705,7 @@ namespace BusinessLogicLayer
         {
             // Now we construct a SQL command that will fetch fields from the Suplied table
             //First value for Closing and Second Value for Opening
-            string FinYear = HttpContext.Current.Session["LastFinYear"].ToString();
+            string FinYear = HttpContext.Current.Session["LMSLastFinYear"].ToString();
             string lcSql = null;
             int Day = FDate.Day;
             int month = FDate.Month;
@@ -4778,7 +4778,7 @@ namespace BusinessLogicLayer
         {
             // Now we construct a SQL command that will fetch fields from the Suplied table
             //First value for Closing and Second Value for Opening
-            string FinYear = HttpContext.Current.Session["LastFinYear"].ToString();
+            string FinYear = HttpContext.Current.Session["LMSLastFinYear"].ToString();
             String lcSql;
             int Day = FDate.Day;
             int month = FDate.Month;
@@ -4864,7 +4864,7 @@ namespace BusinessLogicLayer
         {
             // Now we construct a SQL command that will fetch fields from the Suplied table
             //First value for Closing and Second Value for Opening
-            string FinYear = HttpContext.Current.Session["LastFinYear"].ToString();
+            string FinYear = HttpContext.Current.Session["LMSLastFinYear"].ToString();
             string lcSql = null;
             if (ExchangeSegmentID == "0")
             {
@@ -4895,7 +4895,7 @@ namespace BusinessLogicLayer
         {
             // Now we construct a SQL command that will fetch fields from the Suplied table
             //First value for Closing and Second Value for Opening
-            string FinYear = HttpContext.Current.Session["LastFinYear"].ToString();
+            string FinYear = HttpContext.Current.Session["LMSLastFinYear"].ToString();
             DateTime FinStartDate = Convert.ToDateTime(HttpContext.Current.Session["FinYearStart"].ToString());
             String lcSql;
             SubAccountID = (SubAccountID != null) ? (SubAccountID.Trim() == String.Empty) ? null : SubAccountID : SubAccountID;
@@ -4972,7 +4972,7 @@ namespace BusinessLogicLayer
         {
             // Now we construct a SQL command that will fetch fields from the Suplied table
             //First value for Closing and Second Value for Opening
-            string FinYear = HttpContext.Current.Session["LastFinYear"].ToString();
+            string FinYear = HttpContext.Current.Session["LMSLastFinYear"].ToString();
             int month = FDate.Month;
             String lcSql;
             int day = FDate.Day;
@@ -5334,7 +5334,7 @@ namespace BusinessLogicLayer
         {
             // Now we construct a SQL command that will fetch fields from the Suplied table
             //First value for Closing and Second Value for Opening
-            string FinYear = HttpContext.Current.Session["LastFinYear"].ToString();
+            string FinYear = HttpContext.Current.Session["LMSLastFinYear"].ToString();
             String lcSql;
             int day = TDate.Day;
             int month = TDate.Month;
@@ -5407,7 +5407,7 @@ namespace BusinessLogicLayer
         {
             // Now we construct a SQL command that will fetch fields from the Suplied table
             //First value for Closing and Second Value for Opening
-            string FinYear = HttpContext.Current.Session["LastFinYear"].ToString();
+            string FinYear = HttpContext.Current.Session["LMSLastFinYear"].ToString();
             int month = FromDate.Month;
             String lcSql;
             int day = FromDate.Day;
@@ -5478,7 +5478,7 @@ namespace BusinessLogicLayer
             string atchflile = "N";
             string sPath = HttpContext.Current.Request.Url.ToString();
             string[] PageName = sPath.ToString().Split('/');
-            DataTable dt = GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5] + "%' and mnu_segmentid='" + HttpContext.Current.Session["userlastsegment"] + "'");
+            DataTable dt = GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5] + "%' and mnu_segmentid='" + HttpContext.Current.Session["LMSuserlastsegment"] + "'");
             string menuId = "";
             if (dt.Rows.Count != 0)
             {
@@ -5501,17 +5501,17 @@ namespace BusinessLogicLayer
 
                 if (mailid != "")
                 {
-                    string contactID = HttpContext.Current.Session["usercontactID"].ToString();
+                    string contactID = HttpContext.Current.Session["LMSusercontactID"].ToString();
                     DataTable dtcmp = GetDataTable(" tbl_master_company  ", "*", "cmp_id=(select emp_organization from tbl_trans_employeectc where emp_cntId='" + contactID + "' and emp_effectiveuntil is null)");
                     string cmpintid = dtcmp.Rows[0]["cmp_internalid"].ToString();
-                    DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["userlastsegment"].ToString() + "'");
+                    DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["LMSuserlastsegment"].ToString() + "'");
                     string segmentname = dtsg.Rows[0]["seg_name"].ToString();
 
                     DataTable dtname = GetDataTable(" tbl_master_Contact  ", "(isnull(RTRIM(cnt_firstName),'')+' '+isnull(RTRIM(cnt_middleName),'')+' '+isnull(RTRIM(cnt_lastName),'')+' ['+isnull(cnt_UCC,'')+']') as ClientName", "cnt_internalId='" + contactid + "' ");
                     string ClientName = dtname.Rows[0]["ClientName"].ToString();
 
                     string senderemail = "";
-                    string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["userid"], 1);
+                    string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["LMSuserid"], 1);
                     if (data[0, 0] != "n")
                     {
                         senderemail = data[0, 0];
@@ -5531,9 +5531,9 @@ namespace BusinessLogicLayer
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Content", "<table width=\"100%\"><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Name:" + ClientName + "</td></tr><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">" + Subject + "</td></tr> <tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Segment: " + segmentname + "</td></tr><tr><td>" + emailbdy + "</td></tr></table>");
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_HasAttachement", atchflile);
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateApplication", menuId);
-                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["userid"]);
+                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["LMSuserid"]);
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Type", "N");
-                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LastCompany"].ToString());
+                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LMSLastCompany"].ToString());
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Segment", segmentname);
                         SqlParameter parameter = new SqlParameter("@result", SqlDbType.BigInt);
                         parameter.Direction = ParameterDirection.Output;
@@ -5553,17 +5553,17 @@ namespace BusinessLogicLayer
                 {
                     if (mailid != "")
                     {
-                        string contactID = HttpContext.Current.Session["usercontactID"].ToString();
+                        string contactID = HttpContext.Current.Session["LMSusercontactID"].ToString();
                         DataTable dtcmp = GetDataTable(" tbl_master_company  ", "*", "cmp_id=(select emp_organization from tbl_trans_employeectc where emp_cntId='" + contactID + "' and emp_effectiveuntil is null)");
                         string cmpintid = dtcmp.Rows[0]["cmp_internalid"].ToString();
-                        DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["userlastsegment"].ToString() + "'");
+                        DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["LMSuserlastsegment"].ToString() + "'");
                         string segmentname = dtsg.Rows[0]["seg_name"].ToString();
 
                         DataTable dtname = GetDataTable(" tbl_master_Contact  ", "(isnull(RTRIM(cnt_firstName),'')+' '+isnull(RTRIM(cnt_middleName),'')+' '+isnull(RTRIM(cnt_lastName),'')+' ['+isnull(cnt_UCC,'')+']') as ClientName", "cnt_internalId='" + contactid + "' ");
                         string ClientName = dtname.Rows[0]["ClientName"].ToString();
 
                         string senderemail = "";
-                        string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["userid"], 1);
+                        string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["LMSuserid"], 1);
                         if (data[0, 0] != "n")
                         {
                             senderemail = data[0, 0];
@@ -5583,9 +5583,9 @@ namespace BusinessLogicLayer
                             lcmdEmplInsert.Parameters.AddWithValue("@Emails_Content", "<table width=\"100%\"><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Name:" + ClientName + "</td></tr><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">" + Subject + "</td></tr> <tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Segment: " + segmentname + "</td></tr><tr><td>" + emailbdy + "</td></tr></table>");
                             lcmdEmplInsert.Parameters.AddWithValue("@Emails_HasAttachement", atchflile);
                             lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateApplication", menuId);
-                            lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["userid"]);
+                            lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["LMSuserid"]);
                             lcmdEmplInsert.Parameters.AddWithValue("@Emails_Type", "N");
-                            lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LastCompany"].ToString());
+                            lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LMSLastCompany"].ToString());
                             lcmdEmplInsert.Parameters.AddWithValue("@Emails_Segment", segmentname);
                             SqlParameter parameter = new SqlParameter("@result", SqlDbType.BigInt);
                             parameter.Direction = ParameterDirection.Output;
@@ -5615,7 +5615,7 @@ namespace BusinessLogicLayer
             string atchflile = "N";
             string sPath = HttpContext.Current.Request.Url.ToString();
             string[] PageName = sPath.ToString().Split('/');
-            DataTable dt = GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5] + "%' and mnu_segmentid='" + HttpContext.Current.Session["userlastsegment"] + "'");
+            DataTable dt = GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5] + "%' and mnu_segmentid='" + HttpContext.Current.Session["LMSuserlastsegment"] + "'");
             string menuId = "";
             if (dt.Rows.Count != 0)
             {
@@ -5630,17 +5630,17 @@ namespace BusinessLogicLayer
             {
                 if (mailid != "")
                 {
-                    string contactID = HttpContext.Current.Session["usercontactID"].ToString();
+                    string contactID = HttpContext.Current.Session["LMSusercontactID"].ToString();
                     DataTable dtcmp = GetDataTable(" tbl_master_company  ", "*", "cmp_id=(select emp_organization from tbl_trans_employeectc where emp_cntId='" + contactID + "' and emp_effectiveuntil is null)");
                     string cmpintid = dtcmp.Rows[0]["cmp_internalid"].ToString();
-                    DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["userlastsegment"].ToString() + "'");
+                    DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["LMSuserlastsegment"].ToString() + "'");
                     string segmentname = dtsg.Rows[0]["seg_name"].ToString();
 
-                    DataTable dtname = GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LastCompany"] + "' ");
+                    DataTable dtname = GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LMSLastCompany"] + "' ");
                     string CompanyName = dtname.Rows[0]["cmp_Name"].ToString();
 
                     string senderemail = "";
-                    string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["userid"], 1);
+                    string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["LMSuserid"], 1);
                     if (data[0, 0] != "n")
                     {
                         senderemail = data[0, 0];
@@ -5660,9 +5660,9 @@ namespace BusinessLogicLayer
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Content", "<table width=\"100%\"><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Company Name: " + CompanyName + "</td></tr><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">" + Subject + "</td></tr> <tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Segment: " + segmentname + "</td></tr><tr><td>" + emailbdy + "</td></tr></table>");
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_HasAttachement", atchflile);
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateApplication", menuId);
-                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["userid"]);
+                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["LMSuserid"]);
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Type", "N");
-                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LastCompany"].ToString());
+                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LMSLastCompany"].ToString());
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Segment", segmentname);
                         SqlParameter parameter = new SqlParameter("@result", SqlDbType.BigInt);
                         parameter.Direction = ParameterDirection.Output;
@@ -5693,7 +5693,7 @@ namespace BusinessLogicLayer
             string atchflile = "N";
             string sPath = HttpContext.Current.Request.Url.ToString();
             string[] PageName = sPath.ToString().Split('/');
-            DataTable dt = GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5] + "%' and mnu_segmentid='" + HttpContext.Current.Session["userlastsegment"] + "'");
+            DataTable dt = GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5] + "%' and mnu_segmentid='" + HttpContext.Current.Session["LMSuserlastsegment"] + "'");
             string menuId = "";
             if (dt.Rows.Count != 0)
             {
@@ -5731,17 +5731,17 @@ namespace BusinessLogicLayer
 
                 if (mailid != "")
                 {
-                    string contactID = HttpContext.Current.Session["usercontactID"].ToString();
+                    string contactID = HttpContext.Current.Session["LMSusercontactID"].ToString();
                     DataTable dtcmp = GetDataTable(" tbl_master_company  ", "*", "cmp_id=(select emp_organization from tbl_trans_employeectc where emp_cntId='" + contactID + "' and emp_effectiveuntil is null)");
                     string cmpintid = dtcmp.Rows[0]["cmp_internalid"].ToString();
-                    DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["userlastsegment"].ToString() + "'");
+                    DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["LMSuserlastsegment"].ToString() + "'");
                     string segmentname = dtsg.Rows[0]["seg_name"].ToString();
 
                     //DataTable dtname = GetDataTable(" tbl_master_Contact  ", "(isnull(RTRIM(cnt_firstName),'')+' '+isnull(RTRIM(cnt_middleName),'')+' '+isnull(RTRIM(cnt_lastName),'')+' ['+isnull(cnt_UCC,'')+']') as ClientName", "cnt_internalId='" + contactid + "' ");
                     //string ClientName = dtname.Rows[0]["ClientName"].ToString();
 
                     string senderemail = "";
-                    string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["userid"], 1);
+                    string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["LMSuserid"], 1);
                     if (data[0, 0] != "n")
                     {
                         senderemail = data[0, 0];
@@ -5761,9 +5761,9 @@ namespace BusinessLogicLayer
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Content", "<table width=\"100%\"><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Name:" + typename + "</td></tr><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">" + Subject + "</td></tr> <tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Segment: " + segmentname + "</td></tr><tr><td>" + emailbdy + "</td></tr></table>");
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_HasAttachement", atchflile);
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateApplication", menuId);
-                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["userid"]);
+                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["LMSuserid"]);
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Type", "N");
-                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LastCompany"].ToString());
+                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LMSLastCompany"].ToString());
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Segment", segmentname);
                         SqlParameter parameter = new SqlParameter("@result", SqlDbType.BigInt);
                         parameter.Direction = ParameterDirection.Output;
@@ -5797,7 +5797,7 @@ namespace BusinessLogicLayer
             string atchflile = "N";
             string sPath = HttpContext.Current.Request.Url.ToString();
             string[] PageName = sPath.ToString().Split('/');
-            DataTable dt = GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5] + "%' and mnu_segmentid='" + HttpContext.Current.Session["userlastsegment"] + "'");
+            DataTable dt = GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5] + "%' and mnu_segmentid='" + HttpContext.Current.Session["LMSuserlastsegment"] + "'");
             string menuId = "";
             if (dt.Rows.Count != 0)
             {
@@ -5815,17 +5815,17 @@ namespace BusinessLogicLayer
                 {
                     DataTable dtnew = GetDataTable("tbl_master_branch", "branch_cpemail", "rtrim(ltrim(branch_description)) +'['+rtrim(ltrim(branch_code))+']' = '" + mailid.ToString().Trim() + "'");
                     mailid = dtnew.Rows[0]["branch_cpemail"].ToString();
-                    string contactID = HttpContext.Current.Session["usercontactID"].ToString();
+                    string contactID = HttpContext.Current.Session["LMSusercontactID"].ToString();
                     DataTable dtcmp = GetDataTable(" tbl_master_company  ", "*", "cmp_id=(select emp_organization from tbl_trans_employeectc where emp_cntId='" + contactID + "' and emp_effectiveuntil is null)");
                     string cmpintid = dtcmp.Rows[0]["cmp_internalid"].ToString();
-                    DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["userlastsegment"].ToString() + "'");
+                    DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["LMSuserlastsegment"].ToString() + "'");
                     string segmentname = dtsg.Rows[0]["seg_name"].ToString();
 
-                    DataTable dtname = GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LastCompany"] + "' ");
+                    DataTable dtname = GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LMSLastCompany"] + "' ");
                     string CompanyName = dtname.Rows[0]["cmp_Name"].ToString();
 
                     string senderemail = "";
-                    string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["userid"], 1);
+                    string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["LMSuserid"], 1);
                     if (data[0, 0] != "n")
                     {
                         senderemail = data[0, 0];
@@ -5845,9 +5845,9 @@ namespace BusinessLogicLayer
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Content", "<table width=\"100%\"><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Company Name: " + CompanyName + "</td></tr><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">" + Subject + "</td></tr> <tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Segment: " + segmentname + "</td></tr><tr><td>" + emailbdy + "</td></tr></table>");
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_HasAttachement", atchflile);
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateApplication", menuId);
-                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["userid"]);
+                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["LMSuserid"]);
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Type", "N");
-                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LastCompany"].ToString());
+                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LMSLastCompany"].ToString());
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Segment", segmentname);
                         SqlParameter parameter = new SqlParameter("@result", SqlDbType.BigInt);
                         parameter.Direction = ParameterDirection.Output;
@@ -5873,17 +5873,17 @@ namespace BusinessLogicLayer
                     {
                         if (mailid != "")
                         {
-                            string contactID = HttpContext.Current.Session["usercontactID"].ToString();
+                            string contactID = HttpContext.Current.Session["LMSusercontactID"].ToString();
                             DataTable dtcmp = GetDataTable(" tbl_master_company  ", "*", "cmp_id=(select emp_organization from tbl_trans_employeectc where emp_cntId='" + contactID + "' and emp_effectiveuntil is null)");
                             string cmpintid = dtcmp.Rows[0]["cmp_internalid"].ToString();
-                            DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["userlastsegment"].ToString() + "'");
+                            DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["LMSuserlastsegment"].ToString() + "'");
                             string segmentname = dtsg.Rows[0]["seg_name"].ToString();
 
-                            DataTable dtname = GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LastCompany"] + "' ");
+                            DataTable dtname = GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LMSLastCompany"] + "' ");
                             string CompanyName = dtname.Rows[0]["cmp_Name"].ToString();
 
                             string senderemail = "";
-                            string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["userid"], 1);
+                            string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["LMSuserid"], 1);
                             if (data[0, 0] != "n")
                             {
                                 senderemail = data[0, 0];
@@ -5903,9 +5903,9 @@ namespace BusinessLogicLayer
                                 lcmdEmplInsert.Parameters.AddWithValue("@Emails_Content", "<table width=\"100%\"><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Company Name: " + CompanyName + "</td></tr><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">" + Subject + "</td></tr> <tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Segment: " + segmentname + "</td></tr><tr><td>" + emailbdy + "</td></tr></table>");
                                 lcmdEmplInsert.Parameters.AddWithValue("@Emails_HasAttachement", atchflile);
                                 lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateApplication", menuId);
-                                lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["userid"]);
+                                lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["LMSuserid"]);
                                 lcmdEmplInsert.Parameters.AddWithValue("@Emails_Type", "N");
-                                lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LastCompany"].ToString());
+                                lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LMSLastCompany"].ToString());
                                 lcmdEmplInsert.Parameters.AddWithValue("@Emails_Segment", segmentname);
                                 SqlParameter parameter = new SqlParameter("@result", SqlDbType.BigInt);
                                 parameter.Direction = ParameterDirection.Output;
@@ -5939,7 +5939,7 @@ namespace BusinessLogicLayer
             string atchflile = "N";
             string sPath = HttpContext.Current.Request.Url.ToString();
             string[] PageName = sPath.ToString().Split('/');
-            DataTable dt = GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5] + "%' and mnu_segmentid='" + HttpContext.Current.Session["userlastsegment"] + "'");
+            DataTable dt = GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5] + "%' and mnu_segmentid='" + HttpContext.Current.Session["LMSuserlastsegment"] + "'");
             string menuId = "";
             if (dt.Rows.Count != 0)
             {
@@ -5960,17 +5960,17 @@ namespace BusinessLogicLayer
                 {
                     //DataTable dtnew = GetDataTable("tbl_master_groupmaster", "gpm_emailid", "gpm_id='" + branchContact + "'");
                     mailid = dtnew.Rows[0]["gpm_emailid"].ToString();
-                    string contactID = HttpContext.Current.Session["usercontactID"].ToString();
+                    string contactID = HttpContext.Current.Session["LMSusercontactID"].ToString();
                     DataTable dtcmp = GetDataTable(" tbl_master_company  ", "*", "cmp_id=(select emp_organization from tbl_trans_employeectc where emp_cntId='" + contactID + "' and emp_effectiveuntil is null)");
                     string cmpintid = dtcmp.Rows[0]["cmp_internalid"].ToString();
-                    DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["userlastsegment"].ToString() + "'");
+                    DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["LMSuserlastsegment"].ToString() + "'");
                     string segmentname = dtsg.Rows[0]["seg_name"].ToString();
 
-                    DataTable dtname = GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LastCompany"] + "' ");
+                    DataTable dtname = GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LMSLastCompany"] + "' ");
                     string CompanyName = dtname.Rows[0]["cmp_Name"].ToString();
 
                     string senderemail = "";
-                    string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["userid"], 1);
+                    string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["LMSuserid"], 1);
                     if (data[0, 0] != "n")
                     {
                         senderemail = data[0, 0];
@@ -5989,9 +5989,9 @@ namespace BusinessLogicLayer
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Content", "<table width=\"100%\"><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Company Name: " + CompanyName + "</td></tr><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">" + Subject + "</td></tr> <tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Segment: " + segmentname + "</td></tr><tr><td>" + emailbdy + "</td></tr></table>");
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_HasAttachement", atchflile);
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateApplication", menuId);
-                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["userid"]);
+                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["LMSuserid"]);
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Type", "N");
-                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LastCompany"].ToString());
+                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LMSLastCompany"].ToString());
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Segment", segmentname);
                         SqlParameter parameter = new SqlParameter("@result", SqlDbType.BigInt);
                         parameter.Direction = ParameterDirection.Output;
@@ -6017,17 +6017,17 @@ namespace BusinessLogicLayer
                     {
                         if (mailid != "")
                         {
-                            string contactID = HttpContext.Current.Session["usercontactID"].ToString();
+                            string contactID = HttpContext.Current.Session["LMSusercontactID"].ToString();
                             DataTable dtcmp = GetDataTable(" tbl_master_company  ", "*", "cmp_id=(select emp_organization from tbl_trans_employeectc where emp_cntId='" + contactID + "' and emp_effectiveuntil is null)");
                             string cmpintid = dtcmp.Rows[0]["cmp_internalid"].ToString();
-                            DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["userlastsegment"].ToString() + "'");
+                            DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["LMSuserlastsegment"].ToString() + "'");
                             string segmentname = dtsg.Rows[0]["seg_name"].ToString();
 
-                            DataTable dtname = GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LastCompany"] + "' ");
+                            DataTable dtname = GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LMSLastCompany"] + "' ");
                             string CompanyName = dtname.Rows[0]["cmp_Name"].ToString();
 
                             string senderemail = "";
-                            string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["userid"], 1);
+                            string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["LMSuserid"], 1);
                             if (data[0, 0] != "n")
                             {
                                 senderemail = data[0, 0];
@@ -6046,9 +6046,9 @@ namespace BusinessLogicLayer
                                 lcmdEmplInsert.Parameters.AddWithValue("@Emails_Content", "<table width=\"100%\"><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Company Name: " + CompanyName + "</td></tr><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">" + Subject + "</td></tr> <tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Segment: " + segmentname + "</td></tr><tr><td>" + emailbdy + "</td></tr></table>");
                                 lcmdEmplInsert.Parameters.AddWithValue("@Emails_HasAttachement", atchflile);
                                 lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateApplication", menuId);
-                                lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["userid"]);
+                                lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["LMSuserid"]);
                                 lcmdEmplInsert.Parameters.AddWithValue("@Emails_Type", "N");
-                                lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LastCompany"].ToString());
+                                lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LMSLastCompany"].ToString());
                                 lcmdEmplInsert.Parameters.AddWithValue("@Emails_Segment", segmentname);
                                 SqlParameter parameter = new SqlParameter("@result", SqlDbType.BigInt);
                                 parameter.Direction = ParameterDirection.Output;
@@ -6080,7 +6080,7 @@ namespace BusinessLogicLayer
             string atchflile = "N";
             string sPath = HttpContext.Current.Request.Url.ToString();
             string[] PageName = sPath.ToString().Split('/');
-            DataTable dt = GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5] + "%' and mnu_segmentid='" + HttpContext.Current.Session["userlastsegment"] + "'");
+            DataTable dt = GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5] + "%' and mnu_segmentid='" + HttpContext.Current.Session["LMSuserlastsegment"] + "'");
             string menuId = "";
             if (dt.Rows.Count != 0)
             {
@@ -6096,17 +6096,17 @@ namespace BusinessLogicLayer
                 string mailid = dt1.Rows[0]["eml_email"].ToString();
                 if (mailid != "")
                 {
-                    string contactID = HttpContext.Current.Session["usercontactID"].ToString();
+                    string contactID = HttpContext.Current.Session["LMSusercontactID"].ToString();
                     DataTable dtcmp = GetDataTable(" tbl_master_company  ", "*", "cmp_id=(select emp_organization from tbl_trans_employeectc where emp_cntId='" + contactID + "' and emp_effectiveuntil is null)");
                     string cmpintid = dtcmp.Rows[0]["cmp_internalid"].ToString();
-                    DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["userlastsegment"].ToString() + "'");
+                    DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["LMSuserlastsegment"].ToString() + "'");
                     string segmentname = dtsg.Rows[0]["seg_name"].ToString();
 
-                    DataTable dtname = GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LastCompany"] + "' ");
+                    DataTable dtname = GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LMSLastCompany"] + "' ");
                     string CompanyName = dtname.Rows[0]["cmp_Name"].ToString();
 
                     string senderemail = "";
-                    string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["userid"], 1);
+                    string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["LMSuserid"], 1);
                     if (data[0, 0] != "n")
                     {
                         senderemail = data[0, 0];
@@ -6126,9 +6126,9 @@ namespace BusinessLogicLayer
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Content", "<table width=\"100%\"><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Company Name: " + CompanyName + "</td></tr><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">" + Subject + "</td></tr> <tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Segment: " + segmentname + "</td></tr><tr><td>" + emailbdy + "</td></tr></table>");
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_HasAttachement", atchflile);
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateApplication", menuId);
-                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["userid"]);
+                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["LMSuserid"]);
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Type", "N");
-                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LastCompany"].ToString());
+                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LMSLastCompany"].ToString());
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Segment", segmentname);
                         SqlParameter parameter = new SqlParameter("@result", SqlDbType.BigInt);
                         parameter.Direction = ParameterDirection.Output;
@@ -6158,7 +6158,7 @@ namespace BusinessLogicLayer
             string atchflile = "N";
             string sPath = HttpContext.Current.Request.Url.ToString();
             string[] PageName = sPath.ToString().Split('/');
-            DataTable dt = GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5] + "%' and mnu_segmentid='" + HttpContext.Current.Session["userlastsegment"] + "'");
+            DataTable dt = GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5] + "%' and mnu_segmentid='" + HttpContext.Current.Session["LMSuserlastsegment"] + "'");
             string menuId = "";
             if (dt.Rows.Count != 0)
             {
@@ -6174,17 +6174,17 @@ namespace BusinessLogicLayer
                 string mailid = dt1.Rows[0]["branch_cpemail"].ToString();
                 if (mailid != "")
                 {
-                    string contactID = HttpContext.Current.Session["usercontactID"].ToString();
+                    string contactID = HttpContext.Current.Session["LMSusercontactID"].ToString();
                     DataTable dtcmp = GetDataTable(" tbl_master_company  ", "*", "cmp_id=(select emp_organization from tbl_trans_employeectc where emp_cntId='" + contactID + "' and emp_effectiveuntil is null)");
                     string cmpintid = dtcmp.Rows[0]["cmp_internalid"].ToString();
-                    DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["userlastsegment"].ToString() + "'");
+                    DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["LMSuserlastsegment"].ToString() + "'");
                     string segmentname = dtsg.Rows[0]["seg_name"].ToString();
 
-                    DataTable dtname = GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LastCompany"] + "' ");
+                    DataTable dtname = GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LMSLastCompany"] + "' ");
                     string CompanyName = dtname.Rows[0]["cmp_Name"].ToString();
 
                     string senderemail = "";
-                    string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["userid"], 1);
+                    string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["LMSuserid"], 1);
                     if (data[0, 0] != "n")
                     {
                         senderemail = data[0, 0];
@@ -6204,9 +6204,9 @@ namespace BusinessLogicLayer
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Content", "<table width=\"100%\"><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Company Name: " + CompanyName + "</td></tr><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">" + Subject + "</td></tr> <tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Segment: " + segmentname + "</td></tr><tr><td>" + emailbdy + "</td></tr></table>");
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_HasAttachement", atchflile);
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateApplication", menuId);
-                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["userid"]);
+                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["LMSuserid"]);
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Type", "N");
-                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LastCompany"].ToString());
+                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LMSLastCompany"].ToString());
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Segment", segmentname);
                         SqlParameter parameter = new SqlParameter("@result", SqlDbType.BigInt);
                         parameter.Direction = ParameterDirection.Output;
@@ -6236,7 +6236,7 @@ namespace BusinessLogicLayer
             string atchflile = "N";
             string sPath = HttpContext.Current.Request.Url.ToString();
             string[] PageName = sPath.ToString().Split('/');
-            DataTable dt = GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5] + "%' and mnu_segmentid='" + HttpContext.Current.Session["userlastsegment"] + "'");
+            DataTable dt = GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5] + "%' and mnu_segmentid='" + HttpContext.Current.Session["LMSuserlastsegment"] + "'");
             string menuId = "";
             if (dt.Rows.Count != 0)
             {
@@ -6252,17 +6252,17 @@ namespace BusinessLogicLayer
                 string mailid = dt1.Rows[0]["gpm_emailid"].ToString();
                 if (mailid != "")
                 {
-                    string contactID = HttpContext.Current.Session["usercontactID"].ToString();
+                    string contactID = HttpContext.Current.Session["LMSusercontactID"].ToString();
                     DataTable dtcmp = GetDataTable(" tbl_master_company  ", "*", "cmp_id=(select emp_organization from tbl_trans_employeectc where emp_cntId='" + contactID + "' and emp_effectiveuntil is null)");
                     string cmpintid = dtcmp.Rows[0]["cmp_internalid"].ToString();
-                    DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["userlastsegment"].ToString() + "'");
+                    DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["LMSuserlastsegment"].ToString() + "'");
                     string segmentname = dtsg.Rows[0]["seg_name"].ToString();
 
-                    DataTable dtname = GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LastCompany"] + "' ");
+                    DataTable dtname = GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LMSLastCompany"] + "' ");
                     string CompanyName = dtname.Rows[0]["cmp_Name"].ToString();
 
                     string senderemail = "";
-                    string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["userid"], 1);
+                    string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["LMSuserid"], 1);
                     if (data[0, 0] != "n")
                     {
                         senderemail = data[0, 0];
@@ -6282,9 +6282,9 @@ namespace BusinessLogicLayer
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Content", "<table width=\"100%\"><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Company Name: " + CompanyName + "</td></tr><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">" + Subject + "</td></tr> <tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Segment: " + segmentname + "</td></tr><tr><td>" + emailbdy + "</td></tr></table>");
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_HasAttachement", atchflile);
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateApplication", menuId);
-                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["userid"]);
+                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["LMSuserid"]);
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Type", "N");
-                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LastCompany"].ToString());
+                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LMSLastCompany"].ToString());
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Segment", segmentname);
                         SqlParameter parameter = new SqlParameter("@result", SqlDbType.BigInt);
                         parameter.Direction = ParameterDirection.Output;
@@ -6317,7 +6317,7 @@ namespace BusinessLogicLayer
             string atchflile = "N";
             string sPath = HttpContext.Current.Request.Url.ToString();
             string[] PageName = sPath.ToString().Split('/');
-            //// DataTable dt = oDBEngine.GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5] + "%' and mnu_segmentid='" + HttpContext.Current.Session["userlastsegment"] + "'");
+            //// DataTable dt = oDBEngine.GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5] + "%' and mnu_segmentid='" + HttpContext.Current.Session["LMSuserlastsegment"] + "'");
             DataTable dt = oDBEngine.GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5].ToString().Split('?')[0] + "%' and mnu_segmentid=(select seg_id from tbl_master_segment where seg_name='" + segment + "')");
             string menuId = "";
             if (dt.Rows.Count != 0)
@@ -6334,17 +6334,17 @@ namespace BusinessLogicLayer
                 string mailid = dt1.Rows[0]["eml_email"].ToString();
                 if (mailid != "")
                 {
-                    string contactID = HttpContext.Current.Session["usercontactID"].ToString();
+                    string contactID = HttpContext.Current.Session["LMSusercontactID"].ToString();
                     DataTable dtcmp = oDBEngine.GetDataTable(" tbl_master_company  ", "*", "cmp_id=(select emp_organization from tbl_trans_employeectc where emp_cntId='" + contactID + "' and emp_effectiveuntil is null)");
                     string cmpintid = dtcmp.Rows[0]["cmp_internalid"].ToString();
-                    //DataTable dtsg = oDBEngine.GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["userlastsegment"].ToString() + "'");
+                    //DataTable dtsg = oDBEngine.GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["LMSuserlastsegment"].ToString() + "'");
                     //string segmentname = dtsg.Rows[0]["seg_name"].ToString();
 
-                    DataTable dtname = oDBEngine.GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LastCompany"] + "' ");
+                    DataTable dtname = oDBEngine.GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LMSLastCompany"] + "' ");
                     string CompanyName = dtname.Rows[0]["cmp_Name"].ToString();
 
                     string senderemail = "";
-                    string[,] data = oDBEngine.GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["userid"], 1);
+                    string[,] data = oDBEngine.GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["LMSuserid"], 1);
                     if (data[0, 0] != "n")
                     {
                         senderemail = data[0, 0];
@@ -6362,9 +6362,9 @@ namespace BusinessLogicLayer
                     lcmdEmplInsert.Parameters.AddWithValue("@Emails_Content", "<table width=\"100%\"><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Company Name: " + CompanyName + "</td></tr><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">" + Subject + "</td></tr> <tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Segment: " + segment + "</td></tr><tr><td>" + emailbdy + "</td></tr></table>");
                     lcmdEmplInsert.Parameters.AddWithValue("@Emails_HasAttachement", atchflile);
                     lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateApplication", menuId);
-                    lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["userid"]);
+                    lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["LMSuserid"]);
                     lcmdEmplInsert.Parameters.AddWithValue("@Emails_Type", "N");
-                    lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LastCompany"].ToString());
+                    lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LMSLastCompany"].ToString());
                     lcmdEmplInsert.Parameters.AddWithValue("@Emails_Segment", segment);
                     SqlParameter parameter = new SqlParameter("@result", SqlDbType.BigInt);
                     parameter.Direction = ParameterDirection.Output;
@@ -6395,7 +6395,7 @@ namespace BusinessLogicLayer
             string atchflile = "N";
             string sPath = HttpContext.Current.Request.Url.ToString();
             string[] PageName = sPath.ToString().Split('/');
-            ////DataTable dt = oDBEngine.GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5] + "%' and mnu_segmentid='" + HttpContext.Current.Session["userlastsegment"] + "'");
+            ////DataTable dt = oDBEngine.GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5] + "%' and mnu_segmentid='" + HttpContext.Current.Session["LMSuserlastsegment"] + "'");
             DataTable dt = oDBEngine.GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5].ToString().Split('?')[0] + "%' and mnu_segmentid=(select seg_id from tbl_master_segment where seg_name='" + segment + "')");
             string menuId = "";
             if (dt.Rows.Count != 0)
@@ -6412,18 +6412,18 @@ namespace BusinessLogicLayer
                 //string mailid = dt1.Rows[0]["eml_email"].ToString();
                 if (mailid != "")
                 {
-                    string contactID = HttpContext.Current.Session["usercontactID"].ToString();
+                    string contactID = HttpContext.Current.Session["LMSusercontactID"].ToString();
                     DataTable dtcmp = oDBEngine.GetDataTable(" tbl_master_company  ", "*", "cmp_id=(select emp_organization from tbl_trans_employeectc where emp_cntId='" + contactID + "' and emp_effectiveuntil is null)");
                     string cmpintid = dtcmp.Rows[0]["cmp_internalid"].ToString();
-                    //// DataTable dtsg = oDBEngine.GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["userlastsegment"].ToString() + "'");
+                    //// DataTable dtsg = oDBEngine.GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["LMSuserlastsegment"].ToString() + "'");
                     DataTable dtsg = oDBEngine.GetDataTable(" tbl_master_segment  ", "*", "seg_id=(select seg_id from tbl_master_segment where seg_name='" + segment + "')");
                     string segmentname = dtsg.Rows[0]["seg_name"].ToString();
 
-                    DataTable dtname = oDBEngine.GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LastCompany"] + "' ");
+                    DataTable dtname = oDBEngine.GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LMSLastCompany"] + "' ");
                     string CompanyName = dtname.Rows[0]["cmp_Name"].ToString();
 
                     string senderemail = "";
-                    string[,] data = oDBEngine.GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["userid"], 1);
+                    string[,] data = oDBEngine.GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["LMSuserid"], 1);
                     if (data[0, 0] != "n")
                     {
                         senderemail = data[0, 0];
@@ -6442,9 +6442,9 @@ namespace BusinessLogicLayer
                     lcmdEmplInsert.Parameters.AddWithValue("@Emails_Content", "<table width=\"100%\"><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Company Name: " + CompanyName + "</td></tr><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">" + Subject + "</td></tr> <tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Segment: " + segmentname + "</td></tr><tr><td>" + emailbdy + "</td></tr></table>");
                     lcmdEmplInsert.Parameters.AddWithValue("@Emails_HasAttachement", atchflile);
                     lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateApplication", menuId);
-                    lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["userid"]);
+                    lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["LMSuserid"]);
                     lcmdEmplInsert.Parameters.AddWithValue("@Emails_Type", "N");
-                    lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LastCompany"].ToString());
+                    lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LMSLastCompany"].ToString());
                     lcmdEmplInsert.Parameters.AddWithValue("@Emails_Segment", segmentname);
                     SqlParameter parameter = new SqlParameter("@result", SqlDbType.BigInt);
                     parameter.Direction = ParameterDirection.Output;
@@ -6476,7 +6476,7 @@ namespace BusinessLogicLayer
             string atchflile = "N";
             string sPath = HttpContext.Current.Request.Url.ToString();
             string[] PageName = sPath.ToString().Split('/');
-            DataTable dt = GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5] + "%' and mnu_segmentid='" + HttpContext.Current.Session["userlastsegment"] + "'");
+            DataTable dt = GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5] + "%' and mnu_segmentid='" + HttpContext.Current.Session["LMSuserlastsegment"] + "'");
             string menuId = "";
             if (dt.Rows.Count != 0)
             {
@@ -6492,17 +6492,17 @@ namespace BusinessLogicLayer
                 //string ccmail = dt1.Rows[0]["gpm_ccemailID"].ToString();
                 if (mailid != "")
                 {
-                    string contactID = HttpContext.Current.Session["usercontactID"].ToString();
+                    string contactID = HttpContext.Current.Session["LMSusercontactID"].ToString();
                     DataTable dtcmp = GetDataTable(" tbl_master_company  ", "*", "cmp_id=(select emp_organization from tbl_trans_employeectc where emp_cntId='" + contactID + "' and emp_effectiveuntil is null)");
                     string cmpintid = dtcmp.Rows[0]["cmp_internalid"].ToString();
-                    DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["userlastsegment"].ToString() + "'");
+                    DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["LMSuserlastsegment"].ToString() + "'");
                     string segmentname = dtsg.Rows[0]["seg_name"].ToString();
 
-                    DataTable dtname = GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LastCompany"] + "' ");
+                    DataTable dtname = GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LMSLastCompany"] + "' ");
                     string CompanyName = dtname.Rows[0]["cmp_Name"].ToString();
 
                     string senderemail = "";
-                    string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["userid"], 1);
+                    string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["LMSuserid"], 1);
                     if (data[0, 0] != "n")
                     {
                         senderemail = data[0, 0];
@@ -6522,9 +6522,9 @@ namespace BusinessLogicLayer
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Content", "<table width=\"100%\"><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Company Name: " + CompanyName + "</td></tr><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">" + Subject + "</td></tr> <tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Segment: " + segmentname + "</td></tr><tr><td>" + emailbdy + "</td></tr></table>");
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_HasAttachement", atchflile);
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateApplication", menuId);
-                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["userid"]);
+                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["LMSuserid"]);
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Type", "N");
-                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LastCompany"].ToString());
+                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LMSLastCompany"].ToString());
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Segment", segmentname);
                         SqlParameter parameter = new SqlParameter("@result", SqlDbType.BigInt);
                         parameter.Direction = ParameterDirection.Output;
@@ -6550,17 +6550,17 @@ namespace BusinessLogicLayer
                     {
                         if (mailid != "")
                         {
-                            string contactID = HttpContext.Current.Session["usercontactID"].ToString();
+                            string contactID = HttpContext.Current.Session["LMSusercontactID"].ToString();
                             DataTable dtcmp = GetDataTable(" tbl_master_company  ", "*", "cmp_id=(select emp_organization from tbl_trans_employeectc where emp_cntId='" + contactID + "' and emp_effectiveuntil is null)");
                             string cmpintid = dtcmp.Rows[0]["cmp_internalid"].ToString();
-                            DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["userlastsegment"].ToString() + "'");
+                            DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["LMSuserlastsegment"].ToString() + "'");
                             string segmentname = dtsg.Rows[0]["seg_name"].ToString();
 
-                            DataTable dtname = GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LastCompany"] + "' ");
+                            DataTable dtname = GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LMSLastCompany"] + "' ");
                             string CompanyName = dtname.Rows[0]["cmp_Name"].ToString();
 
                             string senderemail = "";
-                            string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["userid"], 1);
+                            string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["LMSuserid"], 1);
                             if (data[0, 0] != "n")
                             {
                                 senderemail = data[0, 0];
@@ -6580,9 +6580,9 @@ namespace BusinessLogicLayer
                                 lcmdEmplInsert.Parameters.AddWithValue("@Emails_Content", "<table width=\"100%\"><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Company Name: " + CompanyName + "</td></tr><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">" + Subject + "</td></tr> <tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Segment: " + segmentname + "</td></tr><tr><td>" + emailbdy + "</td></tr></table>");
                                 lcmdEmplInsert.Parameters.AddWithValue("@Emails_HasAttachement", atchflile);
                                 lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateApplication", menuId);
-                                lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["userid"]);
+                                lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["LMSuserid"]);
                                 lcmdEmplInsert.Parameters.AddWithValue("@Emails_Type", "N");
-                                lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LastCompany"].ToString());
+                                lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LMSLastCompany"].ToString());
                                 lcmdEmplInsert.Parameters.AddWithValue("@Emails_Segment", segmentname);
                                 SqlParameter parameter = new SqlParameter("@result", SqlDbType.BigInt);
                                 parameter.Direction = ParameterDirection.Output;
@@ -6616,7 +6616,7 @@ namespace BusinessLogicLayer
             string atchflile = "N";
             string sPath = HttpContext.Current.Request.Url.ToString();
             string[] PageName = sPath.ToString().Split('/');
-            DataTable dt = GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5] + "%' and mnu_segmentid='" + HttpContext.Current.Session["userlastsegment"] + "'");
+            DataTable dt = GetDataTable(" tbl_trans_menu ", "mnu_id ", " mnu_menuLink like '%" + PageName[5] + "%' and mnu_segmentid='" + HttpContext.Current.Session["LMSuserlastsegment"] + "'");
             string menuId = "";
             if (dt.Rows.Count != 0)
             {
@@ -6632,17 +6632,17 @@ namespace BusinessLogicLayer
                 //string ccmail = dt1.Rows[0]["gpm_ccemailID"].ToString();
                 if (mailid != "")
                 {
-                    string contactID = HttpContext.Current.Session["usercontactID"].ToString();
+                    string contactID = HttpContext.Current.Session["LMSusercontactID"].ToString();
                     DataTable dtcmp = GetDataTable(" tbl_master_company  ", "*", "cmp_id=(select emp_organization from tbl_trans_employeectc where emp_cntId='" + contactID + "' and emp_effectiveuntil is null)");
                     string cmpintid = dtcmp.Rows[0]["cmp_internalid"].ToString();
-                    DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["userlastsegment"].ToString() + "'");
+                    DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["LMSuserlastsegment"].ToString() + "'");
                     string segmentname = dtsg.Rows[0]["seg_name"].ToString();
 
-                    DataTable dtname = GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LastCompany"] + "' ");
+                    DataTable dtname = GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LMSLastCompany"] + "' ");
                     string CompanyName = dtname.Rows[0]["cmp_Name"].ToString();
 
                     string senderemail = "";
-                    string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["userid"], 1);
+                    string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["LMSuserid"], 1);
                     if (data[0, 0] != "n")
                     {
                         senderemail = data[0, 0];
@@ -6662,9 +6662,9 @@ namespace BusinessLogicLayer
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Content", "<table width=\"100%\"><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Company Name: " + CompanyName + "</td></tr><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">" + Subject + "</td></tr> <tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Segment: " + segmentname + "</td></tr><tr><td>" + emailbdy + "</td></tr></table>");
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_HasAttachement", atchflile);
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateApplication", menuId);
-                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["userid"]);
+                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["LMSuserid"]);
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Type", "N");
-                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LastCompany"].ToString());
+                        lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LMSLastCompany"].ToString());
                         lcmdEmplInsert.Parameters.AddWithValue("@Emails_Segment", segmentname);
                         SqlParameter parameter = new SqlParameter("@result", SqlDbType.BigInt);
                         parameter.Direction = ParameterDirection.Output;
@@ -6690,17 +6690,17 @@ namespace BusinessLogicLayer
                     {
                         if (mailid != "")
                         {
-                            string contactID = HttpContext.Current.Session["usercontactID"].ToString();
+                            string contactID = HttpContext.Current.Session["LMSusercontactID"].ToString();
                             DataTable dtcmp = GetDataTable(" tbl_master_company  ", "*", "cmp_id=(select emp_organization from tbl_trans_employeectc where emp_cntId='" + contactID + "' and emp_effectiveuntil is null)");
                             string cmpintid = dtcmp.Rows[0]["cmp_internalid"].ToString();
-                            DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["userlastsegment"].ToString() + "'");
+                            DataTable dtsg = GetDataTable(" tbl_master_segment  ", "*", "seg_id='" + HttpContext.Current.Session["LMSuserlastsegment"].ToString() + "'");
                             string segmentname = dtsg.Rows[0]["seg_name"].ToString();
 
-                            DataTable dtname = GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LastCompany"] + "' ");
+                            DataTable dtname = GetDataTable(" tbl_master_company  ", "cmp_Name", "cmp_internalid='" + HttpContext.Current.Session["LMSLastCompany"] + "' ");
                             string CompanyName = dtname.Rows[0]["cmp_Name"].ToString();
 
                             string senderemail = "";
-                            string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["userid"], 1);
+                            string[,] data = GetFieldValue(" tbl_master_user,tbl_master_email ", " eml_email  AS EmployId", " user_contactId=eml_cntId and eml_type='Official' and user_id = " + HttpContext.Current.Session["LMSuserid"], 1);
                             if (data[0, 0] != "n")
                             {
                                 senderemail = data[0, 0];
@@ -6720,9 +6720,9 @@ namespace BusinessLogicLayer
                                 lcmdEmplInsert.Parameters.AddWithValue("@Emails_Content", "<table width=\"100%\"><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Company Name: " + CompanyName + "</td></tr><tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">" + Subject + "</td></tr> <tr><td align=\"left\" style=\"font-weight:bold;font-size:12px;\">Segment: " + segmentname + "</td></tr><tr><td>" + emailbdy + "</td></tr></table>");
                                 lcmdEmplInsert.Parameters.AddWithValue("@Emails_HasAttachement", atchflile);
                                 lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateApplication", menuId);
-                                lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["userid"]);
+                                lcmdEmplInsert.Parameters.AddWithValue("@Emails_CreateUser", HttpContext.Current.Session["LMSuserid"]);
                                 lcmdEmplInsert.Parameters.AddWithValue("@Emails_Type", "N");
-                                lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LastCompany"].ToString());
+                                lcmdEmplInsert.Parameters.AddWithValue("@Emails_CompanyID", HttpContext.Current.Session["LMSLastCompany"].ToString());
                                 lcmdEmplInsert.Parameters.AddWithValue("@Emails_Segment", segmentname);
                                 SqlParameter parameter = new SqlParameter("@result", SqlDbType.BigInt);
                                 parameter.Direction = ParameterDirection.Output;
@@ -6889,7 +6889,7 @@ namespace BusinessLogicLayer
                 {
                     da.SelectCommand.Parameters.AddWithValue("@TemplateID", TepmlateID);
                     da.SelectCommand.Parameters.AddWithValue("@ContactID", contactID);
-                    da.SelectCommand.Parameters.AddWithValue("@CompanyID", HttpContext.Current.Session["LastCompany"].ToString());
+                    da.SelectCommand.Parameters.AddWithValue("@CompanyID", HttpContext.Current.Session["LMSLastCompany"].ToString());
                     da.SelectCommand.CommandType = CommandType.StoredProcedure;
                     if (con.State == ConnectionState.Closed)
                         con.Open();
@@ -7048,20 +7048,20 @@ namespace BusinessLogicLayer
 
         public void ClearAllSession()
         {
-            HttpContext.Current.Session["userid"] = null;
-            HttpContext.Current.Session["username"] = null;
-            HttpContext.Current.Session["userpassword"] = null;
-            HttpContext.Current.Session["usercontactID"] = null;
-            HttpContext.Current.Session["userbranchID"] = null;
-            HttpContext.Current.Session["usergoup"] = null;
-            HttpContext.Current.Session["userlastsegment"] = null;
-            HttpContext.Current.Session["userContactType"] = null;
-            HttpContext.Current.Session["TimeForTickerDisplay"] = null;
-            HttpContext.Current.Session["EmployeeID"] = null;
-            HttpContext.Current.Session["EntryProfileType"] = null;
-            HttpContext.Current.Session["LastCompany"] = null;
-            HttpContext.Current.Session["LastFinYear"] = null;
-            HttpContext.Current.Session["LastSettNo"] = null;
+            HttpContext.Current.Session["LMSuserid"] = null;
+            HttpContext.Current.Session["LMSusername"] = null;
+            HttpContext.Current.Session["LMSuserpassword"] = null;
+            HttpContext.Current.Session["LMSusercontactID"] = null;
+            HttpContext.Current.Session["LMSuserbranchID"] = null;
+            HttpContext.Current.Session["LMSusergoup"] = null;
+            HttpContext.Current.Session["LMSuserlastsegment"] = null;
+            HttpContext.Current.Session["LMSuserContactType"] = null;
+            HttpContext.Current.Session["LMSTimeForTickerDisplay"] = null;
+            HttpContext.Current.Session["LMSEmployeeID"] = null;
+            HttpContext.Current.Session["LMSEntryProfileType"] = null;
+            HttpContext.Current.Session["LMSLastCompany"] = null;
+            HttpContext.Current.Session["LMSLastFinYear"] = null;
+            HttpContext.Current.Session["LMSLastSettNo"] = null;
         }
 
         #region Currency Settings For Multi Currency Project
@@ -7078,7 +7078,7 @@ namespace BusinessLogicLayer
         {
             // Now we construct a SQL command that will fetch fields from the Suplied table
             //First value for Closing and Second Value for Opening
-            string FinYear = HttpContext.Current.Session["LastFinYear"].ToString();
+            string FinYear = HttpContext.Current.Session["LMSLastFinYear"].ToString();
             string lcSql = null;
             int Day = FDate.Day;
             int month = FDate.Month;
@@ -7162,7 +7162,7 @@ namespace BusinessLogicLayer
         {
             // Now we construct a SQL command that will fetch fields from the Suplied table
             //First value for Closing and Second Value for Opening
-            string FinYear = HttpContext.Current.Session["LastFinYear"].ToString();
+            string FinYear = HttpContext.Current.Session["LMSLastFinYear"].ToString();
             DateTime FinStartDate = Convert.ToDateTime(HttpContext.Current.Session["FinYearStart"].ToString());
             string TradeCurrency = HttpContext.Current.Session["ActiveCurrency"].ToString().Split('~')[0];
             String lcSql;
@@ -7248,7 +7248,7 @@ namespace BusinessLogicLayer
         {
             // Now we construct a SQL command that will fetch fields from the Suplied table
             //First value for Closing and Second Value for Opening
-            string FinYear = HttpContext.Current.Session["LastFinYear"].ToString();
+            string FinYear = HttpContext.Current.Session["LMSLastFinYear"].ToString();
             String lcSql;
             int Day = FDate.Day;
             int month = FDate.Month;
@@ -7449,7 +7449,7 @@ namespace BusinessLogicLayer
         public DataTable GetProductType_UnderLyingAssets()
         {
             string ProductTypeID = String.Empty;
-            int ExchangeSegmentID = Convert.ToInt32(HttpContext.Current.Session["ExchangeSegmentID"].ToString());
+            int ExchangeSegmentID = Convert.ToInt32(HttpContext.Current.Session["LMSExchangeSegmentID"].ToString());
             if (ExchangeSegmentID == 1)//for CM
             {
                 ProductTypeID = "1";
@@ -7523,7 +7523,7 @@ namespace BusinessLogicLayer
         public DataTable GetProductType_DerivativeOnAssets()
         {
             string ProductTypeID = String.Empty;
-            int ExchangeSegmentID = Convert.ToInt32(HttpContext.Current.Session["ExchangeSegmentID"].ToString());
+            int ExchangeSegmentID = Convert.ToInt32(HttpContext.Current.Session["LMSExchangeSegmentID"].ToString());
             if (ExchangeSegmentID == 1)//for CM
             {
                 ProductTypeID = "1";
@@ -7597,7 +7597,7 @@ namespace BusinessLogicLayer
         public DataTable GetProductSubType_UnderLyingAssets()
         {
             string ProductTypeID = String.Empty;
-            int ExchangeSegmentID = Convert.ToInt32(HttpContext.Current.Session["ExchangeSegmentID"].ToString());
+            int ExchangeSegmentID = Convert.ToInt32(HttpContext.Current.Session["LMSExchangeSegmentID"].ToString());
             if (ExchangeSegmentID == 1)//for CM
             {
                 ProductTypeID = "1";
@@ -7671,7 +7671,7 @@ namespace BusinessLogicLayer
         public DataTable GetProductSubType_DerivativeOnAssets()
         {
             string ProductTypeID = String.Empty;
-            int ExchangeSegmentID = Convert.ToInt32(HttpContext.Current.Session["ExchangeSegmentID"].ToString());
+            int ExchangeSegmentID = Convert.ToInt32(HttpContext.Current.Session["LMSExchangeSegmentID"].ToString());
             if (ExchangeSegmentID == 1)//for CM
             {
                 ProductTypeID = "1";
@@ -7749,7 +7749,7 @@ namespace BusinessLogicLayer
         public DataTable GetUnderLyingAssets()
         {
             string ProductTypeID = String.Empty;
-            int ExchangeSegmentID = Convert.ToInt32(HttpContext.Current.Session["ExchangeSegmentID"].ToString());
+            int ExchangeSegmentID = Convert.ToInt32(HttpContext.Current.Session["LMSExchangeSegmentID"].ToString());
             if (ExchangeSegmentID == 1)//for CM
             {
                 ProductTypeID = "1";
@@ -7825,7 +7825,7 @@ namespace BusinessLogicLayer
         public DataTable GetDerivativeOnAssets(int SpecificExchange) //This Parameter is For INMX Segment Pass 0 In Any Other Exchange
         {
             string ProductTypeID = String.Empty;
-            int ExchangeSegmentID = Convert.ToInt32(HttpContext.Current.Session["ExchangeSegmentID"].ToString());
+            int ExchangeSegmentID = Convert.ToInt32(HttpContext.Current.Session["LMSExchangeSegmentID"].ToString());
             if (ExchangeSegmentID == 2 || ExchangeSegmentID == 5)//for FO
             {
                 return GetDataTable("Master_Equity", @"TickerSymbol,Equity_SeriesID from (select (case when Equity_StrikePrice=0.0 then isnull(rtrim(ltrim(Equity_TickerSymbol)),'')+
@@ -8038,10 +8038,10 @@ namespace BusinessLogicLayer
             //Rev Debashis
             //string[,] data = GetFieldValue(" tbl_trans_LastSegment ",
             //                    "(select FinYear_StartDate from Master_FinYear where FinYear_Code=ls_LastFinYear) as FinYearStart,(select CONVERT(VARCHAR(30),FinYear_EndDate,101) from Master_FinYear where FinYear_Code=ls_LastFinYear) as FinYearEnd ",
-            //                    " ls_userId='" + HttpContext.Current.Session["userid"].ToString() + "' and ls_lastSegment='" + HttpContext.Current.Session["userlastsegment"].ToString() + "'", 2);
+            //                    " ls_userId='" + HttpContext.Current.Session["LMSuserid"].ToString() + "' and ls_lastSegment='" + HttpContext.Current.Session["LMSuserlastsegment"].ToString() + "'", 2);
             string[,] data = GetFieldValue(" tbl_trans_LastSegment ",
                                 "(select FinYear_StartDate from Master_FinYear where FinYear_Code=ls_LastFinYear) as FinYearStart,(select FinYear_EndDate from Master_FinYear where FinYear_Code=ls_LastFinYear) as FinYearEnd ",
-                                " ls_userId='" + HttpContext.Current.Session["userid"].ToString() + "' and ls_lastSegment='" + HttpContext.Current.Session["userlastsegment"].ToString() + "'", 2);
+                                " ls_userId='" + HttpContext.Current.Session["LMSuserid"].ToString() + "' and ls_lastSegment='" + HttpContext.Current.Session["LMSuserlastsegment"].ToString() + "'", 2);
             //End of Rev Debashis
             HttpContext.Current.Session["FinYearStart"] = data[0, 0];
             HttpContext.Current.Session["FinYearEnd"] = data[0, 1];

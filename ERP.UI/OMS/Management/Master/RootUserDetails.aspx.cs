@@ -70,7 +70,7 @@ namespace ERP.OMS.Management.Master
             //txtReportTo.Attributes.Add("onkeyup", "CallList(this,'SearchByEmpCont',event)");
             //txtReportTo.Attributes.Add("onfocus", "CallList(this,'SearchByEmp',event)");
             //txtReportTo.Attributes.Add("onclick", "CallList(this,'SearchByEmp',event)");
-            if (HttpContext.Current.Session["userid"] == null)
+            if (HttpContext.Current.Session["LMSuserid"] == null)
             {
                 //Page.ClientScript.RegisterStartupScript(GetType(), "SighOff", "<script>SignOff();</script>");
             }
@@ -80,7 +80,7 @@ namespace ERP.OMS.Management.Master
             // Code Added By Sandip on 22032017 to use Query String Value in Web Method for Chosen DropDown
             ActionMode = Request.QueryString["id"];
             // Code  Above Added By Sandip on 22032017 to use Query String Value in Web Method for Chosen DropDown
-            CreateUser = Convert.ToInt32(HttpContext.Current.Session["userid"]);//Session UserID
+            CreateUser = Convert.ToInt32(HttpContext.Current.Session["LMSuserid"]);//Session UserID
             CreateDate = Convert.ToDateTime(oDBEngine.GetDate().ToShortDateString());
             if (!IsPostBack)
             {
@@ -133,8 +133,8 @@ namespace ERP.OMS.Management.Master
                     }
                 }
 
-                //if (HttpContext.Current.Session["superuser"].ToString().Trim() == "Y")
-                if (Convert.ToString(HttpContext.Current.Session["superuser"]).Trim() == "Y")
+                //if (HttpContext.Current.Session["LMSsuperuser"].ToString().Trim() == "Y")
+                if (Convert.ToString(HttpContext.Current.Session["LMSsuperuser"]).Trim() == "Y")
                 {
                     cbSuperUser.Visible = true;
                 }
@@ -213,16 +213,16 @@ namespace ERP.OMS.Management.Master
             {
                 //DT = oDBEngine.GetDataTable("tbl_master_employee, tbl_master_contact,tbl_trans_employeeCTC ", "ISNULL(cnt_firstName, '') + ' ' + ISNULL(cnt_middleName, '') + ' ' + ISNULL(cnt_lastName, '') +'['+cnt_shortName+']' AS Name, cnt_internalId as Id    ", " tbl_master_employee.emp_contactId = tbl_trans_employeeCTC.emp_cntId and tbl_trans_employeeCTC.emp_cntId = tbl_master_contact.cnt_internalId    and cnt_contactType='EM' and (emp_dateofLeaving is null or emp_dateofLeaving='1/1/1900 12:00:00 AM' OR emp_dateofLeaving>getdate()) and (cnt_firstName Like '" + reqStr + "%' or cnt_shortName like '" + reqStr + "%')");
                 //DT = oDBEngine.GetDataTable("tbl_master_employee, tbl_master_contact,tbl_trans_employeeCTC ", " ISNULL(cnt_firstName, '') + ' ' + ISNULL(cnt_middleName, '') + ' ' + ISNULL(cnt_lastName, '') +'['+cnt_shortName+']' AS Name, cnt_internalId as Id ", " tbl_master_employee.emp_contactId = tbl_trans_employeeCTC.emp_cntId and tbl_trans_employeeCTC.emp_cntId = tbl_master_contact.cnt_internalId  and cnt_contactType='EM' and (emp_dateofLeaving is null or emp_dateofLeaving='1/1/1900 12:00:00 AM' OR emp_dateofLeaving>getdate()) and (cnt_firstName Like '" + reqStr + "%' or cnt_shortName like '" + reqStr + "%') and tbl_master_contact.cnt_internalId not in (select user_contactId from tbl_master_user) group by tbl_trans_employeeCTC.emp_id,ISNULL(cnt_firstName, '') + ' ' + ISNULL(cnt_middleName, '') + ' ' + ISNULL(cnt_lastName, '') +'['+cnt_shortName+']' , cnt_internalId   having  max(tbl_trans_employeeCTC.emp_id) in (select MAX(tbl_trans_employeeCTC.emp_id)from tbl_trans_employeeCTC group by emp_cntId)");
-                DT = objUserBL.PopulateAssociatedEmployee(0, "Add", Convert.ToInt32(HttpContext.Current.Session["userid"]));
+                DT = objUserBL.PopulateAssociatedEmployee(0, "Add", Convert.ToInt32(HttpContext.Current.Session["LMSuserid"]));
             }
             else if(ActionMode=="Copy")
             {
-                DT = objUserBL.PopulateAssociatedEmployee(0, "Add", Convert.ToInt32(HttpContext.Current.Session["userid"]));
+                DT = objUserBL.PopulateAssociatedEmployee(0, "Add", Convert.ToInt32(HttpContext.Current.Session["LMSuserid"]));
             }
             //Rev work close 12.05.2022 Mantise no :24856 In User master username,loginid,password,associate employee make blank in Copy Mode
             else
             {
-                DT = objUserBL.PopulateAssociatedEmployee(Convert.ToInt32(ActionMode), "Edit", Convert.ToInt32(HttpContext.Current.Session["userid"]));
+                DT = objUserBL.PopulateAssociatedEmployee(Convert.ToInt32(ActionMode), "Edit", Convert.ToInt32(HttpContext.Current.Session["LMSuserid"]));
             }
             if (DT.Rows.Count > 0)
             {
@@ -5084,7 +5084,7 @@ namespace ERP.OMS.Management.Master
                             if (dtcmp.Rows.Count > 0)
                             {
                                 string SegmentId = "1";
-                                oDBEngine.InsurtFieldValue("Master_UserCompany", "UserCompany_UserID,UserCompany_CompanyID,UserCompany_CreateUser,UserCompany_CreateDateTime", "'" + userid[0, 0] + "','" + Convert.ToString(dtcmp.Rows[0]["cmp_internalid"]) + "','" + Convert.ToString(Session["userid"]) + "','" + DateTime.Now + "'");
+                                oDBEngine.InsurtFieldValue("Master_UserCompany", "UserCompany_UserID,UserCompany_CompanyID,UserCompany_CreateUser,UserCompany_CreateDateTime", "'" + userid[0, 0] + "','" + Convert.ToString(dtcmp.Rows[0]["cmp_internalid"]) + "','" + Convert.ToString(Session["LMSuserid"]) + "','" + DateTime.Now + "'");
                                 //oDBEngine.InsurtFieldValue("tbl_trans_LastSegment", "ls_cntid,ls_lastsegment,ls_userid,ls_lastdpcoid,ls_lastCompany,ls_lastFinYear,ls_lastSettlementNo,ls_lastSettlementType", "'" + contact + "','" + grpsegment[0, 0] + "','" + userid[0, 0] + "','" + SegmentId + "','" + Convert.ToString(dtcmp.Rows[0]["cmp_internalid"]) + "','" + finyr[0, 0].ToString().Trim() + "','','N'");
                                 oDBEngine.InsurtFieldValue("tbl_trans_LastSegment", "ls_cntid,ls_lastsegment,ls_userid,ls_lastdpcoid,ls_lastCompany,ls_lastFinYear,ls_lastSettlementNo,ls_lastSettlementType", "'" + contact + "','" + grpsegment[0, 0] + "','" + userid[0, 0] + "','" + SegmentId + "','" + Convert.ToString(dtcmp.Rows[0]["cmp_internalid"]) + "','" + FinancialYear.Trim() + "','','N'");
 
@@ -5558,7 +5558,7 @@ namespace ERP.OMS.Management.Master
                             if (dtcmp.Rows.Count > 0)
                             {
                                 string SegmentId = "1";
-                                oDBEngine.InsurtFieldValue("Master_UserCompany", "UserCompany_UserID,UserCompany_CompanyID,UserCompany_CreateUser,UserCompany_CreateDateTime", "'" + userid[0, 0] + "','" + Convert.ToString(dtcmp.Rows[0]["cmp_internalid"]) + "','" + Convert.ToString(Session["userid"]) + "','" + DateTime.Now + "'");
+                                oDBEngine.InsurtFieldValue("Master_UserCompany", "UserCompany_UserID,UserCompany_CompanyID,UserCompany_CreateUser,UserCompany_CreateDateTime", "'" + userid[0, 0] + "','" + Convert.ToString(dtcmp.Rows[0]["cmp_internalid"]) + "','" + Convert.ToString(Session["LMSuserid"]) + "','" + DateTime.Now + "'");
                                 //oDBEngine.InsurtFieldValue("tbl_trans_LastSegment", "ls_cntid,ls_lastsegment,ls_userid,ls_lastdpcoid,ls_lastCompany,ls_lastFinYear,ls_lastSettlementNo,ls_lastSettlementType", "'" + contact + "','" + grpsegment[0, 0] + "','" + userid[0, 0] + "','" + SegmentId + "','" + Convert.ToString(dtcmp.Rows[0]["cmp_internalid"]) + "','" + finyr[0, 0].ToString().Trim() + "','','N'");
                                 oDBEngine.InsurtFieldValue("tbl_trans_LastSegment", "ls_cntid,ls_lastsegment,ls_userid,ls_lastdpcoid,ls_lastCompany,ls_lastFinYear,ls_lastSettlementNo,ls_lastSettlementType", "'" + contact + "','" + grpsegment[0, 0] + "','" + userid[0, 0] + "','" + SegmentId + "','" + Convert.ToString(dtcmp.Rows[0]["cmp_internalid"]) + "','" + FinancialYear.Trim() + "','','N'");
 

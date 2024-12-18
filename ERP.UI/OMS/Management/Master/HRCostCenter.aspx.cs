@@ -28,9 +28,9 @@ namespace ERP.OMS.Management.Master
         {
             //------- For Read Only User in SQL Datasource Connection String   Start-----------------
 
-            if (HttpContext.Current.Session["EntryProfileType"] != null)
+            if (HttpContext.Current.Session["LMSEntryProfileType"] != null)
             {
-                if (Convert.ToString(HttpContext.Current.Session["EntryProfileType"]) == "R")
+                if (Convert.ToString(HttpContext.Current.Session["LMSEntryProfileType"]) == "R")
                 {
                     DepartmentSource.ConnectionString = ConfigurationSettings.AppSettings["DBReadOnlyConnection"];
                 }

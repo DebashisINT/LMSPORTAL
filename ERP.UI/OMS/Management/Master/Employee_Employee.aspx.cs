@@ -40,9 +40,9 @@ namespace ERP.OMS.Management.Master
             
            rights = BusinessLogicLayer.CommonBLS.CommonBL.GetUserRightSession("/management/Master/employee.aspx");
           
-            if (HttpContext.Current.Session["EntryProfileType"] != null)
+            if (HttpContext.Current.Session["LMSEntryProfileType"] != null)
             {
-                if (Convert.ToString(HttpContext.Current.Session["EntryProfileType"]) == "R")
+                if (Convert.ToString(HttpContext.Current.Session["LMSEntryProfileType"]) == "R")
                 {
                     sqlHistory.ConnectionString = ConfigurationSettings.AppSettings["DBReadOnlyConnection"];
                 }
@@ -152,7 +152,7 @@ namespace ERP.OMS.Management.Master
                         lcmd.CommandType = CommandType.StoredProcedure;
                         lcmd.Parameters.Add("@ReplacementId", SqlDbType.VarChar).Value = empID[0, 0].ToString().Trim();
                         lcmd.Parameters.Add("@Users", SqlDbType.VarChar).Value = empIdsG;
-                        lcmd.Parameters.Add("@modifyUser", SqlDbType.Int).Value = int.Parse(HttpContext.Current.Session["userid"].ToString());
+                        lcmd.Parameters.Add("@modifyUser", SqlDbType.Int).Value = int.Parse(HttpContext.Current.Session["LMSuserid"].ToString());
                         lcmd.ExecuteNonQuery();
 
                         lcmd.Dispose();
@@ -162,17 +162,17 @@ namespace ERP.OMS.Management.Master
                 }
                 else
                 {
-                    value = "emp_din='" + txtDIN.Text + "', emp_dateofJoining ='" + cmbDOJ.Value + "', emp_dateofLeaving ='" + cmbDOL.Value + "',emp_ReasonLeaving  ='" + txtROLeaving.Text + "', emp_NextEmployer ='" + txtNextEmployeerName.Text + "', emp_AddNextEmployer  ='" + txtNextEmployeerAddress.Text + "',LastModifyDate='" + oDBEngine.GetDate().ToString() + "',LastModifyUser='" + Session["userid"].ToString() + "'";
+                    value = "emp_din='" + txtDIN.Text + "', emp_dateofJoining ='" + cmbDOJ.Value + "', emp_dateofLeaving ='" + cmbDOL.Value + "',emp_ReasonLeaving  ='" + txtROLeaving.Text + "', emp_NextEmployer ='" + txtNextEmployeerName.Text + "', emp_AddNextEmployer  ='" + txtNextEmployeerAddress.Text + "',LastModifyDate='" + oDBEngine.GetDate().ToString() + "',LastModifyUser='" + Session["LMSuserid"].ToString() + "'";
                     Int32 rowsEffected = oDBEngine.SetFieldValue("tbl_master_employee", value, " emp_id =" + emp_id.Text);
-                    Int32 RowsEffect = oDBEngine.SetFieldValue("tbl_trans_employeeCTC", "emp_effectiveuntil='" + cmbDOL.Value + "',LastModifyDate='" + oDBEngine.GetDate().ToString() + "',LastModifyUser='" + Session["userid"].ToString() + "'", " emp_cntId='" + Session["KeyVal_InternalID"].ToString() + "'");
+                    Int32 RowsEffect = oDBEngine.SetFieldValue("tbl_trans_employeeCTC", "emp_effectiveuntil='" + cmbDOL.Value + "',LastModifyDate='" + oDBEngine.GetDate().ToString() + "',LastModifyUser='" + Session["LMSuserid"].ToString() + "'", " emp_cntId='" + Session["KeyVal_InternalID"].ToString() + "'");
                 }
 
             }
             else
             {
-                String value = "emp_din='" + txtDIN.Text + "', emp_dateofJoining ='" + cmbDOJ.Value + "', emp_dateofLeaving ='" + cmbDOL.Value + "',emp_ReasonLeaving  ='" + txtROLeaving.Text + "', emp_NextEmployer ='" + txtNextEmployeerName.Text + "', emp_AddNextEmployer  ='" + txtNextEmployeerAddress.Text + "',LastModifyDate='" + oDBEngine.GetDate().ToString() + "',LastModifyUser='" + Session["userid"].ToString() + "'";
+                String value = "emp_din='" + txtDIN.Text + "', emp_dateofJoining ='" + cmbDOJ.Value + "', emp_dateofLeaving ='" + cmbDOL.Value + "',emp_ReasonLeaving  ='" + txtROLeaving.Text + "', emp_NextEmployer ='" + txtNextEmployeerName.Text + "', emp_AddNextEmployer  ='" + txtNextEmployeerAddress.Text + "',LastModifyDate='" + oDBEngine.GetDate().ToString() + "',LastModifyUser='" + Session["LMSuserid"].ToString() + "'";
                 Int32 rowsEffected = oDBEngine.SetFieldValue("tbl_master_employee", value, " emp_id =" + emp_id.Text);
-                Int32 RowsEffect = oDBEngine.SetFieldValue("tbl_trans_employeeCTC", "emp_effectiveuntil='" + cmbDOL.Value + "',LastModifyDate='" + oDBEngine.GetDate().ToString() + "',LastModifyUser='" + Session["userid"].ToString() + "'", " emp_cntId='" + Session["KeyVal_InternalID"].ToString() + "' and (emp_effectiveuntil is null or emp_effectiveuntil='1/1/1900 12:00:00 AM')");
+                Int32 RowsEffect = oDBEngine.SetFieldValue("tbl_trans_employeeCTC", "emp_effectiveuntil='" + cmbDOL.Value + "',LastModifyDate='" + oDBEngine.GetDate().ToString() + "',LastModifyUser='" + Session["LMSuserid"].ToString() + "'", " emp_cntId='" + Session["KeyVal_InternalID"].ToString() + "' and (emp_effectiveuntil is null or emp_effectiveuntil='1/1/1900 12:00:00 AM')");
             }
 
 

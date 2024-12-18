@@ -302,7 +302,7 @@ public class ledger
     public void Exportledger()
     {
 
-        DataTable CompanyName = oDbEngine.GetDataTable("tbl_master_company", "cmp_Name", " cmp_internalId='" + HttpContext.Current.Session["LastCompany"].ToString() + "'");
+        DataTable CompanyName = oDbEngine.GetDataTable("tbl_master_company", "cmp_Name", " cmp_internalId='" + HttpContext.Current.Session["LMSLastCompany"].ToString() + "'");
         System.Globalization.NumberFormatInfo currencyFormat = new System.Globalization.CultureInfo("en-us").NumberFormat;
         currencyFormat.CurrencySymbol = "";
         currencyFormat.CurrencyNegativePattern = 2;
@@ -327,7 +327,7 @@ public class ledger
         //}
 
 
-        Branch = HttpContext.Current.Session["userbranchHierarchy"].ToString();
+        Branch = HttpContext.Current.Session["LMSuserbranchHierarchy"].ToString();
 
         if (Segment == null)
         {
@@ -344,7 +344,7 @@ public class ledger
         {
             receipt = 0;
             Payment = 0;
-            string valItem = HttpContext.Current.Session["userid"].ToString();
+            string valItem = HttpContext.Current.Session["LMSuserid"].ToString();
 
             SubAccountSearch = " and AccountsLedger_SubAccountID in('" + valItem + "') ";
             dtCashBankBook1 = oDbEngine.GetDataTable("Trans_accountsledger a ", "convert(varchar(11),a.accountsledger_transactiondate,113) as TrDate,convert(varchar(11),a.accountsledger_valuedate,113) as ValueDate,a.accountsledger_TransactionReferenceID, a.accountsledger_Narration,a.accountsledger_InstrumentNumber,(a.accountsledger_SettlementNumber+' '+a.accountsledger_SettlementType) as SettlementNumber,case when a.Accountsledger_AmountDr='0.00000000' then null else cast(a.Accountsledger_AmountDr as varchar(max)) end as Accountsledger_AmountCr,case when a.Accountsledger_AmountCr='0.00000000' then null else cast(a.Accountsledger_AmountCr as varchar(max)) end as Accountsledger_AmountDr,'0.0' as Closing", " accountsledger_companyID='" + HttpContext.Current.Session["CompanyID"].ToString() + "' and accountsledger_ExchangeSegmentID in(" + Segment + ") and cast(DATEADD(dd, 0, DATEDIFF(dd, 0,accountsledger_transactiondate)) as datetime) between cast(DATEADD(dd, 0, DATEDIFF(dd, 0,'" + HttpContext.Current.Session["fromdate"] + "')) as datetime) and cast(DATEADD(dd, 0, DATEDIFF(dd, 0,'" + HttpContext.Current.Session["todate"] + "')) as datetime)  " + mainAccountSearch + " and AccountsLedger_BranchID in(" + Branch + ") " + SubAccountSearch + "  and AccountsLedger_SubAccountID is not null and AccountsLedger_TransactionType<>'OpeningBalance'", " accountsledger_transactiondate,accountsledger_TransactionReferenceID");
@@ -403,7 +403,7 @@ public class ledger
 
                 Type = "Clients - Trading A/c  ";
 
-                CheckingValueParam = Type + ": " + oDbEngine.GetDataTable("tbl_master_contact", "(rtrim(ltrim(cnt_firstname)) +' ['+rtrim(ltrim(cnt_ucc))+']') as username", "cnt_internalid='" + HttpContext.Current.Session["userid"].ToString() + "'").Rows[0][0].ToString().Trim() + " " + "Period :" + " " + oconverter.ArrangeDate2(HttpContext.Current.Session["fromdate"].ToString()) + "  - " + oconverter.ArrangeDate2(HttpContext.Current.Session["todate"].ToString());
+                CheckingValueParam = Type + ": " + oDbEngine.GetDataTable("tbl_master_contact", "(rtrim(ltrim(cnt_firstname)) +' ['+rtrim(ltrim(cnt_ucc))+']') as username", "cnt_internalid='" + HttpContext.Current.Session["LMSuserid"].ToString() + "'").Rows[0][0].ToString().Trim() + " " + "Period :" + " " + oconverter.ArrangeDate2(HttpContext.Current.Session["fromdate"].ToString()) + "  - " + oconverter.ArrangeDate2(HttpContext.Current.Session["todate"].ToString());
                 newRow5[0] = Type + "Period :" + " " + oconverter.ArrangeDate2(HttpContext.Current.Session["fromdate"].ToString()) + "  - " + oconverter.ArrangeDate2(HttpContext.Current.Session["todate"].ToString());
                 newRow5[1] = "Test";
                 dtCashBankBook_New1.Rows.Add(newRow5);
@@ -473,7 +473,7 @@ public class ledger
                         }
                     }
                 }
-                if (HttpContext.Current.Session["userid"] != null)
+                if (HttpContext.Current.Session["LMSuserid"] != null)
                 {
                     dtLedger = dtCashBankBook1.Copy();
                 }
@@ -490,7 +490,7 @@ public class ledger
 
                 Type = "Clients - Trading A/c  ";
 
-                CheckingValueParam = Type + ": " + oDbEngine.GetDataTable("tbl_master_contact", "(rtrim(ltrim(cnt_firstname)) +' ['+rtrim(ltrim(cnt_ucc))+']') as username", "cnt_internalid='" + HttpContext.Current.Session["userid"].ToString() + "'").Rows[0][0].ToString().Trim() + " " + "Period :" + " " + oconverter.ArrangeDate2(HttpContext.Current.Session["fromdate"].ToString()) + "  - " + oconverter.ArrangeDate2(HttpContext.Current.Session["todate"].ToString());
+                CheckingValueParam = Type + ": " + oDbEngine.GetDataTable("tbl_master_contact", "(rtrim(ltrim(cnt_firstname)) +' ['+rtrim(ltrim(cnt_ucc))+']') as username", "cnt_internalid='" + HttpContext.Current.Session["LMSuserid"].ToString() + "'").Rows[0][0].ToString().Trim() + " " + "Period :" + " " + oconverter.ArrangeDate2(HttpContext.Current.Session["fromdate"].ToString()) + "  - " + oconverter.ArrangeDate2(HttpContext.Current.Session["todate"].ToString());
                 newRow5[0] = Type + "Period :" + " " + oconverter.ArrangeDate2(HttpContext.Current.Session["fromdate"].ToString()) + "  - " + oconverter.ArrangeDate2(HttpContext.Current.Session["todate"].ToString());
                 newRow5[1] = "Test";
                 dtCashBankBook_New1.Rows.Add(newRow5);
@@ -560,7 +560,7 @@ public class ledger
                         }
                     }
                 }
-                if (HttpContext.Current.Session["userid"] != null)
+                if (HttpContext.Current.Session["LMSuserid"] != null)
                 {
                     dtLedger = dtCashBankBook1.Copy();
                 }
@@ -573,7 +573,7 @@ public class ledger
 
             }
             # region isnull
-            if (HttpContext.Current.Session["userid"] == null)
+            if (HttpContext.Current.Session["LMSuserid"] == null)
         {
 
             receipt = 0;
@@ -738,7 +738,7 @@ public class ledger
         dtExport.Columns[7].ColumnName = "Credit";
         dtExport.AcceptChanges();
 
-        ExportToPDF(dtExport, oDbEngine.GetDataTable("tbl_master_contact", "(rtrim(ltrim(cnt_firstname)) +' ['+rtrim(ltrim(cnt_ucc))+']') as username", "cnt_internalid='" + HttpContext.Current.Session["userid"].ToString() + "'").Rows[0][0].ToString().Trim() + "_" + HttpContext.Current.Session["segmentname"].ToString() +"_"+ oconverter.ArrangeDate2(HttpContext.Current.Session["fromdate"].ToString()) + "  - " + oconverter.ArrangeDate2(HttpContext.Current.Session["todate"].ToString()), "Closing Balance", dtReportHeader, dtReportFooter);
+        ExportToPDF(dtExport, oDbEngine.GetDataTable("tbl_master_contact", "(rtrim(ltrim(cnt_firstname)) +' ['+rtrim(ltrim(cnt_ucc))+']') as username", "cnt_internalid='" + HttpContext.Current.Session["LMSuserid"].ToString() + "'").Rows[0][0].ToString().Trim() + "_" + HttpContext.Current.Session["segmentname"].ToString() +"_"+ oconverter.ArrangeDate2(HttpContext.Current.Session["fromdate"].ToString()) + "  - " + oconverter.ArrangeDate2(HttpContext.Current.Session["todate"].ToString()), "Closing Balance", dtReportHeader, dtReportFooter);
 
     }
     

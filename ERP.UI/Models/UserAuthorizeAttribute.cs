@@ -14,7 +14,7 @@ namespace ERP.Models
         {
             if (!string.IsNullOrWhiteSpace(url))
             {
-                if ((HttpContext.Current.Session["userid"] == null) || HttpContext.Current.Session["usergoup"] == null)
+                if ((HttpContext.Current.Session["LMSuserid"] == null) || HttpContext.Current.Session["LMSusergoup"] == null)
                 {
                     HttpContext.Current.Response.Redirect("/OMS/Login.aspx?rurl=" + "/OMS" + url);
                 }
@@ -23,7 +23,7 @@ namespace ERP.Models
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            if ((HttpContext.Current.Session["userid"] == null) || HttpContext.Current.Session["usergoup"] == null)
+            if ((HttpContext.Current.Session["LMSuserid"] == null) || HttpContext.Current.Session["LMSusergoup"] == null)
             {
                 return false;
             }

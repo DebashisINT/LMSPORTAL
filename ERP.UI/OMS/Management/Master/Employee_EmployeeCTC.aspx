@@ -30,7 +30,7 @@
 
     <script type="text/javascript">
         function Show() {
-           <%-- var ActiveUser = '<%=Session["userid"]%>'
+           <%-- var ActiveUser = '<%=Session["LMSuserid"]%>'
             if (ActiveUser != null) {
                 $.ajax({
                     type: "POST",

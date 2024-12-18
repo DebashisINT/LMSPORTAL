@@ -47,7 +47,7 @@ namespace LMS.Areas.LMS.Controllers
                     Is_PageLoad = "Ispageload";
 
                 ViewData["ModelData"] = model;
-                string Userid = Convert.ToString(Session["userid"]);
+                string Userid = Convert.ToString(Session["LMSuserid"]);
 
                 String con = System.Configuration.ConfigurationSettings.AppSettings["DBConnectionDefault"];
                 SqlCommand sqlcmd = new SqlCommand();
@@ -73,7 +73,7 @@ namespace LMS.Areas.LMS.Controllers
         public IEnumerable LGetCountryDetailsList(string Is_PageLoad)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ERP_ConnectionString"].ConnectionString;
-            string Userid = Convert.ToString(Session["userid"]);
+            string Userid = Convert.ToString(Session["LMSuserid"]);
             if (Is_PageLoad != "Ispageload")
             {
                 LMSMasterDataContext dc = new LMSMasterDataContext(connectionString);
@@ -95,7 +95,7 @@ namespace LMS.Areas.LMS.Controllers
         public JsonResult SaveCategory(string name, string id,string description, string ActiveStatus)
         {
             int output = 0;
-            string Userid = Convert.ToString(Session["userid"]);
+            string Userid = Convert.ToString(Session["LMSuserid"]);
             output = obj.SaveCategory(name, Userid, id, description, ActiveStatus);
             return Json(output, JsonRequestBehavior.AllowGet);
         }

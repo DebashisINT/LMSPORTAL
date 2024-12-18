@@ -49,7 +49,7 @@ namespace ERP.OMS.Management.Master
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            CreateUser = Convert.ToInt32(HttpContext.Current.Session["userid"]);//Session UserID
+            CreateUser = Convert.ToInt32(HttpContext.Current.Session["LMSuserid"]);//Session UserID
             CreateDate = Convert.ToDateTime(oDBEngine.GetDate().ToShortDateString());
 
             //// Rev 1.0
@@ -144,7 +144,7 @@ namespace ERP.OMS.Management.Master
                 DT.Rows.Clear();
                 ProcedureExecute proc = new ProcedureExecute("PRC_LMS_USERACCOUNTADDEDIT");
                 proc.AddPara("@action", "EDITUSERDATA");
-                proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["userid"]));
+                proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
                 proc.AddPara("@USER_LOGINID", user_loginid);
                 DT = proc.GetTable();
 
@@ -192,7 +192,7 @@ namespace ERP.OMS.Management.Master
             DT.Rows.Clear();
             ProcedureExecute proc = new ProcedureExecute("PRC_LMS_USERACCOUNTADDEDIT");
             proc.AddPara("@action", "ADDNEW");
-            proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["userid"]));
+            proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
             proc.AddPara("@firstname", firstname);
             proc.AddPara("@shortname", shortname);
             DT = proc.GetTable();
@@ -216,7 +216,7 @@ namespace ERP.OMS.Management.Master
             //proc.AddPara("@action", "ADDNEW_USERACCOUNT");
             proc.AddPara("@action", "ADDNEW");
             
-            proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["userid"]));
+            proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
             proc.AddPara("@firstname", reqStr);
             proc.AddPara("@shortname", reqStr);
             dt = proc.GetTable();
@@ -239,7 +239,7 @@ namespace ERP.OMS.Management.Master
         public static object GetChannel(string SearchKey)
         {
             List<ChannelModel> listChannel = new List<ChannelModel>();
-            if (HttpContext.Current.Session["userid"] != null)
+            if (HttpContext.Current.Session["LMSuserid"] != null)
             {
                 SearchKey = SearchKey.Replace("'", "''");
 
@@ -266,7 +266,7 @@ namespace ERP.OMS.Management.Master
         public static object GetCircle(string SearchKey)
         {
             List<CircleModel> listCircle = new List<CircleModel>();
-            if (HttpContext.Current.Session["userid"] != null)
+            if (HttpContext.Current.Session["LMSuserid"] != null)
             {
                 SearchKey = SearchKey.Replace("'", "''");
 
@@ -289,7 +289,7 @@ namespace ERP.OMS.Management.Master
         public static object GetSection(string SearchKey)
         {
             List<SectionModel> listSection = new List<SectionModel>();
-            if (HttpContext.Current.Session["userid"] != null)
+            if (HttpContext.Current.Session["LMSuserid"] != null)
             {
                 SearchKey = SearchKey.Replace("'", "''");
 
@@ -634,8 +634,8 @@ namespace ERP.OMS.Management.Master
                             }
                             else
                             {
-                                //value = "emp_din=' ', emp_dateofJoining ='" + cmbDOJ.Value + "', emp_dateofLeaving ='" + DBNull.Value + "',emp_ReasonLeaving  ='" + DBNull.Value + "', emp_NextEmployer ='" + DBNull.Value + "', emp_AddNextEmployer  ='" + DBNull.Value + "',LastModifyDate='" + oDBEngine.GetDate().ToString() + "',LastModifyUser='" + Session["userid"].ToString() + "'";
-                                value = "emp_din=' ', emp_dateofJoining ='" + now + "', emp_dateofLeaving ='" + DBNull.Value + "',emp_ReasonLeaving  ='" + DBNull.Value + "', emp_NextEmployer ='" + DBNull.Value + "', emp_AddNextEmployer  ='" + DBNull.Value + "',LastModifyDate='" + oDBEngine.GetDate().ToString() + "',LastModifyUser='" + Session["userid"].ToString() + "'";
+                                //value = "emp_din=' ', emp_dateofJoining ='" + cmbDOJ.Value + "', emp_dateofLeaving ='" + DBNull.Value + "',emp_ReasonLeaving  ='" + DBNull.Value + "', emp_NextEmployer ='" + DBNull.Value + "', emp_AddNextEmployer  ='" + DBNull.Value + "',LastModifyDate='" + oDBEngine.GetDate().ToString() + "',LastModifyUser='" + Session["LMSuserid"].ToString() + "'";
+                                value = "emp_din=' ', emp_dateofJoining ='" + now + "', emp_dateofLeaving ='" + DBNull.Value + "',emp_ReasonLeaving  ='" + DBNull.Value + "', emp_NextEmployer ='" + DBNull.Value + "', emp_AddNextEmployer  ='" + DBNull.Value + "',LastModifyDate='" + oDBEngine.GetDate().ToString() + "',LastModifyUser='" + Session["LMSuserid"].ToString() + "'";
                                 Int32 rowsEffected = oDBEngine.SetFieldValue("tbl_master_employee", value, " emp_contactid ='" + HttpContext.Current.Session["KeyVal_InternalID"] + "'");
 
                                 //if (Session["KeyVal_InternalID"] != "n")
@@ -833,7 +833,7 @@ namespace ERP.OMS.Management.Master
 
                                     //User state mapping
                                     SalesPersontracking ob = new SalesPersontracking();
-                                    DataTable dtfromtosumervisor = SalesPersontracking.SubmitEmployeeState(emp_cntId, branch_state, Convert.ToString(HttpContext.Current.Session["userid"]));
+                                    DataTable dtfromtosumervisor = SalesPersontracking.SubmitEmployeeState(emp_cntId, branch_state, Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
 
                                     //Assign party                                
                                     string reportto_uniqueid = string.Empty;
@@ -897,7 +897,7 @@ namespace ERP.OMS.Management.Master
                     DT.Rows.Clear();
                     ProcedureExecute proc = new ProcedureExecute("PRC_LMS_USERACCOUNTADDEDIT");
                     proc.AddPara("@action", "MODIFYUSERDATA");
-                    proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["userid"]));
+                    proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
                     proc.AddPara("@FIRSTNAME", txtFirstNmae.Text);
                     proc.AddPara("@USER_LOGINID", user_loginid);
                     proc.AddPara("@USER_NEWLOGINID", txtuserid.Text);
@@ -930,7 +930,7 @@ namespace ERP.OMS.Management.Master
         //private void SaveAssignParty(string shop_code, string empuserid, string reportto_uniqueid, string reportto_userid, string branch)
         //{
         //    string returnmsg = "";
-        //    if (HttpContext.Current.Session["userid"] != null)
+        //    if (HttpContext.Current.Session["LMSuserid"] != null)
         //    {
                 
         //        string PARTY_TYPE = "";
@@ -1384,7 +1384,7 @@ namespace ERP.OMS.Management.Master
                     if (dtcmp.Rows.Count > 0)
                     {
                         string SegmentId = "1";
-                        oDBEngine.InsurtFieldValue("Master_UserCompany", "UserCompany_UserID,UserCompany_CompanyID,UserCompany_CreateUser,UserCompany_CreateDateTime", "'" + userid[0, 0] + "','" + Convert.ToString(dtcmp.Rows[0]["cmp_internalid"]) + "','" + Convert.ToString(Session["userid"]) + "','" + DateTime.Now + "'");
+                        oDBEngine.InsurtFieldValue("Master_UserCompany", "UserCompany_UserID,UserCompany_CompanyID,UserCompany_CreateUser,UserCompany_CreateDateTime", "'" + userid[0, 0] + "','" + Convert.ToString(dtcmp.Rows[0]["cmp_internalid"]) + "','" + Convert.ToString(Session["LMSuserid"]) + "','" + DateTime.Now + "'");
                         oDBEngine.InsurtFieldValue("tbl_trans_LastSegment", "ls_cntid,ls_lastsegment,ls_userid,ls_lastdpcoid,ls_lastCompany,ls_lastFinYear,ls_lastSettlementNo,ls_lastSettlementType", "'" + emp_cntId + "','" + grpsegment[0, 0] + "','" + userid[0, 0] + "','" + SegmentId + "','" + Convert.ToString(dtcmp.Rows[0]["cmp_internalid"]) + "','" + FinancialYear.Trim() + "','','N'");
 
                     }

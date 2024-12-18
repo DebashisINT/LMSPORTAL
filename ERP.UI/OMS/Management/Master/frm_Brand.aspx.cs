@@ -112,7 +112,7 @@ namespace ERP.OMS.Management.Master
             }
             if (WhichCall == "saveBrand")
             {
-                if (masterBrandBl.insertBrand(txtBrandNBame.Text.Trim(), true,txtContactNo.Text,txtEmail.Text, Convert.ToInt32(Session["UserId"])))
+                if (masterBrandBl.insertBrand(txtBrandNBame.Text.Trim(), true,txtContactNo.Text,txtEmail.Text, Convert.ToInt32(Session["LMSuserid"])))
                 {
                     GridBrand.JSProperties["cpMsg"] = "Saved Successfully";
                 }

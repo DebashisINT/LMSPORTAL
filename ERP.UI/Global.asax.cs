@@ -81,7 +81,7 @@ namespace ERP
             string result = String.Empty;
             if (arg == "userid")
             {
-                object userid = Session["userid"];
+                object userid = Session["LMSuserid"];
                 if (userid != null) { result = userid.ToString(); }
             }
             else { result = base.GetVaryByCustomString(context, arg); }

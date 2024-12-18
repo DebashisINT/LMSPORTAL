@@ -65,7 +65,7 @@ namespace LMS.Areas.LMS.Controllers
             {
                 string VALUE = null;
                 string SETTING_KEY = data.Key;
-                string Userid = Convert.ToString(Session["userid"]);
+                string Userid = Convert.ToString(Session["LMSuserid"]);
 
                 if (data.ControlType == "YESNO")
                 {

@@ -204,9 +204,9 @@ namespace BusinessLogicLayer
             string strSqlCon = ConfigurationManager.AppSettings["DBConnectionDefault"].ToString();
 
             // added for read only user
-            if (HttpContext.Current.Session["EntryProfileType"] != null)
+            if (HttpContext.Current.Session["LMSEntryProfileType"] != null)
             {
-                if (Convert.ToString(HttpContext.Current.Session["EntryProfileType"]) == "R")
+                if (Convert.ToString(HttpContext.Current.Session["LMSEntryProfileType"]) == "R")
                 {
                     strSqlCon = ConfigurationSettings.AppSettings["DBReadOnlyConnection"];
                 }

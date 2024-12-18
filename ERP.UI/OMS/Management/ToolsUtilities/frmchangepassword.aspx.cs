@@ -30,7 +30,7 @@ namespace ERP.OMS.Management.ToolsUtilities
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (HttpContext.Current.Session["userid"] == null)
+            if (HttpContext.Current.Session["LMSuserid"] == null)
             {
                 Page.ClientScript.RegisterStartupScript(GetType(), "SighOff", "<script>SignOff();</script>");
             }
@@ -45,11 +45,11 @@ namespace ERP.OMS.Management.ToolsUtilities
             string Encryptpass_New = epasswrd.Encrypt(TxtNewPassword.Text.Trim());
 
 
-            //if (Session["userpassword"].ToString() == TxtOldPassword.Text)
-            if (Session["userpassword"].ToString() == Encryptpass_Old)
+            //if (Session["LMSuserpassword"].ToString() == TxtOldPassword.Text)
+            if (Session["LMSuserpassword"].ToString() == Encryptpass_Old)
             {
 
-                 oDBEngine.SetFieldValue("tbl_master_user", "user_password='" + Encryptpass_New + "'", " user_id='" + Session["userid"].ToString() + "'");
+                 oDBEngine.SetFieldValue("tbl_master_user", "user_password='" + Encryptpass_New + "'", " user_id='" + Session["LMSuserid"].ToString() + "'");
 
               
                 Session.Abandon();

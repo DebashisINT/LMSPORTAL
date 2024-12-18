@@ -426,7 +426,7 @@ namespace ERP.OMS.Management.Master
 
                 //cmbIndustry.Items.Insert(0, new ListItem("--Select--", "0"));
                 //------select branch
-                string branchid = HttpContext.Current.Session["userbranchID"].ToString();
+                string branchid = HttpContext.Current.Session["LMSuserbranchID"].ToString();
                 DataTable dtname = oDBEngine.GetDataTable(" tbl_master_branch", "  branch_description", " branch_id= '" + branchid + "'");
                 string branchName = dtname.Rows[0]["branch_description"].ToString();
                 //cmbBranch.Items.Insert(0, new ListItem(branchName, branchid));
@@ -773,7 +773,7 @@ namespace ERP.OMS.Management.Master
                     webLogin = "No";
                 }
                 // Mantis Issue 24736 [ cnt_OtherID added ]
-                String value = "cnt_ucc='" + txtAliasName.Text + "', cnt_salutation=" + CmbSalutation.SelectedItem.Value + ",  cnt_firstName='" + txtFirstNmae.Text.ToUpper() + "', cnt_middleName='" + txtMiddleName.Text.ToUpper() + "', cnt_lastName='" + txtLastName.Text.ToUpper() + "', cnt_shortName='" + txtAliasName.Text + "', cnt_branchId=" + cmbBranch.SelectedItem.Value + ", cnt_sex=" + cmbGender.SelectedItem.Value + ", cnt_maritalStatus=" + cmbMaritalStatus.SelectedItem.Value + ", cnt_DOB='" + DOBDate.Value + "', cnt_anniversaryDate='" + AnniversaryDate.Value + "', cnt_legalStatus=" + cmbLegalStatus.SelectedItem.Value + ", cnt_education=" + cmbEducation.SelectedItem.Value + ",  cnt_contactSource=" + cmbSource.SelectedItem.Value + ", cnt_referedBy='" + referedID + "', cnt_contactType='EM',cnt_bloodgroup='" + cmbBloodgroup.SelectedItem.Value + "',WebLogIn='" + webLogin + "',PassWord='" + Password + "', lastModifyDate ='" + today + "', lastModifyUser=" + HttpContext.Current.Session["userid"] + ", cnt_profession=" + cmbProfession.SelectedValue + ", cnt_OtherID='" + txtOtherID.Text+"'"; // + Session["userid"] ;
+                String value = "cnt_ucc='" + txtAliasName.Text + "', cnt_salutation=" + CmbSalutation.SelectedItem.Value + ",  cnt_firstName='" + txtFirstNmae.Text.ToUpper() + "', cnt_middleName='" + txtMiddleName.Text.ToUpper() + "', cnt_lastName='" + txtLastName.Text.ToUpper() + "', cnt_shortName='" + txtAliasName.Text + "', cnt_branchId=" + cmbBranch.SelectedItem.Value + ", cnt_sex=" + cmbGender.SelectedItem.Value + ", cnt_maritalStatus=" + cmbMaritalStatus.SelectedItem.Value + ", cnt_DOB='" + DOBDate.Value + "', cnt_anniversaryDate='" + AnniversaryDate.Value + "', cnt_legalStatus=" + cmbLegalStatus.SelectedItem.Value + ", cnt_education=" + cmbEducation.SelectedItem.Value + ",  cnt_contactSource=" + cmbSource.SelectedItem.Value + ", cnt_referedBy='" + referedID + "', cnt_contactType='EM',cnt_bloodgroup='" + cmbBloodgroup.SelectedItem.Value + "',WebLogIn='" + webLogin + "',PassWord='" + Password + "', lastModifyDate ='" + today + "', lastModifyUser=" + HttpContext.Current.Session["LMSuserid"] + ", cnt_profession=" + cmbProfession.SelectedValue + ", cnt_OtherID='" + txtOtherID.Text+"'"; // + Session["LMSuserid"] ;
                 string[,] AName = oDBEngine.GetFieldValue("tbl_master_employee", "emp_contactId,emp_uniqueCode", " emp_uniqueCode='" + txtAliasName.Text + "'", 2);
                 if (AName[0, 0] != "n")
                 {
@@ -808,7 +808,7 @@ namespace ERP.OMS.Management.Master
                 lcmdUpdateChannel.Parameters.AddWithValue("@CircleDefault", CircleDefault);
                 lcmdUpdateChannel.Parameters.AddWithValue("@SectionDefault", SectionDefault);
 
-                lcmdUpdateChannel.Parameters.AddWithValue("@lastModifyUser", Convert.ToString(HttpContext.Current.Session["userid"]));
+                lcmdUpdateChannel.Parameters.AddWithValue("@lastModifyUser", Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
 
                 lcmdUpdateChannel.ExecuteNonQuery();
                 // End of Mantis Issue 24655
@@ -869,8 +869,8 @@ namespace ERP.OMS.Management.Master
                     lcmdEmplInsert.Parameters.AddWithValue("@cnt_contactSource", cmbSource.SelectedItem.Value);
                     lcmdEmplInsert.Parameters.AddWithValue("@cnt_referedBy", referedID);
                     lcmdEmplInsert.Parameters.AddWithValue("@cnt_contactType", "EM");
-                    lcmdEmplInsert.Parameters.AddWithValue("@lastModifyUser", HttpContext.Current.Session["userid"]);
-                    lcmdEmplInsert.Parameters.AddWithValue("@UserContactID", HttpContext.Current.Session["usercontactID"]);
+                    lcmdEmplInsert.Parameters.AddWithValue("@lastModifyUser", HttpContext.Current.Session["LMSuserid"]);
+                    lcmdEmplInsert.Parameters.AddWithValue("@UserContactID", HttpContext.Current.Session["LMSusercontactID"]);
                     lcmdEmplInsert.Parameters.AddWithValue("@bloodgroup", cmbBloodgroup.SelectedItem.Value);
                    // lcmdEmplInsert.Parameters.AddWithValue("@IsShowPlanDetails", ddlPlanDetails.SelectedValue);
                     if (chkAllow.Checked == true)
@@ -1061,7 +1061,7 @@ namespace ERP.OMS.Management.Master
             DataTable dt = new DataTable();
             //ProcedureExecute proc = new ProcedureExecute("PRC_FetchReportTo");
             //proc.AddPara("@action", "ADDNEW");
-            //proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["userid"]));
+            //proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
             //proc.AddPara("@firstname", reqStr);
             //proc.AddPara("@shortname", reqStr);
             //dt = proc.GetTable();

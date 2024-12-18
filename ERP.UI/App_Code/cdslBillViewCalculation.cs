@@ -37,7 +37,7 @@ public class cdslBillViewCalculation
     {
 
         String StartDate, EndDate, financilaYear, billnoFinYear;
-        financilaYear = HttpContext.Current.Session["LastFinYear"].ToString(); //HttpContext.Current.Session["LastFinYear"].ToString();
+        financilaYear = HttpContext.Current.Session["LMSLastFinYear"].ToString(); //HttpContext.Current.Session["LMSLastFinYear"].ToString();
         int month = DateTime.Parse("1." + BillingMonth + " 2008").Month;
         string[] yearSplit;
 
@@ -753,7 +753,7 @@ public class cdslBillViewCalculation
                 }
 
 
-                cmdAccount.Parameters.AddWithValue("@financialYear", HttpContext.Current.Session["LastFinYear"]);
+                cmdAccount.Parameters.AddWithValue("@financialYear", HttpContext.Current.Session["LMSLastFinYear"]);
                 cmdAccount.Parameters.AddWithValue("@dp", qstr1);
                 cmdAccount.Parameters.AddWithValue("@billamt", billAmount);
                 cmdAccount.Parameters.AddWithValue("@generationOrder", GenerationOrder);
@@ -896,15 +896,15 @@ public class cdslBillViewCalculation
                         //bp.SegmentId = SegmentId;
                         //bp.signPdfPath = signPdfPath;
                         //bp.VirtualPath = VirtualPath;
-                        //bp.LastFinYear = HttpContext.Current.Session["LastFinYear"].ToString();
-                        //bp.user = HttpContext.Current.Session["userid"].ToString();
+                        //bp.LastFinYear = HttpContext.Current.Session["LMSLastFinYear"].ToString();
+                        //bp.user = HttpContext.Current.Session["LMSuserid"].ToString();
                         //bp.backGroundWork();
                         finalResult = generateindivisualPdf(Clients, Summary, AccountSummary,
                                    Holding, signature, logo,
                                    qstr1, "Yes", digitalSignaturePassword,
                                    DigitalSignatureDs, signPath, ReportPath
                                   , tmpPdfPath, CompanyId, dpId, SegmentId, signPdfPath, VirtualPath,
-                                  HttpContext.Current.Session["userid"].ToString(), HttpContext.Current.Session["LastFinYear"].ToString(), EmailCreateAppMenuId);
+                                  HttpContext.Current.Session["LMSuserid"].ToString(), HttpContext.Current.Session["LMSLastFinYear"].ToString(), EmailCreateAppMenuId);
                         if (finalResult == "Success")
                         {
                             ScriptManager.RegisterStartupScript(HttpContext.Current.Handler as Page, HttpContext.Current.GetType(), "hie", "alert('Successfully Document Generated.');", true);
@@ -1231,7 +1231,7 @@ public class cdslBillViewCalculation
                 }
 
 
-                cmdAccount.Parameters.AddWithValue("@financialYear", HttpContext.Current.Session["LastFinYear"]);
+                cmdAccount.Parameters.AddWithValue("@financialYear", HttpContext.Current.Session["LMSLastFinYear"]);
                 cmdAccount.Parameters.AddWithValue("@dp", qstr1);
                 cmdAccount.Parameters.AddWithValue("@billamt", billAmount);
                 cmdAccount.Parameters.AddWithValue("@generationOrder", GenerationOrder);
@@ -1388,15 +1388,15 @@ public class cdslBillViewCalculation
                         //bp.SegmentId = SegmentId;
                         //bp.signPdfPath = signPdfPath;
                         //bp.VirtualPath = VirtualPath;
-                        //bp.LastFinYear = HttpContext.Current.Session["LastFinYear"].ToString();
-                        //bp.user = HttpContext.Current.Session["userid"].ToString();
+                        //bp.LastFinYear = HttpContext.Current.Session["LMSLastFinYear"].ToString();
+                        //bp.user = HttpContext.Current.Session["LMSuserid"].ToString();
                         //bp.backGroundWork();
                         finalResult = generateindivisualPdf(Clients, Summary, AccountSummary,
                                    Holding, signature, logo,
                                    qstr1, "Yes", digitalSignaturePassword,
                                    DigitalSignatureDs, signPath, ReportPath
                                   , tmpPdfPath, CompanyId, dpId, SegmentId, signPdfPath, VirtualPath,
-                                  HttpContext.Current.Session["userid"].ToString(), HttpContext.Current.Session["LastFinYear"].ToString(), EmailCreateAppMenuId);
+                                  HttpContext.Current.Session["LMSuserid"].ToString(), HttpContext.Current.Session["LMSLastFinYear"].ToString(), EmailCreateAppMenuId);
                         if (finalResult == "Success")
                         {
                             ScriptManager.RegisterStartupScript(HttpContext.Current.Handler as Page, HttpContext.Current.GetType(), "hie", "alert('Successfully Document Generated.');", true);
@@ -1678,7 +1678,7 @@ public class cdslBillViewCalculation
     //            }
 
 
-    //            cmdAccount.Parameters.AddWithValue("@financialYear", HttpContext.Current.Session["LastFinYear"]);
+    //            cmdAccount.Parameters.AddWithValue("@financialYear", HttpContext.Current.Session["LMSLastFinYear"]);
     //            cmdAccount.Parameters.AddWithValue("@dp", qstr1);
     //            cmdAccount.Parameters.AddWithValue("@billamt", billAmount);
     //            cmdAccount.Parameters.AddWithValue("@generationOrder", GenerationOrder);
@@ -1818,15 +1818,15 @@ public class cdslBillViewCalculation
     //                //bp.SegmentId = SegmentId;
     //                //bp.signPdfPath = signPdfPath;
     //                //bp.VirtualPath = VirtualPath;
-    //                //bp.LastFinYear = HttpContext.Current.Session["LastFinYear"].ToString();
-    //                //bp.user = HttpContext.Current.Session["userid"].ToString();
+    //                //bp.LastFinYear = HttpContext.Current.Session["LMSLastFinYear"].ToString();
+    //                //bp.user = HttpContext.Current.Session["LMSuserid"].ToString();
     //                //bp.backGroundWork();
     //               finalResult= generateindivisualPdf(Clients, Summary, AccountSummary,
     //                          Holding, signature, logo,
     //                          qstr1, "Yes", digitalSignaturePassword,
     //                          DigitalSignatureDs, signPath, ReportPath
     //                         , tmpPdfPath, CompanyId, dpId, SegmentId, signPdfPath, VirtualPath,
-    //                         HttpContext.Current.Session["userid"].ToString(), HttpContext.Current.Session["LastFinYear"].ToString(), 
+    //                         HttpContext.Current.Session["LMSuserid"].ToString(), HttpContext.Current.Session["LMSLastFinYear"].ToString(), 
     //                         EmailCreateAppMenuId);
     //               if (finalResult == "Success")
     //               {
@@ -2119,7 +2119,7 @@ public class cdslBillViewCalculation
         if (tmpPDFPath.Contains("EToken"))
         {
             string digSigID = signPath;
-            pdfstr = tmpPDFPath + Clients.Rows[0]["DPBillSummary_BillNumber"].ToString() + "-" + Convert.ToDateTime(oDBEngine.GetDate()).ToString("ddMMMyyyy") + "-" + HttpContext.Current.Session["UserSegID"] + "-" + user + "-" + HttpContext.Current.Session["LastFinYear"].ToString().Replace("-", "") + "-" + digSigID + ".pdf";
+            pdfstr = tmpPDFPath + Clients.Rows[0]["DPBillSummary_BillNumber"].ToString() + "-" + Convert.ToDateTime(oDBEngine.GetDate()).ToString("ddMMMyyyy") + "-" + HttpContext.Current.Session["LMSusersegid"] + "-" + user + "-" + HttpContext.Current.Session["LMSLastFinYear"].ToString().Replace("-", "") + "-" + digSigID + ".pdf";
         }
         else
         {
@@ -2136,7 +2136,7 @@ public class cdslBillViewCalculation
         {
             if (module == "CDSL")
             {
-                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["userlastsegment"] + " and mnu_menuName='bill printing'", 1);
+                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["LMSuserlastsegment"] + " and mnu_menuName='bill printing'", 1);
                 result = ul.DigitalCertificate(pdfstr, signPath, DigitalSignPassword, "Authentication",
                                 DigitalSignatureDs.Tables[0].Rows[0]["Branch"].ToString(), CompanyId, dpId, "5",
                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_internalId"].ToString(),
@@ -2146,7 +2146,7 @@ public class cdslBillViewCalculation
             }
             else if (module == "NSDL")
             {
-                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["userlastsegment"] + " and mnu_menuName='bill printing'", 1);
+                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["LMSuserlastsegment"] + " and mnu_menuName='bill printing'", 1);
                 result = ul.DigitalCertificate(pdfstr, signPath, DigitalSignPassword, "Authentication",
                                   DigitalSignatureDs.Tables[0].Rows[0]["Branch"].ToString(),
                                   CompanyId, dpId, "5", DigitalSignatureDs.Tables[0].Rows[0]["cnt_internalId"].ToString(),
@@ -2325,7 +2325,7 @@ public class cdslBillViewCalculation
     {
         string[] yearSplit;
 
-        String financilaYear = HttpContext.Current.Session["LastFinYear"].ToString(); //HttpContext.Current.Session["LastFinYear"].ToString();
+        String financilaYear = HttpContext.Current.Session["LMSLastFinYear"].ToString(); //HttpContext.Current.Session["LMSLastFinYear"].ToString();
 
 
 
@@ -2336,7 +2336,7 @@ public class cdslBillViewCalculation
 
         DataTable lastSegMemt = oDBEngine.GetDataTable("(select exch_compId,exch_internalId,exch_TMCode," +
                                                 " isnull((select exh_shortName from tbl_master_Exchange where exh_cntId=tbl_master_companyExchange.exch_exchId)+'-'+exch_segmentId,exch_membershiptype) as Segment from tbl_master_companyExchange where exch_compid in " +
-                                                    " (select top 1 ls_lastCompany from tbl_trans_Lastsegment where ls_lastSegment=" + HttpContext.Current.Session["userlastsegment"] + ")) as D ", "*", "Segment in(select seg_name from tbl_master_segment where seg_id=" + HttpContext.Current.Session["userlastsegment"] + ")");
+                                                    " (select top 1 ls_lastCompany from tbl_trans_Lastsegment where ls_lastSegment=" + HttpContext.Current.Session["LMSuserlastsegment"] + ")) as D ", "*", "Segment in(select seg_name from tbl_master_segment where seg_id=" + HttpContext.Current.Session["LMSuserlastsegment"] + ")");
 
         CompanyId = lastSegMemt.Rows[0][0].ToString();
         dpId = lastSegMemt.Rows[0][2].ToString();

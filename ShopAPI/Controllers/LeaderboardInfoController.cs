@@ -193,7 +193,7 @@ namespace ShopAPI.Controllers
                     sqlcon.Open();
                     sqlcmd = new SqlCommand("PRC_FTSAPILEADERBOARDPOINTSDETAILS", sqlcon);
                     sqlcmd.Parameters.AddWithValue("@ACTION", "BRANCHLISTS");
-                    sqlcmd.Parameters.AddWithValue("@CHILDBRANCH", Convert.ToString(System.Web.HttpContext.Current.Session["userbranchHierarchy"]));
+                    sqlcmd.Parameters.AddWithValue("@CHILDBRANCH", Convert.ToString(System.Web.HttpContext.Current.Session["LMSuserbranchHierarchy"]));
 
                     sqlcmd.CommandType = CommandType.StoredProcedure;
                     SqlDataAdapter da = new SqlDataAdapter(sqlcmd);

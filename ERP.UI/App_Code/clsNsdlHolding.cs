@@ -67,7 +67,7 @@ public class clsNsdlHolding
         HoldingDate = strDate;
         if (dt.Rows.Count > 0)
         {
-            DataRow[] drDv = dt.Select(" UserID = " + Convert.ToString(HttpContext.Current.Session["userid"]));
+            DataRow[] drDv = dt.Select(" UserID = " + Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
             foreach (DataRow d in drDv)
                 dt.Rows.Remove(d);
 
@@ -75,7 +75,7 @@ public class clsNsdlHolding
 
         if (dt1.Rows.Count > 0)
         {
-            DataRow[] drDv1 = dt1.Select(" UserID1 = " + Convert.ToString(HttpContext.Current.Session["userid"]));
+            DataRow[] drDv1 = dt1.Select(" UserID1 = " + Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
             foreach (DataRow d in drDv1)
                 dt1.Rows.Remove(d);
         }
@@ -83,7 +83,7 @@ public class clsNsdlHolding
         if (dt1.Rows.Count > 0)
         {
             dv1 = dt1.DefaultView;
-            dv1.RowFilter = " UserID1 = " + Convert.ToString(HttpContext.Current.Session["userid"]);
+            dv1.RowFilter = " UserID1 = " + Convert.ToString(HttpContext.Current.Session["LMSuserid"]);
             return dv1;
         }
         return null;
@@ -94,7 +94,7 @@ public class clsNsdlHolding
     //    populateCmbDate();
     //    if (dt.Rows.Count > 0)
     //    {
-    //        DataRow[] drDv = dt.Select(" UserID = " + Convert.ToString(HttpContext.Current.Session["userid"]));
+    //        DataRow[] drDv = dt.Select(" UserID = " + Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
     //        foreach (DataRow d in drDv)
     //            dt.Rows.Remove(d);
 
@@ -102,7 +102,7 @@ public class clsNsdlHolding
 
     //    if (dt1.Rows.Count > 0)
     //    {
-    //        DataRow[] drDv1 = dt1.Select(" UserID1 = " + Convert.ToString(HttpContext.Current.Session["userid"]));
+    //        DataRow[] drDv1 = dt1.Select(" UserID1 = " + Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
     //        foreach (DataRow d in drDv1)
     //            dt1.Rows.Remove(d);
     //    }
@@ -117,27 +117,27 @@ public class clsNsdlHolding
         if (dt.Rows.Count > 0)
         {
             dv = dt.DefaultView;
-            dv.RowFilter = " UserID = " + Convert.ToString(HttpContext.Current.Session["userid"]);
+            dv.RowFilter = " UserID = " + Convert.ToString(HttpContext.Current.Session["LMSuserid"]);
         }
 
         if (dv.Count == 0)
         {
             string where = " NsdlClients_BenAccountID = NsdlHolding_BenAccountNumber and LTRIM(RTRIM(NsdlClients_DPID)) = LTRIM(RTRIM(NsdlHolding_DPID)) ";
 
-            // where = where + " and NsdlHolding_HoldingDateTime='" + txtDate.Value + "' and NsdlClients_branchid in (" + HttpContext.Current.Session["userbranchHierarchy"].ToString()+ ")";
+            // where = where + " and NsdlHolding_HoldingDateTime='" + txtDate.Value + "' and NsdlClients_branchid in (" + HttpContext.Current.Session["LMSuserbranchHierarchy"].ToString()+ ")";
 
             where = where + " and NsdlHolding_HoldingDateTime='" + Convert.ToDateTime(strDate) + "'";
             where = where + " and NsdlClients_BenAccountID  in (" + BenAccNo + ")";
 
             string orderBy = " NsdlClients_BenAccountID ";
-            where = where + " and NsdlClients_branchid in (" + HttpContext.Current.Session["userbranchHierarchy"].ToString() + ")";
-            dt = oDBEngine.GetDataTable(" Trans_NsdlHolding,Master_NsdlClients ", "  distinct( NsdlClients_BenAccountID),NsdlClients_BenFirstHolderName,case when len(ltrim(rtrim(NsdlClients_BenSecondHolderName)))=0 then 'N/A' else ltrim(rtrim(NsdlClients_BenSecondHolderName)) end as NsdlClients_BenSecondHolderName,case when len(ltrim(rtrim(NsdlClients_BenThirdHolderName)))=0 then 'N/A' else ltrim(rtrim(NsdlClients_BenThirdHolderName)) end as NsdlClients_BenThirdHolderName,NsdlClients_BenType, " + Convert.ToString(HttpContext.Current.Session["userid"]) + " as UserID ", where, orderBy);
+            where = where + " and NsdlClients_branchid in (" + HttpContext.Current.Session["LMSuserbranchHierarchy"].ToString() + ")";
+            dt = oDBEngine.GetDataTable(" Trans_NsdlHolding,Master_NsdlClients ", "  distinct( NsdlClients_BenAccountID),NsdlClients_BenFirstHolderName,case when len(ltrim(rtrim(NsdlClients_BenSecondHolderName)))=0 then 'N/A' else ltrim(rtrim(NsdlClients_BenSecondHolderName)) end as NsdlClients_BenSecondHolderName,case when len(ltrim(rtrim(NsdlClients_BenThirdHolderName)))=0 then 'N/A' else ltrim(rtrim(NsdlClients_BenThirdHolderName)) end as NsdlClients_BenThirdHolderName,NsdlClients_BenType, " + Convert.ToString(HttpContext.Current.Session["LMSuserid"]) + " as UserID ", where, orderBy);
 
         }
 
 
         dv = dt.DefaultView;
-        dv.RowFilter = " UserID = " + Convert.ToString(HttpContext.Current.Session["userid"]);
+        dv.RowFilter = " UserID = " + Convert.ToString(HttpContext.Current.Session["LMSuserid"]);
         pds.DataSource = dv;
         pds.AllowPaging = true;
 
@@ -163,22 +163,22 @@ public class clsNsdlHolding
             //if (dt.Rows.Count > 0)
             //{
             //    dv = dt.DefaultView;
-            //    dv.RowFilter = " UserID = " + Convert.ToString(HttpContext.Current.Session["userid"]);
+            //    dv.RowFilter = " UserID = " + Convert.ToString(HttpContext.Current.Session["LMSuserid"]);
             //}
             //if (dt1.Rows.Count > 0)
             //{
             //    dv1 = dt1.DefaultView;
-            //    dv1.RowFilter = " UserID = " + Convert.ToString(HttpContext.Current.Session["userid"]);
+            //    dv1.RowFilter = " UserID = " + Convert.ToString(HttpContext.Current.Session["LMSuserid"]);
             //}
             if (dt.Rows.Count > 0)
             {
                 dv = dt.DefaultView;
-                dv.RowFilter = " UserID = " + Convert.ToString(HttpContext.Current.Session["userid"]);
+                dv.RowFilter = " UserID = " + Convert.ToString(HttpContext.Current.Session["LMSuserid"]);
             }
             if (dt1.Rows.Count > 0)
             {
                 dv1 = dt1.DefaultView;
-                dv1.RowFilter = " UserID1 = " + Convert.ToString(HttpContext.Current.Session["userid"]);
+                dv1.RowFilter = " UserID1 = " + Convert.ToString(HttpContext.Current.Session["LMSuserid"]);
             }
             if (dv.Count > 0 && ((dv1 == null) || (dv1.Count == 0)))
             {
@@ -214,14 +214,14 @@ public class clsNsdlHolding
                 InputValue[2] = BenType;
                 InputValue[3] = strISIN;
                 InputValue[4] = strSettlementNumber;
-                InputValue[5] = HttpContext.Current.Session["userbranchHierarchy"].ToString();
-                InputValue[6] = Convert.ToString(HttpContext.Current.Session["userid"]);
+                InputValue[5] = HttpContext.Current.Session["LMSuserbranchHierarchy"].ToString();
+                InputValue[6] = Convert.ToString(HttpContext.Current.Session["LMSuserid"]);
 
                 dt1 = SQLProcedures.SelectProcedureArr("sp_ShowNsdlHolding", InputName, InputType, InputValue);
 
             }
             //dv1 = dt1.DefaultView;
-            //dv1.RowFilter = " UserID1 = " + Convert.ToString(HttpContext.Current.Session["userid"]);
+            //dv1.RowFilter = " UserID1 = " + Convert.ToString(HttpContext.Current.Session["LMSuserid"]);
             //gridHolding.DataSource = dv1;
             //gridHolding.DataBind();
             //gridHolding.FilterExpression = string.Empty;

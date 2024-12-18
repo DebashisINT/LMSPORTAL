@@ -36,7 +36,7 @@ namespace ERP.OMS.Management.Master
             StateGrid.JSProperties["cpUpdate"] = null;
             StateGrid.JSProperties["cpDelete"] = null;
             StateGrid.JSProperties["cpExists"] = null;
-            if (HttpContext.Current.Session["userid"] == null)
+            if (HttpContext.Current.Session["LMSuserid"] == null)
             {
                 //Page.ClientScript.RegisterStartupScript(GetType(), "SighOff", "<script>SignOff();</script>");
             }
@@ -258,7 +258,7 @@ namespace ERP.OMS.Management.Master
                 else
                 {
                     insertcount = oGenericMethod.Insert_Table("tbl_master_state", "state,countryId,CreateDate,CreateUser",
-                       "'" + txtStateName.Text.Trim() + "','" + CmbCountryName.SelectedItem.Value + "','" + oGenericMethod.GetDate(110) + "'," + Session["userid"] + "");
+                       "'" + txtStateName.Text.Trim() + "','" + CmbCountryName.SelectedItem.Value + "','" + oGenericMethod.GetDate(110) + "'," + Session["LMSuserid"] + "");
                     if (insertcount > 0)
                     {
                         StateGrid.JSProperties["cpinsert"] = "Success";

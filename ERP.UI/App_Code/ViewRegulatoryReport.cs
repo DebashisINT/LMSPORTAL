@@ -73,11 +73,11 @@ namespace ViewRegulatoryReportNameSpace
             string broker = "";
             string exchange = "";
 
-            DataTable dtbroker = oDBEngine.GetDataTable("Select top 1 isnull(exch_GrievanceID,'') as exch_GrievanceID from tbl_master_companyexchange where exch_internalID  = '" + HttpContext.Current.Session["usersegid"].ToString() + "' and exch_compid='" + HttpContext.Current.Session["LastCompany"].ToString() + "'");
-            DataTable dtexchange = oDBEngine.GetDataTable("Select top 1 isnull(exch_InvestorGrievanceID,'') as exch_InvestorGrievanceID from tbl_master_companyexchange where exch_internalID='" + HttpContext.Current.Session["usersegid"].ToString() + "' and exch_compid='" + HttpContext.Current.Session["LastCompany"].ToString() + "'");
+            DataTable dtbroker = oDBEngine.GetDataTable("Select top 1 isnull(exch_GrievanceID,'') as exch_GrievanceID from tbl_master_companyexchange where exch_internalID  = '" + HttpContext.Current.Session["LMSusersegid"].ToString() + "' and exch_compid='" + HttpContext.Current.Session["LMSLastCompany"].ToString() + "'");
+            DataTable dtexchange = oDBEngine.GetDataTable("Select top 1 isnull(exch_InvestorGrievanceID,'') as exch_InvestorGrievanceID from tbl_master_companyexchange where exch_internalID='" + HttpContext.Current.Session["LMSusersegid"].ToString() + "' and exch_compid='" + HttpContext.Current.Session["LMSLastCompany"].ToString() + "'");
             string[] connPath = ConfigurationManager.AppSettings["DBConnectionDefault"].Split(';');
             DataSet DigitalSignatureDs = new DataSet();
-            DataTable dtcmp = oDBEngine.GetDataTable("tbl_master_company", "cmp_id", "cmp_internalid='" + HttpContext.Current.Session["LastCompany"].ToString() + "'");
+            DataTable dtcmp = oDBEngine.GetDataTable("tbl_master_company", "cmp_id", "cmp_internalid='" + HttpContext.Current.Session["LMSLastCompany"].ToString() + "'");
             inherit = Annexturevalue.ToString();
 
 
@@ -102,11 +102,11 @@ namespace ViewRegulatoryReportNameSpace
                 cmd.Parameters.AddWithValue("@tradedate", strDate);
                 cmd.Parameters.AddWithValue("@AuthorizeName", AuthorizeName);
                 cmd.Parameters.AddWithValue("@Mode", Option);
-                cmd.Parameters.AddWithValue("@SegmentExchangeID", Convert.ToInt32(HttpContext.Current.Session["ExchangeSegmentID"].ToString()));
+                cmd.Parameters.AddWithValue("@SegmentExchangeID", Convert.ToInt32(HttpContext.Current.Session["LMSExchangeSegmentID"].ToString()));
                 cmd.Parameters.AddWithValue("@strFundPayoutDate", strFundPayoutDate);
                 cmd.Parameters.AddWithValue("@BrkgFlag", brkflag);
-                cmd.Parameters.AddWithValue("@SettlementNumber", Convert.ToInt32(HttpContext.Current.Session["LastSettNo"].ToString().Substring(0, 7)));
-                cmd.Parameters.AddWithValue("@SettlementType", HttpContext.Current.Session["LastSettNo"].ToString().Substring(7, 1));
+                cmd.Parameters.AddWithValue("@SettlementNumber", Convert.ToInt32(HttpContext.Current.Session["LMSLastSettNo"].ToString().Substring(0, 7)));
+                cmd.Parameters.AddWithValue("@SettlementType", HttpContext.Current.Session["LMSLastSettNo"].ToString().Substring(7, 1));
                 cmd.Parameters.AddWithValue("@Branch", hdnbranch.ToString());
                 cmd.Parameters.AddWithValue("@Customer", hdnCustomerIDS);
                 cmd.Parameters.AddWithValue("@Group", hdngroup.ToString());
@@ -143,8 +143,8 @@ namespace ViewRegulatoryReportNameSpace
                         cmd1.Parameters.AddWithValue("@CustomerID", "pdf");
                         cmd1.Parameters.AddWithValue("@ContractNote", "");
                         cmd1.Parameters.AddWithValue("@tradedate", strDate);
-                        cmd1.Parameters.AddWithValue("@SettlementNumber", Convert.ToInt32(HttpContext.Current.Session["LastSettNo"].ToString().Substring(0, 7)));
-                        cmd1.Parameters.AddWithValue("@SettlementType", HttpContext.Current.Session["LastSettNo"].ToString().Substring(7, 1));
+                        cmd1.Parameters.AddWithValue("@SettlementNumber", Convert.ToInt32(HttpContext.Current.Session["LMSLastSettNo"].ToString().Substring(0, 7)));
+                        cmd1.Parameters.AddWithValue("@SettlementType", HttpContext.Current.Session["LMSLastSettNo"].ToString().Substring(7, 1));
                         cmd1.Parameters.AddWithValue("@Reporttype", ReportType.ToString().Trim());
 
                         //}
@@ -160,8 +160,8 @@ namespace ViewRegulatoryReportNameSpace
                         cmd2.Parameters.AddWithValue("@DpId", dpID);
                         cmd2.Parameters.AddWithValue("@CustomerID", "pdf");
                         cmd2.Parameters.AddWithValue("@tradedate", strDate);
-                        cmd2.Parameters.AddWithValue("@SettlementNumber", Convert.ToInt32(HttpContext.Current.Session["LastSettNo"].ToString().Substring(0, 7)));
-                        cmd2.Parameters.AddWithValue("@SettlementType", HttpContext.Current.Session["LastSettNo"].ToString().Substring(7, 1));
+                        cmd2.Parameters.AddWithValue("@SettlementNumber", Convert.ToInt32(HttpContext.Current.Session["LMSLastSettNo"].ToString().Substring(0, 7)));
+                        cmd2.Parameters.AddWithValue("@SettlementType", HttpContext.Current.Session["LMSLastSettNo"].ToString().Substring(7, 1));
                         cmd2.Parameters.AddWithValue("@Reporttype", ReportType.ToString().Trim());
 
                         cmd2.CommandTimeout = 0;
@@ -616,7 +616,7 @@ namespace ViewRegulatoryReportNameSpace
                     finalResult = generateindivisualPdf(strDate, ICEXReportDocument, dsData, Signature, logo, dp, "Yes", digitalSignaturePassword,
                               DigitalSignatureDs, signPath, ReportPath
                              , tmpPdfPath, CompanyId, dpID, dpID, signPdfPath, VirtualPath,
-                             HttpContext.Current.Session["userid"].ToString(), HttpContext.Current.Session["LastFinYear"].ToString(), dsAnnextureTrade, dsAnnextureSttax);
+                             HttpContext.Current.Session["LMSuserid"].ToString(), HttpContext.Current.Session["LMSLastFinYear"].ToString(), dsAnnextureTrade, dsAnnextureSttax);
 
 
 
@@ -1804,7 +1804,7 @@ namespace ViewRegulatoryReportNameSpace
                     }
                     else if (dp == "BSE - CM")
                     {
-                        DataTable dtcse = oDBEngine.GetDataTable("select isnull(exch_membershipType,'') from tbl_master_companyExchange where exch_internalId='" + HttpContext.Current.Session["usersegid"].ToString() + "' and exch_compid='" + HttpContext.Current.Session["LastCompany"].ToString() + "'");
+                        DataTable dtcse = oDBEngine.GetDataTable("select isnull(exch_membershipType,'') from tbl_master_companyExchange where exch_internalId='" + HttpContext.Current.Session["LMSusersegid"].ToString() + "' and exch_compid='" + HttpContext.Current.Session["LMSLastCompany"].ToString() + "'");
                         if (dtcse.Rows.Count > 0)
                         {
                             if (dtcse.Rows[0][0].ToString().Trim() == "CTM")
@@ -1904,8 +1904,8 @@ namespace ViewRegulatoryReportNameSpace
             string broker = "";
             string exchange = "";
             ICEXReportDocument = Utility_CrystalReport.GetReport(ICEXReportDocument.GetType());
-            DataTable dtbroker = oDBEngine.GetDataTable("Select top 1 isnull(exch_GrievanceID,'') as exch_GrievanceID from tbl_master_companyexchange where exch_internalID  = '" + HttpContext.Current.Session["usersegid"].ToString() + "' and exch_compid='" + HttpContext.Current.Session["LastCompany"].ToString() + "'");
-            DataTable dtexchange = oDBEngine.GetDataTable("Select top 1 isnull(exch_InvestorGrievanceID,'') as exch_InvestorGrievanceID from tbl_master_companyexchange where exch_internalID='" + HttpContext.Current.Session["usersegid"].ToString() + "' and exch_compid='" + HttpContext.Current.Session["LastCompany"].ToString() + "'");
+            DataTable dtbroker = oDBEngine.GetDataTable("Select top 1 isnull(exch_GrievanceID,'') as exch_GrievanceID from tbl_master_companyexchange where exch_internalID  = '" + HttpContext.Current.Session["LMSusersegid"].ToString() + "' and exch_compid='" + HttpContext.Current.Session["LMSLastCompany"].ToString() + "'");
+            DataTable dtexchange = oDBEngine.GetDataTable("Select top 1 isnull(exch_InvestorGrievanceID,'') as exch_InvestorGrievanceID from tbl_master_companyexchange where exch_internalID='" + HttpContext.Current.Session["LMSusersegid"].ToString() + "' and exch_compid='" + HttpContext.Current.Session["LMSLastCompany"].ToString() + "'");
 
             DataView viewClients = new DataView(Clients.Tables[0]);
             //if ((module == "ICEX - COMM"))
@@ -1937,8 +1937,8 @@ namespace ViewRegulatoryReportNameSpace
                     cmd2.Connection = con;
                     cmd2.CommandText = "Contract_AnnextureSttax";
                     cmd2.CommandType = CommandType.StoredProcedure;
-                    cmd2.Parameters.AddWithValue("@CompanyID", HttpContext.Current.Session["LastCompany"].ToString());
-                    cmd2.Parameters.AddWithValue("@DpId", HttpContext.Current.Session["UserSegid"].ToString());
+                    cmd2.Parameters.AddWithValue("@CompanyID", HttpContext.Current.Session["LMSLastCompany"].ToString());
+                    cmd2.Parameters.AddWithValue("@DpId", HttpContext.Current.Session["LMSusersegid"].ToString());
                     if ((module == "NSE - CM") || (module == "NSE - FO") || (module == "BSE - CM") || (module == "BSE - FO") || (module == "MCXSX - CM") || (module == "MCXSX - FO"))
                     {
                         cmd2.Parameters.AddWithValue("@CustomerID", "'" + dr["CustomerTrades_CustomerID"].ToString() + "'");
@@ -1970,8 +1970,8 @@ namespace ViewRegulatoryReportNameSpace
                     else
                         cmd1.CommandText = "Contract_AnnextureExchnageTrades";
                     cmd1.CommandType = CommandType.StoredProcedure;
-                    cmd1.Parameters.AddWithValue("@CompanyID", HttpContext.Current.Session["LastCompany"].ToString());
-                    cmd1.Parameters.AddWithValue("@DpId", HttpContext.Current.Session["UserSegid"].ToString());
+                    cmd1.Parameters.AddWithValue("@CompanyID", HttpContext.Current.Session["LMSLastCompany"].ToString());
+                    cmd1.Parameters.AddWithValue("@DpId", HttpContext.Current.Session["LMSusersegid"].ToString());
                     if ((module == "NSE - CM") || (module == "NSE - FO") || (module == "BSE - CM") || (module == "BSE - FO") || (module == "MCXSX - CM") || (module == "MCXSX - FO"))
                     {
                         cmd1.Parameters.AddWithValue("@CustomerID", "'" + dr["CustomerTrades_CustomerID"].ToString() + "'");
@@ -2062,13 +2062,13 @@ namespace ViewRegulatoryReportNameSpace
 
                             if (module == "ICEX - COMM")
                             {
-                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["userlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
+                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["LMSuserlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
                                 status = objConverter.DigitalCertificate(pdfstr, SignPath, digitalSignaturePassword, "Authentication",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["Branch"].ToString(), CompanyId, dpId, "7",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_internalId"].ToString(),
                                                 FilterClients.Rows[0]["eml_email"].ToString(), Convert.ToDateTime(strDate).ToString("yyyy-MM-dd"),
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_branchid"].ToString(),
-                                                VirtualPath, signPdfPath, HttpContext.Current.Session["userid"].ToString(), HttpContext.Current.Session["LastFinYear"].ToString(), Convert.ToInt32(str[0]));
+                                                VirtualPath, signPdfPath, HttpContext.Current.Session["LMSuserid"].ToString(), HttpContext.Current.Session["LMSLastFinYear"].ToString(), Convert.ToInt32(str[0]));
                             }
 
                             if (status != "Success")
@@ -2165,13 +2165,13 @@ namespace ViewRegulatoryReportNameSpace
 
                             if (module == "MCX - COMM")
                             {
-                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["userlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
+                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["LMSuserlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
                                 status = objConverter.DigitalCertificate(pdfstr, SignPath, digitalSignaturePassword, "Authentication",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["Branch"].ToString(), CompanyId, dpId, "7",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_internalId"].ToString(),
                                                 FilterClients.Rows[0]["eml_email"].ToString(), Convert.ToDateTime(strDate).ToString("yyyy-MM-dd"),
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_branchid"].ToString(),
-                                                VirtualPath, signPdfPath, HttpContext.Current.Session["userid"].ToString(), HttpContext.Current.Session["LastFinYear"].ToString(), Convert.ToInt32(str[0]));
+                                                VirtualPath, signPdfPath, HttpContext.Current.Session["LMSuserid"].ToString(), HttpContext.Current.Session["LMSLastFinYear"].ToString(), Convert.ToInt32(str[0]));
                             }
 
                             if (status != "Success")
@@ -2270,13 +2270,13 @@ namespace ViewRegulatoryReportNameSpace
 
                             if (module == "UCX - COMM")
                             {
-                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["userlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
+                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["LMSuserlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
                                 status = objConverter.DigitalCertificate(pdfstr, SignPath, digitalSignaturePassword, "Authentication",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["Branch"].ToString(), CompanyId, dpId, "7",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_internalId"].ToString(),
                                                 FilterClients.Rows[0]["eml_email"].ToString(), Convert.ToDateTime(strDate).ToString("yyyy-MM-dd"),
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_branchid"].ToString(),
-                                                VirtualPath, signPdfPath, HttpContext.Current.Session["userid"].ToString(), HttpContext.Current.Session["LastFinYear"].ToString(), Convert.ToInt32(str[0]));
+                                                VirtualPath, signPdfPath, HttpContext.Current.Session["LMSuserid"].ToString(), HttpContext.Current.Session["LMSLastFinYear"].ToString(), Convert.ToInt32(str[0]));
                             }
 
                             if (status != "Success")
@@ -2374,13 +2374,13 @@ namespace ViewRegulatoryReportNameSpace
 
                             if (module == "MCXSX - CDX")
                             {
-                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["userlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
+                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["LMSuserlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
                                 status = objConverter.DigitalCertificate(pdfstr, SignPath, digitalSignaturePassword, "Authentication",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["Branch"].ToString(), CompanyId, dpId, "7",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_internalId"].ToString(),
                                                 FilterClients.Rows[0]["eml_email"].ToString(), Convert.ToDateTime(strDate).ToString("yyyy-MM-dd"),
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_branchid"].ToString(),
-                                                VirtualPath, signPdfPath, HttpContext.Current.Session["userid"].ToString(), HttpContext.Current.Session["LastFinYear"].ToString(), Convert.ToInt32(str[0]));
+                                                VirtualPath, signPdfPath, HttpContext.Current.Session["LMSuserid"].ToString(), HttpContext.Current.Session["LMSLastFinYear"].ToString(), Convert.ToInt32(str[0]));
                             }
 
                             if (status != "Success")
@@ -2479,13 +2479,13 @@ namespace ViewRegulatoryReportNameSpace
 
                             if (module == "BSE - CDX")
                             {
-                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["userlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
+                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["LMSuserlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
                                 status = objConverter.DigitalCertificate(pdfstr, SignPath, digitalSignaturePassword, "Authentication",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["Branch"].ToString(), CompanyId, dpId, "7",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_internalId"].ToString(),
                                                 FilterClients.Rows[0]["eml_email"].ToString(), Convert.ToDateTime(strDate).ToString("yyyy-MM-dd"),
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_branchid"].ToString(),
-                                                VirtualPath, signPdfPath, HttpContext.Current.Session["userid"].ToString(), HttpContext.Current.Session["LastFinYear"].ToString(), Convert.ToInt32(str[0]));
+                                                VirtualPath, signPdfPath, HttpContext.Current.Session["LMSuserid"].ToString(), HttpContext.Current.Session["LMSLastFinYear"].ToString(), Convert.ToInt32(str[0]));
                             }
 
                             if (status != "Success")
@@ -2584,13 +2584,13 @@ namespace ViewRegulatoryReportNameSpace
 
                             if (module == "NSE - CDX")
                             {
-                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["userlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
+                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["LMSuserlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
                                 status = objConverter.DigitalCertificate(pdfstr, SignPath, digitalSignaturePassword, "Authentication",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["Branch"].ToString(), CompanyId, dpId, "7",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_internalId"].ToString(),
                                                 FilterClients.Rows[0]["eml_email"].ToString(), Convert.ToDateTime(strDate).ToString("yyyy-MM-dd"),
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_branchid"].ToString(),
-                                                VirtualPath, signPdfPath, HttpContext.Current.Session["userid"].ToString(), HttpContext.Current.Session["LastFinYear"].ToString(), Convert.ToInt32(str[0]));
+                                                VirtualPath, signPdfPath, HttpContext.Current.Session["LMSuserid"].ToString(), HttpContext.Current.Session["LMSLastFinYear"].ToString(), Convert.ToInt32(str[0]));
                             }
 
                             if (status != "Success")
@@ -2663,13 +2663,13 @@ namespace ViewRegulatoryReportNameSpace
 
                             if (module == "USE - CDX")
                             {
-                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["userlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
+                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["LMSuserlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
                                 status = objConverter.DigitalCertificate(pdfstr, SignPath, digitalSignaturePassword, "Authentication",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["Branch"].ToString(), CompanyId, dpId, "7",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_internalId"].ToString(),
                                                 FilterClients.Rows[0]["eml_email"].ToString(), Convert.ToDateTime(strDate).ToString("yyyy-MM-dd"),
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_branchid"].ToString(),
-                                                VirtualPath, signPdfPath, HttpContext.Current.Session["userid"].ToString(), HttpContext.Current.Session["LastFinYear"].ToString(), Convert.ToInt32(str[0]));
+                                                VirtualPath, signPdfPath, HttpContext.Current.Session["LMSuserid"].ToString(), HttpContext.Current.Session["LMSLastFinYear"].ToString(), Convert.ToInt32(str[0]));
                             }
 
                             if (status != "Success")
@@ -2743,13 +2743,13 @@ namespace ViewRegulatoryReportNameSpace
 
                             if (module == "NSEL - SPOT")
                             {
-                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["userlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
+                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["LMSuserlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
                                 status = objConverter.DigitalCertificate(pdfstr, SignPath, digitalSignaturePassword, "Authentication",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["Branch"].ToString(), CompanyId, dpId, "7",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_internalId"].ToString(),
                                                 FilterClients.Rows[0]["eml_email"].ToString(), Convert.ToDateTime(strDate).ToString("yyyy-MM-dd"),
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_branchid"].ToString(),
-                                                VirtualPath, signPdfPath, HttpContext.Current.Session["userid"].ToString(), HttpContext.Current.Session["LastFinYear"].ToString(), Convert.ToInt32(str[0]));
+                                                VirtualPath, signPdfPath, HttpContext.Current.Session["LMSuserid"].ToString(), HttpContext.Current.Session["LMSLastFinYear"].ToString(), Convert.ToInt32(str[0]));
                             }
 
                             if (status != "Success")
@@ -2847,13 +2847,13 @@ namespace ViewRegulatoryReportNameSpace
 
                             if (module == "NCDEX - COMM")
                             {
-                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["userlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
+                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["LMSuserlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
                                 status = objConverter.DigitalCertificate(pdfstr, SignPath, digitalSignaturePassword, "Authentication",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["Branch"].ToString(), CompanyId, dpId, "7",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_internalId"].ToString(),
                                                 FilterClients.Rows[0]["eml_email"].ToString(), Convert.ToDateTime(strDate).ToString("yyyy-MM-dd"),
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_branchid"].ToString(),
-                                                VirtualPath, signPdfPath, HttpContext.Current.Session["userid"].ToString(), HttpContext.Current.Session["LastFinYear"].ToString(), Convert.ToInt32(str[0]));
+                                                VirtualPath, signPdfPath, HttpContext.Current.Session["LMSuserid"].ToString(), HttpContext.Current.Session["LMSLastFinYear"].ToString(), Convert.ToInt32(str[0]));
                             }
 
                             if (status != "Success")
@@ -2979,13 +2979,13 @@ namespace ViewRegulatoryReportNameSpace
 
                             if (module == "NSE - CM")
                             {
-                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["userlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
+                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["LMSuserlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
                                 status = objConverter.DigitalCertificate(pdfstr, SignPath, digitalSignaturePassword, "Authentication",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["Branch"].ToString(), CompanyId, dpId, "7",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_internalId"].ToString(),
                                                 FilterClients.Rows[0]["eml_email"].ToString(), strDate,
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_branchid"].ToString(),
-                                                VirtualPath, signPdfPath, HttpContext.Current.Session["userid"].ToString(), HttpContext.Current.Session["LastFinYear"].ToString(), Convert.ToInt32(str[0]));
+                                                VirtualPath, signPdfPath, HttpContext.Current.Session["LMSuserid"].ToString(), HttpContext.Current.Session["LMSLastFinYear"].ToString(), Convert.ToInt32(str[0]));
                             }
 
                             if (status != "Success")
@@ -3113,13 +3113,13 @@ namespace ViewRegulatoryReportNameSpace
 
                             if (module == "MCXSX - CM")
                             {
-                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["userlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
+                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["LMSuserlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
                                 status = objConverter.DigitalCertificate(pdfstr, SignPath, digitalSignaturePassword, "Authentication",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["Branch"].ToString(), CompanyId, dpId, "7",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_internalId"].ToString(),
                                                 FilterClients.Rows[0]["eml_email"].ToString(), strDate,
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_branchid"].ToString(),
-                                                VirtualPath, signPdfPath, HttpContext.Current.Session["userid"].ToString(), HttpContext.Current.Session["LastFinYear"].ToString(), Convert.ToInt32(str[0]));
+                                                VirtualPath, signPdfPath, HttpContext.Current.Session["LMSuserid"].ToString(), HttpContext.Current.Session["LMSLastFinYear"].ToString(), Convert.ToInt32(str[0]));
                             }
 
                             if (status != "Success")
@@ -3231,13 +3231,13 @@ namespace ViewRegulatoryReportNameSpace
 
                             if (module == "NSE - FO")
                             {
-                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["userlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
+                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["LMSuserlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
                                 status = objConverter.DigitalCertificate(pdfstr, SignPath, digitalSignaturePassword, "Authentication",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["Branch"].ToString(), CompanyId, dpId, "7",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_internalId"].ToString(),
                                                 FilterClients.Rows[0]["eml_email"].ToString(), strDate,
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_branchid"].ToString(),
-                                                VirtualPath, signPdfPath, HttpContext.Current.Session["userid"].ToString(), HttpContext.Current.Session["LastFinYear"].ToString(), Convert.ToInt32(str[0]));
+                                                VirtualPath, signPdfPath, HttpContext.Current.Session["LMSuserid"].ToString(), HttpContext.Current.Session["LMSLastFinYear"].ToString(), Convert.ToInt32(str[0]));
                             }
 
 
@@ -3343,13 +3343,13 @@ namespace ViewRegulatoryReportNameSpace
 
                             if (module == "MCXSX - FO")
                             {
-                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["userlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
+                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["LMSuserlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
                                 status = objConverter.DigitalCertificate(pdfstr, SignPath, digitalSignaturePassword, "Authentication",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["Branch"].ToString(), CompanyId, dpId, "7",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_internalId"].ToString(),
                                                 FilterClients.Rows[0]["eml_email"].ToString(), strDate,
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_branchid"].ToString(),
-                                                VirtualPath, signPdfPath, HttpContext.Current.Session["userid"].ToString(), HttpContext.Current.Session["LastFinYear"].ToString(), Convert.ToInt32(str[0]));
+                                                VirtualPath, signPdfPath, HttpContext.Current.Session["LMSuserid"].ToString(), HttpContext.Current.Session["LMSLastFinYear"].ToString(), Convert.ToInt32(str[0]));
                             }
 
 
@@ -3483,7 +3483,7 @@ namespace ViewRegulatoryReportNameSpace
                             ICEXReportDocument.SetParameterValue("@itact1", "**This contract is duly authenticated by means of digital signature as specified in the IT ACT,2000 and the rules made there under.**");
                             ICEXReportDocument.SetParameterValue("@itact2", "**Please be informed that Non-receipt of bounced mail notification by the trading member shall amount to delivery of contract note at the e-mail ID of the Constituent.***");
                             DataTable dtcse = new DataTable();
-                            dtcse = oDBEngine.GetDataTable("select isnull(exch_membershipType,'') from tbl_master_companyExchange where exch_internalId='" + HttpContext.Current.Session["usersegid"].ToString() + "' and exch_compid='" + HttpContext.Current.Session["LastCompany"].ToString() + "'");
+                            dtcse = oDBEngine.GetDataTable("select isnull(exch_membershipType,'') from tbl_master_companyExchange where exch_internalId='" + HttpContext.Current.Session["LMSusersegid"].ToString() + "' and exch_compid='" + HttpContext.Current.Session["LMSLastCompany"].ToString() + "'");
                             if (dtcse.Rows.Count > 0)
                             {
                                 if (dtcse.Rows[0][0].ToString().Trim() == "CTM")
@@ -3541,13 +3541,13 @@ namespace ViewRegulatoryReportNameSpace
 
                             if (module == "BSE - CM")
                             {
-                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["userlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
+                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["LMSuserlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
                                 status = objConverter.DigitalCertificate(pdfstr, SignPath, digitalSignaturePassword, "Authentication",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["Branch"].ToString(), CompanyId, dpId, "7",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_internalId"].ToString(),
                                                 FilterClients.Rows[0]["eml_email"].ToString(), strDate,
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_branchid"].ToString(),
-                                                VirtualPath, signPdfPath, HttpContext.Current.Session["userid"].ToString(), HttpContext.Current.Session["LastFinYear"].ToString(), Convert.ToInt32(str[0]));
+                                                VirtualPath, signPdfPath, HttpContext.Current.Session["LMSuserid"].ToString(), HttpContext.Current.Session["LMSLastFinYear"].ToString(), Convert.ToInt32(str[0]));
                             }
 
                             if (status != "Success")
@@ -3651,13 +3651,13 @@ namespace ViewRegulatoryReportNameSpace
 
                             if (module == "BSE - FO")
                             {
-                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["userlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
+                                string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["LMSuserlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
                                 status = objConverter.DigitalCertificate(pdfstr, SignPath, digitalSignaturePassword, "Authentication",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["Branch"].ToString(), CompanyId, dpId, "7",
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_internalId"].ToString(),
                                                 FilterClients.Rows[0]["eml_email"].ToString(), strDate,
                                                 DigitalSignatureDs.Tables[0].Rows[0]["cnt_branchid"].ToString(),
-                                                VirtualPath, signPdfPath, HttpContext.Current.Session["userid"].ToString(), HttpContext.Current.Session["LastFinYear"].ToString(), Convert.ToInt32(str[0]));
+                                                VirtualPath, signPdfPath, HttpContext.Current.Session["LMSuserid"].ToString(), HttpContext.Current.Session["LMSLastFinYear"].ToString(), Convert.ToInt32(str[0]));
                             }
 
                             if (status != "Success")
@@ -3781,7 +3781,7 @@ namespace ViewRegulatoryReportNameSpace
 
 
                         reportPath = HttpContext.Current.Server.MapPath("..\\Reports\\Contractnote_combinedsegment.rpt");
-                        string pdfstr = tmpPDFPath + "Combined_Contractnote" + "-" + Convert.ToDateTime(datefor).ToString("ddMMMyyyy") + "-" + FilterClients.Rows[0]["Clientucc"].ToString() + "-" + FilterClients.Rows[0]["id"].ToString() + "-" + FilterClients.Rows[0]["Clientid"].ToString() + "-" + HttpContext.Current.Session["UserSegID"] + "-" + user + "-" + HttpContext.Current.Session["LastFinYear"].ToString().Replace("-", "") + "-" + DigitalSignatureID + ".pdf";
+                        string pdfstr = tmpPDFPath + "Combined_Contractnote" + "-" + Convert.ToDateTime(datefor).ToString("ddMMMyyyy") + "-" + FilterClients.Rows[0]["Clientucc"].ToString() + "-" + FilterClients.Rows[0]["id"].ToString() + "-" + FilterClients.Rows[0]["Clientid"].ToString() + "-" + HttpContext.Current.Session["LMSusersegid"] + "-" + user + "-" + HttpContext.Current.Session["LMSLastFinYear"].ToString().Replace("-", "") + "-" + DigitalSignatureID + ".pdf";
                         signPdfPath = objConverter.DirectoryPath(out VirtualPath);
                         ICEXReportDocument.Load(reportPath);
                         ICEXReportDocument.SetDataSource(DataFetch_Temp);
@@ -3800,12 +3800,12 @@ namespace ViewRegulatoryReportNameSpace
 
                         if (TokenType != "E")
                         {
-                            string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["userlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
+                            string[] str = oDBEngine.GetFieldValue1("tbl_trans_menu", "mnu_id", "mnu_segmentid=" + HttpContext.Current.Session["LMSuserlastsegment"] + " and mnu_menuName='Contract Note/Annexure Printing'", 1);
                             status = objConverter.DigitalCertificate(pdfstr, SignPath, digitalSignaturePassword, "Authentication",
-                            digitalbranch, CompanyId, HttpContext.Current.Session["usersegid"].ToString(), "20",
+                            digitalbranch, CompanyId, HttpContext.Current.Session["LMSusersegid"].ToString(), "20",
                             digitalemployeeid, FilterClients.Rows[0]["ClientEmail"].ToString(), Convert.ToDateTime(datefor).ToString("dd-MMM-yyyy"),
-                            digitalbranchid, VirtualPath, signPdfPath, HttpContext.Current.Session["userid"].ToString(),
-                            HttpContext.Current.Session["LastFinYear"].ToString(), Convert.ToInt32(str[0]));
+                            digitalbranchid, VirtualPath, signPdfPath, HttpContext.Current.Session["LMSuserid"].ToString(),
+                            HttpContext.Current.Session["LMSLastFinYear"].ToString(), Convert.ToInt32(str[0]));
                             if (status != "Success")
                             {
                                 break;

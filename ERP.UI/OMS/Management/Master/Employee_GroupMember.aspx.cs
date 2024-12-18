@@ -22,9 +22,9 @@ namespace ERP.OMS.Management.Master
       
             //------- For Read Only User in SQL Datasource Connection String   Start-----------------
 
-            if (HttpContext.Current.Session["EntryProfileType"] != null)
+            if (HttpContext.Current.Session["LMSEntryProfileType"] != null)
             {
-                if (Convert.ToString(HttpContext.Current.Session["EntryProfileType"]) == "R")
+                if (Convert.ToString(HttpContext.Current.Session["LMSEntryProfileType"]) == "R")
                 {
                     GroupMaster.ConnectionString = ConfigurationSettings.AppSettings["DBReadOnlyConnection"];
                 }
@@ -102,7 +102,7 @@ namespace ERP.OMS.Management.Master
         }
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-            int CreateUser = Convert.ToInt32(HttpContext.Current.Session["userid"]);//Session UserId
+            int CreateUser = Convert.ToInt32(HttpContext.Current.Session["LMSuserid"]);//Session UserId
             DateTime CreateDate = Convert.ToDateTime(oDBEngine.GetDate().ToShortDateString());
             //oDBEngine.DeleteValue("tbl_trans_group", " grp_contactId='" + InterNalId + "'");
             for (int i = 0; i < Convert.ToInt32(Counter.Text); i++)

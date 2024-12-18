@@ -91,7 +91,7 @@ namespace ERP.OMS.Management.Master
            // DT = oDBEngine.GetDataTable("tbl_master_employee, tbl_master_contact,tbl_trans_employeeCTC", "ISNULL(cnt_firstName, '') + ' ' + ISNULL(cnt_middleName, '') + ' ' + ISNULL(cnt_lastName, '') +'['+cnt_shortName+']' AS Name, tbl_master_employee.emp_id as Id    ", " tbl_master_employee.emp_contactId = tbl_trans_employeeCTC.emp_cntId and  tbl_trans_employeeCTC.emp_cntId = tbl_master_contact.cnt_internalId   and cnt_contactType='EM'  and (cnt_firstName Like '" + reqStr + "%' or cnt_shortName like '" + reqStr + "%')");
             ProcedureExecute proc = new ProcedureExecute("PRC_FetchReportTo");
             proc.AddPara("@action", "ADDNEW");
-            proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["userid"]));
+            proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
             proc.AddPara("@firstname", reqStr);
             proc.AddPara("@shortname", reqStr);
             DT = proc.GetTable();
@@ -600,10 +600,10 @@ namespace ERP.OMS.Management.Master
                         lcmdEmplInsert.Parameters.AddWithValue("@emp_convence", txtConvence.Text);
                         lcmdEmplInsert.Parameters.AddWithValue("@emp_mobilePhoneExp", txtMbAl.Text);
                         lcmdEmplInsert.Parameters.AddWithValue("@emp_totalMedicalLeavePA", "");//-------------------
-                        //lcmdEmplInsert.Parameters.AddWithValue("@userid", HttpContext.Current.Session["userid"]);
-                        if (Convert.ToString(HttpContext.Current.Session["userid"]) != null)
+                        //lcmdEmplInsert.Parameters.AddWithValue("@userid", HttpContext.Current.Session["LMSuserid"]);
+                        if (Convert.ToString(HttpContext.Current.Session["LMSuserid"]) != null)
                         {
-                            lcmdEmplInsert.Parameters.AddWithValue("@userid", HttpContext.Current.Session["userid"]);
+                            lcmdEmplInsert.Parameters.AddWithValue("@userid", HttpContext.Current.Session["LMSuserid"]);
                         }
                         lcmdEmplInsert.Parameters.AddWithValue("@Id", empid);
                         lcmdEmplInsert.Parameters.AddWithValue("@emp_branch", cmbBranch.SelectedItem.Value);
@@ -706,7 +706,7 @@ namespace ERP.OMS.Management.Master
                         lcmdEmplInsert.Parameters.AddWithValue("@emp_convence", txtConvence.Text);
                         lcmdEmplInsert.Parameters.AddWithValue("@emp_mobilePhoneExp", txtMbAl.Text);
                         lcmdEmplInsert.Parameters.AddWithValue("@emp_totalMedicalLeavePA", "");//-------------------
-                        lcmdEmplInsert.Parameters.AddWithValue("@userid", HttpContext.Current.Session["userid"]);
+                        lcmdEmplInsert.Parameters.AddWithValue("@userid", HttpContext.Current.Session["LMSuserid"]);
                         if (cmbLeaveEff.Value != null)
                         {
                             lcmdEmplInsert.Parameters.AddWithValue("@emp_LeaveSchemeAppliedFrom", cmbLeaveEff.Value);
@@ -1106,7 +1106,7 @@ namespace ERP.OMS.Management.Master
             DataTable dt = new DataTable();
             ProcedureExecute proc = new ProcedureExecute("PRC_FetchReportTo");
             proc.AddPara("@action", "ADDNEW");
-            proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["userid"]));
+            proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
             proc.AddPara("@firstname", reqStr);
             proc.AddPara("@shortname", reqStr);
             dt = proc.GetTable();

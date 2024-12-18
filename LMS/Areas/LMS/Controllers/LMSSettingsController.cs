@@ -37,7 +37,7 @@ namespace LMS.Areas.LMS.Controllers
         public JsonResult ClearQuiz()
         {
             int output = 0;
-            Int32 Userid = Convert.ToInt32(Session["userid"]);
+            Int32 Userid = Convert.ToInt32(Session["LMSuserid"]);
             output = ClearQuizSave(Userid);
             return Json(output, JsonRequestBehavior.AllowGet);
         }
@@ -86,7 +86,7 @@ namespace LMS.Areas.LMS.Controllers
             DataTable dt = new DataTable();
             ProcedureExecute proc = new ProcedureExecute("PRC_LMS_SETTINGS");
             proc.AddPara("@ACTION", "ShowSettings");
-            proc.AddPara("@USER_ID", Convert.ToInt32(Session["userid"])); 
+            proc.AddPara("@USER_ID", Convert.ToInt32(Session["LMSuserid"])); 
             dt = proc.GetTable();
             return dt;
         }

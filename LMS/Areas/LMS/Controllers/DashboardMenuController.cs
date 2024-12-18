@@ -33,7 +33,7 @@ namespace LMS.Areas.LMS.Controllers
             try
             {
                 DashboardModelC model = new DashboardModelC();
-                string userid = Session["userid"].ToString();
+                string userid = Session["LMSuserid"].ToString();
 
                 string todaydate = DateTime.Now.ToString("yyyy-MM-dd");
                 DataTable dtdashboard = dashbrd.GetFtsDashboardyList(todaydate, userid);
@@ -70,12 +70,12 @@ namespace LMS.Areas.LMS.Controllers
         public ActionResult LMSDashboard()
         {
             TempData["LMSDashboardGridView"] = null;
-            if (Session["userid"] != null)
+            if (Session["LMSuserid"] != null)
             {
                 FSMDashBoardFilter obj = new FSMDashBoardFilter();
                 try
                 {
-                    string userid = Session["userid"].ToString();
+                    string userid = Session["LMSuserid"].ToString();
                     DataSet dsdashboard = dashboardsetting.GetDashboardSettingMappedListByID(Convert.ToInt32(userid));
                     DataTable dt = dsdashboard.Tables[0];
                     List<DashboardSettingMapped> list = new List<DashboardSettingMapped>();
@@ -208,7 +208,7 @@ namespace LMS.Areas.LMS.Controllers
             sqlcon.Open();
             sqlcmd = new SqlCommand("prc_LMSDASHBOARDDATA", sqlcon);
             sqlcmd.Parameters.Add("@ACTION", dd.ActionType);
-            sqlcmd.Parameters.Add("@USERID", Convert.ToString(Session["userid"]));
+            sqlcmd.Parameters.Add("@USERID", Convert.ToString(Session["LMSuserid"]));
             sqlcmd.Parameters.Add("@STATEID", dd.STATEIDS);
             sqlcmd.Parameters.Add("@BRANCHID", dd.BRANCHIDS);
             sqlcmd.CommandType = CommandType.StoredProcedure;
@@ -296,7 +296,7 @@ namespace LMS.Areas.LMS.Controllers
         public ActionResult DashboardBranchComboboxLMS(string stateid)
         {
             FSMDashBoardFilter dashboard = new FSMDashBoardFilter();
-            string userid = Session["userid"].ToString();
+            string userid = Session["LMSuserid"].ToString();
             int chkState = 0;
             if (stateid == null)
             {
@@ -351,7 +351,7 @@ namespace LMS.Areas.LMS.Controllers
         {
 
             FSMDashBoardFilter dashboard = new FSMDashBoardFilter();
-            string userid = Session["userid"].ToString();
+            string userid = Session["LMSuserid"].ToString();
             //string userid = "0";
             List<StateData> statedate = new List<StateData>();
             List<StateData> statedateobj = new List<StateData>();

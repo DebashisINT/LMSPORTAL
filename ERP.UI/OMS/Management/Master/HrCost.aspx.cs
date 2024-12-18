@@ -147,8 +147,8 @@ namespace ERP.OMS.Management.Master
                     else
                         ChkVal += "4";
                 }
-                oDBEngine.SetFieldValue("tbl_master_costCenter", "cost_costCenterType='" + DDLType.SelectedItem.Text + "',Cost_Email='" + TxtEmail.Text + "',cost_description='" + TxtCenter.Text + "',cost_costCenterHead='" + DDLHeadDept.SelectedItem.Value + "',cost_principlalDepartment='" + DDLCostDept.SelectedItem.Value + "',cost_operationIn='" + ChkVal + "',LastModifyDate='" + Date + "',LastModifyUser='" + Session["userid"].ToString() + "'", " cost_id='" + KeyId + "'");
-               // oDBEngine.SetFieldValue("tbl_master_email", "eml_email='" + TxtEmail.Text + "',LastModifyDate='" + Date + "',LastModifyUser='" + Session["userid"].ToString() + "'", " eml_cntid='" + KeyId + "'");
+                oDBEngine.SetFieldValue("tbl_master_costCenter", "cost_costCenterType='" + DDLType.SelectedItem.Text + "',Cost_Email='" + TxtEmail.Text + "',cost_description='" + TxtCenter.Text + "',cost_costCenterHead='" + DDLHeadDept.SelectedItem.Value + "',cost_principlalDepartment='" + DDLCostDept.SelectedItem.Value + "',cost_operationIn='" + ChkVal + "',LastModifyDate='" + Date + "',LastModifyUser='" + Session["LMSuserid"].ToString() + "'", " cost_id='" + KeyId + "'");
+               // oDBEngine.SetFieldValue("tbl_master_email", "eml_email='" + TxtEmail.Text + "',LastModifyDate='" + Date + "',LastModifyUser='" + Session["LMSuserid"].ToString() + "'", " eml_cntid='" + KeyId + "'");
                 //Response.Redirect("HRCostCenter.aspx");
                 ScriptManager.RegisterStartupScript(this, GetType(), "JScript", "alert('Record Updated Successfully');", true);
             }

@@ -78,11 +78,11 @@ namespace ERP.OMS.Management.Master
             {
                 int? userId = null;
 
-                if (Session["userid"] != null)
+                if (Session["LMSuserid"] != null)
                 {
                     try
                     {
-                        userId = Convert.ToInt32(Session["userid"]);
+                        userId = Convert.ToInt32(Session["LMSuserid"]);
                     }
                     catch
                     {

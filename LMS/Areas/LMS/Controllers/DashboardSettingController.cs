@@ -92,7 +92,7 @@ namespace LMS.Areas.LMS.Controllers
             try
             {
 
-                string userid = Session["userid"].ToString();
+                string userid = Session["LMSuserid"].ToString();
                 String[] UserList = seletedUser.Split('|');
                 String[] DetailsNameList = SubList.Split('|');
 
@@ -169,7 +169,7 @@ namespace LMS.Areas.LMS.Controllers
             List<GetUsers> items = new List<GetUsers>();
             try
             {
-                DataSet objData = dashboarddataobj.GetUserList(usergroup, Convert.ToInt32(Session["userid"]));
+                DataSet objData = dashboarddataobj.GetUserList(usergroup, Convert.ToInt32(Session["LMSuserid"]));
                 if (objData != null && objData.Tables[0].Rows.Count > 0)
                 {
                     DataTable dt = objData.Tables[0];

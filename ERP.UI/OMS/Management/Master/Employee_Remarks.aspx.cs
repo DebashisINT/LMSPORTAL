@@ -28,9 +28,9 @@ namespace ERP.OMS.Management.Master
             //------- For Read Only User in SQL Datasource Connection String   Start-----------------
             rights = BusinessLogicLayer.CommonBLS.CommonBL.GetUserRightSession("/management/Master/employee.aspx");
 
-            if (HttpContext.Current.Session["EntryProfileType"] != null)
+            if (HttpContext.Current.Session["LMSEntryProfileType"] != null)
             {
-                if (Convert.ToString(HttpContext.Current.Session["EntryProfileType"]) == "R")
+                if (Convert.ToString(HttpContext.Current.Session["LMSEntryProfileType"]) == "R")
                 {
                     SqlRemarks.ConnectionString = ConfigurationSettings.AppSettings["DBReadOnlyConnection"];
                 }
@@ -157,7 +157,7 @@ namespace ERP.OMS.Management.Master
                     oDBEngine.SetFieldValue("tbl_master_contactRemarks", "rea_Remarks='" + Convert.ToString(JsonValues["rea_Remarks"]) + "'", "id='" + Convert.ToString(JsonValues["id"]) + "'");
                     GridRemarks.DataBind();
                     GridRemarks.JSProperties["cpReturnMsg"] = "Saved Successfully.";
-                    //reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]),Convert.ToInt32(JsonValues["cat_id"]), Convert.ToString(JsonValues["rea_Remarks"]), Convert.ToString(Session["userid"]));
+                    //reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]),Convert.ToInt32(JsonValues["cat_id"]), Convert.ToString(JsonValues["rea_Remarks"]), Convert.ToString(Session["LMSuserid"]));
                 }
                 if (CallVal[0].ToString() == "Delete")
                 {
@@ -268,9 +268,9 @@ namespace ERP.OMS.Management.Master
                     string RemarksData = tbnew.Text.Trim();
                     string cat_id = tbnew.ID.ToString().Replace("txt", "");
                     cat_id = cat_id.Replace("memo", "");
-                    if (Session["KeyVal_InternalID"] != null && Session["userid"] != null && RemarksData != "")
+                    if (Session["KeyVal_InternalID"] != null && Session["LMSuserid"] != null && RemarksData != "")
                     {
-                        reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]), Convert.ToInt32(cat_id), RemarksData, Convert.ToString(Session["userid"]));
+                        reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]), Convert.ToInt32(cat_id), RemarksData, Convert.ToString(Session["LMSuserid"]));
                     }
 
                 }
@@ -280,9 +280,9 @@ namespace ERP.OMS.Management.Master
                     datenew = (ASPxDateEdit)ob;
                     DateTime RemarksData = Convert.ToDateTime(datenew.Value);
                     string cat_id = Convert.ToString(datenew.ID).Replace("dt", "");
-                    if (Session["KeyVal_InternalID"] != null && Session["userid"] != null)
+                    if (Session["KeyVal_InternalID"] != null && Session["LMSuserid"] != null)
                     {
-                        reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]), Convert.ToInt32(cat_id), Convert.ToString(RemarksData), Convert.ToString(Session["userid"]));
+                        reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]), Convert.ToInt32(cat_id), Convert.ToString(RemarksData), Convert.ToString(Session["LMSuserid"]));
                     }
 
                 }
@@ -293,9 +293,9 @@ namespace ERP.OMS.Management.Master
                     MemoNew = (ASPxMemo)ob;
                     string RemarksData = MemoNew.Text.Trim();
                     string cat_id = Convert.ToString(MemoNew.ID).Replace("memo", "");
-                    if (Session["KeyVal_InternalID"] != null && Session["userid"] != null)
+                    if (Session["KeyVal_InternalID"] != null && Session["LMSuserid"] != null)
                     {
-                        reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]), Convert.ToInt32(cat_id), Convert.ToString(RemarksData), Convert.ToString(Session["userid"]));
+                        reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]), Convert.ToInt32(cat_id), Convert.ToString(RemarksData), Convert.ToString(Session["LMSuserid"]));
                     }
 
                 }
@@ -306,9 +306,9 @@ namespace ERP.OMS.Management.Master
                     dropDownNew = (DropDownList)ob;
                     string RemarksData = Convert.ToString(dropDownNew.Text);
                     string cat_id = Convert.ToString(dropDownNew.ID).Replace("dd", "");
-                    if (Session["KeyVal_InternalID"] != null && Session["userid"] != null)
+                    if (Session["KeyVal_InternalID"] != null && Session["LMSuserid"] != null)
                     {
-                        reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]), Convert.ToInt32(cat_id), Convert.ToString(RemarksData), Convert.ToString(Session["userid"]));
+                        reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]), Convert.ToInt32(cat_id), Convert.ToString(RemarksData), Convert.ToString(Session["LMSuserid"]));
                     }
 
                 }
@@ -325,9 +325,9 @@ namespace ERP.OMS.Management.Master
                         else
                             RemarksData = "0";
                         string cat_id = Convert.ToString(chekNew.ID).Replace("chk", "");
-                        if (Session["KeyVal_InternalID"] != null && Session["userid"] != null)
+                        if (Session["KeyVal_InternalID"] != null && Session["LMSuserid"] != null)
                         {
-                            reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]), Convert.ToInt32(cat_id), Convert.ToString(RemarksData), Convert.ToString(Session["userid"]));
+                            reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]), Convert.ToInt32(cat_id), Convert.ToString(RemarksData), Convert.ToString(Session["LMSuserid"]));
                         }
                     }
 
@@ -339,9 +339,9 @@ namespace ERP.OMS.Management.Master
 
                     string RemarksData = Convert.ToString(radioNew.Text);
                     string cat_id = Convert.ToString(radioNew.ID).Replace("rd", "");
-                    if (Session["KeyVal_InternalID"] != null && Session["userid"] != null)
+                    if (Session["KeyVal_InternalID"] != null && Session["LMSuserid"] != null)
                     {
-                        reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]), Convert.ToInt32(cat_id), Convert.ToString(RemarksData), Convert.ToString(Session["userid"]));
+                        reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]), Convert.ToInt32(cat_id), Convert.ToString(RemarksData), Convert.ToString(Session["LMSuserid"]));
                     }
                 }
 
@@ -1274,9 +1274,9 @@ namespace ERP.OMS.Management.Master
                         string RemarksData = tbnew.Text.Trim();
                         string cat_id = tbnew.ID.ToString().Replace("txt", "");
                         cat_id = cat_id.Replace("memo", "");
-                        if (Session["KeyVal_InternalID"] != null && Session["userid"] != null && RemarksData != "")
+                        if (Session["KeyVal_InternalID"] != null && Session["LMSuserid"] != null && RemarksData != "")
                         {
-                            reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]), Convert.ToInt32(cat_id), RemarksData, Convert.ToString(Session["userid"]));
+                            reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]), Convert.ToInt32(cat_id), RemarksData, Convert.ToString(Session["LMSuserid"]));
                         }
 
                     }
@@ -1288,9 +1288,9 @@ namespace ERP.OMS.Management.Master
                         {
                             DateTime RemarksData = Convert.ToDateTime(datenew.Value);
                             string cat_id = Convert.ToString(datenew.ID).Replace("dt", "");
-                            if (Session["KeyVal_InternalID"] != null && Session["userid"] != null)
+                            if (Session["KeyVal_InternalID"] != null && Session["LMSuserid"] != null)
                             {
-                                reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]), Convert.ToInt32(cat_id), Convert.ToString(RemarksData), Convert.ToString(Session["userid"]));
+                                reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]), Convert.ToInt32(cat_id), Convert.ToString(RemarksData), Convert.ToString(Session["LMSuserid"]));
                             }
                         }
                     }
@@ -1301,9 +1301,9 @@ namespace ERP.OMS.Management.Master
                         MemoNew = (ASPxMemo)ob;
                         string RemarksData = MemoNew.Text.Trim();
                         string cat_id = Convert.ToString(MemoNew.ID).Replace("memo", "");
-                        if (Session["KeyVal_InternalID"] != null && Session["userid"] != null)
+                        if (Session["KeyVal_InternalID"] != null && Session["LMSuserid"] != null)
                         {
-                            reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]), Convert.ToInt32(cat_id), Convert.ToString(RemarksData), Convert.ToString(Session["userid"]));
+                            reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]), Convert.ToInt32(cat_id), Convert.ToString(RemarksData), Convert.ToString(Session["LMSuserid"]));
                         }
 
                     }
@@ -1314,9 +1314,9 @@ namespace ERP.OMS.Management.Master
                         dropDownNew = (DropDownList)ob;
                         string RemarksData = Convert.ToString(dropDownNew.Text);
                         string cat_id = Convert.ToString(dropDownNew.ID).Replace("dd", "");
-                        if (Session["KeyVal_InternalID"] != null && Session["userid"] != null)
+                        if (Session["KeyVal_InternalID"] != null && Session["LMSuserid"] != null)
                         {
-                            reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]), Convert.ToInt32(cat_id), Convert.ToString(RemarksData), Convert.ToString(Session["userid"]));
+                            reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]), Convert.ToInt32(cat_id), Convert.ToString(RemarksData), Convert.ToString(Session["LMSuserid"]));
                         }
 
                     }
@@ -1333,9 +1333,9 @@ namespace ERP.OMS.Management.Master
                             else
                                 RemarksData = "0";
                             string cat_id = Convert.ToString(chekNew.ID).Replace("chk", "");
-                            if (Session["KeyVal_InternalID"] != null && Session["userid"] != null)
+                            if (Session["KeyVal_InternalID"] != null && Session["LMSuserid"] != null)
                             {
-                                reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]), Convert.ToInt32(cat_id), Convert.ToString(RemarksData), Convert.ToString(Session["userid"]));
+                                reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]), Convert.ToInt32(cat_id), Convert.ToString(RemarksData), Convert.ToString(Session["LMSuserid"]));
                             }
                         }
 
@@ -1347,9 +1347,9 @@ namespace ERP.OMS.Management.Master
 
                         string RemarksData = Convert.ToString(radioNew.Text);
                         string cat_id = Convert.ToString(radioNew.ID).Replace("rd", "");
-                        if (Session["KeyVal_InternalID"] != null && Session["userid"] != null)
+                        if (Session["KeyVal_InternalID"] != null && Session["LMSuserid"] != null)
                         {
-                            reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]), Convert.ToInt32(cat_id), Convert.ToString(RemarksData), Convert.ToString(Session["userid"]));
+                            reCat.insertRemarkCategory(Convert.ToString(Session["KeyVal_InternalID"]), Convert.ToInt32(cat_id), Convert.ToString(RemarksData), Convert.ToString(Session["LMSuserid"]));
                         }
                     }
 

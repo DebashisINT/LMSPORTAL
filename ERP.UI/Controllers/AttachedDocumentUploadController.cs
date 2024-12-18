@@ -35,10 +35,10 @@ namespace ERP.Controllers
                         cmd.CommandType = CommandType.StoredProcedure;
                         con.Open();
                         cmd.Parameters.AddWithValue("@DOCUMENT_NAME", model.DOCUMENT_NAME);
-                        cmd.Parameters.AddWithValue("@ATTACHMENT_CODE", Convert.ToString(Session["userid"])+model.ATTACHMENT_CODE);
+                        cmd.Parameters.AddWithValue("@ATTACHMENT_CODE", Convert.ToString(Session["LMSuserid"])+model.ATTACHMENT_CODE);
                         cmd.Parameters.AddWithValue("@TYPE_ID", model.TYPE_ID);
                         cmd.Parameters.AddWithValue("@ATTACHMENT", "/Commonfolder/OrganizationDocument/" + fileName);
-                        cmd.Parameters.AddWithValue("@CREATED_BY", Convert.ToString(Session["userid"]));
+                        cmd.Parameters.AddWithValue("@CREATED_BY", Convert.ToString(Session["LMSuserid"]));
                         cmd.ExecuteNonQuery();
                     }
                 }

@@ -634,9 +634,9 @@
                         <span class="user"><img src="/assests/images/user1.png" style="" /></span>
                         <span>
                             Welcome,
-                            @if (!string.IsNullOrEmpty(Convert.ToString(Request.Cookies["sKey"])))
+                            @if (!string.IsNullOrEmpty(Convert.ToString(Request.Cookies["sKeyLMS"])))
                             {
-                                @Convert.ToString(Request.Cookies["sKey"].Value);
+                                @Convert.ToString(Request.Cookies["sKeyLMS"].Value);
                             }
                         </span> <span class="lnr lnr-chevron-down"></span>
                     </a>

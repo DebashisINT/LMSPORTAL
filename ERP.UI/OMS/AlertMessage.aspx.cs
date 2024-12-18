@@ -11,7 +11,7 @@ namespace ERP.OMS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (HttpContext.Current.Session["userid"] == null)
+            if (HttpContext.Current.Session["LMSuserid"] == null)
             {
                 LinkButton1.Text = "Back to login";
             }
@@ -23,9 +23,9 @@ namespace ERP.OMS
 
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
-            //if (HttpContext.Current.Session["userid"] == null)
+            //if (HttpContext.Current.Session["LMSuserid"] == null)
             //{
-            HttpContext.Current.Cache.Remove("LastLandingUri_" + Convert.ToString(HttpContext.Current.Session["userid"]).Trim());
+            HttpContext.Current.Cache.Remove("LastLandingUri_" + Convert.ToString(HttpContext.Current.Session["LMSuserid"]).Trim());
                 HttpContext.Current.Session.Abandon();
                 Response.Redirect("/oms/Login.aspx");
             //}

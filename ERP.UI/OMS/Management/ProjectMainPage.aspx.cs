@@ -30,7 +30,7 @@ namespace ERP.OMS.Management
             {
                 var page = HttpContext.Current.Handler as Page;
                 
-                string userid = Session["userid"].ToString();
+                string userid = Session["LMSuserid"].ToString();
                 DataSet dsdashboard = dashboardsetting.GetDashboardSettingMappedListByID(Convert.ToInt32(userid));
                 DataTable dt = dsdashboard.Tables[0];
 
@@ -61,7 +61,7 @@ namespace ERP.OMS.Management
                 //  new { Controller = "DashboardMenu", Action = "LMSDashboard" }), false);
 
 
-                //string userid = Session["userid"].ToString();
+                //string userid = Session["LMSuserid"].ToString();
                 //dtdashboard = dashbrd.GetFtsDashboardyList(userid);
                 //DashboardMyshop model = new DashboardMyshop();
                 //model = APIHelperMethods.ToModel<DashboardMyshop>(dtdashboard);

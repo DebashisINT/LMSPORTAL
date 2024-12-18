@@ -25,7 +25,7 @@ namespace ERP.OMS.Management.ToolsUtilities
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (HttpContext.Current.Session["userid"] == null)
+            if (HttpContext.Current.Session["LMSuserid"] == null)
             {
                 Page.ClientScript.RegisterStartupScript(GetType(), "SighOff", "<script>SignOff();</script>");
             }
