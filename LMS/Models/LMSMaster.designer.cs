@@ -22,7 +22,7 @@ namespace LMS.Models
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="FSM_ITC")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="INTLMS")]
 	public partial class LMSMasterDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -117,6 +117,14 @@ namespace LMS.Models
 			get
 			{
 				return this.GetTable<LMS_REPORTTOPICLIST>();
+			}
+		}
+		
+		public System.Data.Linq.Table<LMS_COURSEENGAGEMENTLIST> LMS_COURSEENGAGEMENTLISTs
+		{
+			get
+			{
+				return this.GetTable<LMS_COURSEENGAGEMENTLIST>();
 			}
 		}
 	}
@@ -1970,6 +1978,231 @@ namespace LMS.Models
 				if ((this._QUESTIONSCount != value))
 				{
 					this._QUESTIONSCount = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LMS_COURSEENGAGEMENTLIST")]
+	public partial class LMS_COURSEENGAGEMENTLIST
+	{
+		
+		private System.Nullable<int> _USERID;
+		
+		private System.Nullable<long> _SEQ;
+		
+		private System.Nullable<long> _COURSERank;
+		
+		private string _CourseName;
+		
+		private System.Nullable<long> _TotalEnrollments;
+		
+		private System.Nullable<decimal> _CompletionRate;
+		
+		private System.Nullable<decimal> _AverageTimeSpent;
+		
+		private string _DEPARTMENT;
+		
+		private System.Nullable<long> _USERCONTENTCOMPLETED;
+		
+		private System.Nullable<double> _CONTENT_WATCH_LENGTH;
+		
+		private System.Nullable<long> _COST_ID;
+		
+		private System.Nullable<long> _TOPICID;
+		
+		public LMS_COURSEENGAGEMENTLIST()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USERID", DbType="Int")]
+		public System.Nullable<int> USERID
+		{
+			get
+			{
+				return this._USERID;
+			}
+			set
+			{
+				if ((this._USERID != value))
+				{
+					this._USERID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SEQ", DbType="BigInt")]
+		public System.Nullable<long> SEQ
+		{
+			get
+			{
+				return this._SEQ;
+			}
+			set
+			{
+				if ((this._SEQ != value))
+				{
+					this._SEQ = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_COURSERank", DbType="BigInt")]
+		public System.Nullable<long> COURSERank
+		{
+			get
+			{
+				return this._COURSERank;
+			}
+			set
+			{
+				if ((this._COURSERank != value))
+				{
+					this._COURSERank = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CourseName", DbType="NVarChar(250)")]
+		public string CourseName
+		{
+			get
+			{
+				return this._CourseName;
+			}
+			set
+			{
+				if ((this._CourseName != value))
+				{
+					this._CourseName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalEnrollments", DbType="BigInt")]
+		public System.Nullable<long> TotalEnrollments
+		{
+			get
+			{
+				return this._TotalEnrollments;
+			}
+			set
+			{
+				if ((this._TotalEnrollments != value))
+				{
+					this._TotalEnrollments = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CompletionRate", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> CompletionRate
+		{
+			get
+			{
+				return this._CompletionRate;
+			}
+			set
+			{
+				if ((this._CompletionRate != value))
+				{
+					this._CompletionRate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AverageTimeSpent", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> AverageTimeSpent
+		{
+			get
+			{
+				return this._AverageTimeSpent;
+			}
+			set
+			{
+				if ((this._AverageTimeSpent != value))
+				{
+					this._AverageTimeSpent = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DEPARTMENT", DbType="NVarChar(300)")]
+		public string DEPARTMENT
+		{
+			get
+			{
+				return this._DEPARTMENT;
+			}
+			set
+			{
+				if ((this._DEPARTMENT != value))
+				{
+					this._DEPARTMENT = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USERCONTENTCOMPLETED", DbType="BigInt")]
+		public System.Nullable<long> USERCONTENTCOMPLETED
+		{
+			get
+			{
+				return this._USERCONTENTCOMPLETED;
+			}
+			set
+			{
+				if ((this._USERCONTENTCOMPLETED != value))
+				{
+					this._USERCONTENTCOMPLETED = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CONTENT_WATCH_LENGTH", DbType="Float")]
+		public System.Nullable<double> CONTENT_WATCH_LENGTH
+		{
+			get
+			{
+				return this._CONTENT_WATCH_LENGTH;
+			}
+			set
+			{
+				if ((this._CONTENT_WATCH_LENGTH != value))
+				{
+					this._CONTENT_WATCH_LENGTH = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_COST_ID", DbType="BigInt")]
+		public System.Nullable<long> COST_ID
+		{
+			get
+			{
+				return this._COST_ID;
+			}
+			set
+			{
+				if ((this._COST_ID != value))
+				{
+					this._COST_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TOPICID", DbType="BigInt")]
+		public System.Nullable<long> TOPICID
+		{
+			get
+			{
+				return this._TOPICID;
+			}
+			set
+			{
+				if ((this._TOPICID != value))
+				{
+					this._TOPICID = value;
 				}
 			}
 		}
