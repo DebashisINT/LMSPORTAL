@@ -306,6 +306,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\LMS\Controllers\DashboardMenuController.cs" />
     <Compile Include="Areas\LMS\Controllers\DashboardSettingController.cs" />
     <Compile Include="Areas\LMS\Controllers\DefaultController.cs" />
@@ -321,6 +324,11 @@
     <Compile Include="Areas\LMS\Controllers\LogoutController.cs" />
     <Compile Include="Areas\LMS\Controllers\SystemsettingsController.cs" />
     <Compile Include="Areas\LMS\LMSAreaRegistration.cs" />
+    <Compile Include="Controllers\CommonController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Models\DashboardModelC.cs" />
     <Compile Include="Models\DashBoardSetting.cs" />
     <Compile Include="Models\LMSDashboard.cs" />
@@ -1041,6 +1049,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Content\Site.css" />
+    <Content Include="Global.asax" />
     <Content Include="Models\LMSService.asmx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -2090,15 +2099,17 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Common\_PartialMenu.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="App_Start\" />
     <Folder Include="Areas\LMS\Data\" />
     <Folder Include="Areas\LMS\Views\Common\" />
     <Folder Include="Areas\LMS\Views\Default\" />
     <Folder Include="Areas\LMS\Views\Logout\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

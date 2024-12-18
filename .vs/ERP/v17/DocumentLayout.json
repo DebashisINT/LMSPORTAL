@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\GIT\\GitHub\\LMSPORTAL\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{73962037-5EA7-4BD8-B60A-384897AFDD44}|LMS\\LMS.csproj|d:\\git\\github\\lmsportal\\lms\\areas\\lms\\views\\lmslogin\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{73962037-5EA7-4BD8-B60A-384897AFDD44}|LMS\\LMS.csproj|solutionrelative:lms\\areas\\lms\\views\\lmslogin\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|D:\\GIT\\GitHub\\LMSPORTAL\\erp.ui\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2B7ADE9-0B60-49C9-AC01-8D3B3A2641D8}|ERP.UI\\ERP.csproj|solutionrelative:erp.ui\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{73962037-5EA7-4BD8-B60A-384897AFDD44}|LMS\\LMS.csproj|d:\\git\\github\\lmsportal\\lms\\areas\\lms\\controllers\\lmslogincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{73962037-5EA7-4BD8-B60A-384897AFDD44}|LMS\\LMS.csproj|solutionrelative:lms\\areas\\lms\\controllers\\lmslogincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{73962037-5EA7-4BD8-B60A-384897AFDD44}|LMS\\LMS.csproj|d:\\git\\github\\lmsportal\\lms\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{73962037-5EA7-4BD8-B60A-384897AFDD44}|LMS\\LMS.csproj|solutionrelative:lms\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\LMS\\Areas\\LMS\\Views\\LMSLogin\\Login.cshtml",
-              "RelativeDocumentMoniker": "LMS\\Areas\\LMS\\Views\\LMSLogin\\Login.cshtml",
-              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\LMS\\Areas\\LMS\\Views\\LMSLogin\\Login.cshtml",
-              "RelativeToolTip": "LMS\\Areas\\LMS\\Views\\LMSLogin\\Login.cshtml",
-              "ViewState": "AQIAADsEAAAAAAAAAAAIwEwEAAAcAAAA",
+              "DocumentIndex": 1,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\LMS\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "LMS\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\LMS\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "LMS\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAHEDAAAAAAAAAAAYwJcDAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-17T05:57:25.823Z",
+              "WhenOpened": "2024-12-17T14:33:31.309Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "LMSLoginController.cs",
-              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\LMS\\Areas\\LMS\\Controllers\\LMSLoginController.cs",
-              "RelativeDocumentMoniker": "LMS\\Areas\\LMS\\Controllers\\LMSLoginController.cs",
-              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\LMS\\Areas\\LMS\\Controllers\\LMSLoginController.cs",
-              "RelativeToolTip": "LMS\\Areas\\LMS\\Controllers\\LMSLoginController.cs",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAswBcAAAAzAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T05:50:43.107Z",
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "ERP.UI\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\GIT\\GitHub\\LMSPORTAL\\ERP.UI\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "ERP.UI\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAJcDAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-17T14:33:17.287Z",
               "EditorCaption": ""
             }
           ]
