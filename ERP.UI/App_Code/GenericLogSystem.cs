@@ -69,7 +69,7 @@ public class GenericLogSystem  : VirtualPathProvider
         pXmlPath_IndexTable = @"\LogFiles\Log_IndexTable";
         pXmlPath_MasterTable = @"\LogFiles\Log_MasterTable";
 
-        string var = Convert.ToString(HttpContext.Current.Session["EntryProfileType"]);
+        string var = Convert.ToString(HttpContext.Current.Session["LMSEntryProfileType"]);
         SqlDataReader Dr=oDbEngine.GetReader("Select GetDate() as DateTime");
         if(Dr.HasRows)
         {
@@ -222,7 +222,7 @@ public class GenericLogSystem  : VirtualPathProvider
     //LogCreation Main Methods
     public string GetLogID()
     {
-        return oconverter.GetAutoGenerateNo() + "_" + HttpContext.Current.Session["UserID"].ToString();
+        return oconverter.GetAutoGenerateNo() + "_" + HttpContext.Current.Session["LMSuserid"].ToString();
     }
     public void CreateLog(string FromClause, string WhereClause, Enum LogState, string UserID, string PhysicalTableRowRef, string TableName,string AutoGenNumber, LogType LogType)
     {
@@ -263,7 +263,7 @@ public class GenericLogSystem  : VirtualPathProvider
         //Get Master File XML
         SqlDataReader DrSingleXmlFile;
         XmlDocument XmlDocFile;
-        string XmlPath = ConfigurationManager.AppSettings["SaveCSVsql"] + @"\LogFiles\Log_" + ModuleType.Trim() + "_MasterTable_" + HttpContext.Current.Session["UserID"].ToString();
+        string XmlPath = ConfigurationManager.AppSettings["SaveCSVsql"] + @"\LogFiles\Log_" + ModuleType.Trim() + "_MasterTable_" + HttpContext.Current.Session["LMSuserid"].ToString();
         string strOutCombineXmlfilePaths = null;
         DataSet DsGetAllTable;
 
@@ -360,7 +360,7 @@ public class GenericLogSystem  : VirtualPathProvider
         }
         foreach (string TableName in DetailTableNames.Split(','))
         {
-            XmlPath = ConfigurationManager.AppSettings["SaveCSVsql"] + @"\LogFiles\Log_" + ModuleType.Trim() + "_" + TableName + "_" + HttpContext.Current.Session["UserID"].ToString();
+            XmlPath = ConfigurationManager.AppSettings["SaveCSVsql"] + @"\LogFiles\Log_" + ModuleType.Trim() + "_" + TableName + "_" + HttpContext.Current.Session["LMSuserid"].ToString();
             if (File.Exists(XmlPath))
             {
                 try { File.Delete(XmlPath); }
@@ -524,7 +524,7 @@ public class GenericLogSystem  : VirtualPathProvider
                 sqlParameterType[3] = "D";
                 sqlParameterSize[3] = "";
                 sqlParameterName[4] = "AuditTrail_UserID";
-                sqlParameterValue[4] = HttpContext.Current.Session["UserID"].ToString();
+                sqlParameterValue[4] = HttpContext.Current.Session["LMSuserid"].ToString();
                 sqlParameterType[4] = "I";
                 sqlParameterSize[4] = "";
                 sqlParameterName[5] = "AuditTrail_ModuleType";
@@ -533,19 +533,19 @@ public class GenericLogSystem  : VirtualPathProvider
                 sqlParameterSize[5] = "2";
 
                 DataTable DtEOD = null;
-                //string UserLastSegment = HttpContext.Current.Session["userlastsegment"].ToString();
+                //string UserLastSegment = HttpContext.Current.Session["LMSuserlastsegment"].ToString();
                 string SegmentID = "R";
                 //if (UserLastSegment != "1" && UserLastSegment != "4" && UserLastSegment != "6")
                 //{
                 //    if (UserLastSegment == "9" || UserLastSegment == "10")
                 //    {
-                //        DtEOD = oDbEngine.GetDataTable("tbl_master_CompanyExchange", "Exch_InternalID", "Exch_CompID='" + HttpContext.Current.Session["LastCompany"].ToString() + "' and Exch_TMCode='" + HttpContext.Current.Session["UserSegID"].ToString() + "'");
+                //        DtEOD = oDbEngine.GetDataTable("tbl_master_CompanyExchange", "Exch_InternalID", "Exch_CompID='" + HttpContext.Current.Session["LMSLastCompany"].ToString() + "' and Exch_TMCode='" + HttpContext.Current.Session["LMSusersegid"].ToString() + "'");
                 //        SegmentID = DtEOD.Rows[0][0].ToString();
                 //        DtEOD = null;
                 //    }
                 //    else
                 //    {
-                //        SegmentID = HttpContext.Current.Session["UserSegID"].ToString();
+                //        SegmentID = HttpContext.Current.Session["LMSusersegid"].ToString();
                 //    }
                 //}
                 sqlParameterName[6] = "ExchangeSegmentID";

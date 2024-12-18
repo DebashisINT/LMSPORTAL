@@ -40,7 +40,7 @@ public class transaction
     {
         string[] yearSplit;
 
-        financilaYear = HttpContext.Current.Session["LastFinYear"].ToString(); //HttpContext.Current.Session["LastFinYear"].ToString();
+        financilaYear = HttpContext.Current.Session["LMSLastFinYear"].ToString(); //HttpContext.Current.Session["LMSLastFinYear"].ToString();
 
 
 
@@ -51,7 +51,7 @@ public class transaction
 
         DataTable lastSegMemt = oDBEngine.GetDataTable("(select exch_compId,exch_internalId,exch_TMCode," +
                                                 " isnull((select exh_shortName from tbl_master_Exchange where exh_cntId=tbl_master_companyExchange.exch_exchId)+'-'+exch_segmentId,exch_membershiptype) as Segment from tbl_master_companyExchange where exch_compid in " +
-                                                    " (select top 1 ls_lastCompany from tbl_trans_Lastsegment where ls_lastSegment=" + HttpContext.Current.Session["userlastsegment"] + ")) as D ", "*", "Segment in(select seg_name from tbl_master_segment where seg_id=" + HttpContext.Current.Session["userlastsegment"] + ")");
+                                                    " (select top 1 ls_lastCompany from tbl_trans_Lastsegment where ls_lastSegment=" + HttpContext.Current.Session["LMSuserlastsegment"] + ")) as D ", "*", "Segment in(select seg_name from tbl_master_segment where seg_id=" + HttpContext.Current.Session["LMSuserlastsegment"] + ")");
 
         //companyId = lastSegMemt.Rows[0][0].ToString();
         //dpId = lastSegMemt.Rows[0][2].ToString();
@@ -75,7 +75,7 @@ public class transaction
         byte[] logoinByte;
 
        
-        string cmpid = HttpContext.Current.Session["userid"].ToString();
+        string cmpid = HttpContext.Current.Session["LMSuserid"].ToString();
         string startdate = HttpContext.Current.Session["fromdate"] + " 00:00:00";
         string enddt = HttpContext.Current.Session["todate"] + " 23:59:00";
         logoStatus = 1;

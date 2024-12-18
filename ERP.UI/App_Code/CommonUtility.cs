@@ -92,7 +92,7 @@ public class CommonUtility
                 }
                 int j = 0;
 
-                string[] str = oDBEngine.GetFieldValue1("tbl_master_segment", "seg_name", "seg_id=" + HttpContext.Current.Session["userlastsegment"], 1);
+                string[] str = oDBEngine.GetFieldValue1("tbl_master_segment", "seg_name", "seg_id=" + HttpContext.Current.Session["LMSuserlastsegment"], 1);
                 //if ((str[0].ToString() == "ICEX-COMM")  )
                 //{
                 //    j = oDBEngine.insertSignedDocument(CompanyID, Segment_OR_DPID, str[0].ToString(), strDate,
@@ -214,7 +214,7 @@ public class CommonUtility
                 }
                 int j = 0;
 
-                string[] str = oDBEngine.GetFieldValue1("tbl_master_segment", "seg_name", "seg_id=" + HttpContext.Current.Session["userlastsegment"], 1);
+                string[] str = oDBEngine.GetFieldValue1("tbl_master_segment", "seg_name", "seg_id=" + HttpContext.Current.Session["LMSuserlastsegment"], 1);
                 //if ((str[0].ToString() == "ICEX-COMM"))
                 //{
                 //    j = oDBEngine.insertSignedDocument1(CompanyID, Segment_OR_DPID, str[0].ToString(), strDate,strDate2,

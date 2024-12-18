@@ -21,7 +21,7 @@ public partial class SignOff : System.Web.UI.Page
             // gridStatusDataSource.
             //'http://localhost:2957/InfluxCRM/management/testProjectMainPage_employee.aspx'
 
-            if (HttpContext.Current.Session["userid"] == null)
+            if (HttpContext.Current.Session["LMSuserid"] == null)
             {
                 Session.Abandon();
                 // Response.Redirect("~/LMS/Login");
@@ -36,7 +36,7 @@ public partial class SignOff : System.Web.UI.Page
 
         //if (Request.QueryString["DXCallbackErrorMessage"] != null)
         //{
-        //    HttpContext.Current.Cache.Remove("LastLandingUri_" + Convert.ToString(HttpContext.Current.Session["userid"]));
+        //    HttpContext.Current.Cache.Remove("LastLandingUri_" + Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
         //    Session.Abandon();
         //    DestroyUserRightSession();
         //    Response.Redirect("login.aspx",true);
@@ -45,7 +45,7 @@ public partial class SignOff : System.Web.UI.Page
 
 
         int NoofRows = 0;
-        HttpCookie cookie = Request.Cookies["sKey"];
+        HttpCookie cookie = Request.Cookies["sKeyLMS"];
         string getCookie = "";
         if (cookie != null)
         {
@@ -54,10 +54,10 @@ public partial class SignOff : System.Web.UI.Page
         string IPNAme = System.Web.HttpContext.Current.Request.UserHostAddress;
         NoofRows = oDBEngine.SetFieldValue("tbl_master_user", "user_status='0',user_lastIP='" + IPNAme + "'", " user_loginid='" + getCookie + "'");
 
-        HttpCookie myCookie = new HttpCookie("sKey");
+        HttpCookie myCookie = new HttpCookie("sKeyLMS");
         myCookie.Expires = DateTime.Now.AddDays(-1);
         Response.Cookies.Add(myCookie);
-        HttpContext.Current.Cache.Remove("LastLandingUri_" + Convert.ToString(HttpContext.Current.Session["userid"]));
+        HttpContext.Current.Cache.Remove("LastLandingUri_" + Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
         Session.Abandon();
         DestroyUserRightSession();
 

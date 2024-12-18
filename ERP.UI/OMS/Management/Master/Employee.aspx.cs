@@ -176,7 +176,7 @@ namespace ERP.OMS.Management.Master
         //    InputValue[8] = DevXFilterOn;
         //    InputValue[9] = DevXFilterString;
         //    //Add extra column for Employee hierarchy
-        //    InputValue[10] = Convert.ToString(HttpContext.Current.Session["userid"]);
+        //    InputValue[10] = Convert.ToString(HttpContext.Current.Session["LMSuserid"]);
         //    //End extra column for Employee hierarchy
 
         //    return BusinessLogicLayer.SQLProcedures.SelectProcedureArrDS("HR_Fetch_Employees", InputName, InputType, InputValue);
@@ -261,7 +261,7 @@ namespace ERP.OMS.Management.Master
             }
             // End of Rev Mantis Issue 25001
 
-            if (HttpContext.Current.Session["userid"] == null)
+            if (HttpContext.Current.Session["LMSuserid"] == null)
             {
                 ////Page.ClientScript.RegisterStartupScript(GetType(), "SighOff", "<script>SignOff();</script>");
             }
@@ -341,7 +341,7 @@ namespace ERP.OMS.Management.Master
         //    {
         //        //Debjyoti 070217
         //        //Reason : Filter all employee to current employee 
-        //        string CurrentComp = Convert.ToString(HttpContext.Current.Session["LastCompany"]);
+        //        string CurrentComp = Convert.ToString(HttpContext.Current.Session["LMSLastCompany"]);
 
         //        // Code Commented And Modified By Sam due to Show All child 
         //        //company employee with parent company if we log in with Parent Company 
@@ -413,7 +413,7 @@ namespace ERP.OMS.Management.Master
                 proc.AddPara("@ExportType", "S");
                 proc.AddPara("@DevXFilterOn", "N");
                 proc.AddPara("@DevXFilterString", String.Empty);
-                proc.AddPara("@User_id", Convert.ToInt32(Session["userid"]));
+                proc.AddPara("@User_id", Convert.ToInt32(Session["LMSuserid"]));
                 // Rev 2.0
                 proc.AddPara("@Employees", Convert.ToString(txtEmployee_hidden.Value));
                 // End of Rev 2.0
@@ -448,7 +448,7 @@ namespace ERP.OMS.Management.Master
             {
                 // End of Rev 1.0
                 var q = from d in dc1.FSMEmployee_Masters
-                        where d.USERID == Convert.ToInt64(HttpContext.Current.Session["userid"].ToString())
+                        where d.USERID == Convert.ToInt64(HttpContext.Current.Session["LMSuserid"].ToString())
                         // Mantis Issue 24752_Rectify
                         orderby d.cnt_id descending
                         // End of Mantis Issue 24752_Rectify
@@ -576,7 +576,7 @@ namespace ERP.OMS.Management.Master
                 {
                     // Count Employee Grid Data Start
 
-                    string CurrentComp = Convert.ToString(HttpContext.Current.Session["LastCompany"]);
+                    string CurrentComp = Convert.ToString(HttpContext.Current.Session["LMSLastCompany"]);
 
                     Employee_BL objEmploye = new Employee_BL();
                     string ListOfCompany = "";
@@ -857,15 +857,15 @@ namespace ERP.OMS.Management.Master
                 SqlConnection con = new SqlConnection(Convert.ToString(System.Web.HttpContext.Current.Session["ErpConnection"]));
                 con.Open();
                 // Rev 6.0
-                //string selectQuery = "SELECT Name [Name], Code as [Employee Code] ,Employee_Grade [Grade] , cnt_OtherID [Other ID], Company [Company], BranchName [Branch] ,Department [Department], Designation [Designation],CTC [CTC],DOJ [Joining On], ReportTo [Report To], AdditionalReportingHead [Additional Reporting Head], Colleague [Colleague], Colleague1 [Colleague1], Colleague2 [Colleague2] from FSMEmployee_Master Where USERID=" + Convert.ToInt32(Session["userid"]) + " order by cnt_id desc";
-                string selectQuery = "SELECT Name [Name], Code as [Employee Code] ,Employee_Grade [Grade] , cnt_OtherID [Other ID], Company [Company], BranchName [Branch] ,Department [Department], Designation [Designation],CTC [CTC],DOJ [Joining On], ReportTo [Report To], AdditionalReportingHead [Additional Reporting Head], Colleague [Colleague], Colleague1 [Colleague1], Colleague2 [Colleague2], EmpTargetLevel [EmpTargetLevel] from FSMEmployee_Master Where USERID=" + Convert.ToInt32(Session["userid"]) + " order by cnt_id desc";
+                //string selectQuery = "SELECT Name [Name], Code as [Employee Code] ,Employee_Grade [Grade] , cnt_OtherID [Other ID], Company [Company], BranchName [Branch] ,Department [Department], Designation [Designation],CTC [CTC],DOJ [Joining On], ReportTo [Report To], AdditionalReportingHead [Additional Reporting Head], Colleague [Colleague], Colleague1 [Colleague1], Colleague2 [Colleague2] from FSMEmployee_Master Where USERID=" + Convert.ToInt32(Session["LMSuserid"]) + " order by cnt_id desc";
+                string selectQuery = "SELECT Name [Name], Code as [Employee Code] ,Employee_Grade [Grade] , cnt_OtherID [Other ID], Company [Company], BranchName [Branch] ,Department [Department], Designation [Designation],CTC [CTC],DOJ [Joining On], ReportTo [Report To], AdditionalReportingHead [Additional Reporting Head], Colleague [Colleague], Colleague1 [Colleague1], Colleague2 [Colleague2], EmpTargetLevel [EmpTargetLevel] from FSMEmployee_Master Where USERID=" + Convert.ToInt32(Session["LMSuserid"]) + " order by cnt_id desc";
                 // End of Rev 6.0
                 SqlDataAdapter myCommand = new SqlDataAdapter(selectQuery, con);
 
                 // Create and fill a DataSet.
                 DataSet ds = new DataSet();
                 myCommand.Fill(ds, "Main");
-                //myCommand = new SqlDataAdapter("Select DOC_TYPE,CONVERT(DECIMAL(18,2),REPLACE(REPLACE(BAL_AMOUNT,'(',CASE WHEN SUBSTRING(BAL_AMOUNT,1,1)='(' THEN '-' ELSE '' END),')','')) AS BAL_AMOUNT from PARTYOUTSTANDINGDET_REPORT Where USERID=" + Convert.ToInt32(Session["userid"]) + " AND SLNO=999999999 AND DOC_TYPE='Gross Outstanding:' AND PARTYTYPE='C'", con);
+                //myCommand = new SqlDataAdapter("Select DOC_TYPE,CONVERT(DECIMAL(18,2),REPLACE(REPLACE(BAL_AMOUNT,'(',CASE WHEN SUBSTRING(BAL_AMOUNT,1,1)='(' THEN '-' ELSE '' END),')','')) AS BAL_AMOUNT from PARTYOUTSTANDINGDET_REPORT Where USERID=" + Convert.ToInt32(Session["LMSuserid"]) + " AND SLNO=999999999 AND DOC_TYPE='Gross Outstanding:' AND PARTYTYPE='C'", con);
                 //myCommand.Fill(ds, "GrossTotal");
                 myCommand.Dispose();
                 con.Dispose();
@@ -922,26 +922,26 @@ namespace ERP.OMS.Management.Master
                 dtReportHeader.Columns.Add(new DataColumn("Header", typeof(String)));
 
                 string GridHeader = "";
-                GridHeader = GridHeaderDet.CommonReportHeader(Convert.ToString(Session["LastCompany"]), Convert.ToString(Session["LastFinYear"]), true, false, false, false, false);
+                GridHeader = GridHeaderDet.CommonReportHeader(Convert.ToString(Session["LMSLastCompany"]), Convert.ToString(Session["LMSLastFinYear"]), true, false, false, false, false);
                 DataRow HeaderRow = dtReportHeader.NewRow();
                 HeaderRow[0] = GridHeader.ToString();
                 dtReportHeader.Rows.Add(HeaderRow);
                 DataRow HeaderRow1 = dtReportHeader.NewRow();
                 HeaderRow1[0] = Convert.ToString(Session["BranchNames"]);
                 dtReportHeader.Rows.Add(HeaderRow1);
-                GridHeader = GridHeaderDet.CommonReportHeader(Convert.ToString(Session["LastCompany"]), Convert.ToString(Session["LastFinYear"]), false, true, false, false, false);
+                GridHeader = GridHeaderDet.CommonReportHeader(Convert.ToString(Session["LMSLastCompany"]), Convert.ToString(Session["LMSLastFinYear"]), false, true, false, false, false);
                 DataRow HeaderRow2 = dtReportHeader.NewRow();
                 HeaderRow2[0] = GridHeader.ToString();
                 dtReportHeader.Rows.Add(HeaderRow2);
-                GridHeader = GridHeaderDet.CommonReportHeader(Convert.ToString(Session["LastCompany"]), Convert.ToString(Session["LastFinYear"]), false, false, true, false, false);
+                GridHeader = GridHeaderDet.CommonReportHeader(Convert.ToString(Session["LMSLastCompany"]), Convert.ToString(Session["LMSLastFinYear"]), false, false, true, false, false);
                 DataRow HeaderRow3 = dtReportHeader.NewRow();
                 HeaderRow3[0] = GridHeader.ToString();
                 dtReportHeader.Rows.Add(HeaderRow3);
-                GridHeader = GridHeaderDet.CommonReportHeader(Convert.ToString(Session["LastCompany"]), Convert.ToString(Session["LastFinYear"]), false, false, false, true, false);
+                GridHeader = GridHeaderDet.CommonReportHeader(Convert.ToString(Session["LMSLastCompany"]), Convert.ToString(Session["LMSLastFinYear"]), false, false, false, true, false);
                 DataRow HeaderRow4 = dtReportHeader.NewRow();
                 HeaderRow4[0] = GridHeader.ToString();
                 dtReportHeader.Rows.Add(HeaderRow4);
-                GridHeader = GridHeaderDet.CommonReportHeader(Convert.ToString(Session["LastCompany"]), Convert.ToString(Session["LastFinYear"]), false, false, false, false,true);
+                GridHeader = GridHeaderDet.CommonReportHeader(Convert.ToString(Session["LMSLastCompany"]), Convert.ToString(Session["LMSLastFinYear"]), false, false, false, false,true);
                 DataRow HeaderRow5 = dtReportHeader.NewRow();
                 HeaderRow5[0] = GridHeader.ToString();
                 dtReportHeader.Rows.Add(HeaderRow5);
@@ -1066,7 +1066,7 @@ namespace ERP.OMS.Management.Master
                 {
                     strReason = Convert.ToString(TxtReason.Text);
                 }
-                string strUser = Convert.ToString(HttpContext.Current.Session["userid"]);
+                string strUser = Convert.ToString(HttpContext.Current.Session["LMSuserid"]);
                 DataSet ds = new DataSet();
                 ProcedureExecute proc = new ProcedureExecute("Fetch_Employee_DataSet");
                 proc.AddVarcharPara("@Action", 500, "SaveEmployeeData");
@@ -1099,14 +1099,14 @@ namespace ERP.OMS.Management.Master
         //    try
         //    {
 
-        //        DataTable dtfromtosumervisor = ob.FetchEmployeeFTS("Past", Convert.ToString(Session["userid"]));
+        //        DataTable dtfromtosumervisor = ob.FetchEmployeeFTS("Past", Convert.ToString(Session["LMSuserid"]));
 
         //        fromsuper.DataSource = dtfromtosumervisor;
         //        fromsuper.DataTextField = "Name";
         //        fromsuper.DataValueField = "Id";
         //        fromsuper.DataBind();
 
-        //        DataTable dtfromtosumervisornew = ob.FetchEmployeeFTS("New", Convert.ToString(Session["userid"]));
+        //        DataTable dtfromtosumervisornew = ob.FetchEmployeeFTS("New", Convert.ToString(Session["LMSuserid"]));
         //        tosupervisor.DataSource = dtfromtosumervisornew;
         //        tosupervisor.DataTextField = "Name";
         //        tosupervisor.DataValueField = "Id";
@@ -1129,14 +1129,14 @@ namespace ERP.OMS.Management.Master
         public static object GetOnDemandEmployeefromsuper(string SearchKey, string Action)
         {
             List<EmployeeSuperModel> listSuperEmployee = new List<EmployeeSuperModel>();
-            if (HttpContext.Current.Session["userid"] != null)
+            if (HttpContext.Current.Session["LMSuserid"] != null)
             {
                 SearchKey = SearchKey.Replace("'", "''");
                 DataTable dt = new DataTable();
                 ProcedureExecute proc = new ProcedureExecute("Proc_FTS_ERP_EmployeeList");
                 proc.AddPara("@SearchKey", SearchKey);
                 proc.AddPara("@Action", Action);
-                proc.AddPara("@userid", Convert.ToInt32(HttpContext.Current.Session["userid"]));
+                proc.AddPara("@userid", Convert.ToInt32(HttpContext.Current.Session["LMSuserid"]));
                 dt = proc.GetTable();
 
                 listSuperEmployee = (from DataRow dr in dt.Rows
@@ -1157,7 +1157,7 @@ namespace ERP.OMS.Management.Master
         public static string Submitsupervisor(string fromsuper, string tosuper)
         {
 
-            DataTable dtfromtosumervisor = SalesPersontracking.SubmitSupervisorEmployeeFTS(fromsuper, tosuper, Convert.ToString(HttpContext.Current.Session["userid"]));
+            DataTable dtfromtosumervisor = SalesPersontracking.SubmitSupervisorEmployeeFTS(fromsuper, tosuper, Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
 
             return fromsuper;
         }
@@ -1189,7 +1189,7 @@ namespace ERP.OMS.Management.Master
 
             }
 
-            DataTable dtfromtosumervisor = SalesPersontracking.SubmitEmployeeState(EMPID, StateId, Convert.ToString(HttpContext.Current.Session["userid"]));
+            DataTable dtfromtosumervisor = SalesPersontracking.SubmitEmployeeState(EMPID, StateId, Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
 
             return true;
         }
@@ -1240,7 +1240,7 @@ namespace ERP.OMS.Management.Master
         public static String GetEmployeeIDUpdate(string EMPID, String newEmpID)
         {
             String sreturn="";
-            DataTable dtfromtosumervisor = SalesPersontracking.UpdateEmployeeID(EMPID, newEmpID, Convert.ToString(HttpContext.Current.Session["userid"]));
+            DataTable dtfromtosumervisor = SalesPersontracking.UpdateEmployeeID(EMPID, newEmpID, Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
 
             if (dtfromtosumervisor!=null && dtfromtosumervisor.Rows.Count>0)
             {
@@ -1345,7 +1345,7 @@ namespace ERP.OMS.Management.Master
 
             }
 
-            DataTable dtfromtosumervisor = objEmploye.SubmitEmployeeBranch(EMPID, BranchId, Convert.ToString(HttpContext.Current.Session["userid"]));
+            DataTable dtfromtosumervisor = objEmploye.SubmitEmployeeBranch(EMPID, BranchId, Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
 
             return true;
         }
@@ -1378,12 +1378,12 @@ namespace ERP.OMS.Management.Master
         public static object GetOnDemandEmployee(string SearchKey)
         {
             List<EmployeeModel> listEmployee = new List<EmployeeModel>();
-            if (HttpContext.Current.Session["userid"] != null)
+            if (HttpContext.Current.Session["LMSuserid"] != null)
             {
                 SearchKey = SearchKey.Replace("'", "''");
                 DataTable dt = new DataTable();
                 ProcedureExecute proc = new ProcedureExecute("PRC_EmployeeNameSearch");
-                proc.AddPara("@USER_ID", Convert.ToInt32(HttpContext.Current.Session["userid"]));
+                proc.AddPara("@USER_ID", Convert.ToInt32(HttpContext.Current.Session["LMSuserid"]));
                 proc.AddPara("@SearchKey", SearchKey);
                 dt = proc.GetTable();
 
@@ -1559,7 +1559,7 @@ namespace ERP.OMS.Management.Master
                                 //proc.AddPara("@ImportUser", ds.Tables[1]);
                                 proc.AddPara("@FileName", File_Name);
                                 //Rev 3.0 END
-                                proc.AddPara("@CreateUser_Id", Convert.ToInt32(Session["userid"]));
+                                proc.AddPara("@CreateUser_Id", Convert.ToInt32(Session["LMSuserid"]));
                                 dtCmb = proc.GetTable();
                                 HasLog = true;
                             }

@@ -180,7 +180,7 @@ namespace ERP.OMS.Management.Master
             //DT = oDBEngine.GetDataTable("tbl_master_employee, tbl_master_contact,tbl_trans_employeeCTC", "ISNULL(cnt_firstName, '') + ' ' + ISNULL(cnt_middleName, '') + ' ' + ISNULL(cnt_lastName, '') +'['+cnt_shortName+']' AS Name, tbl_master_employee.emp_id as Id    ", " tbl_master_employee.emp_contactId = tbl_trans_employeeCTC.emp_cntId and  tbl_trans_employeeCTC.emp_cntId = tbl_master_contact.cnt_internalId   and cnt_contactType='EM'  and (cnt_firstName Like '" + firstname + "%' or cnt_shortName like '" + shortname + "%')");
             ProcedureExecute proc = new ProcedureExecute("PRC_FetchReportTo");
             proc.AddPara("@action", "ADDNEW");
-            proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["userid"]));
+            proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
             proc.AddPara("@firstname", firstname);
             proc.AddPara("@shortname", shortname);
             DT = proc.GetTable();
@@ -234,9 +234,9 @@ namespace ERP.OMS.Management.Master
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "Vscript", "jAlert('" + ValidationResult.Split('~')[1] + "');", true);
             else
             {
-                value = "emp_din=' ', emp_dateofJoining ='" + cmbDOJ.Value + "', emp_dateofLeaving ='" + DBNull.Value + "',emp_ReasonLeaving  ='" + DBNull.Value + "', emp_NextEmployer ='" + DBNull.Value + "', emp_AddNextEmployer  ='" + DBNull.Value + "',LastModifyDate='" + oDBEngine.GetDate().ToString() + "',LastModifyUser='" + Session["userid"].ToString() + "'";
+                value = "emp_din=' ', emp_dateofJoining ='" + cmbDOJ.Value + "', emp_dateofLeaving ='" + DBNull.Value + "',emp_ReasonLeaving  ='" + DBNull.Value + "', emp_NextEmployer ='" + DBNull.Value + "', emp_AddNextEmployer  ='" + DBNull.Value + "',LastModifyDate='" + oDBEngine.GetDate().ToString() + "',LastModifyUser='" + Session["LMSuserid"].ToString() + "'";
                 Int32 rowsEffected = oDBEngine.SetFieldValue("tbl_master_employee", value, " emp_contactid ='" + HttpContext.Current.Session["KeyVal_InternalID"] + "'");
-                //Int32 RowsEffect = oDBEngine.SetFieldValue("tbl_trans_employeeCTC", "emp_effectiveuntil='" + cmbDOL.Value + "',LastModifyDate='" + oDBEngine.GetDate().ToString() + "',LastModifyUser='" + Session["userid"].ToString() + "'", " emp_cntId='" + HttpContext.Current.Session["KeyVal_InternalID"] + "'");
+                //Int32 RowsEffect = oDBEngine.SetFieldValue("tbl_trans_employeeCTC", "emp_effectiveuntil='" + cmbDOL.Value + "',LastModifyDate='" + oDBEngine.GetDate().ToString() + "',LastModifyUser='" + Session["LMSuserid"].ToString() + "'", " emp_cntId='" + HttpContext.Current.Session["KeyVal_InternalID"] + "'");
                 if (rowsEffected > 0)
                 {
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "CTC", "ForCTC();", true);
@@ -382,7 +382,7 @@ namespace ERP.OMS.Management.Master
                     }
                     else
                     {
-                        value = "emp_din=' ', emp_dateofJoining ='" + cmbDOJ.Value + "', emp_dateofLeaving ='" + DBNull.Value + "',emp_ReasonLeaving  ='" + DBNull.Value + "', emp_NextEmployer ='" + DBNull.Value + "', emp_AddNextEmployer  ='" + DBNull.Value + "',LastModifyDate='" + oDBEngine.GetDate().ToString() + "',LastModifyUser='" + Session["userid"].ToString() + "'";
+                        value = "emp_din=' ', emp_dateofJoining ='" + cmbDOJ.Value + "', emp_dateofLeaving ='" + DBNull.Value + "',emp_ReasonLeaving  ='" + DBNull.Value + "', emp_NextEmployer ='" + DBNull.Value + "', emp_AddNextEmployer  ='" + DBNull.Value + "',LastModifyDate='" + oDBEngine.GetDate().ToString() + "',LastModifyUser='" + Session["LMSuserid"].ToString() + "'";
                         Int32 rowsEffected = oDBEngine.SetFieldValue("tbl_master_employee", value, " emp_contactid ='" + HttpContext.Current.Session["KeyVal_InternalID"] + "'");
 
                         if (Session["KeyVal_InternalID"] != "n")
@@ -1419,7 +1419,7 @@ namespace ERP.OMS.Management.Master
         public static object GetChannel(string SearchKey)
         {
             List<ChannelModel> listChannel = new List<ChannelModel>();
-            if (HttpContext.Current.Session["userid"] != null)
+            if (HttpContext.Current.Session["LMSuserid"] != null)
             {
                 SearchKey = SearchKey.Replace("'", "''");
 
@@ -1452,7 +1452,7 @@ namespace ERP.OMS.Management.Master
         public static object GetCircle(string SearchKey)
         {
             List<CircleModel> listCircle = new List<CircleModel>();
-            if (HttpContext.Current.Session["userid"] != null)
+            if (HttpContext.Current.Session["LMSuserid"] != null)
             {
                 SearchKey = SearchKey.Replace("'", "''");
 
@@ -1485,7 +1485,7 @@ namespace ERP.OMS.Management.Master
         public static object GetSection(string SearchKey)
         {
             List<SectionModel> listSection = new List<SectionModel>();
-            if (HttpContext.Current.Session["userid"] != null)
+            if (HttpContext.Current.Session["LMSuserid"] != null)
             {
                 SearchKey = SearchKey.Replace("'", "''");
 
@@ -1512,7 +1512,7 @@ namespace ERP.OMS.Management.Master
             DataTable dt = new DataTable();
             ProcedureExecute proc = new ProcedureExecute("PRC_FetchReportTo");
             proc.AddPara("@action", "ADDNEW");
-            proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["userid"]));
+            proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
             proc.AddPara("@firstname", reqStr);
             proc.AddPara("@shortname", reqStr);
             dt = proc.GetTable();

@@ -36,7 +36,7 @@ namespace LMS.Areas.LMS.Controllers
                 Is_PageLoad = "0";
             }
 
-            string Userid = Convert.ToString(Session["userid"]);
+            string Userid = Convert.ToString(Session["LMSuserid"]);
             DataTable dt = new DataTable();
             String con = System.Configuration.ConfigurationSettings.AppSettings["DBConnectionDefault"];
             SqlCommand sqlcmd = new SqlCommand();
@@ -57,7 +57,7 @@ namespace LMS.Areas.LMS.Controllers
         public IEnumerable GetReport(string is_pageload)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ERP_ConnectionString"].ConnectionString;
-            string Userid = Convert.ToString(Session["userid"]);
+            string Userid = Convert.ToString(Session["LMSuserid"]);
 
             if (is_pageload != "0")
             {
@@ -82,7 +82,7 @@ namespace LMS.Areas.LMS.Controllers
         //public JsonResult CreateLINQTable(string is_pageload)
         //{
         //    string output = "";
-        //    obj.CreateTable(Convert.ToString(Session["userid"]), is_pageload);
+        //    obj.CreateTable(Convert.ToString(Session["LMSuserid"]), is_pageload);
         //    return Json(output, JsonRequestBehavior.AllowGet);
         //}
         public ActionResult ExporSummaryList(int type)

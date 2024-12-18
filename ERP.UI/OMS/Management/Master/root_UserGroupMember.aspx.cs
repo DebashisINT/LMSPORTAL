@@ -30,9 +30,9 @@ namespace ERP.OMS.Management.Master
             rights = BusinessLogicLayer.CommonBLS.CommonBL.GetUserRightSession("/management/master/root_user.aspx");
             //------- For Read Only User in SQL Datasource Connection String   Start-----------------
 
-            if (HttpContext.Current.Session["EntryProfileType"] != null)
+            if (HttpContext.Current.Session["LMSEntryProfileType"] != null)
             {
-                if (Convert.ToString(HttpContext.Current.Session["EntryProfileType"]) == "R")
+                if (Convert.ToString(HttpContext.Current.Session["LMSEntryProfileType"]) == "R")
                 {
                     RootUserDataSource.ConnectionString = ConfigurationSettings.AppSettings["DBReadOnlyConnection"];
                 }

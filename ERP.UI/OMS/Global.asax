@@ -47,8 +47,8 @@
                 message = sqex.Message.ToString();
                 servername = sqex.Server.ToString();
                 lastErrorStackTrace = sqex.StackTrace.ToString();
-                CompanyName = Convert.ToString(Session["LastCompany"]);
-                username = Convert.ToString(Session["username"]);
+                CompanyName = Convert.ToString(Session["LMSLastCompany"]);
+                username = Convert.ToString(Session["LMSusername"]);
                 segmentname = Convert.ToString(Session["Segmentname"]);
                 if (HttpContext.Current != null)
                 {
@@ -62,8 +62,8 @@
             {
                 lastErrorMessage = lastError.Message;
                 lastErrorStackTrace = lastError.StackTrace;
-                CompanyName = Convert.ToString(Session["LastCompany"]);
-                username = Convert.ToString(Session["username"]);
+                CompanyName = Convert.ToString(Session["LMSLastCompany"]);
+                username = Convert.ToString(Session["LMSusername"]);
                 segmentname = Convert.ToString(Session["Segmentname"]);
                 if (HttpContext.Current != null)
                 {

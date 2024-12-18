@@ -112,7 +112,7 @@ namespace LMS.Areas.LMS.Controllers
                     Is_PageLoad = "Ispageload";
 
                 ViewData["ModelData"] = model;
-                string Userid = Convert.ToString(Session["userid"]);
+                string Userid = Convert.ToString(Session["LMSuserid"]);
 
                 String con = System.Configuration.ConfigurationSettings.AppSettings["DBConnectionDefault"];
                 SqlCommand sqlcmd = new SqlCommand();
@@ -138,7 +138,7 @@ namespace LMS.Areas.LMS.Controllers
         public IEnumerable GetQuestionsDetailsList(string Is_PageLoad)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ERP_ConnectionString"].ConnectionString;
-            string Userid = Convert.ToString(Session["userid"]);
+            string Userid = Convert.ToString(Session["LMSuserid"]);
             if (Is_PageLoad != "Ispageload")
             {
                 LMSMasterDataContext dc = new LMSMasterDataContext(connectionString);
@@ -165,7 +165,7 @@ namespace LMS.Areas.LMS.Controllers
             )
         {
             int output = 0;
-            string Userid = Convert.ToString(Session["userid"]);
+            string Userid = Convert.ToString(Session["LMSuserid"]);
             output = obj.SaveQuestion(name, Userid, id, description, Option1, Option2, Option3, Option4, Point1, Point2, Point3, Point4
             , chkCorrect1, chkCorrect2, chkCorrect3, chkCorrect4, TOPIC_ID, Category_ID, MODE, CONTENTID);
             return Json(output, JsonRequestBehavior.AllowGet);

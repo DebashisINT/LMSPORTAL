@@ -1227,7 +1227,7 @@ public class GetAutomaticMail
                 compid = oDBEngine.GetDataTable("tbl_master_companyexchange join tbl_master_contactexchange on tbl_master_companyexchange.exch_compid=tbl_master_contactexchange.crg_company", "top 1 exch_internalid,exch_compid", "exch_exchid='EXI0000001' ").Rows[0][1].ToString();
                  HttpContext.Current.Session["segmentname"] = "ICEX-COMM";
                 HttpContext.Current.Session["CompanyID"] = compid;
-                HttpContext.Current.Session["LastCompany"] = compid;
+                HttpContext.Current.Session["LMSLastCompany"] = compid;
                 HttpContext.Current.Session["segmentname"] = "ICEX-COMM";
                
             }
@@ -1237,7 +1237,7 @@ public class GetAutomaticMail
                 compid = oDBEngine.GetDataTable("tbl_master_companyexchange join tbl_master_contactexchange on tbl_master_companyexchange.exch_compid=tbl_master_contactexchange.crg_company", "top 1 exch_internalid,exch_compid", "exch_exchid='EXM0000001' ").Rows[0][1].ToString();
                 HttpContext.Current.Session["segmentname"] = "MCX-COMM";
                 HttpContext.Current.Session["CompanyID"] = compid;
-                HttpContext.Current.Session["LastCompany"] = compid;
+                HttpContext.Current.Session["LMSLastCompany"] = compid;
                 HttpContext.Current.Session["segmentname"] = "MCX-COMM";
             }
             else if (segment == "NSE-FO")
@@ -1247,7 +1247,7 @@ public class GetAutomaticMail
 
                 HttpContext.Current.Session["segmentname"] = "NSE-FO";
                 HttpContext.Current.Session["CompanyID"] = compid;
-                HttpContext.Current.Session["LastCompany"] = compid;
+                HttpContext.Current.Session["LMSLastCompany"] = compid;
                 HttpContext.Current.Session["segmentname"] = "NSE-FO";
             }
             else if (segment == "NSE-CM")
@@ -1256,7 +1256,7 @@ public class GetAutomaticMail
                 compid = oDBEngine.GetDataTable("tbl_master_companyexchange join tbl_master_contactexchange on tbl_master_companyexchange.exch_compid=tbl_master_contactexchange.crg_company", "top 1 exch_internalid,exch_compid", "exch_exchid='EXN0000002' and exch_segmentid='CM' ").Rows[0][1].ToString();
                 HttpContext.Current.Session["segmentname"] = "NSE-CM";
                 HttpContext.Current.Session["CompanyID"] = compid;
-                HttpContext.Current.Session["LastCompany"] = compid;
+                HttpContext.Current.Session["LMSLastCompany"] = compid;
                 HttpContext.Current.Session["segmentname"] = "NSE-CM";
             }
             else if (segment == "ALL")
@@ -1320,8 +1320,8 @@ public class GetAutomaticMail
                     {
                         if (all == 0)
                         {
-                            HttpContext.Current.Session["userid"] = contactidnew[j].ToString();
-                            HttpContext.Current.Session["userbranchHierarchy"] = "2,6,9,10,12,51,52,13,14,15,16,17,18,19,20,21,48,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,41,45,38,40,42,39,43,44,46,47,49,50,1";
+                            HttpContext.Current.Session["LMSuserid"] = contactidnew[j].ToString();
+                            HttpContext.Current.Session["LMSuserbranchHierarchy"] = "2,6,9,10,12,51,52,13,14,15,16,17,18,19,20,21,48,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,41,45,38,40,42,39,43,44,46,47,49,50,1";
                             HttpContext.Current.Session["SegmentID"] = segment;
 
                             l.Exportledger();
@@ -1336,7 +1336,7 @@ public class GetAutomaticMail
                                     compid = oDBEngine.GetDataTable("tbl_master_companyexchange join tbl_master_contactexchange on tbl_master_companyexchange.exch_compid=tbl_master_contactexchange.crg_company", "top 1 exch_internalid,exch_compid", "exch_exchid='EXI0000001' ").Rows[0][1].ToString();
                                     HttpContext.Current.Session["SegmentID"] = segment;
                                     HttpContext.Current.Session["CompanyID"] = compid;
-                                    HttpContext.Current.Session["LastCompany"] = compid;
+                                    HttpContext.Current.Session["LMSLastCompany"] = compid;
                                     HttpContext.Current.Session["segmentname"] = "ICEX-COMM";
                                     ds.Reset();
                                     ds = fetch_status_email(HttpContext.Current.Request.QueryString["senderid"].ToString(), "TRADE~LEDGER~ICEX-COMM");
@@ -1347,7 +1347,7 @@ public class GetAutomaticMail
                                     compid = oDBEngine.GetDataTable("tbl_master_companyexchange join tbl_master_contactexchange on tbl_master_companyexchange.exch_compid=tbl_master_contactexchange.crg_company", "top 1 exch_internalid,exch_compid", "exch_exchid='EXM0000001' ").Rows[0][1].ToString();
                                     HttpContext.Current.Session["SegmentID"] = segment;
                                     HttpContext.Current.Session["CompanyID"] = compid;
-                                    HttpContext.Current.Session["LastCompany"] = compid;
+                                    HttpContext.Current.Session["LMSLastCompany"] = compid;
                                     HttpContext.Current.Session["segmentname"] = "MCX-COMM";
                                     ds.Reset();
                                     ds = fetch_status_email(HttpContext.Current.Request.QueryString["senderid"].ToString(), "TRADE~LEDGER~MCX-COMM");
@@ -1358,7 +1358,7 @@ public class GetAutomaticMail
                                     compid = oDBEngine.GetDataTable("tbl_master_companyexchange join tbl_master_contactexchange on tbl_master_companyexchange.exch_compid=tbl_master_contactexchange.crg_company", "top 1 exch_internalid,exch_compid", "exch_exchid='EXN0000002' and exch_segmentid='FO' ").Rows[0][1].ToString();
                                     HttpContext.Current.Session["SegmentID"] = segment;
                                     HttpContext.Current.Session["CompanyID"] = compid;
-                                    HttpContext.Current.Session["LastCompany"] = compid;
+                                    HttpContext.Current.Session["LMSLastCompany"] = compid;
                                     HttpContext.Current.Session["segmentname"] = "NSE-FO";
                                     ds.Reset();
                                     ds = fetch_status_email(HttpContext.Current.Request.QueryString["senderid"].ToString(), "TRADE~LEDGER~NSE-FO");
@@ -1370,12 +1370,12 @@ public class GetAutomaticMail
                                     HttpContext.Current.Session["segmentname"] = "NSE-CM";
                                     HttpContext.Current.Session["SegmentID"] = segment;
                                     HttpContext.Current.Session["CompanyID"] = compid;
-                                    HttpContext.Current.Session["LastCompany"] = compid;
+                                    HttpContext.Current.Session["LMSLastCompany"] = compid;
                                     ds.Reset();
                                     ds = fetch_status_email(HttpContext.Current.Request.QueryString["senderid"].ToString(), "TRADE~LEDGER~NSE-CM");
                                 }
-                                HttpContext.Current.Session["userid"] = contactidnew[j].ToString();
-                                HttpContext.Current.Session["userbranchHierarchy"] = "2,6,9,10,12,51,52,13,14,15,16,17,18,19,20,21,48,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,41,45,38,40,42,39,43,44,46,47,49,50,1";
+                                HttpContext.Current.Session["LMSuserid"] = contactidnew[j].ToString();
+                                HttpContext.Current.Session["LMSuserbranchHierarchy"] = "2,6,9,10,12,51,52,13,14,15,16,17,18,19,20,21,48,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,41,45,38,40,42,39,43,44,46,47,49,50,1";
                                 if (ds.Tables[1].Rows.Count != 0)
                                 {
                                     l.Exportledger();
@@ -1748,7 +1748,7 @@ public class GetAutomaticMail
         using (SqlConnection con = new SqlConnection(ConfigurationSettings.AppSettings["DBConnectionDefault"]))
             if (subject.Length == 2 || subject[2] == "CDSL" || subject[2] == "cdsl")
             {
-                HttpContext.Current.Session["userlastsegment"] = 10;
+                HttpContext.Current.Session["LMSuserlastsegment"] = 10;
                 for (int i = 0; i < mulcontactid.Length; i++)
                 {
                     if (mulcontactid[i].ToString().Substring(0, 1) != "I")
@@ -1776,7 +1776,7 @@ public class GetAutomaticMail
                     da.Fill(HoldingDT);
                     HttpContext.Current.Session["mail"] = "yes";
                     HttpContext.Current.Session["no"] = j;
-                    HttpContext.Current.Session["LastFinYear"] = HoldingDT.Tables[2].Rows[0][0].ToString();
+                    HttpContext.Current.Session["LMSLastFinYear"] = HoldingDT.Tables[2].Rows[0][0].ToString();
                     cbill.callCrystalReport(HoldingDT.Tables[0].Rows[0][0].ToString().Substring(1,3), contactidnew[j],
                     "", "PinCode", "CDSL",
                     "0.01", "Print", 0, "", "", "", 1408,0,0);
@@ -1787,7 +1787,7 @@ public class GetAutomaticMail
             }
             else
             {
-                HttpContext.Current.Session["userlastsegment"] = 9;
+                HttpContext.Current.Session["LMSuserlastsegment"] = 9;
                 for (int i = 0; i < mulcontactid.Length; i++)
                 {
                     if (mulcontactid[i].ToString().Substring(0, 1) == "I")
@@ -1848,7 +1848,7 @@ public class GetAutomaticMail
         using (SqlConnection con = new SqlConnection(ConfigurationSettings.AppSettings["DBConnectionDefault"]))
             if (subject.Length == 2 || subject[2] != "NSDL" )
             {
-                HttpContext.Current.Session["userlastsegment"] = 10;
+                HttpContext.Current.Session["LMSuserlastsegment"] = 10;
                 for (int i = 0; i < mulcontactid.Length; i++)
                 {
                     if (mulcontactid[i].ToString().Substring(0, 1) != "I")
@@ -1876,8 +1876,8 @@ public class GetAutomaticMail
                     da.Fill(HoldingDT);
                     HttpContext.Current.Session["mail"] = "yes";
                     HttpContext.Current.Session["no"] = j;
-                    HttpContext.Current.Session["LastFinYear"] = HoldingDT.Tables[2].Rows[0][0].ToString();
-                    HttpContext.Current.Session["userid"] = contactidnew[j].ToString();
+                    HttpContext.Current.Session["LMSLastFinYear"] = HoldingDT.Tables[2].Rows[0][0].ToString();
+                    HttpContext.Current.Session["LMSuserid"] = contactidnew[j].ToString();
                     t.showCrystalReport();
 
                     HoldingDT.Reset();
@@ -1886,7 +1886,7 @@ public class GetAutomaticMail
             }
             else
             {
-                HttpContext.Current.Session["userlastsegment"] = 9;
+                HttpContext.Current.Session["LMSuserlastsegment"] = 9;
                 for (int i = 0; i < mulcontactid.Length; i++)
                 {
                     if (mulcontactid[i].ToString().Substring(0, 1) == "I")

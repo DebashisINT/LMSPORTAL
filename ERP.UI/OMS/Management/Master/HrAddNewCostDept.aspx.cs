@@ -17,7 +17,7 @@ namespace ERP.OMS.Management.Master
         {
             if (!IsPostBack)
             {
-                if (HttpContext.Current.Session["userid"] == null)
+                if (HttpContext.Current.Session["LMSuserid"] == null)
                 {
                     //Page.ClientScript.RegisterStartupScript(GetType(), "SighOff", "<script>SignOff();</script>");
                 }
@@ -108,13 +108,13 @@ namespace ERP.OMS.Management.Master
                 IsCostCenterInsert = oDBEngine.InsurtFieldValue("tbl_master_costCenter", @"cost_costCenterType,cost_description,cost_costCenterHead,cost_principlalDepartment,
             cost_operationIn,LastModifyDate,LastModifyUser,Cost_Email",
                 "'" + DDLType.SelectedItem.Text + "','" + TxtCenter.Text + "','" + DDLHeadDept.SelectedItem.Value + "','" + DDLCostDept.SelectedItem.Value +
-                "','" + ChkVal + "','" + Date + "','" + Session["userid"].ToString() + "','" + TxtEmail.Text + "'");
+                "','" + ChkVal + "','" + Date + "','" + Session["LMSuserid"].ToString() + "','" + TxtEmail.Text + "'");
                 if (IsCostCenterInsert > 0)
                     BothSucces = true;
                 else
                     BothSucces = false;
                 IsEmailInsert = oDBEngine.InsurtFieldValue("tbl_master_email", @"eml_email,LastModifyDate,LastModifyUser,eml_cntID,eml_entity",
-                    "'" + TxtEmail.Text + "','" + Date + "','" + Session["userid"].ToString() + "','" + DDLCostDept.SelectedItem.Value + "','" + DDLType.SelectedItem.Text + "'");
+                    "'" + TxtEmail.Text + "','" + Date + "','" + Session["LMSuserid"].ToString() + "','" + DDLCostDept.SelectedItem.Value + "','" + DDLType.SelectedItem.Text + "'");
                 if (IsEmailInsert > 0)
                     if (BothSucces)
                         BothSucces = true;

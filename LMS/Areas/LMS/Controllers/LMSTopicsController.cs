@@ -101,7 +101,7 @@ namespace LMS.Areas.LMS.Controllers
 
         public void GetTopicListing(string Is_PageLoad)
         {
-            string user_id = Convert.ToString(Session["userid"]);
+            string user_id = Convert.ToString(Session["LMSuserid"]);
 
             string action = string.Empty;
             DataTable formula_dtls = new DataTable();
@@ -125,9 +125,9 @@ namespace LMS.Areas.LMS.Controllers
         public IEnumerable GetTopicDetails(string Is_PageLoad)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ERP_ConnectionString"].ConnectionString;
-            string Userid = Convert.ToString(Session["userid"]);
+            string Userid = Convert.ToString(Session["LMSuserid"]);
 
-            ////////DataTable dtColmn = GetPageRetention(Session["userid"].ToString(), "CRM Contact");
+            ////////DataTable dtColmn = GetPageRetention(Session["LMSuserid"].ToString(), "CRM Contact");
             ////////if (dtColmn != null && dtColmn.Rows.Count > 0)
             ////////{
             ////////    ViewBag.RetentionColumn = dtColmn;//.Rows[0]["ColumnName"].ToString()  DataTable na class pathao ok wait
@@ -187,7 +187,7 @@ namespace LMS.Areas.LMS.Controllers
                 DataSet ds = new DataSet();
                 ProcedureExecute proc = new ProcedureExecute("PRC_LMSTOPICSMASTER");
                 proc.AddPara("@Action", "GETTOPICSCOUNTDATA");
-                proc.AddPara("@userid", Convert.ToString(HttpContext.Session["userid"]));
+                proc.AddPara("@userid", Convert.ToString(HttpContext.Session["LMSuserid"]));
                 ds = proc.GetDataSet();
 
 
@@ -345,7 +345,7 @@ namespace LMS.Areas.LMS.Controllers
             proc.AddPara("@Action", "GETBASEDONDATALIST");
             proc.AddPara("@TOPICBASEDON_ID", topic_basedon);
             proc.AddPara("@BRANCHID", Convert.ToString(Session["userbranchHierarchy"]));
-            proc.AddPara("@USERID", Convert.ToString(HttpContext.Session["userid"]));
+            proc.AddPara("@USERID", Convert.ToString(HttpContext.Session["LMSuserid"]));
 
             dt = proc.GetTable();
 
@@ -379,7 +379,7 @@ namespace LMS.Areas.LMS.Controllers
 
 
                 //string rtrnduplicatevalue = "";
-                //string Userid = Convert.ToString(Session["userid"]);
+                //string Userid = Convert.ToString(Session["LMSuserid"]);
                 ProcedureExecute proc = new ProcedureExecute("PRC_LMSTOPICSMASTER");
                 proc.AddPara("@ACTION", data.Action);
                 proc.AddPara("@TOPICID", data.TopicID);
@@ -387,7 +387,7 @@ namespace LMS.Areas.LMS.Controllers
                 proc.AddPara("@TOPICSTATUS", data.TopicStatus);
                 proc.AddPara("@TOPICBASEDON_ID", data.TopicBasedOnId);
                 proc.AddPara("@SELECTEDTOPICBASEDONMAPLIST", data.selectedTopicBasedOnMapList);
-                proc.AddPara("@USERID", Convert.ToString(HttpContext.Session["userid"]));
+                proc.AddPara("@USERID", Convert.ToString(HttpContext.Session["LMSuserid"]));
                 proc.AddPara("@TOPIC_COMP_DAY", data.TopicCompDay);
                 proc.AddPara("@TOPIC_ISDEFAULT", data.DefaultTopic);
                 proc.AddPara("@TOPIC_SEQ", data.TopicSequence);
@@ -441,7 +441,7 @@ namespace LMS.Areas.LMS.Controllers
             ProcedureExecute procA = new ProcedureExecute("PRC_LMSCONTENTMASTER");
             procA.AddPara("@ACTION", "GETCONTENTASSIGNUSER");
             procA.AddPara("@TOPICID", TopicId);
-            procA.AddPara("@USERID", Convert.ToString(HttpContext.Session["userid"]));
+            procA.AddPara("@USERID", Convert.ToString(HttpContext.Session["LMSuserid"]));
             procA.AddPara("@NEWASSIGN_ID", NewAssign);
             dtAssignUser = procA.GetTable();
 
@@ -678,7 +678,7 @@ namespace LMS.Areas.LMS.Controllers
                 proc.AddPara("@ACTION", "SHOWTOPIC");
                 proc.AddPara("@TOPICID", TopicID);
                 proc.AddPara("@BRANCHID", Convert.ToString(Session["userbranchHierarchy"]));
-                proc.AddPara("@USERID", Convert.ToString(HttpContext.Session["userid"]));
+                proc.AddPara("@USERID", Convert.ToString(HttpContext.Session["LMSuserid"]));
                 dt = proc.GetTable();
 
                 if (dt != null && dt.Rows.Count > 0)

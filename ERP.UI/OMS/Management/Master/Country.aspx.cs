@@ -39,7 +39,7 @@ namespace ERP.OMS.Management.Master
             GridCountry.JSProperties["cpUpdate"] = null;
             GridCountry.JSProperties["cpDelete"] = null;
             GridCountry.JSProperties["cpExists"] = null;
-            if (HttpContext.Current.Session["userid"] == null)
+            if (HttpContext.Current.Session["LMSuserid"] == null)
             {
                //Page.ClientScript.RegisterStartupScript(GetType(), "SighOff", "<script>SignOff();</script>");
             }
@@ -235,9 +235,9 @@ namespace ERP.OMS.Management.Master
                 else
                 {
                     //insertcount = oGenericMethod.Insert_Table("tbl_master_country", "cou_country,CreateDate,CreateUser,Country_NSECode,Country_BSECode,Country_MCXCode,Country_MCXSXCode,Country_NCDEXCode,Country_CDSLID,Country_NSDLID,Country_NdmlID,Country_DotExID,Country_CvlID",
-                    //   "'" + txtCountryName.Text + "','" + oGenericMethod.GetDate(110) + "'," + Session["userid"] + ",'" + txtNseCode.Text + "','" + txtBseCode.Text + "','" + txtMcxCode.Text + "','" + txtMcsxCode.Text + "','" + txtNcdexCode.Text + "',case when '" + txtCdslCode.Text + "'='' then null else '" + txtCdslCode.Text + "' end,case when '" + txtNsdlCode.Text + "'='' then null else '" + txtNsdlCode.Text + "' end,case when '" + txtNdmlCode.Text + "'='' then null else '" + txtNdmlCode.Text + "' end,case when '" + txtDotexidCode.Text + "'='' then null else '" + txtDotexidCode.Text + "' end,case when '" + txtCvlidCode.Text + "'='' then null else '" + txtCvlidCode.Text + "' end");
+                    //   "'" + txtCountryName.Text + "','" + oGenericMethod.GetDate(110) + "'," + Session["LMSuserid"] + ",'" + txtNseCode.Text + "','" + txtBseCode.Text + "','" + txtMcxCode.Text + "','" + txtMcsxCode.Text + "','" + txtNcdexCode.Text + "',case when '" + txtCdslCode.Text + "'='' then null else '" + txtCdslCode.Text + "' end,case when '" + txtNsdlCode.Text + "'='' then null else '" + txtNsdlCode.Text + "' end,case when '" + txtNdmlCode.Text + "'='' then null else '" + txtNdmlCode.Text + "' end,case when '" + txtDotexidCode.Text + "'='' then null else '" + txtDotexidCode.Text + "' end,case when '" + txtCvlidCode.Text + "'='' then null else '" + txtCvlidCode.Text + "' end");
                     insertcount = oGenericMethod.Insert_Table("tbl_master_country", "cou_country,CreateDate,CreateUser",
-                       "'" + txtCountryName.Text + "','" + oGenericMethod.GetDate(110) + "'," + Session["userid"]);
+                       "'" + txtCountryName.Text + "','" + oGenericMethod.GetDate(110) + "'," + Session["LMSuserid"]);
                     if (insertcount > 0)
                     {
                         GridCountry.JSProperties["cpinsert"] = "Success";

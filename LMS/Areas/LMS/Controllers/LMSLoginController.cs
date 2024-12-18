@@ -24,7 +24,7 @@ namespace LMS.Areas.LMS.Controllers
             ViewBag.ApplicationVersion = oDBEngine.GetApplicationVersion();
             ViewBag.ValidateMessage = "";
 
-            if (Session["userid"] != null)
+            if (Session["LMSuserid"] != null)
             {
 
                 if (Request.Cookies["ERPACTIVEURL"] != null && Convert.ToString(Request.Cookies["ERPACTIVEURL"].Value) == "1")
@@ -72,7 +72,7 @@ namespace LMS.Areas.LMS.Controllers
                 Validuser = oDBEngine.AuthenticateUser(omodel.username, Encryptpass).ToString();
                 if (Validuser == "Y")
                 {
-                    HttpCookie cookie = new HttpCookie("sKey");
+                    HttpCookie cookie = new HttpCookie("sKeyLMS");
                     cookie.Value = omodel.username;
                     cookie.Expires = DateTime.Now.AddDays(1);
                     Response.Cookies.Add(cookie);

@@ -59,9 +59,9 @@ namespace BusinessLogicLayer.CommonBLS
 
             try
             {
-                if (HttpContext.Current.Session["usergoup"] != null && !string.IsNullOrWhiteSpace(url))
+                if (HttpContext.Current.Session["LMSusergoup"] != null && !string.IsNullOrWhiteSpace(url))
                 {
-                    if (int.TryParse(Convert.ToString(HttpContext.Current.Session["usergoup"]), out usergroupid))
+                    if (int.TryParse(Convert.ToString(HttpContext.Current.Session["LMSusergoup"]), out usergroupid))
                     {
                         ProcedureExecute Proc = new ProcedureExecute(CommonHelperProcedures.Proc_Common);
                         Proc.AddPara("@usergroupid", usergroupid);

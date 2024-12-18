@@ -37,9 +37,9 @@ namespace ERP.OMS.Management.Master
 
             //------- For Read Only User in SQL Datasource Connection String   Start-----------------
 
-            if (HttpContext.Current.Session["EntryProfileType"] != null)
+            if (HttpContext.Current.Session["LMSEntryProfileType"] != null)
             {
-                if (Convert.ToString(HttpContext.Current.Session["EntryProfileType"]) == "R")
+                if (Convert.ToString(HttpContext.Current.Session["LMSEntryProfileType"]) == "R")
                 {
                     designation.ConnectionString = ConfigurationSettings.AppSettings["DBReadOnlyConnection"];
                 }
@@ -51,7 +51,7 @@ namespace ERP.OMS.Management.Master
 
             //------- For Read Only User in SQL Datasource Connection String   End-----------------
 
-            if (HttpContext.Current.Session["userid"] != null)
+            if (HttpContext.Current.Session["LMSuserid"] != null)
             {
                 //Page.ClientScript.RegisterStartupScript(GetType(), "SighOff", "<script>SignOff();</script>");
 

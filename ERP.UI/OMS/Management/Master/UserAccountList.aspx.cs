@@ -57,7 +57,7 @@ namespace ERP.OMS.Management.Master
 
             DataTable dt = new DataTable();
             ProcedureExecute proc = new ProcedureExecute("Prc_LMS_UserAccountData");
-            proc.AddIntegerPara("@User_id", Convert.ToInt32(HttpContext.Current.Session["userid"]));
+            proc.AddIntegerPara("@User_id", Convert.ToInt32(HttpContext.Current.Session["LMSuserid"]));
             dt = proc.GetTable();
             return dt;
         }

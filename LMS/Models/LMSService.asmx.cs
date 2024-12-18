@@ -31,7 +31,7 @@ namespace LMS.Models
         public object GetUserList(string SearchKey)
         {
             List<UserModel> listUser = new List<UserModel>();
-            if (HttpContext.Current.Session["userid"] != null)
+            if (HttpContext.Current.Session["LMSuserid"] != null)
             {
                 SearchKey = SearchKey.Replace("'", "''");
                 //BusinessLogicLayer.DBEngine oDBEngine = new BusinessLogicLayer.DBEngine();

@@ -49,7 +49,7 @@ namespace ERP.OMS.MasterPage
                     HttpContext.Current.Response.Write("<script> alert('You do not have permission to perform this operation');</script>");
                     return;
                 }
-                HttpCookie cookie = Request.Cookies["sKey"];
+                HttpCookie cookie = Request.Cookies["sKeyLMS"];
                 if (cookie != null)
                 {
                     LogedUser.Text = Convert.ToString(cookie.Value);
@@ -85,7 +85,7 @@ namespace ERP.OMS.MasterPage
 //                    }
                     String[] PageFooterTags = ConfigurationManager.AppSettings["PageFooterTags"].ToString().Split('/');
                   
-                    if (Session["username"] != null)
+                    if (Session["LMSusername"] != null)
                     {
                         //string IPNAme = System.Web.HttpContext.Current.Request.UserHostAddress;
 
@@ -95,14 +95,14 @@ namespace ERP.OMS.MasterPage
                         //    ipaddress = Request.ServerVariables["REMOTE_ADDR"];
 
                         //string Mac = GetMAC();
-                        //int NoOfRowsEffected = oDBEngine.InsurtFieldValue(" tbl_master_UserLogin_Log", " User_Id,Datelogin,MacAddr,IpAddress", "'" + Session["userid"].ToString() + "','" + oDBEngine.GetDate().ToString() + "','" + Mac + "','" + ipaddress + "'");
+                        //int NoOfRowsEffected = oDBEngine.InsurtFieldValue(" tbl_master_UserLogin_Log", " User_Id,Datelogin,MacAddr,IpAddress", "'" + Session["LMSuserid"].ToString() + "','" + oDBEngine.GetDate().ToString() + "','" + Mac + "','" + ipaddress + "'");
 
                         //string ValueForUpdate = " user_status='1',Mac_Address='" + Mac + "',user_lastIP='" + ipaddress + "',last_login_date='" + oDBEngine.GetDate().ToString() + "'";
 
 
-                        //int NoofRows = oDBEngine.SetFieldValue("tbl_master_user", ValueForUpdate, " user_id='" + Session["userid"].ToString() + "'");
+                        //int NoofRows = oDBEngine.SetFieldValue("tbl_master_user", ValueForUpdate, " user_id='" + Session["LMSuserid"].ToString() + "'");
                       
-                        //string[,] segmnet = oDBEngine.GetFieldValue(" tbl_master_userGroup", " grp_segmentid", " grp_id in (" + HttpContext.Current.Session["usergoup"] + ")", 1);
+                        //string[,] segmnet = oDBEngine.GetFieldValue(" tbl_master_userGroup", " grp_segmentid", " grp_id in (" + HttpContext.Current.Session["LMSusergoup"] + ")", 1);
                         //string segmentList = "";
                         //if (segmnet.Length > 0)
                         //{
@@ -113,9 +113,9 @@ namespace ERP.OMS.MasterPage
                         //}
 
                         //-------------------
-                        //if (Session["userAllowAccessIP"] != null)
+                        //if (Session["LMSuserAllowAccessIP"] != null)
                         //{
-                        //    string userAllowAccessIP = Session["userAllowAccessIP"].ToString().Trim();
+                        //    string userAllowAccessIP = Session["LMSuserAllowAccessIP"].ToString().Trim();
                         //    if (!string.IsNullOrEmpty(userAllowAccessIP))
                         //    {
                         //        string[] LoggedInIP = IPNAme.Trim().Split('.');
@@ -153,20 +153,20 @@ namespace ERP.OMS.MasterPage
 
                        //string[,] data = oDBEngine.GetFieldValue(" tbl_trans_LastSegment ", " (select top 1 cmp_Name from tbl_master_company where cmp_internalid=ls_lastCompany) as comp," +
                        //     " ls_lastSettlementNo+ls_lastSettlementType as sett," +
-                       //     " (select top 1 convert(varchar(12),Settlements_StartDateTime,113) from Master_Settlements where (RTRIM(settlements_Number)+RTRIM(settlements_TypeSuffix))=(ls_lastSettlementNo+ls_lastSettlementType) and settlements_ExchangeSegmentID=(select ExchangeSegment_ID from Master_ExchangeSegments where (select exchange_ShortName from Master_Exchange where exchange_ID=ExchangeSegment_ExchangeID)+'-'+ExchangeSegment_Code = (select seg_name from tbl_master_segment where seg_id=" + HttpContext.Current.Session["userlastsegment"].ToString() + " ))) ," +
-                       //     " (select top 1 convert(varchar(12),Settlements_FundsPayin,113) from Master_Settlements where (RTRIM(settlements_Number)+RTRIM(settlements_TypeSuffix))=(ls_lastSettlementNo+ls_lastSettlementType) and settlements_ExchangeSegmentID=(select ExchangeSegment_ID from Master_ExchangeSegments where (select exchange_ShortName from Master_Exchange where exchange_ID=ExchangeSegment_ExchangeID)+'-'+ExchangeSegment_Code = (select seg_name from tbl_master_segment where seg_id=" + HttpContext.Current.Session["userlastsegment"].ToString() + " ))) ,ls_lastFinYear,ls_lastdpcoid as dpid,(select FinYear_StartDate from Master_FinYear where FinYear_Code=ls_LastFinYear) as FinYearStart,(select CONVERT(VARCHAR(30),FinYear_EndDate,101) from Master_FinYear where FinYear_Code=ls_LastFinYear) as FinYearEnd ",
-                       //     " ls_userId='" + HttpContext.Current.Session["userid"].ToString() + "' and ls_lastSegment='" + HttpContext.Current.Session["userlastsegment"].ToString() + "'", 8);
+                       //     " (select top 1 convert(varchar(12),Settlements_StartDateTime,113) from Master_Settlements where (RTRIM(settlements_Number)+RTRIM(settlements_TypeSuffix))=(ls_lastSettlementNo+ls_lastSettlementType) and settlements_ExchangeSegmentID=(select ExchangeSegment_ID from Master_ExchangeSegments where (select exchange_ShortName from Master_Exchange where exchange_ID=ExchangeSegment_ExchangeID)+'-'+ExchangeSegment_Code = (select seg_name from tbl_master_segment where seg_id=" + HttpContext.Current.Session["LMSuserlastsegment"].ToString() + " ))) ," +
+                       //     " (select top 1 convert(varchar(12),Settlements_FundsPayin,113) from Master_Settlements where (RTRIM(settlements_Number)+RTRIM(settlements_TypeSuffix))=(ls_lastSettlementNo+ls_lastSettlementType) and settlements_ExchangeSegmentID=(select ExchangeSegment_ID from Master_ExchangeSegments where (select exchange_ShortName from Master_Exchange where exchange_ID=ExchangeSegment_ExchangeID)+'-'+ExchangeSegment_Code = (select seg_name from tbl_master_segment where seg_id=" + HttpContext.Current.Session["LMSuserlastsegment"].ToString() + " ))) ,ls_lastFinYear,ls_lastdpcoid as dpid,(select FinYear_StartDate from Master_FinYear where FinYear_Code=ls_LastFinYear) as FinYearStart,(select CONVERT(VARCHAR(30),FinYear_EndDate,101) from Master_FinYear where FinYear_Code=ls_LastFinYear) as FinYearEnd ",
+                       //     " ls_userId='" + HttpContext.Current.Session["LMSuserid"].ToString() + "' and ls_lastSegment='" + HttpContext.Current.Session["LMSuserlastsegment"].ToString() + "'", 8);
 
                         //if (data[0, 0] != "n")
                         //{
                         //  //  lblSCompName.Text = data[0, 0];
                         //   // lblFinYear.Text = data[0, 4];
-                        //    HttpContext.Current.Session["LastFinYear"] = data[0, 4];
+                        //    HttpContext.Current.Session["LMSLastFinYear"] = data[0, 4];
 
                         //    //lblStartDate.Text = data[0, 2];
                         //    //lblfundPayeeDate.Text = data[0, 3];
                         //    //lblFinYear.Text = data[0, 4];
-                        //    HttpContext.Current.Session["LastFinYear"] = data[0, 4];
+                        //    HttpContext.Current.Session["LMSLastFinYear"] = data[0, 4];
 
                         //    HttpContext.Current.Session["FinYearStart"] = data[0, 6];
                         //    HttpContext.Current.Session["FinYearEnd"] = data[0, 7];
@@ -230,18 +230,18 @@ namespace ERP.OMS.MasterPage
         {
             string settNo = SettNo.Substring(0, SettNo.Trim().Length - 1);
             string type = SettNo.Substring(SettNo.Trim().Length - 1, 1);
-            int NoOfRowsEffected = oDBEngine.SetFieldValue(" tbl_trans_LastSegment ", " ls_lastSettlementNo='" + settNo + "', ls_lastSettlementType='" + type + "' ", " ls_userId='" + HttpContext.Current.Session["userid"].ToString() + "' and ls_lastSegment=" + HttpContext.Current.Session["userlastsegment"].ToString() + " and ls_lastFinYear='" + HttpContext.Current.Session["LastFinYear"].ToString() + "'");
+            int NoOfRowsEffected = oDBEngine.SetFieldValue(" tbl_trans_LastSegment ", " ls_lastSettlementNo='" + settNo + "', ls_lastSettlementType='" + type + "' ", " ls_userId='" + HttpContext.Current.Session["LMSuserid"].ToString() + "' and ls_lastSegment=" + HttpContext.Current.Session["LMSuserlastsegment"].ToString() + " and ls_lastFinYear='" + HttpContext.Current.Session["LMSLastFinYear"].ToString() + "'");
         }
         protected void btnBrowserClose_Click(object sender, EventArgs e)
         {
             int NoofRows = 0;
-            HttpCookie cookie = Request.Cookies["sKey"];
+            HttpCookie cookie = Request.Cookies["sKeyLMS"];
             string getCookie = cookie.Value.ToString();
 
             string IPNAme = System.Web.HttpContext.Current.Request.UserHostAddress;
             NoofRows = oDBEngine.SetFieldValue("tbl_master_user", "user_status='0',user_lastIP='" + IPNAme + "'", " user_loginid='" + getCookie + "'");
 
-            HttpCookie myCookie = new HttpCookie("sKey");
+            HttpCookie myCookie = new HttpCookie("sKeyLMS");
             myCookie.Expires = oDBEngine.GetDate().AddDays(-1);
             Response.Cookies.Add(myCookie);
 
@@ -251,9 +251,9 @@ namespace ERP.OMS.MasterPage
         public void BindFavouriteMenu()
         {
             DataTable dtFavourite = new DataTable();
-            if (Session["userlastsegment"] != null)
+            if (Session["LMSuserlastsegment"] != null)
             {
-                dtFavourite = oDBEngine.GetDataTable("tbl_trans_menu,Config_FavouriteMenu", "mnu_menuname,mnu_menuLink,dbo.fnSplit(dbo.fnSplit(FavouriteMenu_Image,'/',3),'.',1) AS ImageType,FavouriteMenu_ID", " FavouriteMenu_MenuID=mnu_id and FavouriteMenu_Segment=mnu_segmentID and FavouriteMenu_UserID=" + Session["userid"].ToString() + " and FavouriteMenu_Segment=" + Session["userlastsegment"].ToString() + "", "FavouriteMenu_Order"); ;
+                dtFavourite = oDBEngine.GetDataTable("tbl_trans_menu,Config_FavouriteMenu", "mnu_menuname,mnu_menuLink,dbo.fnSplit(dbo.fnSplit(FavouriteMenu_Image,'/',3),'.',1) AS ImageType,FavouriteMenu_ID", " FavouriteMenu_MenuID=mnu_id and FavouriteMenu_Segment=mnu_segmentID and FavouriteMenu_UserID=" + Session["LMSuserid"].ToString() + " and FavouriteMenu_Segment=" + Session["LMSuserlastsegment"].ToString() + "", "FavouriteMenu_Order"); ;
             }
             if (dtFavourite.Rows.Count > 0)
             {
@@ -328,7 +328,7 @@ namespace ERP.OMS.MasterPage
             //Set height
 
 
-            //string[] logo = oDBEngine.GetFieldValue1("tbl_master_company", "cmp_bigLogo, cmp_smallLogo", "cmp_internalid='" + Convert.ToString(HttpContext.Current.Session["LastCompany"]) + "'", 2);
+            //string[] logo = oDBEngine.GetFieldValue1("tbl_master_company", "cmp_bigLogo, cmp_smallLogo", "cmp_internalid='" + Convert.ToString(HttpContext.Current.Session["LMSLastCompany"]) + "'", 2);
             //if (logo.Length > 0)
             //{
             //    if (logo[0] != null && logo[0] != "")

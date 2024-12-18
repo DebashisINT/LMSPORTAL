@@ -49,9 +49,9 @@ namespace ERP.OMS.Management.Master
             rights = BusinessLogicLayer.CommonBLS.CommonBL.GetUserRightSession("/management/master/root_user.aspx");
             //------- For Read Only User in SQL Datasource Connection String   Start-----------------
 
-            if (HttpContext.Current.Session["EntryProfileType"] != null)
+            if (HttpContext.Current.Session["LMSEntryProfileType"] != null)
             {
-                if (Convert.ToString(HttpContext.Current.Session["EntryProfileType"]) == "R")
+                if (Convert.ToString(HttpContext.Current.Session["LMSEntryProfileType"]) == "R")
                 {
                     RootUserDataSource.ConnectionString = ConfigurationSettings.AppSettings["DBReadOnlyConnection"];
                 }
@@ -77,14 +77,14 @@ namespace ERP.OMS.Management.Master
 
                 FillComboPartyType();
                 //Rev Start Column Name Change Tanmoy
-                //DataTable DataSettings = oDBEngine.GetDataTable("select IsFaceDetectionOn from tbl_master_user where USER_ID=" + Convert.ToString(HttpContext.Current.Session["userid"]));
+                //DataTable DataSettings = oDBEngine.GetDataTable("select IsFaceDetectionOn from tbl_master_user where USER_ID=" + Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
                 //hdnIsFaceDetectionOn.Value = Convert.ToString(DataSettings.Rows[0]["IsFaceDetectionOn"]);
                 //if (hdnIsFaceDetectionOn.Value == "True")
                 //{
                 //    IsFaceDetectionOn = true;
                 //}
 
-                DataTable DataSettings = oDBEngine.GetDataTable("select ShowFaceRegInMenu from tbl_master_user where USER_ID=" + Convert.ToString(HttpContext.Current.Session["userid"]));
+                DataTable DataSettings = oDBEngine.GetDataTable("select ShowFaceRegInMenu from tbl_master_user where USER_ID=" + Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
                 hdnIsFaceDetectionOn.Value = Convert.ToString(DataSettings.Rows[0]["ShowFaceRegInMenu"]);
                 if (hdnIsFaceDetectionOn.Value == "True")
                 {
@@ -110,16 +110,16 @@ namespace ERP.OMS.Management.Master
 
 
             //commented by Jitendra on 21-03-2017
-            // RootUserDataSource.SelectCommand = "SELECT distinct user_id,user_name,user_loginId,case when  (user_inactive ='Y') then 'Inactive' else 'Active' end as Status,user_status as Onlinestatus, (select deg_designation from tbl_master_designation where deg_id =emp_Designation) as designation FROM [tbl_master_user],tbl_trans_employeeCTC where emp_cntId=user_contactId  and user_branchId in (" + HttpContext.Current.Session["userbranchHierarchy"] + ")";
+            // RootUserDataSource.SelectCommand = "SELECT distinct user_id,user_name,user_loginId,case when  (user_inactive ='Y') then 'Inactive' else 'Active' end as Status,user_status as Onlinestatus, (select deg_designation from tbl_master_designation where deg_id =emp_Designation) as designation FROM [tbl_master_user],tbl_trans_employeeCTC where emp_cntId=user_contactId  and user_branchId in (" + HttpContext.Current.Session["LMSuserbranchHierarchy"] + ")";
 
-            // RootUserDataSource.SelectCommand = "SELECT  distinct user_id,user_name,user_loginId,case when  (user_inactive ='Y') then 'Inactive' else 'Active' end as Status,user_status as Onlinestatus, (select top 1  deg_designation from tbl_master_designation where deg_id in (select top 1 emp_Designation from tbl_trans_employeeCTC where emp_CntId= user_contactId order by emp_id desc )) as designation FROM [tbl_master_user],tbl_master_employee where emp_ContactId=user_contactId  and user_branchId in (" + HttpContext.Current.Session["userbranchHierarchy"] + ")";
+            // RootUserDataSource.SelectCommand = "SELECT  distinct user_id,user_name,user_loginId,case when  (user_inactive ='Y') then 'Inactive' else 'Active' end as Status,user_status as Onlinestatus, (select top 1  deg_designation from tbl_master_designation where deg_id in (select top 1 emp_Designation from tbl_trans_employeeCTC where emp_CntId= user_contactId order by emp_id desc )) as designation FROM [tbl_master_user],tbl_master_employee where emp_ContactId=user_contactId  and user_branchId in (" + HttpContext.Current.Session["LMSuserbranchHierarchy"] + ")";
 
 
             //RootUserDataSource.SelectCommand = "SELECT  distinct user_id,user_name,user_loginId,case when  (user_inactive ='Y') then 'Inactive' else 'Active' end as Status,case when  (user_maclock ='Y') then 'Mac Restriction' else 'Mac Open' end as StatusMac,user_status as Onlinestatus, " +
             //   " (select top 1  deg_designation from tbl_master_designation where deg_id in (select top 1 emp_Designation from tbl_trans_employeeCTC where emp_CntId= user_contactId order by emp_id desc )) as designation,"+
             //    " isnull(cnt_firstName,'')+' '+isnull(cnt_middleName,'')+' '+isnull(cnt_lastName,'') as 'AssignedUser', (select branch_description from tbl_master_branch where branch_id=tbl_master_contact.cnt_branchid) as BranchName,grp_name " +
             //    "FROM [tbl_master_user],tbl_master_employee,tbl_master_contact,tbl_master_usergroup  where emp_ContactId=user_contactId  and cnt_InternalId=user_contactId  "+
-            //" and user_group=grp_id  and user_branchId in (" + HttpContext.Current.Session["userbranchHierarchy"] + ")";
+            //" and user_group=grp_id  and user_branchId in (" + HttpContext.Current.Session["LMSuserbranchHierarchy"] + ")";
 
             // Rev 1.0
             //userGrid.DataSource = BindUserList();
@@ -190,23 +190,23 @@ namespace ERP.OMS.Management.Master
             {
                 // End of Rev 1.0
                 // Code  Added and Commented By Priti on 20122016 to use Covert.Tostring() instead of Tostring()
-                ////RootUserDataSource.SelectCommand = "SELECT user_id,user_name,user_loginId,case when  (emp_effectiveuntil is null or emp_effectiveuntil='1900-01-01 00:00:00.000') then 'Active' else 'Deactive' end as Status, (select deg_designation from tbl_master_designation where deg_id =emp_Designation) as designation FROM [tbl_master_user],tbl_trans_employeeCTC where emp_cntId=user_contactId and user_branchId in (" + HttpContext.Current.Session["userbranchHierarchy"] + ")";
+                ////RootUserDataSource.SelectCommand = "SELECT user_id,user_name,user_loginId,case when  (emp_effectiveuntil is null or emp_effectiveuntil='1900-01-01 00:00:00.000') then 'Active' else 'Deactive' end as Status, (select deg_designation from tbl_master_designation where deg_id =emp_Designation) as designation FROM [tbl_master_user],tbl_trans_employeeCTC where emp_cntId=user_contactId and user_branchId in (" + HttpContext.Current.Session["LMSuserbranchHierarchy"] + ")";
                 //if (Session["addedituser"].ToString() == "yes")
                 if (Convert.ToString(Session["addedituser"]) == "yes")
                 {
                     Session["addedituser"] = "";
                     if (userGrid.FilterExpression == "")
                     {
-                        // RootUserDataSource.SelectCommand = "SELECT distinct user_id,user_name,user_loginId,case when  (user_inactive ='Y') then 'Inactive' else 'Active' end as Status,user_status as Onlinestatus, (select deg_designation from tbl_master_designation where deg_id =emp_Designation) as designation FROM [tbl_master_user],tbl_trans_employeeCTC where emp_cntId=user_contactId and user_branchId in (" + HttpContext.Current.Session["userbranchHierarchy"] + ")";
-                        RootUserDataSource.SelectCommand = "SELECT  distinct user_id,user_name,user_loginId,case when  (user_inactive ='Y') then 'Inactive' else 'Active' end as Status,case when  (user_maclock ='Y') then 'Mac Restriction' else 'Mac Open' end as StatusMac,user_status as Onlinestatus, (select top 1  deg_designation from tbl_master_designation where deg_id in (select top 1 emp_Designation from tbl_trans_employeeCTC where emp_CntId= user_contactId order by emp_id desc )) as designation FROM [tbl_master_user],tbl_master_employee where emp_ContactId=user_contactId  and user_branchId in (" + HttpContext.Current.Session["userbranchHierarchy"] + ")";
+                        // RootUserDataSource.SelectCommand = "SELECT distinct user_id,user_name,user_loginId,case when  (user_inactive ='Y') then 'Inactive' else 'Active' end as Status,user_status as Onlinestatus, (select deg_designation from tbl_master_designation where deg_id =emp_Designation) as designation FROM [tbl_master_user],tbl_trans_employeeCTC where emp_cntId=user_contactId and user_branchId in (" + HttpContext.Current.Session["LMSuserbranchHierarchy"] + ")";
+                        RootUserDataSource.SelectCommand = "SELECT  distinct user_id,user_name,user_loginId,case when  (user_inactive ='Y') then 'Inactive' else 'Active' end as Status,case when  (user_maclock ='Y') then 'Mac Restriction' else 'Mac Open' end as StatusMac,user_status as Onlinestatus, (select top 1  deg_designation from tbl_master_designation where deg_id in (select top 1 emp_Designation from tbl_trans_employeeCTC where emp_CntId= user_contactId order by emp_id desc )) as designation FROM [tbl_master_user],tbl_master_employee where emp_ContactId=user_contactId  and user_branchId in (" + HttpContext.Current.Session["LMSuserbranchHierarchy"] + ")";
 
                         userGrid.DataBind();
                     }
                     else
                     {
-                        RootUserDataSource.SelectCommand = "SELECT  distinct user_id,user_name,user_loginId,case when  (user_inactive ='Y') then 'Inactive' else 'Active' end as Status,case when  (user_maclock ='Y') then 'Mac Restriction' else 'Mac Open' end as StatusMac,user_status as Onlinestatus, (select top 1  deg_designation from tbl_master_designation where deg_id in (select top 1 emp_Designation from tbl_trans_employeeCTC where emp_CntId= user_contactId order by emp_id desc )) as designation FROM [tbl_master_user],tbl_master_employee where emp_ContactId=user_contactId  and user_branchId in (" + HttpContext.Current.Session["userbranchHierarchy"] + ") and " + userGrid.FilterExpression;
+                        RootUserDataSource.SelectCommand = "SELECT  distinct user_id,user_name,user_loginId,case when  (user_inactive ='Y') then 'Inactive' else 'Active' end as Status,case when  (user_maclock ='Y') then 'Mac Restriction' else 'Mac Open' end as StatusMac,user_status as Onlinestatus, (select top 1  deg_designation from tbl_master_designation where deg_id in (select top 1 emp_Designation from tbl_trans_employeeCTC where emp_CntId= user_contactId order by emp_id desc )) as designation FROM [tbl_master_user],tbl_master_employee where emp_ContactId=user_contactId  and user_branchId in (" + HttpContext.Current.Session["LMSuserbranchHierarchy"] + ") and " + userGrid.FilterExpression;
 
-                        //RootUserDataSource.SelectCommand = "SELECT distinct user_id,user_name,user_loginId,case when  (user_inactive ='Y') then 'Inactive' else 'Active' end as Status,user_status as Onlinestatus, (select deg_designation from tbl_master_designation where deg_id =emp_Designation) as designation FROM [tbl_master_user],tbl_trans_employeeCTC where emp_cntId=user_contactId and user_branchId in (" + HttpContext.Current.Session["userbranchHierarchy"] + ") and " + userGrid.FilterExpression;
+                        //RootUserDataSource.SelectCommand = "SELECT distinct user_id,user_name,user_loginId,case when  (user_inactive ='Y') then 'Inactive' else 'Active' end as Status,user_status as Onlinestatus, (select deg_designation from tbl_master_designation where deg_id =emp_Designation) as designation FROM [tbl_master_user],tbl_trans_employeeCTC where emp_cntId=user_contactId and user_branchId in (" + HttpContext.Current.Session["LMSuserbranchHierarchy"] + ") and " + userGrid.FilterExpression;
                         userGrid.DataBind();
                     }
                 }
@@ -217,8 +217,8 @@ namespace ERP.OMS.Management.Master
                     if (e.Parameters == "All")
                     {
                         userGrid.FilterExpression = string.Empty;
-                        //RootUserDataSource.SelectCommand = "SELECT distinct user_id,user_name,user_loginId,case when  (user_inactive ='Y') then 'Inactive' else 'Active' end as Status,user_status as Onlinestatus, (select deg_designation from tbl_master_designation where deg_id =emp_Designation) as designation FROM [tbl_master_user],tbl_trans_employeeCTC where emp_cntId=user_contactId and user_branchId in (" + HttpContext.Current.Session["userbranchHierarchy"] + ")";
-                        RootUserDataSource.SelectCommand = "SELECT  distinct user_id,user_name,user_loginId,case when  (user_inactive ='Y') then 'Inactive' else 'Active' end as Status,case when  (user_maclock ='Y') then 'Mac Restriction' else 'Mac Open' end as StatusMac,user_status as Onlinestatus, (select top 1  deg_designation from tbl_master_designation where deg_id in (select top 1 emp_Designation from tbl_trans_employeeCTC where emp_CntId= user_contactId order by emp_id desc )) as designation FROM [tbl_master_user],tbl_master_employee where emp_ContactId=user_contactId  and user_branchId in (" + HttpContext.Current.Session["userbranchHierarchy"] + ")";
+                        //RootUserDataSource.SelectCommand = "SELECT distinct user_id,user_name,user_loginId,case when  (user_inactive ='Y') then 'Inactive' else 'Active' end as Status,user_status as Onlinestatus, (select deg_designation from tbl_master_designation where deg_id =emp_Designation) as designation FROM [tbl_master_user],tbl_trans_employeeCTC where emp_cntId=user_contactId and user_branchId in (" + HttpContext.Current.Session["LMSuserbranchHierarchy"] + ")";
+                        RootUserDataSource.SelectCommand = "SELECT  distinct user_id,user_name,user_loginId,case when  (user_inactive ='Y') then 'Inactive' else 'Active' end as Status,case when  (user_maclock ='Y') then 'Mac Restriction' else 'Mac Open' end as StatusMac,user_status as Onlinestatus, (select top 1  deg_designation from tbl_master_designation where deg_id in (select top 1 emp_Designation from tbl_trans_employeeCTC where emp_CntId= user_contactId order by emp_id desc )) as designation FROM [tbl_master_user],tbl_master_employee where emp_ContactId=user_contactId  and user_branchId in (" + HttpContext.Current.Session["LMSuserbranchHierarchy"] + ")";
 
 
                         userGrid.DataBind();
@@ -254,8 +254,8 @@ namespace ERP.OMS.Management.Master
         {
             DataTable dt = new DataTable();
             ProcedureExecute proc = new ProcedureExecute("prc_UserListBind");
-            proc.AddIntegerPara("@userid", Convert.ToInt32(HttpContext.Current.Session["userid"]));
-            proc.AddPara("@BRANCHID", Convert.ToString(HttpContext.Current.Session["userbranchHierarchy"]));
+            proc.AddIntegerPara("@userid", Convert.ToInt32(HttpContext.Current.Session["LMSuserid"]));
+            proc.AddPara("@BRANCHID", Convert.ToString(HttpContext.Current.Session["LMSuserbranchHierarchy"]));
             proc.AddPara("@ACTION", "BINDUSERLIST");
             // Rev 2.0
             proc.AddPara("@Users", Convert.ToString(txtUser_hidden.Value));
@@ -275,7 +275,7 @@ namespace ERP.OMS.Management.Master
             if (IsFilter == "Y")
             {
                 var q = from d in dc1.FSMUser_Master_Lists
-                        where d.USERID == Convert.ToInt64(HttpContext.Current.Session["userid"].ToString())
+                        where d.USERID == Convert.ToInt64(HttpContext.Current.Session["LMSuserid"].ToString())
                         orderby d.SRLNO
                         select d;
                 e.QueryableSource = q;
@@ -297,10 +297,10 @@ namespace ERP.OMS.Management.Master
 
             oclsDropDownList.AddDataToDropDownList(DataPartyType, ddlPartyTypes);
 
-            DataTable PartyListTable = oDBEngine.GetDataTable("select distinct SHOP_CODE as Shop_Code from FTS_EmployeeShopMap where ASSIGN_BY=" + Convert.ToString(HttpContext.Current.Session["userid"]));
+            DataTable PartyListTable = oDBEngine.GetDataTable("select distinct SHOP_CODE as Shop_Code from FTS_EmployeeShopMap where ASSIGN_BY=" + Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
             Session["PartyListTable"] = PartyListTable;
 
-            DataTable UsersListTable = oDBEngine.GetDataTable("select distinct USER_ID as User_id from FTS_EmployeeShopMap where ASSIGN_BY=" + Convert.ToString(HttpContext.Current.Session["userid"]));
+            DataTable UsersListTable = oDBEngine.GetDataTable("select distinct USER_ID as User_id from FTS_EmployeeShopMap where ASSIGN_BY=" + Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
             Session["UsersListTable"] = UsersListTable;
 
             // Mantis Issue 24362
@@ -380,8 +380,8 @@ namespace ERP.OMS.Management.Master
         {
             DataTable dt = new DataTable();
             ProcedureExecute proc = new ProcedureExecute("prc_UserListBind");
-            proc.AddIntegerPara("@userid", Convert.ToInt32(HttpContext.Current.Session["userid"]));
-            proc.AddPara("@BRANCHID", Convert.ToString(HttpContext.Current.Session["userbranchHierarchy"]));
+            proc.AddIntegerPara("@userid", Convert.ToInt32(HttpContext.Current.Session["LMSuserid"]));
+            proc.AddPara("@BRANCHID", Convert.ToString(HttpContext.Current.Session["LMSuserbranchHierarchy"]));
             proc.AddPara("@ACTION", "BINDPARTY");
             proc.AddPara("@PARTY_TYPE", ddlPartyType.SelectedValue);
             dt = proc.GetTable();
@@ -478,8 +478,8 @@ namespace ERP.OMS.Management.Master
         {
             DataTable dt = new DataTable();
             ProcedureExecute proc = new ProcedureExecute("prc_UserListBind");
-            proc.AddIntegerPara("@userid", Convert.ToInt32(HttpContext.Current.Session["userid"]));
-            proc.AddPara("@BRANCHID", Convert.ToString(HttpContext.Current.Session["userbranchHierarchy"]));
+            proc.AddIntegerPara("@userid", Convert.ToInt32(HttpContext.Current.Session["LMSuserid"]));
+            proc.AddPara("@BRANCHID", Convert.ToString(HttpContext.Current.Session["LMSuserbranchHierarchy"]));
             proc.AddPara("@ACTION", "BINDUSERS");
             dt = proc.GetTable();
             return dt;
@@ -493,7 +493,7 @@ namespace ERP.OMS.Management.Master
             DataTable dt = new DataTable();
             ProcedureExecute proc = new ProcedureExecute("prc_EmployeeShopMapInsertUpdate");
             proc.AddPara("@ACTION", "INSERT");
-            proc.AddIntegerPara("@userid", Convert.ToInt32(HttpContext.Current.Session["userid"]));
+            proc.AddIntegerPara("@userid", Convert.ToInt32(HttpContext.Current.Session["LMSuserid"]));
             proc.AddPara("@SHOP_CODEList", PartyListtable);
             proc.AddPara("@User_IdList", UsersListtable);
             proc.AddPara("@PARTY_TYPE", ddlPartyType.SelectedValue);
@@ -601,8 +601,8 @@ namespace ERP.OMS.Management.Master
         {
             DataTable dt = new DataTable();
             ProcedureExecute proc = new ProcedureExecute("prc_UserListBind");
-            proc.AddIntegerPara("@userid", Convert.ToInt32(HttpContext.Current.Session["userid"]));
-            proc.AddPara("@BRANCHID", Convert.ToString(HttpContext.Current.Session["userbranchHierarchy"]));
+            proc.AddIntegerPara("@userid", Convert.ToInt32(HttpContext.Current.Session["LMSuserid"]));
+            proc.AddPara("@BRANCHID", Convert.ToString(HttpContext.Current.Session["LMSuserbranchHierarchy"]));
             proc.AddPara("@ACTION", "BindAllSelectedPartyList");
             dt = proc.GetTable();
             return dt;
@@ -613,7 +613,7 @@ namespace ERP.OMS.Management.Master
             DataTable dt = new DataTable();
             ProcedureExecute proc = new ProcedureExecute("prc_EmployeeShopMapInsertUpdate");
             proc.AddPara("@ACTION", "UnAssign");
-            proc.AddIntegerPara("@userid", Convert.ToInt32(HttpContext.Current.Session["userid"]));
+            proc.AddIntegerPara("@userid", Convert.ToInt32(HttpContext.Current.Session["LMSuserid"]));
             proc.AddPara("@SHOP_CODEList", AssignID);
             dt = proc.GetTable();
             return dt;
@@ -636,8 +636,8 @@ namespace ERP.OMS.Management.Master
         {
             DataTable dt = new DataTable();
             ProcedureExecute proc = new ProcedureExecute("prc_UserListBind");
-            proc.AddIntegerPara("@userid", Convert.ToInt32(HttpContext.Current.Session["userid"]));
-            proc.AddPara("@BRANCHID", Convert.ToString(HttpContext.Current.Session["userbranchHierarchy"]));
+            proc.AddIntegerPara("@userid", Convert.ToInt32(HttpContext.Current.Session["LMSuserid"]));
+            proc.AddPara("@BRANCHID", Convert.ToString(HttpContext.Current.Session["LMSuserbranchHierarchy"]));
             proc.AddPara("@ACTION", "BindAssignParty");
             dt = proc.GetTable();
             return dt;
@@ -647,7 +647,7 @@ namespace ERP.OMS.Management.Master
         public static object GetParty(string SearchKey, string PartyType)
         {
             List<PartyModel> listShop = new List<PartyModel>();
-            if (HttpContext.Current.Session["userid"] != null)
+            if (HttpContext.Current.Session["LMSuserid"] != null)
             {
                 SearchKey = SearchKey.Replace("'", "''");
 
@@ -683,13 +683,13 @@ namespace ERP.OMS.Management.Master
         public static object GetUserList(string shop_code, string branch)
         {
             List<UserList> listShop = new List<UserList>();
-            if (HttpContext.Current.Session["userid"] != null)
+            if (HttpContext.Current.Session["LMSuserid"] != null)
             {
                 DataTable Userdt = new DataTable();
                 ProcedureExecute proc = new ProcedureExecute("prc_UserListBind");
                 proc.AddPara("@ACTION", "BindUserListNew");
                 proc.AddPara("@SHOP_CODE", shop_code);
-                proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["userid"]));
+                proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
                 // Mantis Issue 24362
                 proc.AddPara("@BRANCHID", branch);
                 // End of Mantis Issue 24362
@@ -733,7 +733,7 @@ namespace ERP.OMS.Management.Master
         public static string SaveAssignParty(string shop_code, string Shop_type, string Users, string Headr_name, string header_id, string branch)
         {
             string returnmsg = "";
-            if (HttpContext.Current.Session["userid"] != null)
+            if (HttpContext.Current.Session["LMSuserid"] != null)
             {
                 DataTable Userdt = new DataTable();
                 ProcedureExecute proc = new ProcedureExecute("prc_EmployeeShopMapInsertUpdate");
@@ -743,7 +743,7 @@ namespace ERP.OMS.Management.Master
                 proc.AddPara("@Users", Users);
                 proc.AddPara("@NAME", Headr_name);
                 proc.AddPara("@headerid", header_id);
-                proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["userid"]));
+                proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
                 // Mantis Issue 24362
                 proc.AddPara("@BRANCHID", branch);
                 // End of Mantis Issue 24362
@@ -775,13 +775,13 @@ namespace ERP.OMS.Management.Master
            /*Rev Work close 08.04.2022
             Mantise No:0024819 In user master in Assign Party entry section in edit mode selected party not coming as checked*/
 
-           if (HttpContext.Current.Session["userid"] != null)
+           if (HttpContext.Current.Session["LMSuserid"] != null)
             {
                 DataSet Userds = new DataSet();
                 ProcedureExecute proc = new ProcedureExecute("prc_UserListBind");
                 proc.AddPara("@ACTION", "EditBindUserListNew");
                 proc.AddPara("@Header_id", Header_id);
-                proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["userid"]));
+                proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
                 Userds = proc.GetDataSet();
                 listusrs = APIHelperMethods.ToModelList<UserList>(Userds.Tables[1]);
                 // Mantis Issue 24363
@@ -835,12 +835,12 @@ namespace ERP.OMS.Management.Master
         public static string DeleteAssignParty(string header_id)
         {
             string returnmsg = "";
-            if (HttpContext.Current.Session["userid"] != null)
+            if (HttpContext.Current.Session["LMSuserid"] != null)
             {                
                 ProcedureExecute proc = new ProcedureExecute("prc_EmployeeShopMapInsertUpdate");
                 proc.AddPara("@ACTION", "DeleteShopUserNew");
                 proc.AddPara("@headerid", header_id);
-                proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["userid"]));
+                proc.AddPara("@userid", Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
                 int i = proc.RunActionQuery();
                 if (i > 0)
                 {
@@ -909,12 +909,12 @@ namespace ERP.OMS.Management.Master
         public static object GetOnDemandUser(string SearchKey)
         {
             List<UserModel> listUser = new List<UserModel>();
-            if (HttpContext.Current.Session["userid"] != null)
+            if (HttpContext.Current.Session["LMSuserid"] != null)
             {
                 SearchKey = SearchKey.Replace("'", "''");
                 DataTable dt = new DataTable();
                 ProcedureExecute proc = new ProcedureExecute("PRC_UserNameSearchForListing");
-                proc.AddPara("@USER_ID", Convert.ToInt32(HttpContext.Current.Session["userid"]));
+                proc.AddPara("@USER_ID", Convert.ToInt32(HttpContext.Current.Session["LMSuserid"]));
                 proc.AddPara("@SearchKey", SearchKey);
                 dt = proc.GetTable();
 

@@ -42,7 +42,7 @@ public partial class pLogin : System.Web.UI.Page
         PageFooterTag1 = System.Configuration.ConfigurationManager.AppSettings["PageFooterTag1"].ToString();
         PageFooterTag2 = System.Configuration.ConfigurationManager.AppSettings["PageFooterTag2"].ToString();
 
-        if (HttpContext.Current.Session["userid"] != null)
+        if (HttpContext.Current.Session["LMSuserid"] != null)
         {
 
             if (Request.Cookies["ERPACTIVEURL"] != null && Convert.ToString(Request.Cookies["ERPACTIVEURL"].Value) == "1")
@@ -57,10 +57,10 @@ public partial class pLogin : System.Web.UI.Page
             Response.Cookies.Add(ERPACTIVEURL);
 
 
-            if (HttpContext.Current.Cache["LastLandingUri_" + Convert.ToString(HttpContext.Current.Session["userid"]).Trim()] != null)
+            if (HttpContext.Current.Cache["LastLandingUri_" + Convert.ToString(HttpContext.Current.Session["LMSuserid"]).Trim()] != null)
             {
 
-                Response.Redirect(Convert.ToString(HttpContext.Current.Cache["LastLandingUri_" + Convert.ToString(HttpContext.Current.Session["userid"]).Trim()]), false);
+                Response.Redirect(Convert.ToString(HttpContext.Current.Cache["LastLandingUri_" + Convert.ToString(HttpContext.Current.Session["LMSuserid"]).Trim()]), false);
             }
             //Code end here 
             else
@@ -196,7 +196,7 @@ public partial class pLogin : System.Web.UI.Page
 
 
 
-                        /// bool getaccess = GetMacaddressSettings(Convert.ToString(HttpContext.Current.Session["userid"]), usermac);
+                        /// bool getaccess = GetMacaddressSettings(Convert.ToString(HttpContext.Current.Session["LMSuserid"]), usermac);
 
 
                         //Disabled for the time being 21/08/2017
@@ -209,7 +209,7 @@ public partial class pLogin : System.Web.UI.Page
                         if (getaccess == true)
                         {
                             //Page.ClientScript.RegisterStartupScript(this.GetType(), "JScrip", "<script language='JavaScript'>ForNextPage();</script>");
-                            HttpCookie cookie = new HttpCookie("sKey");
+                            HttpCookie cookie = new HttpCookie("sKeyLMS");
                             cookie.Value = txtUserName.Text;
                             cookie.Expires = DateTime.Now.AddDays(1);
                             Response.Cookies.Add(cookie);
@@ -222,9 +222,9 @@ public partial class pLogin : System.Web.UI.Page
 
                             string returl = rurl.Value;
                             //Code added by Debjyoti 
-                            if (HttpContext.Current.Cache["LastLandingUri_" + Convert.ToString(HttpContext.Current.Session["userid"]).Trim()] != null)
+                            if (HttpContext.Current.Cache["LastLandingUri_" + Convert.ToString(HttpContext.Current.Session["LMSuserid"]).Trim()] != null)
                             {
-                                Response.Redirect(Convert.ToString(HttpContext.Current.Cache["LastLandingUri_" + Convert.ToString(HttpContext.Current.Session["userid"]).Trim()]), true);
+                                Response.Redirect(Convert.ToString(HttpContext.Current.Cache["LastLandingUri_" + Convert.ToString(HttpContext.Current.Session["LMSuserid"]).Trim()]), true);
                             }
                             //Code end here 
 

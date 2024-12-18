@@ -62,7 +62,7 @@ namespace LMS.Areas.LMS.Controllers
                     Is_PageLoad = "Ispageload";
 
                 ViewData["ModelData"] = model;
-                string Userid = Convert.ToString(Session["userid"]);
+                string Userid = Convert.ToString(Session["LMSuserid"]);
 
                 String con = System.Configuration.ConfigurationSettings.AppSettings["DBConnectionDefault"];
                 SqlCommand sqlcmd = new SqlCommand();
@@ -88,7 +88,7 @@ namespace LMS.Areas.LMS.Controllers
         public IEnumerable LGetPointsDetailsList(string Is_PageLoad)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ERP_ConnectionString"].ConnectionString;
-            string Userid = Convert.ToString(Session["userid"]);
+            string Userid = Convert.ToString(Session["LMSuserid"]);
             if (Is_PageLoad != "Ispageload")
             {
                 LMSMasterDataContext dc = new LMSMasterDataContext(connectionString);
@@ -110,7 +110,7 @@ namespace LMS.Areas.LMS.Controllers
         public JsonResult SavePoint(string Section, string id, string Points, string ActiveStatus)
         {
             int output = 0;
-            string Userid = Convert.ToString(Session["userid"]);
+            string Userid = Convert.ToString(Session["LMSuserid"]);
             output = obj.SavePoint(Section, Userid, id, Points, ActiveStatus);
             return Json(output, JsonRequestBehavior.AllowGet);
         }

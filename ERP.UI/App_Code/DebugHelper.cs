@@ -41,7 +41,7 @@ public class DebugHelper
             }
         }
         PreparedQueryToSp = PreparedQueryToSp.Substring(0, PreparedQueryToSp.Length - 1);
-        oDbEngine.InsurtFieldValue("Config_DebugHelper", "DebugHelper_Type,DebugHelper_QString,DebugHelper_SegmentID,DebugHelper_ExchangeSegmentID,DebugHelper_UserID,DebugHelper_CreateDateTime", "'SP','" + PreparedQueryToSp + "'," + SegmentID + "," + ExchangeSegmentID + "," + HttpContext.Current.Session["UserID"].ToString() + ",'" + oDbEngine.GetDate() + "'");
+        oDbEngine.InsurtFieldValue("Config_DebugHelper", "DebugHelper_Type,DebugHelper_QString,DebugHelper_SegmentID,DebugHelper_ExchangeSegmentID,DebugHelper_UserID,DebugHelper_CreateDateTime", "'SP','" + PreparedQueryToSp + "'," + SegmentID + "," + ExchangeSegmentID + "," + HttpContext.Current.Session["LMSuserid"].ToString() + ",'" + oDbEngine.GetDate() + "'");
     }
     public void GetPrepareQueryToRun(string TableName, string FieldName, string WhereCluase, string OrderBy,string GroupBy)
     {
