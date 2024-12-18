@@ -1,0 +1,101 @@
+﻿
+@Html.DevExpress().GridLookup(
+    settings =>
+    {
+        settings.Properties.Caption = "";
+        settings.Properties.CaptionCellStyle.CssClass = "hide";
+        settings.Name = "DepartmentGridLookup";
+        settings.KeyFieldName = "COST_ID";
+        settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+        settings.Properties.ClientInstanceName = "DepartmentGridLookup";
+        settings.GridViewClientSideEvents.SelectionChanged = "DepartmentSelectionChanged";
+        settings.Properties.ClientSideEvents.ValueChanged = "DepartmentSelectionChanged";
+        //settings.GridViewClientSideEvents.BeginCallback = "TopicStartCallback";
+
+        //settings.Properties.ClientSideEvents.ValueChanged = "TopicLookupValChange";
+        settings.CommandColumn.Width = System.Web.UI.WebControls.Unit.Percentage(15);
+        settings.GridViewProperties.SettingsPager.EnableAdaptivity = true;
+        settings.Properties.SelectionMode = GridLookupSelectionMode.Multiple;
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowSelectCheckbox = true;
+        settings.CommandColumn.ShowClearFilterButton = true;
+        settings.CommandColumn.SelectAllCheckboxMode = GridViewSelectAllCheckBoxMode.None;
+
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "COST_DESCRIPTION";
+            column.Caption = "Department";
+            column.Width = System.Web.UI.WebControls.Unit.Percentage(85);
+        });
+
+        settings.Properties.Caption = " ";
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.SelectionMode = DevExpress.Web.GridLookupSelectionMode.Multiple;
+
+
+        settings.Properties.MultiTextSeparator = ", ";
+
+        settings.Properties.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+
+        settings.GridViewProperties.CallbackRouteValues = new { Controller = "CourseEngagementReport", Action = "GetDepartment" };
+
+        settings.GridViewProperties.Settings.ShowFilterRow = true;
+        settings.GridViewProperties.Settings.ShowStatusBar = GridViewStatusBarMode.Visible;
+        settings.GridViewProperties.SetStatusBarTemplateContent(c =>
+        {
+
+            ViewContext.Writer.Write("<div style=\"padding: 2px 8px 2px 0; float: right\">");
+            Html.DevExpress().Button(btnSettings =>
+            {
+                btnSettings.Name = "btnDeSelectAll";
+                btnSettings.UseSubmitBehavior = false;
+                btnSettings.Text = "DeSelect All";
+                btnSettings.ClientSideEvents.Click = "DeSelectAllDepartmentGridLookup";
+
+            }).Render();
+            ViewContext.Writer.Write("</div>");
+            ViewContext.Writer.Write("<div style=\"padding: 2px 8px 2px 0; float: right\">");
+            Html.DevExpress().Button(btnSettings =>
+            {
+                btnSettings.Name = "btnSelectAll";
+                btnSettings.UseSubmitBehavior = false;
+                btnSettings.Text = "Select All";
+                btnSettings.ClientSideEvents.Click = "SelectAllDepartmentGridLookupTopic";
+
+            }).Render();
+            ViewContext.Writer.Write("</div>");
+        });
+
+        settings.DataBound = (sender, e) =>
+        {
+            var gridLookup = (MVCxGridLookup)sender;
+            gridLookup.GridView.Width = 310;
+        };
+
+        //settings.PreRender = (s, e) =>
+        //{
+        //    if (ViewBag.QUESTIONS_TOPICIDS != null)
+        //    {
+
+        //        foreach (var item in ViewBag.QUESTIONS_TOPICIDS)
+        //        {
+        //            MVCxGridLookup l = s as MVCxGridLookup;
+        //            l.GridView.Selection.SelectRowByKey(item.TOPICID);
+
+        //        }
+        //    }
+        //    if (ViewBag.CONTENT_TOPICIDS != null)
+        //    {
+
+        //        MVCxGridLookup l = s as MVCxGridLookup;
+        //        l.GridView.Selection.SelectRowByKey(ViewBag.CONTENT_TOPICIDS);
+        //        //l.GridView.Enabled = false;
+        //    }
+
+
+        //};
+
+    }).BindList(Model).GetHtml()
+
+
