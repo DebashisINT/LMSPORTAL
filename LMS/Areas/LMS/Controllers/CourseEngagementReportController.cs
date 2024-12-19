@@ -47,7 +47,7 @@ namespace LMS.Areas.LMS.Controllers
         public IEnumerable GetReport(string is_pageload)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["ERP_ConnectionString"].ConnectionString;
-            string Userid = Convert.ToString(Session["userid"]);
+            string Userid = Convert.ToString(Session["LMSuserid"]);
 
             if (is_pageload != "0")
             {
@@ -150,7 +150,7 @@ namespace LMS.Areas.LMS.Controllers
                 x.ColumnType = MVCxGridViewColumnType.TextBox;
                 //x.Width = 200;
                 x.Width = System.Web.UI.WebControls.Unit.Percentage(15);
-
+                x.PropertiesEdit.DisplayFormatString = "0.00";
             });
             settings.Columns.Add(x =>
             {
@@ -161,7 +161,7 @@ namespace LMS.Areas.LMS.Controllers
                 x.ColumnType = MVCxGridViewColumnType.TextBox;
                 //x.Width = 120;
                 x.Width = System.Web.UI.WebControls.Unit.Percentage(20);
-
+                x.PropertiesEdit.DisplayFormatString = "0.00";
             });
 
             settings.SettingsExport.PaperKind = System.Drawing.Printing.PaperKind.A4;
@@ -251,7 +251,7 @@ namespace LMS.Areas.LMS.Controllers
 
         public void CreateTable(string Topic_Id, string Department_Id, string _Top, string _Bottom, string is_pageload)
         {
-            string Userid = Convert.ToString(Session["userid"]);
+            string Userid = Convert.ToString(Session["LMSuserid"]);
             DataTable dt = new DataTable();
             String con = System.Configuration.ConfigurationSettings.AppSettings["DBConnectionDefault"];
             SqlCommand sqlcmd = new SqlCommand();
