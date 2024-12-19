@@ -1346,11 +1346,11 @@
 }
 
 .tabs-style-shape nav li a:hover span {
-    background-color: #cc2e5d;
+    background-color: #eaac1b;
 }
 
 .tabs-style-shape nav li a:hover svg {
-    fill: #cc2e5d;
+    fill: #eaac1b;
 }
 
     .tabs-style-shape nav li a:active, .tabs-style-shape nav li a:focus, .tabs-style-shape nav li a:hover {
