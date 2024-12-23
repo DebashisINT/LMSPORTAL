@@ -316,8 +316,18 @@ namespace LMS.Areas.LMS.Controllers
                         dataobj.user_name = Convert.ToString(row["user_name"]);
                         dataobj.COST_ID = Convert.ToInt32(row["COST_ID"]);
                         dataobj.cost_description = Convert.ToString(row["cost_description"]);
-                        dataobj.CREATEDON = Convert.ToDateTime(row["CREATEDON"]);
                         
+
+
+                        if (Convert.ToString(row["CREATEDON"]) == "1/1/1900 12:00:00 AM")
+                        {
+
+                        }
+                        else
+                        {
+                            dataobj.CREATEDON = Convert.ToDateTime(row["CREATEDON"]);
+                        }
+
                         productdata.Add(dataobj);
 
                     }
@@ -373,7 +383,15 @@ namespace LMS.Areas.LMS.Controllers
                         dataobj.COST_ID = Convert.ToInt32(row["COST_ID"]);
                         dataobj.cost_description = Convert.ToString(row["cost_description"]);
                         dataobj.CREATEDON = Convert.ToDateTime(row["CREATEDON"]);
-                        dataobj.CONTENTLASTVIEW = Convert.ToDateTime(row["CONTENTLASTVIEW"]);
+                        if(Convert.ToString(row["CONTENTLASTVIEW"])== "1/1/1900 12:00:00 AM")
+                        {
+
+                        }
+                        else
+                        {
+                            dataobj.CONTENTLASTVIEW = Convert.ToDateTime(row["CONTENTLASTVIEW"]);
+                        }
+                        
                         
                         productdata.Add(dataobj);
 
