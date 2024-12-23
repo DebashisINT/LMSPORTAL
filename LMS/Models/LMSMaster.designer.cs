@@ -2011,6 +2011,8 @@ namespace LMS.Models
 		
 		private System.Nullable<long> _TOPICID;
 		
+		private System.Nullable<long> _User_Id;
+		
 		public LMS_COURSEENGAGEMENTLIST()
 		{
 		}
@@ -2203,6 +2205,22 @@ namespace LMS.Models
 				if ((this._TOPICID != value))
 				{
 					this._TOPICID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Id", DbType="BigInt")]
+		public System.Nullable<long> User_Id
+		{
+			get
+			{
+				return this._User_Id;
+			}
+			set
+			{
+				if ((this._User_Id != value))
+				{
+					this._User_Id = value;
 				}
 			}
 		}
