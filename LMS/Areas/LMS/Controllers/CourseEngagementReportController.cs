@@ -68,23 +68,26 @@ namespace LMS.Areas.LMS.Controllers
             }
         }
 
-        public ActionResult ExporSummaryList(int type)
+        public ActionResult ExporSummaryList(int type,string is_pageload)
         {
             switch (type)
             {
                 case 1:
-                    return GridViewExtension.ExportToPdf(GetGridViewSettings(), GetReport("1"));
+                    return GridViewExtension.ExportToXlsx(GetGridViewSettings(), GetReport(is_pageload));
                 //break;
-                case 2:
-                    return GridViewExtension.ExportToXlsx(GetGridViewSettings(), GetReport("1"));
-                //break;
-                case 3:
-                    return GridViewExtension.ExportToXls(GetGridViewSettings(), GetReport("1"));
-                case 4:
-                    return GridViewExtension.ExportToRtf(GetGridViewSettings(), GetReport("1"));
-                case 5:
-                    return GridViewExtension.ExportToCsv(GetGridViewSettings(), GetReport("1"));
-                //break;
+                //case 1:
+                //    return GridViewExtension.ExportToPdf(GetGridViewSettings(), GetReport("1"));
+                ////break;
+                //case 2:
+                //    return GridViewExtension.ExportToXlsx(GetGridViewSettings(), GetReport("1"));
+                ////break;
+                //case 3:
+                //    return GridViewExtension.ExportToXls(GetGridViewSettings(), GetReport("1"));
+                //case 4:
+                //    return GridViewExtension.ExportToRtf(GetGridViewSettings(), GetReport("1"));
+                //case 5:
+                //    return GridViewExtension.ExportToCsv(GetGridViewSettings(), GetReport("1"));
+                ////break;
 
                 default:
                     break;
@@ -109,7 +112,7 @@ namespace LMS.Areas.LMS.Controllers
                 x.VisibleIndex = 1;
                 x.ColumnType = MVCxGridViewColumnType.TextBox;
                 //x.Width = 200;
-                x.Width = System.Web.UI.WebControls.Unit.Percentage(15);
+                x.Width = System.Web.UI.WebControls.Unit.Percentage(5);
 
             });
 
@@ -120,7 +123,7 @@ namespace LMS.Areas.LMS.Controllers
                 x.VisibleIndex = 2;
                 x.ColumnType = MVCxGridViewColumnType.TextBox;
                 //x.Width = 200;
-                x.Width = System.Web.UI.WebControls.Unit.Percentage(20);
+                x.Width = System.Web.UI.WebControls.Unit.Percentage(25);
             });
             settings.Columns.Add(x =>
             {
@@ -129,7 +132,7 @@ namespace LMS.Areas.LMS.Controllers
                 x.VisibleIndex = 3;
                 x.ColumnType = MVCxGridViewColumnType.TextBox;
                 //x.Width = 200;
-                x.Width = System.Web.UI.WebControls.Unit.Percentage(15);
+                x.Width = System.Web.UI.WebControls.Unit.Percentage(25);
 
             });
 
@@ -140,7 +143,7 @@ namespace LMS.Areas.LMS.Controllers
                 x.VisibleIndex = 4;
                 x.ColumnType = MVCxGridViewColumnType.TextBox;
                 //x.Width = 180;
-                x.Width = System.Web.UI.WebControls.Unit.Percentage(20);
+                x.Width = System.Web.UI.WebControls.Unit.Percentage(15);
             });
             settings.Columns.Add(x =>
             {
@@ -160,7 +163,7 @@ namespace LMS.Areas.LMS.Controllers
 
                 x.ColumnType = MVCxGridViewColumnType.TextBox;
                 //x.Width = 120;
-                x.Width = System.Web.UI.WebControls.Unit.Percentage(20);
+                x.Width = System.Web.UI.WebControls.Unit.Percentage(15);
                 x.PropertiesEdit.DisplayFormatString = "0.00";
             });
 
@@ -317,7 +320,10 @@ namespace LMS.Areas.LMS.Controllers
                         productdata.Add(dataobj);
 
                     }
+
                 }
+                TempData["ExportTotalEnrollmentsListing"] = productdata;
+                TempData.Keep();
                 return PartialView("PartialTotalEnrollmentsListing", productdata);
             }
             catch
@@ -371,6 +377,8 @@ namespace LMS.Areas.LMS.Controllers
 
                     }
                 }
+                TempData["ExportCompletionRateListing"] = productdata;
+                TempData.Keep();
                 return PartialView("PartialCompletionRateListing", productdata);
             }
             catch
@@ -424,6 +432,8 @@ namespace LMS.Areas.LMS.Controllers
 
                     }
                 }
+                TempData["ExportAverageTimeSpentListing"] = productdata;
+                TempData.Keep();
                 return PartialView("PartialAverageTimeSpentListing", productdata);
             }
             catch
@@ -432,5 +442,212 @@ namespace LMS.Areas.LMS.Controllers
             }
         }
 
+
+        
+        public ActionResult ExportTotalEnrollmentsList(int type)
+        {
+            if (TempData["ExportTotalEnrollmentsListing"] != null)
+            {
+                switch (type)
+                {
+                    case 1:
+                        return GridViewExtension.ExportToXlsx(GetGridViewTotalEnrollmentsListSettings(), TempData["ExportTotalEnrollmentsListing"]);
+                    default:
+                        break;
+                }
+            }
+            return null;
+        }
+        private GridViewSettings GetGridViewTotalEnrollmentsListSettings()
+        {
+
+
+            var settings = new GridViewSettings();
+            settings.Name = "gridTotalEnrollmentsList";
+            settings.SettingsExport.ExportedRowType = GridViewExportedRowType.All;
+            settings.SettingsExport.FileName = "EmployeeList";
+
+            settings.Columns.Add(x =>
+            {
+                x.FieldName = "EMPNAME";
+                x.Caption = "Employee name";
+                x.VisibleIndex = 1;
+                x.ColumnType = MVCxGridViewColumnType.TextBox;
+                x.Width = System.Web.UI.WebControls.Unit.Percentage(25);
+
+            });
+            settings.Columns.Add(x =>
+            {
+                x.FieldName = "cost_description";
+                x.Caption = "Department";
+                x.VisibleIndex = 2;
+                x.ColumnType = MVCxGridViewColumnType.TextBox;
+                x.Width = System.Web.UI.WebControls.Unit.Percentage(25);
+
+            });
+            settings.Columns.Add(x =>
+            {
+                x.FieldName = "CONTENTTITLE";
+                x.Caption = "Course";
+                x.VisibleIndex = 3;
+                x.ColumnType = MVCxGridViewColumnType.TextBox;
+                x.Width = System.Web.UI.WebControls.Unit.Percentage(25);
+
+            });            
+            settings.Columns.Add(x =>
+            {
+                x.FieldName = "CREATEDON";
+                x.Caption = "Assign Date";
+                x.VisibleIndex = 5;               
+                x.Width = System.Web.UI.WebControls.Unit.Percentage(25);
+                x.ColumnType = MVCxGridViewColumnType.DateEdit;
+                x.PropertiesEdit.DisplayFormatString = "dd-MM-yyyy";
+                (x.PropertiesEdit as DateEditProperties).EditFormatString = "dd-MM-yyyy";
+
+            });
+            settings.SettingsExport.PaperKind = System.Drawing.Printing.PaperKind.A4;
+            settings.SettingsExport.LeftMargin = 20;
+            settings.SettingsExport.RightMargin = 20;
+            settings.SettingsExport.TopMargin = 20;
+            settings.SettingsExport.BottomMargin = 20;
+
+            return settings;
+        }
+        public ActionResult ExportCompletionRateList(int type)
+        {
+            if (TempData["ExportCompletionRateListing"] != null)
+            {
+                switch (type)
+                {
+                    case 1:
+                        return GridViewExtension.ExportToXlsx(GetGridViewCompletionRateSettings(), TempData["ExportCompletionRateListing"]);
+                    default:
+                        break;
+                }
+            }
+
+            return null;
+        }
+        private GridViewSettings GetGridViewCompletionRateSettings()
+        {
+            var settings = new GridViewSettings();
+            settings.Name = "gridCompletionRateList";
+            settings.SettingsExport.ExportedRowType = GridViewExportedRowType.All;
+            settings.SettingsExport.FileName = "EmployeeList";
+
+            settings.Columns.Add(x =>
+            {
+                x.FieldName = "EMPNAME";
+                x.Caption = "Employee name";
+                x.VisibleIndex = 1;
+                x.ColumnType = MVCxGridViewColumnType.TextBox;
+                x.Width = System.Web.UI.WebControls.Unit.Percentage(25);
+
+            });
+            settings.Columns.Add(x =>
+            {
+                x.FieldName = "cost_description";
+                x.Caption = "Department";
+                x.VisibleIndex = 2;
+                x.ColumnType = MVCxGridViewColumnType.TextBox;
+                x.Width = System.Web.UI.WebControls.Unit.Percentage(25);
+
+            });
+            settings.Columns.Add(x =>
+            {
+                x.FieldName = "CONTENTTITLE";
+                x.Caption = "Course";
+                x.VisibleIndex = 3;
+                x.ColumnType = MVCxGridViewColumnType.TextBox;
+                x.Width = System.Web.UI.WebControls.Unit.Percentage(25);
+
+            });            
+            settings.Columns.Add(x =>
+            {
+                x.FieldName = "CONTENTLASTVIEW";
+                x.Caption = "Completion Date";
+                x.VisibleIndex = 5;              
+                x.Width = System.Web.UI.WebControls.Unit.Percentage(25);
+                x.ColumnType = MVCxGridViewColumnType.DateEdit;
+                x.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Left;
+                x.HeaderStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Left;
+                x.PropertiesEdit.DisplayFormatString = "dd-MM-yyyy";
+                (x.PropertiesEdit as DateEditProperties).EditFormatString = "dd-MM-yyyy";
+
+            });
+            settings.SettingsExport.PaperKind = System.Drawing.Printing.PaperKind.A4;
+            settings.SettingsExport.LeftMargin = 20;
+            settings.SettingsExport.RightMargin = 20;
+            settings.SettingsExport.TopMargin = 20;
+            settings.SettingsExport.BottomMargin = 20;
+
+            return settings;
+        }
+        public ActionResult ExportAverageTimeSpentList(int type)
+        {
+            if (TempData["ExportAverageTimeSpentListing"] != null)
+            {
+                switch (type)
+                {
+                    case 1:
+                        return GridViewExtension.ExportToXlsx(GetGridViewAverageTimeSettings(), TempData["ExportAverageTimeSpentListing"]);
+                    default:
+                        break;
+                }
+            }
+
+            return null;
+        }
+        private GridViewSettings GetGridViewAverageTimeSettings()
+        {
+            var settings = new GridViewSettings();
+            settings.Name = "gridAverageTimeList";
+            settings.SettingsExport.ExportedRowType = GridViewExportedRowType.All;
+            settings.SettingsExport.FileName = "EmployeeList";
+
+            settings.Columns.Add(x =>
+            {
+                x.FieldName = "EMPNAME";
+                x.Caption = "Employee name";
+                x.VisibleIndex = 1;
+                x.ColumnType = MVCxGridViewColumnType.TextBox;
+                x.Width = System.Web.UI.WebControls.Unit.Percentage(25);
+
+            });
+            settings.Columns.Add(x =>
+            {
+                x.FieldName = "cost_description";
+                x.Caption = "Department";
+                x.VisibleIndex = 2;
+                x.ColumnType = MVCxGridViewColumnType.TextBox;
+                x.Width = System.Web.UI.WebControls.Unit.Percentage(25);
+
+            });
+            settings.Columns.Add(x =>
+            {
+                x.FieldName = "CONTENTTITLE";
+                x.Caption = "Course";
+                x.VisibleIndex = 3;
+                x.ColumnType = MVCxGridViewColumnType.TextBox;
+                x.Width = System.Web.UI.WebControls.Unit.Percentage(25);
+
+            });
+            settings.Columns.Add(x =>
+            {
+                x.FieldName = "TimeSpent";
+                x.Caption = "Time Spent (Hrs)";
+                x.VisibleIndex = 4;
+                x.ColumnType = MVCxGridViewColumnType.TextBox;
+                x.Width = System.Web.UI.WebControls.Unit.Percentage(25);
+                x.PropertiesEdit.DisplayFormatString = "0.00";
+            });
+            settings.SettingsExport.PaperKind = System.Drawing.Printing.PaperKind.A4;
+            settings.SettingsExport.LeftMargin = 20;
+            settings.SettingsExport.RightMargin = 20;
+            settings.SettingsExport.TopMargin = 20;
+            settings.SettingsExport.BottomMargin = 20;
+
+            return settings;
+        }
     }
 }

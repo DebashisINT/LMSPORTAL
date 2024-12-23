@@ -22,8 +22,10 @@
     var Department_Id = "";
     var is_pageload = "0";
     $(function () {
-       // gridList.Refresh();
-        $('#ddlAppIds').on('change', function () {
+        // gridList.Refresh();
+
+
+        @*$('#ddlAppIds').on('change', function () {
             if ($("#ddlAppIds option:selected").index() > 0) {
                 var selectedValue = $(this).val();
                 var desg = $("#drpdesignation").val();
@@ -32,7 +34,20 @@
                 var url = '@Url.Action("ExporSummaryList", "CourseEngagementReport", new { type = "_type_" })'
                 window.location.href = url.replace("_type_", selectedValue);
             }
+        });*@
+
+        $('#ddlAppIds').on('click', function () {
+            var selectedValue = "1"; // XLSX export value
+            var url = '@Url.Action("ExporSummaryList", "CourseEngagementReport", new { type = "_type_" })';
+            //window.location.href = url.replace("_type_", selectedValue);
+
+           
+            url = url.replace("_type_", selectedValue);
+            url = url + "&is_pageload=" + is_pageload;
+            window.location.href = url;
+
         });
+
     })
 
     function TopicSelectionChanged(s, e) {
@@ -132,7 +147,7 @@
         $("#txtTop").val("0");
     }
     function onTopChange() {
-        
+
         $("#txtBottom").val("0");
     }
     var _TOPICID = "0";
@@ -147,7 +162,7 @@
     }
 
 
-    
+
     function OpenCompletionRate(ID) {
         _TOPICID = ID;
         gridCompletionRateList.Refresh();
@@ -859,6 +874,37 @@
     }
 </style>
 
+<script>
+    $(function () {
+        $('#ddlAppTotalEnrollments').on('click', function () {
+            var selectedValue = "1"; // XLSX export value
+            var url = '@Url.Action("ExportTotalEnrollmentsList", "CourseEngagementReport", new { type = "_type_" })';
+            window.location.href = url.replace("_type_", selectedValue);
+
+           
+        });
+        $('#ddlAppCompletionRates').on('click', function () {
+            var selectedValue = "1"; // XLSX export value
+            var url = '@Url.Action("ExportCompletionRateList", "CourseEngagementReport", new { type = "_type_" })';
+            window.location.href = url.replace("_type_", selectedValue);
+
+            
+        });
+        $('#ddlAppAverageTime').on('click', function () {
+        var selectedValue = "1"; // XLSX export value
+        var url = '@Url.Action("ExportAverageTimeSpentList", "CourseEngagementReport", new { type = "_type_" })';
+            window.location.href = url.replace("_type_", selectedValue);
+
+            
+        });
+        
+
+
+
+
+    });
+</script>
+
 <link href="~/Content/media.css" rel="stylesheet" />
 <div class="breadCumb">
     <span>Course Engagement Insights</span>
@@ -900,14 +946,21 @@
                     <div class="buttons-alignment mt-3 mb-3 px-4">
                         <div class="add-show-btns">
                             <button type="button" id="btnshow" class="btn show-btn" onclick="GetData();" tabindex=4><span class="btn-icon"><i class="fa fa-eye" aria-hidden="true"></i></span> Show</button>
-                            <select name="ddlAppIds" class="btn btn-sm btn-export" id="ddlAppIds">
-                                <option value="0">Export to</option>
-                                <option value="1">PDF</option>
-                                <option value="2">XLSX</option>
-                                <option value="3">XLS</option>
-                                <option value="4">RTF</option>
-                                <option value="5">CSV</option>
-                            </select>
+                            @if (ViewBag.CanExport)
+                            {
+                                <!--<select name="ddlAppIds" class="btn btn-sm btn-export" id="ddlAppIds">
+            <option value="0">Export to</option>-->
+                                @*<option value="1">PDF</option>*@
+                                <!--<option value="2">XLSX</option>-->
+                                @*<option value="3">XLS</option>
+            <option value="4">RTF</option>
+            <option value="5">CSV</option>*@
+                                <!--</select>-->
+                                <button type="button" name="ddlAppIds" id="ddlAppIds" class="btn btn-sm btn-export">
+                                    <span class="btn-icon"><img src="/assests/images/xlsx.png" /></span>&nbsp; Export to XLSX
+                                </button>
+
+                            }
                         </div>
                     </div>
                     <div class="clear"></div>
@@ -929,7 +982,7 @@
 </div>
 
 <div id="TotalEnrollmentsListingModal" class="modal pmsModal  fade" data-backdrop="static" role="dialog">
-    <div class="modal-dialog" style="width: 700px;">
+    <div class="modal-dialog" style="width: 1400px;">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
@@ -938,6 +991,21 @@
             </div>
             <div class="modal-body">
                 <div id="divModalBody">
+                    <div class="row">
+                        <div class="col-md-12 buttons-alignment" style="padding-top: 0;margin-bottom: 15px;">
+                            <div class="add-show-btns">
+                                @if (ViewBag.CanExport)
+                                {
+                                    <button type="button" name="ddlAppTotalEnrollments" id="ddlAppTotalEnrollments" class="btn btn-sm btn-export">
+                                        <span class="btn-icon"><img src="/assests/images/xlsx.png" /></span>&nbsp; Export to XLSX
+                                    </button>
+                                }
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="clearfix"></div>
                     <div class="scrooler">
                         <div id="refreshgrid">
                             @{
@@ -952,7 +1020,7 @@
 </div>
 
 <div id="CompletionRateModal" class="modal pmsModal  fade" data-backdrop="static" role="dialog">
-    <div class="modal-dialog" style="width: 700px;">
+    <div class="modal-dialog" style="width: 1400px;">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
@@ -961,6 +1029,21 @@
             </div>
             <div class="modal-body">
                 <div id="divModalBody">
+                    <div class="row">
+                        <div class="col-md-12 buttons-alignment" style="padding-top: 0;margin-bottom: 15px;">
+                            <div class="add-show-btns">
+                                @if (ViewBag.CanExport)
+                                {
+                                    <button type="button" name="ddlAppCompletionRates" id="ddlAppCompletionRates" class="btn btn-sm btn-export">
+                                        <span class="btn-icon"><img src="/assests/images/xlsx.png" /></span>&nbsp; Export to XLSX
+                                    </button>
+                                }
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="clearfix"></div>
                     <div class="scrooler">
                         <div id="refreshgrid">
                             @{
@@ -976,7 +1059,7 @@
 
 
 <div id="AverageTimeListingModal" class="modal pmsModal  fade" data-backdrop="static" role="dialog">
-    <div class="modal-dialog" style="width: 700px;">
+    <div class="modal-dialog" style="width: 1400px;">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
@@ -985,6 +1068,19 @@
             </div>
             <div class="modal-body">
                 <div id="divModalBody">
+                    <div class="row">
+                        <div class="col-md-12 buttons-alignment" style="padding-top: 0;margin-bottom: 15px;">
+                            <div class="add-show-btns">
+                                @if (ViewBag.CanExport)
+                                {
+                                    <button type="button" name="ddlAppAverageTime" id="ddlAppAverageTime" class="btn btn-sm btn-export">
+                                        <span class="btn-icon"><img src="/assests/images/xlsx.png" /></span>&nbsp; Export to XLSX
+                                    </button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
                     <div class="scrooler">
                         <div id="refreshgrid">
                             @{
