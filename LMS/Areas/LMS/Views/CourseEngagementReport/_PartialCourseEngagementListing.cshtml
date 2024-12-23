@@ -65,7 +65,7 @@
         x.HeaderStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Right;
         x.SetDataItemTemplateContent(c =>
         {
-            ViewContext.Writer.Write("<a style='cursor:pointer' onclick=\"OpenTotalEnrollments('" + Convert.ToString(DataBinder.Eval(c.DataItem, "TOPICID")) + "')\">" + Convert.ToString(DataBinder.Eval(c.DataItem, "TotalEnrollments")) + "</a>");
+            ViewContext.Writer.Write("<a style='cursor:pointer' onclick=\"OpenTotalEnrollments('" + Convert.ToString(DataBinder.Eval(c.DataItem, "TOPICID")) + "')\"><B>" + Convert.ToString(DataBinder.Eval(c.DataItem, "TotalEnrollments")) + "</B></a>");
         });
     });
     settings.Columns.Add(x =>
@@ -80,7 +80,7 @@
         x.HeaderStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Right;
         x.SetDataItemTemplateContent(c =>
         {
-            ViewContext.Writer.Write("<a style='cursor:pointer' onclick=\"OpenCompletionRate('" + Convert.ToString(DataBinder.Eval(c.DataItem, "TOPICID")) + "')\">" + Convert.ToString(DataBinder.Eval(c.DataItem, "CompletionRate")) + "</a>");
+            ViewContext.Writer.Write("<a style='cursor:pointer' onclick=\"OpenCompletionRate('" + Convert.ToString(DataBinder.Eval(c.DataItem, "TOPICID")) + "')\"><B>" + Convert.ToString(DataBinder.Eval(c.DataItem, "CompletionRate")) + "</B></a>");
         });
 
     });
@@ -97,7 +97,7 @@
         x.HeaderStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Right;
         x.SetDataItemTemplateContent(c =>
         {
-            ViewContext.Writer.Write("<a style='cursor:pointer' onclick=\"OpenAverageTimeSpent('" + Convert.ToString(DataBinder.Eval(c.DataItem, "TOPICID")) + "')\">" + Convert.ToString(DataBinder.Eval(c.DataItem, "AverageTimeSpent")) + "</a>");
+            ViewContext.Writer.Write("<a style='cursor:pointer' onclick=\"OpenAverageTimeSpent('" + Convert.ToString(DataBinder.Eval(c.DataItem, "TOPICID")) + "')\"><B>" + Convert.ToString(DataBinder.Eval(c.DataItem, "AverageTimeSpent")) + "</B></a>");
         });
 
     });
