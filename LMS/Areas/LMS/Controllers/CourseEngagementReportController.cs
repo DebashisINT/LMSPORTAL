@@ -292,6 +292,7 @@ namespace LMS.Areas.LMS.Controllers
                 sqlcmd = new SqlCommand("PRC_LMS_COURSEENGAGEMENT", sqlcon);
                 sqlcmd.Parameters.Add("@ACTION", "GetTotalEnrollmentsList");
                 sqlcmd.Parameters.Add("@TOPICID", model.TOPICID);
+                sqlcmd.Parameters.Add("@USER_ID", model.user_id);
                 sqlcmd.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(sqlcmd);
                 da.Fill(dt);
@@ -347,6 +348,7 @@ namespace LMS.Areas.LMS.Controllers
                 sqlcmd = new SqlCommand("PRC_LMS_COURSEENGAGEMENT", sqlcon);
                 sqlcmd.Parameters.Add("@ACTION", "GetCompletionRateList");
                 sqlcmd.Parameters.Add("@TOPICID", model.TOPICID);
+                sqlcmd.Parameters.Add("@USER_ID", model.user_id);
                 sqlcmd.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(sqlcmd);
                 da.Fill(dt);
@@ -402,6 +404,7 @@ namespace LMS.Areas.LMS.Controllers
                 sqlcmd = new SqlCommand("PRC_LMS_COURSEENGAGEMENT", sqlcon);
                 sqlcmd.Parameters.Add("@ACTION", "GetAverageTimeSpentList");
                 sqlcmd.Parameters.Add("@TOPICID", model.TOPICID);
+                sqlcmd.Parameters.Add("@USER_ID", model.user_id);
                 sqlcmd.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(sqlcmd);
                 da.Fill(dt);

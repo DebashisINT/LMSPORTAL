@@ -151,37 +151,44 @@
         $("#txtBottom").val("0");
     }
     var _TOPICID = "0";
-    function OpenTotalEnrollments(ID) {
+    var _user_id = "0";
+    function OpenTotalEnrollments(ID, USERID) {
         _TOPICID = ID;
+        _user_id = USERID;
         gridTotalEnrollmentsList.Refresh();
         gridTotalEnrollmentsList.Refresh();
         $("#TotalEnrollmentsListingModal").modal('show');
     }
     function OnStartCallbackTotalEnrollments(s, e) {
         e.customArgs["TOPICID"] = _TOPICID;
+        e.customArgs["user_id"] = _user_id;
     }
 
 
 
-    function OpenCompletionRate(ID) {
+    function OpenCompletionRate(ID, USERID) {
         _TOPICID = ID;
+        _user_id = USERID;
         gridCompletionRateList.Refresh();
         gridCompletionRateList.Refresh();
         $("#CompletionRateModal").modal('show');
     }
     function OnStartCallbackCompletionRate(s, e) {
         e.customArgs["TOPICID"] = _TOPICID;
+        e.customArgs["user_id"] = _user_id;
     }
 
 
-    function OpenAverageTimeSpent(ID) {
+    function OpenAverageTimeSpent(ID, USERID) {
         _TOPICID = ID;
+        _user_id = USERID;
         gridAverageTimeList.Refresh();
         gridAverageTimeList.Refresh();
         $("#AverageTimeListingModal").modal('show');
     }
     function OnStartCallbackAverageTime(s, e) {
         e.customArgs["TOPICID"] = _TOPICID;
+        e.customArgs["user_id"] = _user_id;
     }
 
 

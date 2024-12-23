@@ -10,6 +10,8 @@ namespace LMS.Models
         public string is_pageload { get; set; }
 
         public Int64 TOPICID { get; set; }
+
+        public Int64 user_id { get; set; }
     }
 
     public class GetUserTopicList
