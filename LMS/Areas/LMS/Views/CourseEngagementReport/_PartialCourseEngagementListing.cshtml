@@ -24,24 +24,14 @@
     settings.SettingsPager.Position = System.Web.UI.WebControls.PagerPosition.Bottom;
     settings.Settings.ShowFilterRowMenu = true;
     settings.ClientSideEvents.BeginCallback = "OnStartCallback";
-    //settings.Columns.Add(x =>
-    //{
-    //    x.FieldName = "SEQ";
-    //    x.Caption = "SL No.";
-    //    x.VisibleIndex = 1;
-    //    x.ColumnType = MVCxGridViewColumnType.TextBox;
-    //    //x.Width = 70;
-    //    x.Width = System.Web.UI.WebControls.Unit.Percentage(5);
 
-    //});
     settings.Columns.Add(x =>
     {
         x.FieldName = "COURSERank";
         x.Caption = "Rank";
         x.VisibleIndex = 1;
         x.ColumnType = MVCxGridViewColumnType.TextBox;
-        //x.Width = 200;
-        x.Width = System.Web.UI.WebControls.Unit.Percentage(15);
+        x.Width = System.Web.UI.WebControls.Unit.Percentage(5);
 
     });
 
@@ -51,8 +41,7 @@
         x.Caption = "Course Name";
         x.VisibleIndex = 2;
         x.ColumnType = MVCxGridViewColumnType.TextBox;
-        //x.Width = 200;
-        x.Width = System.Web.UI.WebControls.Unit.Percentage(20);
+        x.Width = System.Web.UI.WebControls.Unit.Percentage(25);
     });
     settings.Columns.Add(x =>
     {
@@ -61,7 +50,7 @@
         x.VisibleIndex = 3;
         x.ColumnType = MVCxGridViewColumnType.TextBox;
         //x.Width = 200;
-        x.Width = System.Web.UI.WebControls.Unit.Percentage(15);
+        x.Width = System.Web.UI.WebControls.Unit.Percentage(25);
 
     });
 
@@ -71,8 +60,9 @@
         x.Caption = "Total Enrollments";
         x.VisibleIndex = 4;
         x.ColumnType = MVCxGridViewColumnType.TextBox;
-        x.Width = System.Web.UI.WebControls.Unit.Percentage(20);
-
+        x.Width = System.Web.UI.WebControls.Unit.Percentage(15);
+        x.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Right;
+        x.HeaderStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Right;
         x.SetDataItemTemplateContent(c =>
         {
             ViewContext.Writer.Write("<a style='cursor:pointer' onclick=\"OpenTotalEnrollments('" + Convert.ToString(DataBinder.Eval(c.DataItem, "TOPICID")) + "')\">" + Convert.ToString(DataBinder.Eval(c.DataItem, "TotalEnrollments")) + "</a>");
@@ -86,7 +76,8 @@
         x.ColumnType = MVCxGridViewColumnType.TextBox;
         //x.Width = 200;
         x.Width = System.Web.UI.WebControls.Unit.Percentage(15);
-
+        x.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Right;
+        x.HeaderStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Right;
         x.SetDataItemTemplateContent(c =>
         {
             ViewContext.Writer.Write("<a style='cursor:pointer' onclick=\"OpenCompletionRate('" + Convert.ToString(DataBinder.Eval(c.DataItem, "TOPICID")) + "')\">" + Convert.ToString(DataBinder.Eval(c.DataItem, "CompletionRate")) + "</a>");
@@ -101,8 +92,9 @@
 
         x.ColumnType = MVCxGridViewColumnType.TextBox;
         //x.Width = 120;
-        x.Width = System.Web.UI.WebControls.Unit.Percentage(20);
-
+        x.Width = System.Web.UI.WebControls.Unit.Percentage(15);
+        x.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Right;
+        x.HeaderStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Right;
         x.SetDataItemTemplateContent(c =>
         {
             ViewContext.Writer.Write("<a style='cursor:pointer' onclick=\"OpenAverageTimeSpent('" + Convert.ToString(DataBinder.Eval(c.DataItem, "TOPICID")) + "')\">" + Convert.ToString(DataBinder.Eval(c.DataItem, "AverageTimeSpent")) + "</a>");

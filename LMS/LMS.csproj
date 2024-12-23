@@ -309,6 +309,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\LMS\Controllers\CourseEngagementReportController.cs" />
     <Compile Include="Areas\LMS\Controllers\DashboardMenuController.cs" />
     <Compile Include="Areas\LMS\Controllers\DashboardSettingController.cs" />
     <Compile Include="Areas\LMS\Controllers\DefaultController.cs" />
@@ -329,6 +330,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CourseEngagementModel.cs" />
     <Compile Include="Models\DashboardModelC.cs" />
     <Compile Include="Models\DashBoardSetting.cs" />
     <Compile Include="Models\LMSDashboard.cs" />
@@ -903,6 +905,13 @@
     <Content Include="Areas\LMS\Views\Systemsettings\Index.cshtml" />
     <Content Include="Areas\LMS\Views\LMSLogin\Login.cshtml" />
     <Content Include="Areas\LMS\Views\DashboardMenu\LMSDashboard.cshtml" />
+    <Content Include="Areas\LMS\Views\CourseEngagementReport\Index.cshtml" />
+    <Content Include="Areas\LMS\Views\CourseEngagementReport\PartialAverageTimeSpentListing.cshtml" />
+    <Content Include="Areas\LMS\Views\CourseEngagementReport\PartialCompletionRateListing.cshtml" />
+    <Content Include="Areas\LMS\Views\CourseEngagementReport\PartialTotalEnrollmentsListing.cshtml" />
+    <Content Include="Areas\LMS\Views\CourseEngagementReport\_DepartmentLookupPartial.cshtml" />
+    <Content Include="Areas\LMS\Views\CourseEngagementReport\_PartialCourseEngagementListing.cshtml" />
+    <Content Include="Areas\LMS\Views\CourseEngagementReport\_TopicLookUpPartial.cshtml" />
     <None Include="assests\js\jquery-1.10.2.intellisense.js" />
     <Content Include="assests\js\jquery-1.10.2.js" />
     <Content Include="assests\js\jquery-1.10.2.min.js" />
@@ -2177,7 +2186,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49383</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44370/</IISUrl>
+          <IISUrl>https://localhost:44371/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

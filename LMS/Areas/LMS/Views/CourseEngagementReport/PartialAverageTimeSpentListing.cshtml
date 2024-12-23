@@ -58,7 +58,9 @@
         x.VisibleIndex = 4;
         x.ColumnType = MVCxGridViewColumnType.TextBox;
         x.Width = System.Web.UI.WebControls.Unit.Percentage(25);
-
+        x.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Right;
+        x.HeaderStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Right;
+        x.PropertiesEdit.DisplayFormatString = "0.00";
     });
 
 }).Bind(Model).GetHtml()
