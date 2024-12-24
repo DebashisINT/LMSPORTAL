@@ -161,13 +161,14 @@ namespace LMS.Areas.LMS.Controllers
             BusinessLogicLayer.DBEngine oDBEngine = new BusinessLogicLayer.DBEngine(string.Empty);
             try
             {
-                GetTopic dataobj = new GetTopic();
-                List<GetTopic> productdata = new List<GetTopic>();
-                List<GetTopic> modelbranch = new List<GetTopic>();
+                Get_Topic dataobj = new Get_Topic();
+                List<Get_Topic> productdata = new List<Get_Topic>();
+                List<Get_Topic> modelbranch = new List<Get_Topic>();
                 DataTable ComponentTable = new DataTable();
                 ComponentTable = objLMSReports.GETDROPDOWNVALUE("GETTOPIC");
-                modelbranch = APIHelperMethods.ToModelList<GetTopic>(ComponentTable);
+                modelbranch = APIHelperMethods.ToModelList<Get_Topic>(ComponentTable);
                 return PartialView("~/Areas/LMS/Views/CourseEngagementReport/_TopicLookUpPartial.cshtml", modelbranch);
+                
             }
             catch
             {
@@ -223,6 +224,13 @@ namespace LMS.Areas.LMS.Controllers
             public Int32 COST_ID { get; set; }
             public string COST_DESCRIPTION { get; set; }
            
+        }
+
+        public class Get_Topic
+        {
+            public Int64 TOPICID { get; set; }
+            public string TOPICNAME { get; set; }
+            
         }
 
         public JsonResult CreateLINQTable(string Topic_Id, string Department_Id, string _Top, string _Bottom,string is_pageload)
