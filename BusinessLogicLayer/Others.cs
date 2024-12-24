@@ -859,7 +859,7 @@ namespace BusinessLogicLayer
             ProcedureExecute proc = new ProcedureExecute("prc_GetIssueToServiceCentreDetails");
             proc.AddDateTimePara("@date", Convert.ToDateTime(ChallanDate));
             proc.AddVarcharPara("@Status", 50, Status);
-            proc.AddVarcharPara("@userbranchlist", 1000, Convert.ToString(context.Session["userbranchHierarchy"]));
+            proc.AddVarcharPara("@userbranchlist", 1000, Convert.ToString(context.Session["LMSuserbranchHierarchy"]));
 
             dt = proc.GetTable();
             return dt;
