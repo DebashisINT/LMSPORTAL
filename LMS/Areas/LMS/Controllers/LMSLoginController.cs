@@ -84,7 +84,6 @@ namespace LMS.Areas.LMS.Controllers
 
                     return RedirectToAction("LMSDashboard", "DashboardMenu");
                 }
-
                 else
                 {
                     ViewBag.ValidateMessage = Validuser;

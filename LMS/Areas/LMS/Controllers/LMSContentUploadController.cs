@@ -251,7 +251,7 @@ namespace LMS.Areas.LMS.Controllers
 
             //ProcedureExecute proc = new ProcedureExecute("PRC_LMSCONTENTMASTER");
             //proc.AddPara("@ACTION", "GETLISTINGDATA");
-            //proc.AddPara("@BRANCHID", Convert.ToString(Session["userbranchHierarchy"]));
+            //proc.AddPara("@BRANCHID", Convert.ToString(Session["LMSuserbranchHierarchy"]));
             //proc.AddPara("@TOPICID", TopicID);
             //proc.AddPara("@USERID", Convert.ToString(HttpContext.Session["LMSuserid"]));
             //dt = proc.GetTable();
@@ -268,7 +268,7 @@ namespace LMS.Areas.LMS.Controllers
                 SqlCommand cmd = new SqlCommand("PRC_LMSCONTENTMASTER", con);
                 
                 cmd.Parameters.AddWithValue("@ACTION", "GETLISTINGDATA");
-                cmd.Parameters.AddWithValue("@BRANCHID", Convert.ToString(Session["userbranchHierarchy"]));
+                cmd.Parameters.AddWithValue("@BRANCHID", Convert.ToString(Session["LMSuserbranchHierarchy"]));
                 cmd.Parameters.AddWithValue("@TOPICID", TopicID);
                 cmd.Parameters.AddWithValue("@USERID", Convert.ToString(HttpContext.Session["LMSuserid"]));
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -1098,7 +1098,7 @@ namespace LMS.Areas.LMS.Controllers
                 //proc.AddPara("@ACTION", "SHOWCONTENT");
                 //proc.AddPara("@CONTENTID", ContentId);
                 //proc.AddPara("@SERVERMAPPATH", Server.MapPath("~/Commonfolder/LMS/ContentUpload/"));
-                //proc.AddPara("@BRANCHID", Convert.ToString(Session["userbranchHierarchy"]));
+                //proc.AddPara("@BRANCHID", Convert.ToString(Session["LMSuserbranchHierarchy"]));
                 //proc.AddPara("@USERID", Convert.ToString(HttpContext.Session["LMSuserid"]));
                 //dt = proc.GetTable();
 
@@ -1110,7 +1110,7 @@ namespace LMS.Areas.LMS.Controllers
                 sqlcmd.Parameters.AddWithValue("@ACTION", "SHOWCONTENT");
                 sqlcmd.Parameters.AddWithValue("@CONTENTID", ContentId);
                 sqlcmd.Parameters.AddWithValue("@SERVERMAPPATH", Server.MapPath("~/Commonfolder/LMS/ContentUpload/"));
-                sqlcmd.Parameters.AddWithValue("@BRANCHID", Convert.ToString(Session["userbranchHierarchy"]));
+                sqlcmd.Parameters.AddWithValue("@BRANCHID", Convert.ToString(Session["LMSuserbranchHierarchy"]));
                 sqlcmd.Parameters.AddWithValue("@USERID", Convert.ToString(HttpContext.Session["LMSuserid"]));
                
                 sqlcmd.CommandType = CommandType.StoredProcedure;
@@ -1475,7 +1475,7 @@ namespace LMS.Areas.LMS.Controllers
             //proc.AddPara("@CONTENTID", ContentId);
             //proc.AddPara("@TOPICIDS", TopicIds);
             //proc.AddPara("@CATEGORYIDS", CategoryIds);
-            //proc.AddPara("@BRANCHID", Convert.ToString(Session["userbranchHierarchy"]));
+            //proc.AddPara("@BRANCHID", Convert.ToString(Session["LMSuserbranchHierarchy"]));
             //proc.AddPara("@USERID", Convert.ToString(HttpContext.Session["LMSuserid"]));
 
             //dt = proc.GetTable();
@@ -1489,7 +1489,7 @@ namespace LMS.Areas.LMS.Controllers
             sqlcmd.Parameters.AddWithValue("@CONTENTID", ContentId);
             sqlcmd.Parameters.AddWithValue("@TOPICIDS", TopicIds);
             sqlcmd.Parameters.AddWithValue("@CATEGORYIDS", CategoryIds);
-            sqlcmd.Parameters.AddWithValue("@BRANCHID", Convert.ToString(Session["userbranchHierarchy"]));
+            sqlcmd.Parameters.AddWithValue("@BRANCHID", Convert.ToString(Session["LMSuserbranchHierarchy"]));
             sqlcmd.Parameters.AddWithValue("@USERID", Convert.ToString(HttpContext.Session["LMSuserid"]));
             sqlcmd.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter da = new SqlDataAdapter(sqlcmd);
@@ -1567,7 +1567,7 @@ namespace LMS.Areas.LMS.Controllers
             //ProcedureExecute proc = new ProcedureExecute("PRC_LMSCONTENTMASTER");
             //proc.AddPara("@Action", "GETCONTENTDETAILSFOREDIT");
             //proc.AddPara("@CONTENTID", ContentId);
-            //proc.AddPara("@BRANCHID", Convert.ToString(Session["userbranchHierarchy"]));
+            //proc.AddPara("@BRANCHID", Convert.ToString(Session["LMSuserbranchHierarchy"]));
             //proc.AddPara("@USERID", Convert.ToString(HttpContext.Session["LMSuserid"]));
             //dt = proc.GetTable();
 
@@ -1578,7 +1578,7 @@ namespace LMS.Areas.LMS.Controllers
             sqlcmd = new SqlCommand("PRC_LMSCONTENTMASTER", sqlcon);
             sqlcmd.Parameters.AddWithValue("@Action", "GETCONTENTDETAILSFOREDIT");
             sqlcmd.Parameters.AddWithValue("@CONTENTID", ContentId);
-            sqlcmd.Parameters.AddWithValue("@BRANCHID", Convert.ToString(Session["userbranchHierarchy"]));
+            sqlcmd.Parameters.AddWithValue("@BRANCHID", Convert.ToString(Session["LMSuserbranchHierarchy"]));
             sqlcmd.Parameters.AddWithValue("@USERID", Convert.ToString(HttpContext.Session["LMSuserid"]));
             sqlcmd.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter da = new SqlDataAdapter(sqlcmd);

@@ -344,7 +344,7 @@ namespace LMS.Areas.LMS.Controllers
             ProcedureExecute proc = new ProcedureExecute("PRC_LMSTOPICSMASTER");
             proc.AddPara("@Action", "GETBASEDONDATALIST");
             proc.AddPara("@TOPICBASEDON_ID", topic_basedon);
-            proc.AddPara("@BRANCHID", Convert.ToString(Session["userbranchHierarchy"]));
+            proc.AddPara("@BRANCHID", Convert.ToString(Session["LMSuserbranchHierarchy"]));
             proc.AddPara("@USERID", Convert.ToString(HttpContext.Session["LMSuserid"]));
 
             dt = proc.GetTable();
@@ -677,7 +677,7 @@ namespace LMS.Areas.LMS.Controllers
                 ProcedureExecute proc = new ProcedureExecute("PRC_LMSTOPICSMASTER");
                 proc.AddPara("@ACTION", "SHOWTOPIC");
                 proc.AddPara("@TOPICID", TopicID);
-                proc.AddPara("@BRANCHID", Convert.ToString(Session["userbranchHierarchy"]));
+                proc.AddPara("@BRANCHID", Convert.ToString(Session["LMSuserbranchHierarchy"]));
                 proc.AddPara("@USERID", Convert.ToString(HttpContext.Session["LMSuserid"]));
                 dt = proc.GetTable();
 
