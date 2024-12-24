@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Course Engagement Insights";
 }
-
+@*<script src="~/assests/js/jquery3.3.1.min.js"></script>*@
 <script type="text/javascript" src="~/Scripts/globalize.js"></script>
 <script src="~/Scripts/cultures/globalize.cultures.js"></script>
 <script src="~/Scripts/chosen/chosen.jquery.min.js"></script>
@@ -93,7 +93,7 @@
             type: 'POST',
             url: "/CourseEngagementReport/GetTopicList",
             dataType: "json",
-            async: false,
+            /*async: false,*/
             success: function (data) {
                 TopicId = [];
                 Topic_Id = "";
@@ -123,7 +123,7 @@
             type: 'POST',
             url: "/CourseEngagementReport/GetDepartment",
             dataType: "json",
-            async: false,
+            /*async: false,*/
             success: function (data) {
                 DepartmentId = [];
                 Department_Id = "";
@@ -226,6 +226,14 @@
 
     function OnStartCallback(s, e) {
         e.customArgs["is_pageload"] = is_pageload;
+
+        document.getElementById("loading-overlay").style.display = "block";
+    }
+
+    function OnEndCallback() {
+
+        document.getElementById("loading-overlay").style.display = "none";
+
     }
 </script>
 
@@ -879,6 +887,90 @@
         padding-left: 0;
         padding-right: 0;
     }
+
+    .formula-details
+    {
+        display: flex;
+        align-items: center;
+    }
+
+        .formula-details li {
+            margin-right: 10px;
+            background: #e549b3;
+            padding: 10px;
+            border-radius: 10px;
+            color: #fff;
+        }
+
+            .formula-details li img
+            {
+                width: 18px;
+                margin-right: 5px;
+            }
+
+            .formula-details li span {
+                font-weight: 600;
+                margin-bottom: 5px;
+            }
+
+    .bg-cl-2 {
+        background: #50c75d !important;
+    }
+    .bg-cl-3 {
+        background: #c2843e !important;
+    }
+
+
+    .rowActive {
+        background-color: #ebf4ff !important;
+        color: #000 !important;
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        z-index: 9999;
+        display: none; /* Initially hidden */
+    }
+
+    .flex-loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+    }
+
+    .dxgvLoadingPanel_PlasticBlue {
+        display: none !important;
+    }
+
+    .flex-loader img {
+        width: 120px;
+    }
+
+    .flex-loader h4 {
+        font-size: 22px;
+        color: #000000;
+    }
+
+    #gridList_col3 {
+        background: #c9168f !important;
+
+    }
+
+    #gridList_col4 {
+        background: #099f1a !important;
+    }
+
+    #gridList_col5 {
+        background: #9a5509 !important;
+    }
 </style>
 
 <script>
@@ -910,6 +1002,14 @@
 
 
     });
+
+    function gridRowclick(s, e) {
+        $('#gridList').find('tr').removeClass('rowActive');
+
+
+        $(s.GetRow(e.visibleIndex)).addClass('rowActive');
+
+    }
 </script>
 
 <link href="~/Content/media.css" rel="stylesheet" />
@@ -917,12 +1017,20 @@
     <span>Topic Engagement Insights</span>
 </div>
 
+<div class="overlay" id="loading-overlay">
+    <div class="flex-loader">
+        <img src="/assests/images/new-loader.gif" />
+        <h4>Data is loading, Please Wait</h4>
+    </div>
+
+</div>
+
 <div class="container">
     <div class="backBox px-3  font-pp">
         <div class="">
 
 
-            <div class="col-md-12 p-0">
+            <div class="col-md-12 p-2">
                 <div class="row">
                     <div class="col-md-3">
                         <label>Topic</label>
@@ -950,18 +1058,18 @@
                         </div>
                     </div>
                     <div class="clear"></div>
-                    <div class="buttons-alignment mt-3 mb-3 px-4">
+                    <div class="buttons-alignment mt-3 mb-3 px-4 mt-3">
                         <div class="add-show-btns">
                             <button type="button" id="btnshow" class="btn show-btn" onclick="GetData();" tabindex=4><span class="btn-icon"><i class="fa fa-eye" aria-hidden="true"></i></span> Show</button>
                             @if (ViewBag.CanExport)
                             {
                                 <!--<select name="ddlAppIds" class="btn btn-sm btn-export" id="ddlAppIds">
-            <option value="0">Export to</option>-->
+                            <option value="0">Export to</option>-->
                                 @*<option value="1">PDF</option>*@
                                 <!--<option value="2">XLSX</option>-->
                                 @*<option value="3">XLS</option>
-            <option value="4">RTF</option>
-            <option value="5">CSV</option>*@
+                                <option value="4">RTF</option>
+                                <option value="5">CSV</option>*@
                                 <!--</select>-->
                                 <button type="button" name="ddlAppIds" id="ddlAppIds" class="btn btn-sm btn-export">
                                     <span class="btn-icon"><img src="/assests/images/xlsx.png" /></span>&nbsp; Export to XLSX
@@ -979,17 +1087,24 @@
         <input type="hidden" id="hdnuser_shop" />
 
         <div style="clear: both;"><br /></div>
+        <ul class="list-unstyled formula-details">
+            <li><img src="/assests/images/info-new.png"/><span>Total Enrollments:</span><br /> Total No. of users mapped with the Course</li>
+            <li class="bg-cl-2"><img src="/assests/images/info-new.png" /><span>Completion Rate:</span><br /> (No of users who completed the course / Total Enrollments for the course)</li>
+            <li class="bg-cl-3"><img src="/assests/images/info-new.png" /><span>Average Time Spent:</span><br /> (Total Time Spent by All Learners (hrs)​/Total Enrollments Across the Content)</li>
+        </ul>
         <div>
             @{
                 Html.RenderAction("_PartialCourseEngagementListing", "CourseEngagementReport", new { Is_PageLoad = "0" });
             }
+
+
         </div>
 
     </div>
 </div>
 
 <div id="TotalEnrollmentsListingModal" class="modal pmsModal  fade" data-backdrop="static" role="dialog">
-    <div class="modal-dialog" style="width: 1400px;">
+    <div class="modal-dialog" style="width: 1000px;">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
@@ -1027,7 +1142,7 @@
 </div>
 
 <div id="CompletionRateModal" class="modal pmsModal  fade" data-backdrop="static" role="dialog">
-    <div class="modal-dialog" style="width: 1400px;">
+    <div class="modal-dialog" style="width: 1000px;">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
@@ -1066,7 +1181,7 @@
 
 
 <div id="AverageTimeListingModal" class="modal pmsModal  fade" data-backdrop="static" role="dialog">
-    <div class="modal-dialog" style="width: 1400px;">
+    <div class="modal-dialog" style="width: 1000px;">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
