@@ -24,6 +24,11 @@
     $(function () {
         // gridList.Refresh();
 
+        var lookup = ASPxClientControl.GetControlCollection().GetByName("TopicGridLookup");
+        lookup.GetGridView().Refresh();
+        var lookup = ASPxClientControl.GetControlCollection().GetByName("TopicGridLookup");
+        lookup.GetGridView().Refresh();
+
 
         @*$('#ddlAppIds').on('change', function () {
             if ($("#ddlAppIds option:selected").index() > 0) {
