@@ -73,22 +73,7 @@ namespace LMS.Areas.LMS.Controllers
             switch (type)
             {
                 case 1:
-                    return GridViewExtension.ExportToXlsx(GetGridViewSettings(), GetReport(is_pageload));
-                //break;
-                //case 1:
-                //    return GridViewExtension.ExportToPdf(GetGridViewSettings(), GetReport("1"));
-                ////break;
-                //case 2:
-                //    return GridViewExtension.ExportToXlsx(GetGridViewSettings(), GetReport("1"));
-                ////break;
-                //case 3:
-                //    return GridViewExtension.ExportToXls(GetGridViewSettings(), GetReport("1"));
-                //case 4:
-                //    return GridViewExtension.ExportToRtf(GetGridViewSettings(), GetReport("1"));
-                //case 5:
-                //    return GridViewExtension.ExportToCsv(GetGridViewSettings(), GetReport("1"));
-                ////break;
-
+                    return GridViewExtension.ExportToXlsx(GetGridViewSettings(), GetReport(is_pageload));                
                 default:
                     break;
             }
@@ -99,19 +84,18 @@ namespace LMS.Areas.LMS.Controllers
         private GridViewSettings GetGridViewSettings()
         {
             var settings = new GridViewSettings();
-            settings.Name = "Course Engagement Insights";
+            settings.Name = "Topic Engagement Insights";
             settings.CallbackRouteValues = new { Action = "_PartialCourseEngagementListing", Controller = "CourseEngagementReport" };
             // Export-specific settings
             settings.SettingsExport.ExportedRowType = GridViewExportedRowType.All;
-            settings.SettingsExport.FileName = "Course Engagement Insights";
+            settings.SettingsExport.FileName = "Topic Engagement Insights";
 
             settings.Columns.Add(x =>
             {
                 x.FieldName = "COURSERank";
                 x.Caption = "Rank";
                 x.VisibleIndex = 1;
-                x.ColumnType = MVCxGridViewColumnType.TextBox;
-                //x.Width = 200;
+                x.ColumnType = MVCxGridViewColumnType.TextBox;               
                 x.Width = System.Web.UI.WebControls.Unit.Percentage(5);
 
             });
@@ -119,10 +103,10 @@ namespace LMS.Areas.LMS.Controllers
             settings.Columns.Add(x =>
             {
                 x.FieldName = "CourseName";
-                x.Caption = "Course Name";
+                x.Caption = "Topic Name";
                 x.VisibleIndex = 2;
                 x.ColumnType = MVCxGridViewColumnType.TextBox;
-                //x.Width = 200;
+               
                 x.Width = System.Web.UI.WebControls.Unit.Percentage(25);
             });
             settings.Columns.Add(x =>
@@ -130,8 +114,7 @@ namespace LMS.Areas.LMS.Controllers
                 x.FieldName = "DEPARTMENT";
                 x.Caption = "Department";
                 x.VisibleIndex = 3;
-                x.ColumnType = MVCxGridViewColumnType.TextBox;
-                //x.Width = 200;
+                x.ColumnType = MVCxGridViewColumnType.TextBox;                
                 x.Width = System.Web.UI.WebControls.Unit.Percentage(25);
 
             });
@@ -150,8 +133,7 @@ namespace LMS.Areas.LMS.Controllers
                 x.FieldName = "CompletionRate";
                 x.Caption = "Completion Rate (%)";
                 x.VisibleIndex = 5;
-                x.ColumnType = MVCxGridViewColumnType.TextBox;
-                //x.Width = 200;
+                x.ColumnType = MVCxGridViewColumnType.TextBox;                
                 x.Width = System.Web.UI.WebControls.Unit.Percentage(15);
                 x.PropertiesEdit.DisplayFormatString = "0.00";
             });
@@ -160,9 +142,7 @@ namespace LMS.Areas.LMS.Controllers
                 x.FieldName = "AverageTimeSpent";
                 x.Caption = "Average Time Spent (hrs)";
                 x.VisibleIndex = 6;
-
-                x.ColumnType = MVCxGridViewColumnType.TextBox;
-                //x.Width = 120;
+                x.ColumnType = MVCxGridViewColumnType.TextBox;               
                 x.Width = System.Web.UI.WebControls.Unit.Percentage(15);
                 x.PropertiesEdit.DisplayFormatString = "0.00";
             });
@@ -292,7 +272,7 @@ namespace LMS.Areas.LMS.Controllers
                 sqlcmd = new SqlCommand("PRC_LMS_COURSEENGAGEMENT", sqlcon);
                 sqlcmd.Parameters.Add("@ACTION", "GetTotalEnrollmentsList");
                 sqlcmd.Parameters.Add("@TOPICID", model.TOPICID);
-                sqlcmd.Parameters.Add("@USER_ID", model.user_id);
+                sqlcmd.Parameters.Add("@COST_ID", model.COST_ID);
                 sqlcmd.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(sqlcmd);
                 da.Fill(dt);
@@ -315,9 +295,7 @@ namespace LMS.Areas.LMS.Controllers
                         dataobj.CONTENTTITLE = Convert.ToString(row["CONTENTTITLE"]);
                         dataobj.user_name = Convert.ToString(row["user_name"]);
                         dataobj.COST_ID = Convert.ToInt32(row["COST_ID"]);
-                        dataobj.cost_description = Convert.ToString(row["cost_description"]);
-                        
-
+                        dataobj.cost_description = Convert.ToString(row["cost_description"]);                      
 
                         if (Convert.ToString(row["CREATEDON"]) == "1/1/1900 12:00:00 AM")
                         {
@@ -327,9 +305,7 @@ namespace LMS.Areas.LMS.Controllers
                         {
                             dataobj.CREATEDON = Convert.ToDateTime(row["CREATEDON"]);
                         }
-
                         productdata.Add(dataobj);
-
                     }
 
                 }
@@ -358,7 +334,7 @@ namespace LMS.Areas.LMS.Controllers
                 sqlcmd = new SqlCommand("PRC_LMS_COURSEENGAGEMENT", sqlcon);
                 sqlcmd.Parameters.Add("@ACTION", "GetCompletionRateList");
                 sqlcmd.Parameters.Add("@TOPICID", model.TOPICID);
-                sqlcmd.Parameters.Add("@USER_ID", model.user_id);
+                sqlcmd.Parameters.Add("@COST_ID", model.COST_ID);
                 sqlcmd.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(sqlcmd);
                 da.Fill(dt);
@@ -390,8 +366,7 @@ namespace LMS.Areas.LMS.Controllers
                         else
                         {
                             dataobj.CONTENTLASTVIEW = Convert.ToDateTime(row["CONTENTLASTVIEW"]);
-                        }
-                        
+                        }                      
                         
                         productdata.Add(dataobj);
 
@@ -422,7 +397,7 @@ namespace LMS.Areas.LMS.Controllers
                 sqlcmd = new SqlCommand("PRC_LMS_COURSEENGAGEMENT", sqlcon);
                 sqlcmd.Parameters.Add("@ACTION", "GetAverageTimeSpentList");
                 sqlcmd.Parameters.Add("@TOPICID", model.TOPICID);
-                sqlcmd.Parameters.Add("@USER_ID", model.user_id);
+                sqlcmd.Parameters.Add("@COST_ID", model.COST_ID);
                 sqlcmd.CommandType = CommandType.StoredProcedure;
                 SqlDataAdapter da = new SqlDataAdapter(sqlcmd);
                 da.Fill(dt);
@@ -509,7 +484,7 @@ namespace LMS.Areas.LMS.Controllers
             settings.Columns.Add(x =>
             {
                 x.FieldName = "CONTENTTITLE";
-                x.Caption = "Course";
+                x.Caption = "Content";
                 x.VisibleIndex = 3;
                 x.ColumnType = MVCxGridViewColumnType.TextBox;
                 x.Width = System.Web.UI.WebControls.Unit.Percentage(25);
@@ -577,7 +552,7 @@ namespace LMS.Areas.LMS.Controllers
             settings.Columns.Add(x =>
             {
                 x.FieldName = "CONTENTTITLE";
-                x.Caption = "Course";
+                x.Caption = "Content";
                 x.VisibleIndex = 3;
                 x.ColumnType = MVCxGridViewColumnType.TextBox;
                 x.Width = System.Web.UI.WebControls.Unit.Percentage(25);
@@ -647,7 +622,7 @@ namespace LMS.Areas.LMS.Controllers
             settings.Columns.Add(x =>
             {
                 x.FieldName = "CONTENTTITLE";
-                x.Caption = "Course";
+                x.Caption = "Content";
                 x.VisibleIndex = 3;
                 x.ColumnType = MVCxGridViewColumnType.TextBox;
                 x.Width = System.Web.UI.WebControls.Unit.Percentage(25);

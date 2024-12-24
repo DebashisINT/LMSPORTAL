@@ -144,7 +144,6 @@
       <Column Name="CONTENT_WATCH_LENGTH" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="COST_ID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="TOPICID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Column Name="User_Id" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

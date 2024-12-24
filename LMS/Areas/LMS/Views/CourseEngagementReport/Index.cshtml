@@ -151,44 +151,44 @@
         $("#txtBottom").val("0");
     }
     var _TOPICID = "0";
-    var _user_id = "0";
-    function OpenTotalEnrollments(ID, USERID) {
+    var _COST_ID = "0";
+    function OpenTotalEnrollments(ID, COST_ID) {
         _TOPICID = ID;
-        _user_id = USERID;
+        _COST_ID = COST_ID;
         gridTotalEnrollmentsList.Refresh();
         gridTotalEnrollmentsList.Refresh();
         $("#TotalEnrollmentsListingModal").modal('show');
     }
     function OnStartCallbackTotalEnrollments(s, e) {
         e.customArgs["TOPICID"] = _TOPICID;
-        e.customArgs["user_id"] = _user_id;
+        e.customArgs["COST_ID"] = _COST_ID;
     }
 
 
 
-    function OpenCompletionRate(ID, USERID) {
+    function OpenCompletionRate(ID, COST_ID) {
         _TOPICID = ID;
-        _user_id = USERID;
+        _COST_ID = COST_ID;
         gridCompletionRateList.Refresh();
         gridCompletionRateList.Refresh();
         $("#CompletionRateModal").modal('show');
     }
     function OnStartCallbackCompletionRate(s, e) {
         e.customArgs["TOPICID"] = _TOPICID;
-        e.customArgs["user_id"] = _user_id;
+        e.customArgs["COST_ID"] = _COST_ID;
     }
 
 
-    function OpenAverageTimeSpent(ID, USERID) {
+    function OpenAverageTimeSpent(ID, COST_ID) {
         _TOPICID = ID;
-        _user_id = USERID;
+        _COST_ID = COST_ID;
         gridAverageTimeList.Refresh();
         gridAverageTimeList.Refresh();
         $("#AverageTimeListingModal").modal('show');
     }
     function OnStartCallbackAverageTime(s, e) {
         e.customArgs["TOPICID"] = _TOPICID;
-        e.customArgs["user_id"] = _user_id;
+        e.customArgs["COST_ID"] = _COST_ID;
     }
 
 
@@ -914,7 +914,7 @@
 
 <link href="~/Content/media.css" rel="stylesheet" />
 <div class="breadCumb">
-    <span>Course Engagement Insights</span>
+    <span>Topic Engagement Insights</span>
 </div>
 
 <div class="container">
@@ -925,7 +925,7 @@
             <div class="col-md-12 p-0">
                 <div class="row">
                     <div class="col-md-3">
-                        <label>Course</label>
+                        <label>Topic</label>
                         <div>
                             @Html.Action("GetTopicList", "CourseEngagementReport")
                         </div>
