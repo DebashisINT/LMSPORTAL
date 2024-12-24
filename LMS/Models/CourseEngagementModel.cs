@@ -12,6 +12,7 @@ namespace LMS.Models
         public Int64 TOPICID { get; set; }
 
         public Int64 user_id { get; set; }
+        public Int64 COST_ID { get; set; }
     }
 
     public class GetUserTopicList
