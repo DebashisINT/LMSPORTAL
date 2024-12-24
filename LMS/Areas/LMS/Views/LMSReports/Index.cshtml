@@ -17,6 +17,12 @@
 <script>
     var UserId = [];
     $(document).ready(function () {
+
+        var lookup = ASPxClientControl.GetControlCollection().GetByName("TopicGridLookup");
+        lookup.GetGridView().Refresh();
+        var lookup = ASPxClientControl.GetControlCollection().GetByName("TopicGridLookup");
+        lookup.GetGridView().Refresh();
+
         $('#UserModel').on('shown.bs.modal', function () {
             $('#txtUserSearch').focus();
         })
