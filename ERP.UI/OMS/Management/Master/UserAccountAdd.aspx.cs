@@ -153,9 +153,19 @@ namespace ERP.OMS.Management.Master
                     Encryption epasswrd = new Encryption();
                     string Encryptpass = epasswrd.Decrypt(dr["user_password"].ToString());
 
-                    txtFirstNmae.Text = dr["user_name"].ToString();
-                    txtuserid.Text = dr["user_loginId"].ToString();
-                    txtPassword.Text = Encryptpass;
+                    if (Request.QueryString["mode"] == "Copy")
+                    {
+                        txtFirstNmae.Text = "";
+                        txtuserid.Text = "";
+                        txtPassword.Text = "";
+                    }
+                    else
+                    {
+                        txtFirstNmae.Text = dr["user_name"].ToString();
+                        txtuserid.Text = dr["user_loginId"].ToString();
+                        txtPassword.Text = Encryptpass;
+                    }
+
                     cmbBranch.SelectedValue = dr["user_branchId"].ToString(); 
                     cmbDept.SelectedValue = dr["emp_Department"].ToString();
                     cmbDesg.SelectedValue = dr["emp_Designation"].ToString();
@@ -534,7 +544,7 @@ namespace ERP.OMS.Management.Master
         {
             try
             {
-                if (Convert.ToString(Request.QueryString["id"]) == "Add")
+                if (Convert.ToString(Request.QueryString["id"]) == "Add" || Request.QueryString["mode"] == "Copy")
                 {
                     int LoginIDExist = 0;
 
