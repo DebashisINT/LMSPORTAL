@@ -1200,11 +1200,11 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                                     <EditFormSettings></EditFormSettings>
                                 </dxe:GridViewDataTextColumn>--%>
                                 <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="0" FieldName="USER_ID"
-                                    Caption="User ID" Width="20%" >
+                                    Caption="User ID" Width="100px" >
                                     <EditFormSettings></EditFormSettings>
                                 </dxe:GridViewDataTextColumn>
                                 <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="1" FieldName="USER_NAME"
-                                    Caption="User Name" Width="20%">
+                                    Caption="User Name" Width="250">
                                     <PropertiesTextEdit>
                                         <ValidationSettings ErrorDisplayMode="ImageWithText" ErrorTextPosition="Bottom" SetFocusOnError="True">
                                             <RequiredField ErrorText="Please Enter user Name" IsRequired="True" />
@@ -1214,44 +1214,44 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                                 </dxe:GridViewDataTextColumn>
                                 
                                 <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="2" FieldName="BRANCHNAME"
-                                    Caption="Branch" Width="20%" >
+                                    Caption="Branch" Width="150px" >
                                     <PropertiesTextEdit>
                                     </PropertiesTextEdit>
                                     <EditFormSettings Visible="false" />
                                 </dxe:GridViewDataTextColumn>
                                 <%--Rev 2.0 [ caption changed from Report To to WD ID--%>
                                 <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="3" FieldName="REPORTTO"
-                                    Caption="Report To" Width="20%">
+                                    Caption="Report To" Width="250px">
                                     <PropertiesTextEdit>
                                     </PropertiesTextEdit>
                                     <EditFormSettings Visible="false" />
                                 </dxe:GridViewDataTextColumn>  
                                 <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="4" FieldName="DEPARTMENTNAME"
-                                    Caption="Department" Width="20%">
+                                    Caption="Department" Width="150">
                                     <PropertiesTextEdit>
                                     </PropertiesTextEdit>
                                     <EditFormSettings Visible="false" />
                                 </dxe:GridViewDataTextColumn>  
                                 <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="5" FieldName="deg_designation"
-                                    Caption="Designation" Width="20%">
+                                    Caption="Designation" Width="150px">
                                     <PropertiesTextEdit>
                                     </PropertiesTextEdit>
                                     <EditFormSettings Visible="false" />
                                 </dxe:GridViewDataTextColumn>   
                                 <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="6" FieldName="GROUPNAME"
-                                    Caption="Group" Width="10%">
+                                    Caption="Group" Width="150px">
                                     <PropertiesTextEdit>
                                     </PropertiesTextEdit>
                                     <EditFormSettings Visible="false" />
                                 </dxe:GridViewDataTextColumn>  
                                 <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="7" FieldName="user_inactive"
-                                    Caption="Active" Width="10%">
+                                    Caption="Active" Width="100px">
                                     <PropertiesTextEdit>
                                     </PropertiesTextEdit>
                                     <EditFormSettings Visible="false" />
                                 </dxe:GridViewDataTextColumn>   
 
-                                <dxe:GridViewDataTextColumn VisibleIndex="8" CellStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center" Width="20%">
+                                <dxe:GridViewDataTextColumn VisibleIndex="8" CellStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center" Width="200px">
                                 
                                     <DataItemTemplate>
                                          <% if (rights.CanEdit)
