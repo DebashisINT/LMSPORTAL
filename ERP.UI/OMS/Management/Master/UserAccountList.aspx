@@ -1195,10 +1195,10 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                             KeyFieldName="USER_ID" Width="100%" OnCustomJSProperties="userGrid_CustomJSProperties" SettingsBehavior-AllowFocusedRow="true"
                             Settings-HorizontalScrollBarMode="Auto" >
                             <Columns>
-                                <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="0" FieldName="UID"
+                                <%--<dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="0" FieldName="UID"
                                     Caption="UID" Width="0%" SortOrder="Descending">
                                     <EditFormSettings></EditFormSettings>
-                                </dxe:GridViewDataTextColumn>
+                                </dxe:GridViewDataTextColumn>--%>
                                 <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="0" FieldName="USER_ID"
                                     Caption="User ID" Width="20%" >
                                     <EditFormSettings></EditFormSettings>
@@ -1225,21 +1225,33 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                                     <PropertiesTextEdit>
                                     </PropertiesTextEdit>
                                     <EditFormSettings Visible="false" />
-                                </dxe:GridViewDataTextColumn>                                
-                                <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="4" FieldName="deg_designation"
+                                </dxe:GridViewDataTextColumn>  
+                                <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="4" FieldName="DEPARTMENTNAME"
+                                    Caption="Department" Width="20%">
+                                    <PropertiesTextEdit>
+                                    </PropertiesTextEdit>
+                                    <EditFormSettings Visible="false" />
+                                </dxe:GridViewDataTextColumn>  
+                                <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="5" FieldName="deg_designation"
                                     Caption="Designation" Width="20%">
                                     <PropertiesTextEdit>
                                     </PropertiesTextEdit>
                                     <EditFormSettings Visible="false" />
                                 </dxe:GridViewDataTextColumn>   
-                                <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="5" FieldName="user_inactive"
+                                <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="6" FieldName="GROUPNAME"
+                                    Caption="Group" Width="10%">
+                                    <PropertiesTextEdit>
+                                    </PropertiesTextEdit>
+                                    <EditFormSettings Visible="false" />
+                                </dxe:GridViewDataTextColumn>  
+                                <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="7" FieldName="user_inactive"
                                     Caption="Active" Width="10%">
                                     <PropertiesTextEdit>
                                     </PropertiesTextEdit>
                                     <EditFormSettings Visible="false" />
                                 </dxe:GridViewDataTextColumn>   
 
-                                <dxe:GridViewDataTextColumn VisibleIndex="6" CellStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center" Width="20%">
+                                <dxe:GridViewDataTextColumn VisibleIndex="8" CellStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center" Width="20%">
                                 
                                     <DataItemTemplate>
                                          <% if (rights.CanEdit)
