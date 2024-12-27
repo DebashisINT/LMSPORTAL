@@ -1199,11 +1199,11 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                                     Caption="UID" Width="0%" SortOrder="Descending">
                                     <EditFormSettings></EditFormSettings>
                                 </dxe:GridViewDataTextColumn>--%>
-                                <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="0" FieldName="USER_ID"
-                                    Caption="User ID" Width="100px" >
+                                <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="0" FieldName="USER_ID" FixedStyle="Left" 
+                                    Caption="User ID" Width="150px" >
                                     <EditFormSettings></EditFormSettings>
                                 </dxe:GridViewDataTextColumn>
-                                <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="1" FieldName="USER_NAME"
+                                <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="1" FieldName="USER_NAME" FixedStyle="Left" 
                                     Caption="User Name" Width="250">
                                     <PropertiesTextEdit>
                                         <ValidationSettings ErrorDisplayMode="ImageWithText" ErrorTextPosition="Bottom" SetFocusOnError="True">
