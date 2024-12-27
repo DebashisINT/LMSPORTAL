@@ -864,6 +864,12 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
     </script>  
 
     <script>
+        function OnCopyInfoClick(keyValue) {
+            if (keyValue != '') {
+                var url = 'UserAccountAdd.aspx?id=' + keyValue + '&Mode=Copy';
+                window.location.href = url;
+            }
+        }
         function EMPIDBind(empID) {
             $("#hdnEMPCode").val(empID);
             var str
@@ -1245,6 +1251,10 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
 
                                         <% if (rights.CanAdd)
                                         { %>
+                                            <a href="javascript:void(0);" onclick="OnCopyInfoClick('<%# Container.KeyValue %>')" class="pad" title="Copy">
+                                                <img src="../../../assests/images/copy2.png" /></a>
+                                            </a>
+
                                             <a href="javascript:void(0);" onclick="EMPIDBind('<%#Eval("ContactID") %>')" title="Update Employee ID" class="pad" style="text-decoration: none;">
                                                 <img src="../../../assests/images/update-id.png" />
                                             </a>
