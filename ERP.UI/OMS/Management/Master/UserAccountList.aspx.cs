@@ -15,6 +15,9 @@ using DevExpress.Web;
 using System.Collections.Generic;
 using UtilityLayer;
 using System.Web.UI.WebControls;
+using BusinessLogicLayer.SalesERP;
+using static ERP.OMS.Management.Master.management_master_Employee;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace ERP.OMS.Management.Master
 {
@@ -25,6 +28,9 @@ namespace ERP.OMS.Management.Master
         BusinessLogicLayer.DBEngine oDBEngine = new BusinessLogicLayer.DBEngine(string.Empty);
         public EntityLayer.CommonELS.UserRightsForPage rights = new EntityLayer.CommonELS.UserRightsForPage();
         clsDropDownList oclsDropDownList = new clsDropDownList();
+
+        public bool ActivateEmployeeBranchHierarchy { get; set; }
+
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -41,7 +47,23 @@ namespace ERP.OMS.Management.Master
         {
             rights = BusinessLogicLayer.CommonBLS.CommonBL.GetUserRightSession("/management/master/UserAccountList.aspx");
 
-            
+            DataTable dt = new DataTable();
+            ProcedureExecute proc = new ProcedureExecute("PRC_LMS_InsertUpdateUser");
+            proc.AddPara("@ACTION", "ShowSettingsActivateEmployeeBranchHierarchy");
+            dt = proc.GetTable();
+            if (dt.Rows.Count > 0)
+            {
+                string mastersettings = Convert.ToString(dt.Rows[0]["Value"]);
+                if (mastersettings == "0")
+                {
+                    ActivateEmployeeBranchHierarchy = false;
+                }
+                else
+                {
+                    ActivateEmployeeBranchHierarchy = true;
+                }
+            }
+
             if (!IsPostBack)
             {
                 userGrid.SettingsCookies.CookiesID = "BreeezeErpGridCookiesroot_useruserGrid";
@@ -107,5 +129,182 @@ namespace ERP.OMS.Management.Master
         {
             e.Properties["cpHeight"] = "1";
         }
+
+        [WebMethod]
+        public static String GetEmployeeID(string EMPID)
+        {
+            String Return = null;
+            BusinessLogicLayer.DBEngine objEngine = new BusinessLogicLayer.DBEngine();
+            string query = "Select cnt_ucc from tbl_master_contact where cnt_internalId='" + EMPID + "' ";
+
+            DataTable dt = objEngine.GetDataTable(query);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                Return = dt.Rows[0]["cnt_ucc"].ToString();
+            }
+
+            return Return;
+        }
+
+        [WebMethod]
+        public static String GetEmployeeIDUpdate(string EMPID, String newEmpID)
+        {
+            String sreturn = "";
+            DataTable dtfromtosumervisor = SalesPersontracking.UpdateEmployeeID(EMPID, newEmpID, Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
+
+            if (dtfromtosumervisor != null && dtfromtosumervisor.Rows.Count > 0)
+            {
+                sreturn = dtfromtosumervisor.Rows[0]["msg"].ToString();
+            }
+
+            return sreturn;
+        }
+
+        [WebMethod]
+        public static List<StateList> GetStateList(string EMPID)
+        {
+            BusinessLogicLayer.DBEngine objEngine = new BusinessLogicLayer.DBEngine();
+            string query = "Select  state as StateName ,id as StateID from tbl_master_state  order by state";
+            List<StateList> omodel = new List<StateList>();
+            // DataTable dt = objEngine.GetDataTable(query);
+            DataTable dt = new DataTable();
+
+            //  DataSet ds = new DataSet();
+            ProcedureExecute proc = new ProcedureExecute("Proc_User_StateMAP");
+
+            proc.AddPara("@EMPID", EMPID);
+
+            dt = proc.GetTable();
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+
+                omodel = UtilityLayer.APIHelperMethods.ToModelList<StateList>(dt);
+
+            }
+
+            return omodel;
+
+        }
+
+        [WebMethod]
+        public static bool GetStateListSubmit(string EMPID, List<string> Statelist)
+        {
+            string StateId = "";
+            int i = 1;
+
+            if (Statelist != null && Statelist.Count > 0)
+            {
+                foreach (string item in Statelist)
+                {
+                    if (item == "0")
+                    {
+                        StateId = "0";
+                        break;
+                    }
+                    else
+                    {
+                        if (i > 1)
+                            StateId = StateId + "," + item;
+                        else
+                            StateId = item;
+                        i++;
+                    }
+                }
+
+            }
+
+            DataTable dtfromtosumervisor = SalesPersontracking.SubmitEmployeeState(EMPID, StateId, Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
+
+            return true;
+        }
+
+        [WebMethod]
+        public static List<BranchList> GetBranchList(string EMPID)
+        {
+            BusinessLogicLayer.DBEngine objEngine = new BusinessLogicLayer.DBEngine();
+            List<BranchList> omodel = new List<BranchList>();
+            DataTable dt = new DataTable();
+            ProcedureExecute proc = new ProcedureExecute("Proc_User_BranchMAP");
+            proc.AddPara("@EMPID", EMPID);
+            dt = proc.GetTable();
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                omodel = UtilityLayer.APIHelperMethods.ToModelList<BranchList>(dt);
+            }
+            return omodel;
+        }
+
+        [WebMethod]
+        public static bool GetBranchListSubmit(string EMPID, List<string> Branchlist)
+        {
+            Employee_BL objEmploye = new Employee_BL();
+            string BranchId = "";
+            int i = 1;
+
+            if (Branchlist != null && Branchlist.Count > 0)
+            {
+                foreach (string item in Branchlist)
+                {
+                    if (item == "0")
+                    {
+                        BranchId = "0";
+                        break;
+                    }
+                    else
+                    {
+                        if (i > 1)
+                            BranchId = BranchId + "," + item;
+                        else
+                            BranchId = item;
+                        i++;
+                    }
+                }
+
+            }
+
+            DataTable dtfromtosumervisor = objEmploye.SubmitEmployeeBranch(EMPID, BranchId, Convert.ToString(HttpContext.Current.Session["LMSuserid"]));
+
+            return true;
+        }
+
+        public class BranchList
+        {
+            public long branch_id { get; set; }
+            public String branch_description { get; set; }
+            public bool IsChecked { get; set; }
+            public string status { get; set; }
+        }
+        //End of Mantis Issue 25001
+        public class StateList
+        {
+
+            public int StateID { get; set; }
+            public string StateName { get; set; }
+            public string status { get; set; }
+
+            public bool IsChecked { get; set; }
+        }
+
+        [WebMethod]
+        public static string DeleteUser(string user_id)
+        {
+            string retval = "";
+
+            DataTable dt = new DataTable();
+            ProcedureExecute proc = new ProcedureExecute("PRC_LMS_InsertUpdateUser");
+            proc.AddPara("@user_id", user_id);
+            proc.AddPara("@ACTION", "DELETEUSER");
+            dt = proc.GetTable();
+
+            if(dt.Rows.Count>0)
+            {
+                retval = Convert.ToString( dt.Rows[0][0]);
+            }
+
+            return retval;
+        }
+            
+            
     }
 }
