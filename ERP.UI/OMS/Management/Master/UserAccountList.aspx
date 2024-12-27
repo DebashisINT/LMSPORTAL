@@ -569,7 +569,268 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
     }
 
     /*Rev end 1.0*/
+
+    .listStyle > li {
+        list-style-type: none;
+        padding: 5px;
+    }
+
+    .listStyle {
+        /*height: 450px;*/
+        overflow-y: auto;
+    }
+
+        .listStyle > li > input[type="checkbox"] {
+            -webkit-transform: translateY(3px);
+            -moz-transform: translateY(3px);
+            transform: translateY(3px);
+        }
+
+    #divModalBody li a:hover:not(.header) {
+        background-color: none;
+    }
+    .modal-backdrop{
+        z-index:auto !important;
+    }
+
     </style>
+
+    <style>
+        #myInputBranchMap {
+            background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+            background-position: 10px 12px; /* Position the search icon */
+            background-repeat: no-repeat; /* Do not repeat the icon image */
+            width: 100%; /* Full-width */
+            font-size: 16px; /* Increase font-size */
+            padding: 12px 20px 12px 40px; /* Add some padding */
+            border: 1px solid #ddd; /* Add a grey border */
+            margin-bottom: 12px; /* Add some space below the input */
+        }
+
+        #divModalBodyBranchMap {
+            /* Remove default list styling */
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            margin-bottom: 8px;
+        }
+
+            #divModalBodyBranchMap li {
+                padding: 5px 10px;
+            }
+
+                #divModalBodyBranchMap li a {
+                    margin-top: -1px; /* Prevent double borders */
+                    padding: 0 12px; /* Add some padding */
+                    text-decoration: none; /* Remove default text underline */
+                    font-size: 14px; /* Increase the font-size */
+                    color: black; /* Add a black text color */
+                    display: inline-block; /* Make it into a block element to fill the whole list */
+                    cursor: pointer;
+                }
+                .tblView>tbody>tr>td{
+                    padding-right:5px;
+                    padding-bottom:10px
+                }
+                .tblView>tbody>tr>td>label{
+                    display:block
+                }
+    </style>
+
+     <style>
+       .branch-list-modal .modal-header
+       {
+         background: #074270;
+             padding: 10px 15px;
+       }
+       .branch-list-modal .modal-header h4
+       {
+         color: #fff;
+         line-height: 1;
+         font-size: 16px;
+       }
+       .branch-list-modal .modal-header button span
+       {
+         color: #fff;
+             font-size: 28px;
+     font-weight: 300;
+     line-height: 21px;
+       }
+
+       .branch-list-modal .modal-content
+       {
+         border-radius: 15px;
+             border: none;
+             box-shadow: 1px 1px 15px #11111145;
+       }
+       .branch-list-modal .modal-header
+       {
+         border-top-left-radius: 15px;
+     border-top-right-radius: 15px;
+       }
+
+       .branch-list-modal .modal-body .input-group
+       {
+           width: 100%;
+       }
+
+       .branch-list-modal .modal-body .input-group-text
+       {
+         background-color: transparent;
+         border: none;
+             color: #a5a5a5;
+       }
+       .branch-list-modal .modal-body .input-group-prepend
+       {
+         position: absolute;
+         z-index: 1;
+         min-height: 33px;
+         line-height: 33px;
+         width: 30px;
+         text-align: center;
+       }
+
+       .branch-list-modal .modal-body .form-control
+       {
+             padding-left: 40px;
+             background: transparent !important;
+             border-radius: 5px !important;
+             border-color: #eaeaea;
+             transition: all .4s;
+             color: #111;
+       }
+
+       .branch-list-modal .modal-body .form-control:focus
+       {
+         box-shadow: none;
+         border-color: #0a4f85;
+       }
+
+       .custom-checkbox-single {
+           display: block;
+           position: relative;
+           padding-left: 34px;
+           margin-bottom: 15px;
+           cursor: pointer;
+           font-size: 16px;
+           -webkit-user-select: none;
+           -moz-user-select: none;
+           -ms-user-select: none;
+           user-select: none;
+           line-height: 22px;
+               font-weight: 500;
+         }
+
+         /* Hide the browser's default checkbox */
+         .custom-checkbox-single input {
+           position: absolute;
+           opacity: 0;
+           cursor: pointer;
+           height: 0;
+           width: 0;
+         }
+
+         /* Create a custom checkbox */
+         .checkmark {
+           position: absolute;
+           top: 0;
+           left: 0;
+           height: 21px;
+           width: 21px;
+           background-color: #fff;
+     border-radius: 4px;
+     border: 1px solid #6a6a6a;
+         }
+
+         /* On mouse-over, add a grey background color */
+         .custom-checkbox-single:hover input ~ .checkmark {
+           background-color: #1541a4;
+         }
+
+         /* When the checkbox is checked, add a blue background */
+         .custom-checkbox-single input:checked ~ .checkmark {
+           background-color: #1541a4;
+         }
+
+         /* Create the checkmark/indicator (hidden when not checked) */
+         .checkmark:after {
+           content: "";
+           position: absolute;
+           display: none;
+         }
+
+         /* Show the checkmark when checked */
+         .custom-checkbox-single input:checked ~ .checkmark:after {
+           display: block;
+         }
+
+         /* Style the checkmark/indicator */
+         .custom-checkbox-single .checkmark:after {
+               left: 6px;
+             top: 1px;
+             width: 7px;
+             height: 12px;
+             border: solid white;
+             border-width: 0 3px 3px 0;
+             -webkit-transform: rotate(45deg);
+             -ms-transform: rotate(45deg);
+             transform: rotate(45deg);
+         }
+
+         /*Rev 3.0*/
+         .fullMulti .multiselect-native-select, .fullMulti .multiselect-native-select .btn-group {
+             width: 100%;
+         }
+
+             .fullMulti .multiselect-native-select .multiselect {
+                 width: 100%;
+                 text-align: left;
+                 border-radius: 4px !important;
+             }
+
+                 .fullMulti .multiselect-native-select .multiselect .caret {
+                     float: right;
+                     margin: 9px 5px;
+                 }
+
+         .hideScndTd > table > tbody > tr > td:last-child {
+             display: none;
+         }
+
+         .multiselect.dropdown-toggle {
+         text-align: left;
+         }
+
+         .multiselect.dropdown-toggle, #ddlMonth, #ddlYear {
+             -webkit-appearance: none;
+             position: relative;
+             z-index: 1;
+             background-color: transparent;
+         }
+
+         .dynamicPopupTbl {
+         font-family: 'Poppins', sans-serif !important;
+         }
+
+             .dynamicPopupTbl > tbody > tr > td,
+             #EmployeeTable table tr th {
+                 font-family: 'Poppins', sans-serif !important;
+                 font-size: 12px;
+             }
+
+             /*Rev 10.0*/
+             #EmployeefromsuperTable table tr th {
+                 font-family: 'Poppins', sans-serif !important;
+                 font-size: 12px;
+             }
+             #EmployeetosupervisorTable table tr th {
+                 font-family: 'Poppins', sans-serif !important;
+                 font-size: 12px;
+             }
+             /*End of Rev 10.0*/
+         /*End of Rev 3.0*/
+     </style>
+
     <link href="/assests/pluggins/Transfer/icon_font/css/icon_font.css" rel="stylesheet" />
     
     <link href="/assests/css/custom/PMSStyles.css" rel="stylesheet" />
@@ -601,6 +862,283 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
             window.location.href = url;
         }
     </script>  
+
+    <script>
+        function EMPIDBind(empID) {
+            $("#hdnEMPCode").val(empID);
+            var str
+            str = { EMPID: empID }
+
+            $.ajax({
+                type: "POST",
+                url: "UserAccountList.aspx/GetEmployeeID",
+                data: JSON.stringify(str),
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                success: function (responseFromServer) {
+                    // alert(responseFromServer.d)
+                    //cGrdEmployee.PerformCallback("Show~~~");
+                    //jAlert('Supervisor Changed Successfully.');
+                    //cActivationPopupsupervisor.Hide();
+
+                    $("#lblOLDEmpIDname").html(responseFromServer.d);
+                    $("#myEmpIDModal").modal('show');
+                    $("#txtEMPId").focus();
+                }
+            });
+        }
+
+        function UpdateEmpId() {
+            var empID = $("#hdnEMPCode").val();
+            var newEmpID = $("#txtEMPId").val();
+            if (newEmpID == "") {
+                jAlert("Please enter new employee id.");
+                $("#txtEMPId").focus();
+                return
+            }
+            var str1
+            //  alert(a);
+
+            str1 = { EMPID: empID, newEmpID: newEmpID }
+            $.ajax({
+                type: "POST",
+                url: "UserAccountList.aspx/GetEmployeeIDUpdate",
+                data: JSON.stringify(str1),
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                success: function (responseFromServer) {
+                    // alert(responseFromServer.d)
+                    if (responseFromServer.d == "UPDATED") {
+                        $("#myEmpIDModal").modal('hide');
+                        jAlert('Employee id update successfully.');
+                        $("#txtEMPId").val('');
+                        $("#hdnEMPCode").val('');
+                    }
+                    else if (responseFromServer.d == "ALREADY EXISTS") {
+                        jAlert('Employee id already exists.');
+                        $("#txtEMPId").focus();
+                    }
+                    else {
+                        jAlert('Please try again later.');
+                        $("#txtEMPId").focus();
+                    }
+                }
+            });
+        }
+
+        function StateBind(empID) {
+            $("#hdnEMPID").val(empID);
+            var str
+            str = { EMPID: empID }
+            var html = "";
+            // alert();
+            $.ajax({
+                type: "POST",
+                url: "UserAccountList.aspx/GetStateList",
+                data: JSON.stringify(str),
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                success: function (responseFromServer) {
+                    if (responseFromServer.d.length == 0) {
+                        jAlert('You must create a user, and map this employee. After mapping, you can map the State. So, these employees will appear on Dashboard and in reports for the selected state.');
+
+                    }
+                    else if (responseFromServer.d[0].status != 'Success') {
+
+                        jAlert('You must create a user, and map this employee. After mapping, you can map the State. So, these employees will appear on Dashboard and in reports for the selected state.');
+
+                    }
+                    else {
+
+                        for (i = 0; i < responseFromServer.d.length; i++) {
+
+                            if (responseFromServer.d[i].StateID == "0") {
+
+                                if (responseFromServer.d[i].IsChecked == true) {
+
+                                    html += "<li><input type='checkbox' id=" + responseFromServer.d[i].StateID + "  class='statecheckall' onclick=CheckAll(" + responseFromServer.d[i].StateID + ") value=" + responseFromServer.d[i].StateID + " checked  /><a href='#'><label id='lblstatename' class='lblstate' for=" + responseFromServer.d[i].StateID + " >" + responseFromServer.d[i].StateName + "</label></a></li>";
+
+                                }
+                                else {
+                                    html += "<li><input type='checkbox' id=" + responseFromServer.d[i].StateID + "  class='statecheckall' onclick=CheckAll(" + responseFromServer.d[i].StateID + ")  value=" + responseFromServer.d[i].StateID + "   /><a href='#'><label id='lblstatename' class='lblstate'  for=" + responseFromServer.d[i].StateID + ">" + responseFromServer.d[i].StateName + "</label></a></li>";
+
+
+                                }
+                            }
+                            else {
+
+                                if (responseFromServer.d[i].IsChecked == true) {
+
+                                    html += "<li><input type='checkbox' id=" + responseFromServer.d[i].StateID + "  class='statecheck' onclick=CheckParticular($(this).is(':checked')) value=" + responseFromServer.d[i].StateID + " checked  /><a href='#'><label id='lblstatename' class='lblstate' for=" + responseFromServer.d[i].StateID + " >" + responseFromServer.d[i].StateName + "</label></a></li>";
+
+                                }
+                                else {
+                                    html += "<li><input type='checkbox' id=" + responseFromServer.d[i].StateID + " class='statecheck'  onclick=CheckParticular($(this).is(':checked')) value=" + responseFromServer.d[i].StateID + "   /><a href='#'><label id='lblstatename' class='lblstate' for=" + responseFromServer.d[i].StateID + ">" + responseFromServer.d[i].StateName + "</label></a></li>";
+
+                                }
+                            }
+                        }
+                        $("#divModalBody").html(html);
+                        $("#myModal").modal('show');
+                    }
+
+                }
+            });
+
+        }
+
+
+        var statelist = []
+        function STATEPUSHPOP() {
+            var empID = $("#hdnEMPID").val();
+            // debugger;
+            //$('input:checkbox.statecheck').each(function () {
+
+            //    var ischecked = $(this).is(':checked');
+            //    if (ischecked == true) {
+            //        alert(ischecked);
+            //    }
+            //});
+
+            let a = [];
+
+            $(".statecheckall:checked").each(function () {
+                a.push(this.value);
+            });
+
+            $(".statecheck:checked").each(function () {
+                a.push(this.value);
+            });
+            var str1
+            //  alert(a);
+
+            str1 = { EMPID: empID, Statelist: a }
+            $.ajax({
+                type: "POST",
+                url: "UserAccountList.aspx/GetStateListSubmit",
+                data: JSON.stringify(str1),
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                success: function (responseFromServer) {
+                    // alert(responseFromServer.d)
+                    $("#myModal").modal('hide');
+                    jAlert('State assigned successfully');
+                }
+            });
+        }
+
+        function fn_BranchMap(empID) {
+            $("#hdnEMPID").val(empID);
+            var str
+            str = { EMPID: empID }
+            var html = "";
+            // alert();
+            $.ajax({
+                type: "POST",
+                url: "UserAccountList.aspx/GetBranchList",
+                data: JSON.stringify(str),
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                success: function (responseFromServer) {
+                    for (i = 0; i < responseFromServer.d.length; i++) {
+                        //if (responseFromServer.d[i].IsChecked == true) {
+                        //    html += "<li><input type='checkbox' id=" + responseFromServer.d[i].branch_id + "  class='BranchMapcheck' onclick=CheckParticular($(this).is(':checked')) value=" + responseFromServer.d[i].branch_id + " checked  /><a href='#'><label id='BranchMapname' class='lblstate' for=" + responseFromServer.d[i].branch_id + " >" + responseFromServer.d[i].branch_description + "</label></a></li>";
+                        //}
+                        //else {
+                        //    html += "<li><input type='checkbox' id=" + responseFromServer.d[i].branch_id + " class='BranchMapcheck'  onclick=CheckParticular($(this).is(':checked')) value=" + responseFromServer.d[i].branch_id + "   /><a href='#'><label id='BranchMapname' class='lblstate' for=" + responseFromServer.d[i].branch_id + ">" + responseFromServer.d[i].branch_description + "</label></a></li>";
+                        //}
+                        if (responseFromServer.d[i].IsChecked == true) {
+                            html += "<label class='custom-checkbox-single'>" + responseFromServer.d[i].branch_description + "<input type='checkbox' id=" + responseFromServer.d[i].branch_id + "  class='BranchMapcheck' onclick=CheckParticular($(this).is(':checked')) value=" + responseFromServer.d[i].branch_id + " checked  > <span class='checkmark'></span></label>";
+                        }
+                        else {
+                            html += "<label class='custom-checkbox-single'>" + responseFromServer.d[i].branch_description + "<input type='checkbox' id=" + responseFromServer.d[i].branch_id + "  class='BranchMapcheck' onclick=CheckParticular($(this).is(':checked')) value=" + responseFromServer.d[i].branch_id + "  > <span class='checkmark'></span></label>";
+                        }
+                    }
+                    $("#divModalBodyBranchMap").html(html);
+                    $("#myModalBranchMap").modal('show');
+                }
+            });
+        }
+
+        var Branchlist = []
+        function BranchPushPop() {
+            var empID = $("#hdnEMPID").val();
+            let a = [];
+
+            $(".BranchMapcheckall:checked").each(function () {
+                a.push(this.value);
+            });
+
+            $(".BranchMapcheck:checked").each(function () {
+                a.push(this.value);
+            });
+            var str1
+            //  alert(a);
+
+            str1 = { EMPID: empID, Branchlist: a }
+            $.ajax({
+                type: "POST",
+                url: "UserAccountList.aspx/GetBranchListSubmit",
+                data: JSON.stringify(str1),
+                contentType: "application/json; charset=utf-8",
+                datatype: "json",
+                success: function (responseFromServer) {
+                    // alert(responseFromServer.d)
+                    $("#myModalBranchMap").modal('hide');
+                    jAlert('Branch assigned successfully');
+                }
+            });
+        }
+
+        function fn_DeleteEmp(keyValue) {
+
+            if (keyValue != "378") {  // "EMV0000001"
+                jConfirm('Confirm delete?', 'Confirmation Dialog', function (r) {
+                    if (r == true) {
+                        var str1
+                        
+                        str1 = { user_id: keyValue }
+
+                        $.ajax({
+                            type: "POST",
+                            url: "UserAccountList.aspx/DeleteUser",
+                            data: JSON.stringify(str1),
+                            contentType: "application/json; charset=utf-8",
+                            datatype: "json",
+                            success: function (responseFromServer) {
+                                // alert(responseFromServer.d)
+                                if (responseFromServer.d == '1') {
+                                    jAlert('Record deleted successfully');
+
+                                    grid.Refresh();
+
+                                }
+                                else if (responseFromServer.d == '-1') {
+                                    jAlert('Cannot Delete.This user has been assigned to Topic.')
+                                }
+                                else if (responseFromServer.d == '-10') {
+                                    jAlert('Error in Delete.')
+                                }
+                                else {
+                                    jAlert('Please Try Again Later.')
+                                }
+                            }
+                        });
+                    }
+                    else {
+                        return false;
+                    }
+                });
+            } else {
+                jAlert("Sorry, you can not delete the Admin.");
+            }
+
+
+        }
+
+       
+
+    </script>
 </asp:Content>
 <%--Rev work start .Refer: 25046 27.07.2022 New Listing page create for new Login Configuration Page--%>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -649,7 +1187,7 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                             <%--Rev 2.0: grid column width increase--%>
                             <dxe:ASPxGridView ID="userGrid" ClientInstanceName="grid" runat="server" AutoGenerateColumns="False"
                             KeyFieldName="USER_ID" Width="100%" OnCustomJSProperties="userGrid_CustomJSProperties" SettingsBehavior-AllowFocusedRow="true"
-                            Settings-HorizontalScrollBarMode="Auto">                           
+                            Settings-HorizontalScrollBarMode="Auto" >
                             <Columns>
                                 <dxe:GridViewDataTextColumn ReadOnly="True" VisibleIndex="0" FieldName="UID"
                                     Caption="UID" Width="0%" SortOrder="Descending">
@@ -695,20 +1233,41 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                                     <EditFormSettings Visible="false" />
                                 </dxe:GridViewDataTextColumn>   
 
-                                <dxe:GridViewDataTextColumn VisibleIndex="6" CellStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center" Width="10%">
+                                <dxe:GridViewDataTextColumn VisibleIndex="6" CellStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center" Width="20%">
                                 
                                     <DataItemTemplate>
-                                         <%--<% if (rights.CanEdit)
-                                            { %>--%>
-                                        <a href="javascript:void(0);" onclick="OnEditButtonClick('<%# Container.KeyValue %>')" title="Edit User" class="pad">
+                                         <% if (rights.CanEdit)
+                                            { %>
+                                        <a href="javascript:void(0);" onclick="OnEditButtonClick('<%# Container.KeyValue %>')" title="More Info" class="pad">
                                             <img src="../../../assests/images/Edit.png" />
                                         </a>
-                                          <%--<% } %>--%>
-                                         <%--<% if (rights.CanDelete)
-                                           { %>--%>
-                                         <%--<a href="javascript:void(0);" onclick="MakeActive('<%# Container.KeyValue %>')" title="Active/Inactive User">
-                                            <img src="../../../assests/images/Delete.png" /></a>--%>
-                                         <%--<% } %>--%>
+                                          <% } %>
+
+                                        <% if (rights.CanAdd)
+                                        { %>
+                                            <a href="javascript:void(0);" onclick="EMPIDBind('<%#Eval("ContactID") %>')" title="Update Employee ID" class="pad" style="text-decoration: none;">
+                                                <img src="../../../assests/images/update-id.png" />
+                                            </a>
+
+                                            <a href="javascript:void(0);" onclick="StateBind('<%#Eval("ContactID") %>')" title="State Mapping" class="pad" style="text-decoration: none;">
+                                                <img src="../../../assests/images/state-mapping.png" />
+                                            </a>
+
+                                            
+                                         <% } %>
+
+                                        <% if (!ActivateEmployeeBranchHierarchy){ %>
+                                            <a href="javascript:void(0);" onclick="fn_BranchMap('<%#Eval("cnt_id") %>')" class="pad" title="Branch Mapping">
+                                                <img src="../../../assests/images/branch-mapping.png"  />
+                                            </a>
+                                        <% }  %>
+                                            
+
+                                         <% if (rights.CanDelete)
+                                           { %>
+                                         <a href="javascript:void(0);" onclick="fn_DeleteEmp('<%#Eval("UID") %>')" title="Active/Inactive User">
+                                            <img src="../../../assests/images/Delete.png" /></a>
+                                         <% } %>
                                     </DataItemTemplate>
                                     <HeaderTemplate>Actions</HeaderTemplate>
                                     <EditFormSettings Visible="False"></EditFormSettings>
@@ -718,9 +1277,7 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
                             <SettingsSearchPanel Visible="True" />
                             <Settings ShowStatusBar="Hidden" ShowFilterRow="true" ShowGroupPanel="True" ShowFilterRowMenu="true" />                           
                             <SettingsBehavior ConfirmDelete="True" />
-                            <ClientSideEvents EndCallback="function(s, e) {
-	                            EndCall(s.cpHeight);
-                            }" />
+                            <ClientSideEvents EndCallback="function(s, e) { EndCall(s.cpHeight); }" />
                         </dxe:ASPxGridView>
                         </div>
                     </td>
@@ -729,5 +1286,105 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
         </div>        
         <dxe:ASPxGridViewExporter ID="exporter" runat="server">
         </dxe:ASPxGridViewExporter>
+    </div>
+
+    <div id="myEmpIDModal" class="modal fade" data-backdrop="static" role="dialog">
+        <div class="modal-dialog" style="width: 450px;">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Update Employee ID</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <label id="lbloldEmpID" class="lblstate">OLD Employee ID :</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <label id="lblOLDEmpIDname" class="lblstate">9563218466</label>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-sm-5">
+                            <label id="lblEmpIDname" class="lblstate">New Employee ID :</label>
+                        </div>
+                        <div class="col-sm-7">
+                            <input type="text" id="txtEMPId" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="modal-footer" style="padding: 8px 26px 5px;">
+                    <input type="button" id="btnEMPidSubmit" title="Update" value="Update" class="btn btn-primary" onclick="UpdateEmpId()" />
+               
+                     <input type="hidden" id="hdnEMPCode" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="myModal" class="modal fade" data-backdrop="static" role="dialog">
+        <div class="modal-dialog" style="width: 450px;">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">State List</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+
+                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for States.">
+
+                        <ul id="divModalBody" class="listStyle">
+                            <%--<input type="checkbox" id="idstate" class="statecheck" /><label id="lblstatename" class="lblstate"></label>--%>
+                        </ul>
+                    </div>
+                    <input type="button" id="btnsatesubmit" title="SUBMIT" value="SUBMIT" class="btn btn-primary" onclick="STATEPUSHPOP()" />
+                    <input type="hidden" id="hdnstatelist" class="btn btn-primary" />
+                    <input type="hidden" id="hdnEMPID" class="btn btn-primary" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="myModalBranchMap" class="modal fade branch-list-modal" data-backdrop="static" role="dialog">
+        <div class="modal-dialog" style="width: 520px;">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <%--<button type="button" class="close" data-dismiss="modal">&times;</button>--%>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="ClearData();"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Branch List</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+
+                        <%--<input type="text" id="myInputBranchMap" onkeyup="myFunctionBranchMap()" placeholder="Search for Branch.">--%>
+
+                        <div class="input-group flex-nowrap">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="addon-wrapping"><i class="fa fa-search"></i></span>
+                          </div>
+                          <input type="text" id="myInputBranchMap" onkeyup="myFunctionBranchMap()" class="form-control" placeholder="Search for Branch" aria-describedby="addon-wrapping">
+                        </div>
+
+                        <div id="divModalBodyBranchMap" class="listStyle">
+                            <%--<input type="checkbox" id="idstate" class="statecheck" /><label id="lblstatename" class="lblstate"></label>--%>
+                        </div>
+                    </div>
+                    <input type="button" id="btnBranchMapsubmit" title="SUBMIT" value="SUBMIT" class="btn btn-primary" onclick="BranchPushPop()" />
+                    <%--<input type="hidden" id="hdnstatelist" class="btn btn-primary" />
+                    <input type="hidden" id="hdnEMPID" class="btn btn-primary" />--%>
+                </div>
+               <%-- <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="ClearData();">Close</button>
+            </div>--%>
+            </div>
+
+        </div>
     </div>
 </asp:Content>
