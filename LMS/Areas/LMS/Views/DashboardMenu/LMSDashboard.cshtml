@@ -3021,7 +3021,7 @@ Rev Number   DATE            VERSION     DEVELOPER       CHANGES
     });
     $(document).ready(function () {
         var getTabDetail = $(".getTabDetail").val();
-        if (getTabDetail == "LMS") {
+        if (getTabDetail == "MobiLearn") {
             $(".mainAreaTAb .tab-pane, .tabItemsLI li").removeClass("active");
             $(".tab-pane#LMSList").addClass("active");
             $("#LMSList").addClass("active");
@@ -3594,16 +3594,16 @@ else
 {
     if (Model.DashboardSettingMappedList.Count() > 0)
     {
-        if (Model.DashboardSettingMappedList.Where(x => x.DetailsName == "LMS").Count() > 0)
+        if (Model.DashboardSettingMappedList.Where(x => x.DetailsName == "MobiLearn").Count() > 0)
         {
-            <input type="hidden" class="getTabDetail" value="LMS" />
+            <input type="hidden" class="getTabDetail" value="MobiLearn" />
         }
         else
         {
             <input type="hidden" class="getTabDetail" value="Visit" />
         }
 
-        <input type="hidden" id="hdnLMS" value="@Model.DashboardSettingMappedList.Where(x => x.DetailsName == "LMS").Count()" />
+        <input type="hidden" id="hdnLMS" value="@Model.DashboardSettingMappedList.Where(x => x.DetailsName == "MobiLearn").Count()" />
 
         //new Layout ContentControl area
         <div class="container">
@@ -3612,7 +3612,7 @@ else
                 <div class="tabs tabs-style-shape">
                     <nav>
                         <ul role="tablist" class="tabItemsLI">
-                            @if (Model.DashboardSettingMappedList.Where(x => x.DetailsName == "LMS").Count() > 0)
+                            @if (Model.DashboardSettingMappedList.Where(x => x.DetailsName == "MobiLearn").Count() > 0)
                             {
                                 <li role="presentation" id="tbs7" class="shLeader">
                                     <a href="#LMSList" class="" aria-controls="LMSList" role="tab" data-toggle="tab">
@@ -3713,7 +3713,7 @@ else
 
                         </div>
 
-                        @if (Model.DashboardSettingMappedList.Where(x => x.DetailsName == "LMS").Count() > 0)
+                        @if (Model.DashboardSettingMappedList.Where(x => x.DetailsName == "MobiLearn").Count() > 0)
                         {
                             <div role="tabpanel" class="tab-pane active" id="LMSList">
 

@@ -161,9 +161,11 @@
                 tmValue: $("#tmValue").val()
         }
 
+        var Url = '@Url.Action("Addsystemsettings", "Systemsettings")'
         $.ajax({
             type: "POST",
-            url: "/Systemsettings/Addsystemsettings",
+            //url: "/Systemsettings/Addsystemsettings",
+            url: Url,
             data: "{data:" + JSON.stringify(data) + "}",
             async: false,
             contentType: "application/json; charset=utf-8",
