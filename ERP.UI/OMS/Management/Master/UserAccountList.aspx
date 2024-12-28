@@ -1287,7 +1287,7 @@ Rev Number         DATE              VERSION          DEVELOPER           CHANGE
 
                                          <% if (rights.CanDelete)
                                            { %>
-                                         <a href="javascript:void(0);" onclick="fn_DeleteEmp('<%#Eval("UID") %>')" title="Active/Inactive User">
+                                         <a href="javascript:void(0);" onclick="fn_DeleteEmp('<%#Eval("UID") %>')" title="Delete User">
                                             <img src="../../../assests/images/Delete.png" /></a>
                                          <% } %>
                                     </DataItemTemplate>
