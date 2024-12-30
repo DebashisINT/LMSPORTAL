@@ -3930,6 +3930,8 @@
             },
             complete: function (xhr) {
                 // status.html(xhr.responseText);
+                $('#file-name-icon').text('');
+                filePreview.innerHTML = '';
 
                 hideLoader();
 
@@ -6092,7 +6094,6 @@
         $(".upload-next").click(function () {
             // Rev Sanchita
 
-
             if ($("#txtContentTitle").val().trim() == "") {
                 Swal.fire({
                     icon: 'warning',
@@ -6190,6 +6191,7 @@
         $(".upload-previous").click(function () {
             if (animating) return false;
             animating = true;
+
 
             current_fs = $(this).parent();
             previous_fs = $(this).parent().prev();
@@ -6344,6 +6346,11 @@
     function closeContentModal() {
         $('#file-name-icon').text('');
         filePreview.innerHTML = '';
+
+    }
+
+    function closeContentPlay() {
+        filePreviewListing.innerHTML = '';
 
     }
 
@@ -7737,7 +7744,7 @@
     <div class="modal-dialog ">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" onclick="close()">&times;</button>
+                <button type="button" class="close" data-dismiss="modal" onclick="closeContentPlay()">&times;</button>
                 <h4 id="txtContentTitleListing"></h4>
 
             </div>
