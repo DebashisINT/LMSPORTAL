@@ -488,6 +488,13 @@
     <Compile Include="OMS\ForgotPassword.aspx.designer.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
     </Compile>
+    <Compile Include="OMS\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OMS\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="OMS\Management\Master\branch.aspx.cs">
       <DependentUpon>branch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2095,6 +2102,7 @@
     <Content Include="OMS\JSFUNCTION\PageMethods.js" />
     <Content Include="OMS\JSFUNCTION\progress.js" />
     <Content Include="OMS\JSFUNCTION\wz_tooltip.js" />
+    <Content Include="OMS\Login.aspx" />
     <Content Include="OMS\logo.bmp" />
     <Content Include="OMS\logo.jpg" />
     <Content Include="OMS\Management\images\1.png" />
